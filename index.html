@@ -1968,6 +1968,14 @@ footer { padding: 40px 16px 24px; }
         <div class="bundle-tags"><span>Genesis Block</span><span>Whitepaper 2008</span><span>Proof of Work</span></div>
       </div>
       <div class="bundle-card" data-bundle="back-lineage">
+         <div class="bundle-card" data-bundle="dorian">
+        <button class="verify-btn" onclick="openTerminal('dorian')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Dorian Prentice Satoshi Nakamoto</div>
+        <div class="bundle-role th-only">ชายผู้ถูก Newsweek ชี้เป้าว่าเป็นผู้สร้าง Bitcoin แต่เขาปฏิเสธอย่างสิ้นเชิง</div>
+        <div class="bundle-role en-only">The man Newsweek claimed was the creator of Bitcoin, who categorically denied it.</div>
+        <div class="bundle-tags"><span>Newsweek 2014</span><span>Model Trains</span><span>Not Satoshi</span></div>
+        <div class="bundle-score">0%</div>
+      </div>
         <button class="verify-btn" onclick="openTerminal('back')" title="Don't Trust, Verify">✅ Verify</button>
         <div class="bundle-name">Adam Back</div>
         <div class="bundle-role th-only">Hashcash 1997 — อ้างอิงใน whitepaper [1]</div>
@@ -2752,6 +2760,7 @@ const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
 const BUNDLES={
 // Chapter 0
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
+dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกนิตยสาร Newsweek ตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 'back-lineage':B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work.`,['What is Hashcash?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 weidai:B('Wei Dai',`<span class="t-label">SUBJECT:</span> Wei Dai — b-money (1998) | Whitepaper ref [2]\n<span class="t-muted">─────────────────────────</span>\nb-money proposed money created by computational work. Satoshi emailed Wei Dai first.`,['What is b-money?','Why contact Wei Dai first?'],[{label:'b-money',url:'https://nakamotoinstitute.org/b-money/'}]),
