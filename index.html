@@ -265,9 +265,6 @@ nav {
 .world-card-title-th { font-family: var(--thai); font-size: 22px; color: var(--cream); margin-bottom: 6px; }
 .world-card-title-en { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; color: var(--muted); margin-bottom: 24px; }
 .world-card-desc { font-family: var(--body); font-size: 14px; line-height: 1.8; color: var(--muted); }
-.world-card-sound { font-family: var(--mono); font-size: 10px; color: var(--green); margin-top: 24px; opacity: 0.6; }
-.world-card.world-c .world-card-sound { opacity: 0; transition: opacity 3s; }
-.world-card.world-c:hover .world-card-sound { opacity: 0.6; }
 
 /* ─── HALVING INTERACTIVE ─── */
 .halving { padding: 100px 40px; text-align: center; }
@@ -281,17 +278,17 @@ nav {
 .halving-num { font-family: var(--mono); font-size: 18px; color: var(--orange); font-weight: 700; }
 .halving-year { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-top: 2px; }
 .halving-reward-cell { font-family: var(--mono); font-size: 11px; color: var(--cream); opacity: 0.5; margin-top: 4px; }
-.halving-card-bitcoin { display: flex; flex-direction: column; justify-content: center; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.04); }
+.halving-card-bitcoin { display: flex; flex-direction: column; justify-content: center; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.04); text-align: left; }
 .halving-btc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-bottom: 4px; }
 .halving-btc-reward { font-family: var(--mono); font-size: 16px; color: var(--orange); font-weight: 700; }
 .halving-btc-supply { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 4px; }
 .halving-card-crisis { display: flex; flex-direction: column; justify-content: center; padding: 20px 24px; }
-.halving-crisis-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--blue); margin-bottom: 4px; }
+.halving-crisis-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--blue); margin-bottom: 4px; text-align: left; }
 .halving-crisis-text { font-family: var(--body); font-size: 13px; color: var(--muted); line-height: 1.6; text-align: left; }
 .halving-card-expand { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.3s; }
 .halving-card.expanded .halving-card-expand { max-height: 1000px; }
 .halving-memory { padding: 16px 24px 20px; border-top: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 16px; }
-.halving-memory-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--orange); white-space: nowrap; padding-top: 8px; min-width: 160px; }
+.halving-memory-label { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--orange); white-space: nowrap; padding-top: 8px; min-width: 160px; text-align: left; }
 .halving-memory-input { flex: 1; background: transparent; border: none; border-bottom: 1px solid rgba(247,147,26,0.15); color: var(--cream); font-family: var(--body); font-size: 13px; padding: 8px 0; outline: none; transition: border-color 0.3s; }
 .halving-memory-input:focus { border-color: var(--orange); }
 .halving-memory-input::placeholder { color: var(--muted); opacity: 0.4; }
@@ -299,13 +296,23 @@ nav {
 .halving-card:hover .halving-toggle { opacity: 0.6; }
 .halving-card.expanded .halving-toggle { opacity: 1; color: var(--orange); }
 
+/* Halving Countdown Widget */
+.halving-countdown { max-width: 600px; margin: 80px auto 0; padding: 32px 24px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.02); text-align: center; position: relative; overflow: hidden; }
+.hc-label { font-family: var(--mono); font-size: 10px; letter-spacing: 4px; color: var(--green); margin-bottom: 16px; opacity: 0.7; }
+.hc-blocks { font-family: var(--mono); font-size: 28px; color: var(--cream); margin-bottom: 8px; }
+.hc-blocks span { color: var(--orange); font-weight: 700; }
+.hc-date { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; color: var(--muted); }
+.hc-progress { width: 100%; height: 2px; background: rgba(255,255,255,0.1); margin-top: 24px; position: relative; }
+.hc-progress-bar { height: 100%; background: var(--orange); width: 0%; transition: width 1s ease-out; }
+
 /* ─── CYPHERPUNK DIRECTORY ─── */
 .cypherpunk { padding: 120px 40px; }
 .cypherpunk-intro { max-width: 600px; margin: 0 auto 80px; text-align: center; }
 .cypherpunk-intro p { font-family: var(--body); font-size: 15px; line-height: 1.9; color: var(--muted); }
 .ch-group { max-width: 1000px; margin: 0 auto 80px; }
 .ch-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid rgba(247,147,26,0.12); }
-.ch-num { font-family: var(--mono); font-size: 28px; color: var(--orange); opacity: 0.3; line-height: 1; min-width: 40px; }
+.ch-num { font-family: var(--mono); font-size: 28px; color: var(--orange); opacity: 0.3; line-height: 1; min-width: 40px; text-align: left;}
+.ch-info { text-align: left; }
 .ch-title { font-family: var(--mono); font-size: 12px; letter-spacing: 3px; color: var(--cream); margin-bottom: 6px; }
 .ch-subtitle { font-family: var(--body); font-size: 13px; color: var(--muted); line-height: 1.6; }
 .ch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
@@ -349,7 +356,7 @@ nav {
 .ch-header-you { justify-content: center; border-bottom-color: rgba(0,255,65,0.15); }
 .ch-num-you { color: var(--green); opacity: 0.5; }
 .ch-title-you { color: var(--green); }
-.ch-subtitle-you { color: var(--green); opacity: 0.6; }
+.ch-subtitle-you { color: var(--green); opacity: 0.6; text-align: center; }
 .you-koan { max-width: 700px; margin: 0 auto; padding: 32px; border: 1px solid rgba(247,147,26,0.1); background: rgba(247,147,26,0.02); }
 .you-koan p { font-family: var(--mono); font-size: 12px; line-height: 2.2; color: var(--orange); opacity: 0.8; }
 .koan-final { margin-top: 8px; font-weight: 700; opacity: 1 !important; }
@@ -502,13 +509,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ─── FADE IN ─── */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* ─── LANGUAGE TOGGLE ─── */
-[data-lang="th"] .en-only { display: none !important; }
-[data-lang="en"] .th-only { display: none !important; }
-
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
   .nav-menu { display: none; }
@@ -524,6 +524,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .worlds-grid { grid-template-columns: 1fr; }
   .world-card { padding: 36px 24px; }
   .halving { padding: 60px 16px; }
+  .halving-countdown { margin: 60px 16px 0; }
   .halving-card-header { grid-template-columns: 60px 1fr; }
   .halving-card-crisis { display: none; }
   .halving-card:hover .halving-card-crisis,
@@ -670,7 +671,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 <section class="hero" id="hero">
   <div class="hero-block">
     <a href="https://mempool.space/" target="_blank" rel="noopener">
-      BLOCK <span class="block-num" id="blockHeight">878,942</span> — LIVE
+      BLOCK <span class="block-num" id="blockHeight">...</span> — LIVE
     </a>
   </div>
   <h1 class="hero-title">SATOSHi</h1>
@@ -717,7 +718,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="world-card-title-en">FIAT WORLD</div>
       <p class="world-card-desc th-only">โลกที่ระบบ fiat ทำงานอยู่โดยที่ทุกคนไม่รู้สึกว่ามีปัญหา ทุกคนทำสิ่งที่ถูกต้องในยุคของตัวเอง ไม่มีใครผิด แต่ระบบกำลังกินพวกเขาทีละนิด</p>
       <p class="world-card-desc en-only">A world where the fiat system works and no one feels anything is wrong. Everyone does the right thing for their era. No one is at fault — but the system slowly consumes them.</p>
-      <div class="world-card-sound">"วิชาชีพคือทรัพย์สินที่ใครเอาไปไม่ได้"</div>
     </div>
     <div class="world-card reveal">
       <div class="world-card-era">BLOCK 0 — PRESENT</div>
@@ -727,7 +727,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="world-card-title-en">TRANSITION</div>
       <p class="world-card-desc th-only">ระบบ fiat กำลังพัง แต่ยังไม่มีใครเห็นชัด เขาเห็นก่อน แต่พิสูจน์ให้คนอื่นเห็นด้วยไม่ได้ เขาต้องพิสูจน์ให้ตัวเองเห็นก่อน</p>
       <p class="world-card-desc en-only">The fiat system is breaking — but no one can see it clearly yet. He sees it first, but can't prove it to others. He must prove it to himself first.</p>
-      <div class="world-card-sound">"ความมั่นคงคืออะไร ในเมื่อธรรมชาติคือการเปลี่ยนแปลง"</div>
     </div>
     <div class="world-card world-c reveal">
       <div class="world-card-era">BITCOIN STANDARD ERA</div>
@@ -737,7 +736,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="world-card-title-en">AFTER TRANSITION</div>
       <p class="world-card-desc th-only">seed ของเขางอกแล้ว ไม่ใช่ utopia — ยังมีความขัดแย้ง ยังมีคำถาม แต่ฐานรากเปลี่ยนไปแล้ว</p>
       <p class="world-card-desc en-only"> His seed has grown. Not a utopia — conflicts and questions remain. But the foundation has changed.</p>
-      <div class="world-card-sound">"เขาเป็นคนธรรมดา แค่เห็นบางอย่าง ก่อนที่คนอื่นจะเห็น"</div>
     </div>
   </div>
 </section>
@@ -908,6 +906,16 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       </div>
     </div>
   </div>
+
+  <div class="halving-countdown reveal" id="halvingCountdown">
+    <div class="hc-label">NEXT HALVING ESTIMATE</div>
+    <div class="hc-blocks"><span id="hcBlocksLeft">--</span> BLOCKS REMAINING</div>
+    <div class="hc-date" id="hcEstDate">ESTIMATED: --</div>
+    <div class="hc-progress">
+      <div class="hc-progress-bar" id="hcProgressBar"></div>
+    </div>
+  </div>
+
 </section>
 
 <div class="section-divider"></div>
@@ -1117,6 +1125,13 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role en-only">Bitcoin's world teacher — made ordinary people understand.</div>
         <div class="bundle-tags"><span>Mastering Bitcoin</span><span>The Internet of Money</span><span>Education</span></div>
       </div>
+      <div class="bundle-card" data-bundle="song">
+        <button class="verify-btn" onclick="openTerminal('song')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Jimmy Song</div>
+        <div class="bundle-role th-only">ผู้สอนนักพัฒนา Bitcoin ชั้นนำ — อธิบายด้วยความจริงและตัวโค้ด</div>
+        <div class="bundle-role en-only">Leading Bitcoin developer educator — speaks truth through code.</div>
+        <div class="bundle-tags"><span>Programming Bitcoin</span><span>Developer</span><span>Maximalist</span></div>
+      </div>
     </div>
   </div>
 
@@ -1308,6 +1323,13 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role th-only">Layered Money — อธิบาย Bitcoin ผ่านเลนส์ของประวัติศาสตร์การเงินโลก</div>
         <div class="bundle-role en-only">Layered Money — explains Bitcoin through the lens of global monetary history.</div>
         <div class="bundle-tags"><span>Layered Money</span><span>Bond Market</span><span>USC Professor</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="btcmag">
+        <button class="verify-btn" onclick="openTerminal('btcmag')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Bitcoin Magazine</div>
+        <div class="bundle-role th-only">สื่อสิ่งพิมพ์แรกของโลก Bitcoin — ก่อตั้งโดย Vitalik Buterin และ Mihai Alisie (2012)</div>
+        <div class="bundle-role en-only">The first publication dedicated to Bitcoin — founded by Vitalik Buterin and Mihai Alisie (2012).</div>
+        <div class="bundle-tags"><span>Print Media</span><span>Founded 2012</span><span>Signal</span></div>
       </div>
     </div>
   </div>
@@ -1789,19 +1811,47 @@ function toggleLang() {
   html.setAttribute('data-lang', current === 'th' ? 'en' : 'th');
 }
 
-// ─── Block Height Counter ───
-(function blockCounter() {
-  const el = document.getElementById('blockHeight');
-  let block = 878942;
-  function update() {
-    el.textContent = block.toLocaleString();
-    setTimeout(() => {
-      block += 1;
-      update();
-    }, Math.random() * 20000 + 540000);
+// ─── Block Height Fetch & Halving Countdown ───
+async function updateBlockData() {
+  try {
+    const response = await fetch('https://mempool.space/api/blocks/tip/height');
+    const heightText = await response.text();
+    const currentBlock = parseInt(heightText);
+
+    // 1. Update Block Height in Hero
+    const el = document.getElementById('blockHeight');
+    if (el) el.textContent = currentBlock.toLocaleString();
+
+    // 2. Update Halving Countdown Widget
+    const halvingInterval = 210000;
+    const nextHalving = Math.ceil(currentBlock / halvingInterval) * halvingInterval;
+    const blocksLeft = nextHalving - currentBlock;
+    
+    // Estimate Date (1 block = ~10 mins)
+    const msLeft = blocksLeft * 10 * 60 * 1000; 
+    const estDate = new Date(Date.now() + msLeft);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const hcBlocks = document.getElementById('hcBlocksLeft');
+    const hcDate = document.getElementById('hcEstDate');
+    const hcProgress = document.getElementById('hcProgressBar');
+
+    if (hcBlocks) hcBlocks.textContent = blocksLeft.toLocaleString();
+    if (hcDate) hcDate.textContent = "ESTIMATED: ~" + estDate.toLocaleDateString('en-US', options).toUpperCase();
+    
+    // Calculate progress bar percentage within the current 210,000 block cycle
+    const cycleStart = nextHalving - halvingInterval;
+    const progress = ((currentBlock - cycleStart) / halvingInterval) * 100;
+    if (hcProgress) hcProgress.style.width = progress + '%';
+
+  } catch (error) {
+    console.error("Failed to fetch block height from mempool:", error);
   }
-  update();
-})();
+}
+// Run immediately and then every 60 seconds
+updateBlockData();
+setInterval(updateBlockData, 60000);
+
 
 // ─── Scroll Reveal ───
 const reveals = document.querySelectorAll('.reveal');
@@ -1852,7 +1902,6 @@ const BUNDLES={
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
 dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกนิตยสาร Newsweek ตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
-'back-lineage':B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work.`,['What is Hashcash?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 weidai:B('Wei Dai',`<span class="t-label">SUBJECT:</span> Wei Dai — b-money (1998) | Whitepaper ref [2]\n<span class="t-muted">─────────────────────────</span>\nb-money proposed money created by computational work. Satoshi emailed Wei Dai first.`,['What is b-money?','Why contact Wei Dai first?'],[{label:'b-money',url:'https://nakamotoinstitute.org/b-money/'}]),
 stornetta:B('W. Scott Stornetta',`<span class="t-label">SUBJECT:</span> Stornetta & Haber — Timestamped chain (1991) | Refs [3,4,5]\n<span class="t-muted">─────────────────────────</span>\nLinking timestamped documents in a chain — the ancestor of blockchain.`,['How did timestamping lead to blockchain?'],[]),
 haber:B('Stuart Haber',`<span class="t-label">SUBJECT:</span> Stuart Haber — co-author with Stornetta | Refs [3,4,5]\n<span class="t-muted">─────────────────────────</span>\nBuilt Surety timestamping — publishing hashes in NYT classifieds weekly.`,['What was Surety?'],[]),
@@ -1871,6 +1920,7 @@ reesmogg:B('Lord Rees-Mogg',`<span class="t-label">SUBJECT:</span> Lord Rees-Mog
 // Chapter 2
 finney:B('Hal Finney',`<span class="t-label">SUBJECT:</span> Hal Finney (1956–2014) | "Running bitcoin." 11 Jan 2009\n<span class="t-muted">─────────────────────────</span>\nFirst TX receiver. RPOW creator. Coded until ALS took his body — never his proof of work.`,['First Bitcoin transaction?','Finney = Satoshi?'],[{label:'First TX',url:'https://mempool.space/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16'}]),
 andreas:B('Andreas Antonopoulos',`<span class="t-label">SUBJECT:</span> Andreas Antonopoulos — Mastering Bitcoin\n<span class="t-muted">─────────────────────────</span>\nDid not write code — wrote understanding. Made millions comprehend why Bitcoin matters.`,['What makes Mastering Bitcoin essential?'],[{label:'Book',url:'https://github.com/bitcoinbook/bitcoinbook'}]),
+song:B('Jimmy Song',`<span class="t-label">SUBJECT:</span> Jimmy Song\n<span class="t-muted">─────────────────────────</span>\nEducating the next generation of Bitcoin developers. Code over marketing.`,['Programming Bitcoin?'],[{label:'Programming Bitcoin',url:'https://github.com/jimmysong/programmingbitcoin'}]),
 // Chapter 3
 andresen:B('Gavin Andresen',`<span class="t-label">SUBJECT:</span> Gavin Andresen — First lead maintainer\n<span class="t-muted">─────────────────────────</span>\nSatoshi gave him repo access before disappearing.`,['How did Satoshi hand over?'],[]),
 wuille:B('Pieter Wuille',`<span class="t-label">SUBJECT:</span> Pieter Wuille — SegWit / Taproot\n<span class="t-muted">─────────────────────────</span>\nQuietly rewrote Bitcoin's foundations. His code speaks louder than talks.`,['What did SegWit solve?'],[]),
@@ -1895,6 +1945,7 @@ thiel:B('Peter Thiel',`<span class="t-label">SUBJECT:</span> Peter Thiel — Pay
 ammous:B('Saifedean Ammous',`<span class="t-label">SUBJECT:</span> Saifedean Ammous — The Bitcoin Standard\n<span class="t-muted">─────────────────────────</span>\nThe book that changed how a generation thinks about money.`,['What is The Bitcoin Standard?'],[]),
 alden:B('Lyn Alden',`<span class="t-label">SUBJECT:</span> Lyn Alden — Broken Money\n<span class="t-muted">─────────────────────────</span>\nAnalyzing money with data, not belief. Engineering meets economics.`,['What is Broken Money?'],[{label:'Website',url:'https://www.lynalden.com'}]),
 bhatia:B('Nik Bhatia',`<span class="t-label">SUBJECT:</span> Nik Bhatia — Layered Money\n<span class="t-muted">─────────────────────────</span>\nBitcoin through the lens of monetary history.`,['What is Layered Money?'],[]),
+btcmag:B('Bitcoin Magazine',`<span class="t-label">SUBJECT:</span> Bitcoin Magazine\n<span class="t-muted">─────────────────────────</span>\nThe original print publication. Documenting the revolution since 2012.`,['Who founded it?'],[{label:'Website',url:'https://bitcoinmagazine.com/'}]),
 // Chapter 7 - DOCS
 dirtycoin:B('Dirty Coin',`<span class="t-label">SUBJECT:</span> Dirty Coin — Alana Mediavilla\n<span class="t-muted">─────────────────────────</span>\nDocumenting the truth about Bitcoin mining and global energy. Dispelling fiat propaganda with proof of work.`,['What is the film about?'],[{label:'Dirty Coin Website',url:'https://www.dirtycointhemovie.com/'}]),
 hbodoc:B('Money Electric',`<span class="t-label">SUBJECT:</span> Money Electric: The Bitcoin Mystery (HBO)\n<span class="t-muted">─────────────────────────</span>\nThe relentless media pursuit of Satoshi's identity by Cullen Hoback. The mystery remains, the code survives.`,['Did they find Satoshi?'],[{label:'HBO Max',url:'https://www.hbo.com/movies/money-electric-the-bitcoin-mystery'}]),
