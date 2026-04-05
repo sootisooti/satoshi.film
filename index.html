@@ -94,6 +94,27 @@ text-decoration: none;
 display: flex;
 align-items: center;
 }
+.nav-right {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.nav-auth-btn {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--green);
+border: 1px solid rgba(0,255,65,0.3);
+padding: 6px 14px;
+background: transparent;
+cursor: none;
+transition: all 0.3s;
+}
+.nav-auth-btn:hover {
+color: var(--dark);
+background: var(--green);
+border-color: var(--green);
+}
 .lang-toggle {
 font-family: var(--mono);
 font-size: 12px;
@@ -303,50 +324,174 @@ transition: opacity 3s;
 opacity: 0.6;
 }
 
-/* ─── HALVING ─── */
+/* ─── HALVING INTERACTIVE ─── */
 .halving {
 padding: 100px 40px;
 text-align: center;
 }
 .halving-timeline {
 display: flex;
-justify-content: center;
-align-items: center;
-gap: 0;
+flex-direction: column;
+gap: 2px;
 max-width: 900px;
 margin: 60px auto 0;
-flex-wrap: wrap;
 }
-.halving-block {
-flex: 1;
-min-width: 140px;
-padding: 24px 16px;
-border-left: 1px solid rgba(247,147,26,0.2);
-text-align: center;
-transition: all 0.3s;
+.halving-card {
+background: var(--dark-surface);
+padding: 0;
+transition: all 0.4s;
+overflow: hidden;
+border-left: 2px solid rgba(247,147,26,0.15);
 }
-.halving-block:first-child { border-left: none; }
-.halving-block:hover {
+.halving-card:hover {
+border-left-color: var(--orange);
+}
+.halving-card.halving-future {
+border-left-color: rgba(0,255,65,0.15);
+}
+.halving-card.halving-future:hover {
+border-left-color: var(--green);
+}
+.halving-card-header {
+display: grid;
+grid-template-columns: 80px 1fr 1fr;
+gap: 0;
+align-items: stretch;
+cursor: none;
+}
+.halving-card-num {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px 12px;
 background: rgba(247,147,26,0.03);
+border-right: 1px solid rgba(255,255,255,0.04);
 }
 .halving-num {
 font-family: var(--mono);
-font-size: 20px;
+font-size: 18px;
 color: var(--orange);
-margin-bottom: 4px;
+font-weight: 700;
 }
 .halving-year {
 font-family: var(--mono);
 font-size: 10px;
 letter-spacing: 2px;
 color: var(--muted);
-margin-bottom: 4px;
+margin-top: 2px;
 }
-.halving-reward {
+.halving-reward-cell {
 font-family: var(--mono);
 font-size: 11px;
 color: var(--cream);
+opacity: 0.5;
+margin-top: 4px;
+}
+.halving-card-bitcoin {
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 20px 24px;
+border-right: 1px solid rgba(255,255,255,0.04);
+}
+.halving-btc-label {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--muted);
+margin-bottom: 4px;
+}
+.halving-btc-reward {
+font-family: var(--mono);
+font-size: 16px;
+color: var(--orange);
+font-weight: 700;
+}
+.halving-btc-supply {
+font-family: var(--mono);
+font-size: 10px;
+color: var(--muted);
+margin-top: 4px;
+}
+.halving-card-crisis {
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 20px 24px;
+}
+.halving-crisis-label {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--blue);
+margin-bottom: 4px;
+}
+.halving-crisis-text {
+font-family: var(--body);
+font-size: 13px;
+color: var(--muted);
+line-height: 1.6;
+}
+/* Expandable memory section */
+.halving-card-expand {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease-out, padding 0.3s;
+}
+.halving-card.expanded .halving-card-expand {
+max-height: 200px;
+}
+.halving-memory {
+padding: 16px 24px 20px;
+border-top: 1px solid rgba(255,255,255,0.04);
+display: flex;
+align-items: flex-start;
+gap: 16px;
+}
+.halving-memory-label {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--orange);
+white-space: nowrap;
+padding-top: 8px;
+min-width: 160px;
+}
+.halving-memory-input {
+flex: 1;
+background: transparent;
+border: none;
+border-bottom: 1px solid rgba(247,147,26,0.15);
+color: var(--cream);
+font-family: var(--body);
+font-size: 13px;
+padding: 8px 0;
+outline: none;
+transition: border-color 0.3s;
+}
+.halving-memory-input:focus {
+border-color: var(--orange);
+}
+.halving-memory-input::placeholder {
+color: var(--muted);
 opacity: 0.4;
+}
+.halving-toggle {
+font-family: var(--mono);
+font-size: 9px;
+color: var(--muted);
+letter-spacing: 1px;
+padding: 4px 12px;
+opacity: 0;
+transition: opacity 0.3s;
+}
+.halving-card:hover .halving-toggle {
+opacity: 0.6;
+}
+.halving-card.expanded .halving-toggle {
+opacity: 1;
+color: var(--orange);
 }
 
 /* ─── CYPHERPUNK DIRECTORY ─── */
@@ -842,6 +987,180 @@ color: var(--orange);
 border-color: var(--orange);
 }
 
+/* ─── AUTH MODAL ─── */
+.auth-overlay {
+position: fixed;
+inset: 0;
+background: rgba(8,8,6,0.95);
+z-index: 10002;
+display: none;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(12px);
+}
+.auth-overlay.active { display: flex; }
+.auth-box {
+width: 90%;
+max-width: 420px;
+background: #0a0a08;
+border: 1px solid rgba(247,147,26,0.2);
+overflow: hidden;
+}
+.auth-header {
+display: flex;
+border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.auth-tab {
+flex: 1;
+padding: 16px;
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 3px;
+text-align: center;
+color: var(--muted);
+background: transparent;
+border: none;
+cursor: none;
+transition: all 0.3s;
+border-bottom: 2px solid transparent;
+}
+.auth-tab.active {
+color: var(--orange);
+border-bottom-color: var(--orange);
+background: rgba(247,147,26,0.03);
+}
+.auth-tab:hover:not(.active) {
+color: var(--cream);
+}
+.auth-body {
+padding: 36px 32px;
+}
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+.auth-field {
+margin-bottom: 20px;
+}
+.auth-label {
+display: block;
+font-family: var(--mono);
+font-size: 9px;
+letter-spacing: 2px;
+color: var(--muted);
+margin-bottom: 8px;
+}
+.auth-input {
+width: 100%;
+background: transparent;
+border: none;
+border-bottom: 1px solid rgba(255,255,255,0.1);
+color: var(--cream);
+font-family: var(--body);
+font-size: 14px;
+padding: 10px 0;
+outline: none;
+transition: border-color 0.3s;
+}
+.auth-input:focus {
+border-color: var(--orange);
+}
+.auth-input::placeholder {
+color: var(--muted);
+opacity: 0.3;
+}
+.auth-submit {
+width: 100%;
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 3px;
+color: var(--dark);
+background: var(--orange);
+border: none;
+padding: 14px;
+cursor: none;
+transition: all 0.3s;
+margin-top: 8px;
+}
+.auth-submit:hover {
+background: var(--cream);
+}
+.auth-divider {
+text-align: center;
+margin: 24px 0;
+position: relative;
+}
+.auth-divider::before {
+content: '';
+position: absolute;
+left: 0; right: 0; top: 50%;
+height: 1px;
+background: rgba(255,255,255,0.06);
+}
+.auth-divider span {
+font-family: var(--mono);
+font-size: 9px;
+letter-spacing: 2px;
+color: var(--muted);
+background: #0a0a08;
+padding: 0 12px;
+position: relative;
+}
+.auth-nostr {
+width: 100%;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--green);
+background: rgba(0,255,65,0.04);
+border: 1px solid rgba(0,255,65,0.2);
+padding: 12px;
+cursor: none;
+transition: all 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+.auth-nostr:hover {
+background: rgba(0,255,65,0.12);
+border-color: var(--green);
+box-shadow: 0 0 20px rgba(0,255,65,0.1);
+}
+.auth-nostr-icon {
+font-size: 14px;
+}
+.auth-close {
+position: absolute;
+top: 16px;
+right: 20px;
+font-size: 22px;
+color: var(--muted);
+background: none;
+border: none;
+cursor: none;
+transition: color 0.2s;
+z-index: 2;
+}
+.auth-close:hover { color: var(--orange); }
+.auth-note {
+font-family: var(--mono);
+font-size: 9px;
+color: var(--muted);
+text-align: center;
+margin-top: 20px;
+line-height: 1.8;
+opacity: 0.5;
+}
+.auth-mockup-badge {
+font-family: var(--mono);
+font-size: 8px;
+letter-spacing: 3px;
+color: var(--blue);
+text-align: center;
+padding: 8px;
+border-top: 1px solid rgba(255,255,255,0.04);
+background: rgba(139,168,196,0.03);
+}
+
 /* ─── COMMUNITY VERIFY ─── */
 .community {
 padding: 120px 40px;
@@ -1063,6 +1382,92 @@ color: var(--dark);
 footer {
 padding: 60px 40px 40px;
 border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-newsletter {
+max-width: 480px;
+margin: 0 auto 48px;
+text-align: center;
+}
+.footer-newsletter-label {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 3px;
+color: var(--orange);
+margin-bottom: 8px;
+}
+.footer-newsletter-desc {
+font-family: var(--body);
+font-size: 13px;
+color: var(--muted);
+margin-bottom: 20px;
+line-height: 1.7;
+}
+.footer-newsletter-form {
+display: flex;
+gap: 0;
+max-width: 400px;
+margin: 0 auto;
+}
+.footer-newsletter-input {
+flex: 1;
+background: transparent;
+border: 1px solid rgba(247,147,26,0.2);
+border-right: none;
+color: var(--cream);
+font-family: var(--mono);
+font-size: 12px;
+padding: 12px 16px;
+outline: none;
+transition: border-color 0.3s;
+}
+.footer-newsletter-input:focus {
+border-color: var(--orange);
+}
+.footer-newsletter-input::placeholder {
+color: var(--muted);
+opacity: 0.4;
+font-size: 11px;
+}
+.footer-newsletter-btn {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 2px;
+color: var(--dark);
+background: var(--orange);
+border: 1px solid var(--orange);
+padding: 12px 20px;
+cursor: none;
+transition: all 0.3s;
+white-space: nowrap;
+}
+.footer-newsletter-btn:hover {
+background: var(--cream);
+border-color: var(--cream);
+}
+.footer-newsletter-success {
+display: none;
+font-family: var(--mono);
+font-size: 11px;
+color: var(--green);
+padding: 12px;
+border: 1px solid rgba(0,255,65,0.2);
+background: rgba(0,255,65,0.03);
+}
+.footer-newsletter-form.submitted {
+display: none;
+}
+.footer-newsletter-success.visible {
+display: block;
+}
+.footer-newsletter-privacy {
+font-family: var(--mono);
+font-size: 8px;
+letter-spacing: 1px;
+color: var(--muted);
+margin-top: 10px;
+opacity: 0.4;
+}
+.footer-content {
 text-align: center;
 }
 .footer-logo {
@@ -1118,6 +1523,8 @@ to { opacity: 1; }
 /* ─── MOBILE ─── */
 @media (max-width: 768px) {
 nav { padding: 16px 20px; }
+.nav-right { gap: 8px; }
+.nav-auth-btn { padding: 5px 10px; font-size: 9px; }
 .hero { padding: 100px 20px 60px; }
 .hero-premise p { font-size: 14px; }
 .hero-tags { flex-direction: column; align-items: center; }
@@ -1125,9 +1532,12 @@ nav { padding: 16px 20px; }
 .worlds-grid { grid-template-columns: 1fr; }
 .world-card { padding: 36px 24px; }
 .halving { padding: 60px 16px; }
-.halving-timeline { flex-direction: column; }
-.halving-block { border-left: none; border-top: 1px solid rgba(247,147,26,0.2); }
-.halving-block:first-child { border-top: none; }
+.halving-card-header { grid-template-columns: 60px 1fr; }
+.halving-card-crisis { display: none; }
+.halving-card:hover .halving-card-crisis,
+.halving-card.expanded .halving-card-crisis { display: flex; }
+.halving-memory { flex-direction: column; gap: 8px; }
+.halving-memory-label { min-width: unset; }
 .cypherpunk { padding: 80px 16px; }
 .ch-grid { grid-template-columns: 1fr; }
 .ch-header { flex-direction: column; gap: 10px; }
@@ -1150,12 +1560,19 @@ nav { padding: 16px 20px; }
 body { cursor: auto; }
 .cpunk-methodology-content { grid-template-columns: 1fr; }
 footer { padding: 40px 16px 24px; }
+.footer-newsletter-form { flex-direction: column; }
+.footer-newsletter-input { border-right: 1px solid rgba(247,147,26,0.2); border-bottom: none; }
+.auth-box { width: 96%; }
+.auth-body { padding: 24px 20px; }
 }
 
 @media (max-width: 480px) {
 .hero-title { font-size: 40px; }
 .hero-title-th { font-size: 20px; letter-spacing: 0.3em; }
 .vote-grid { grid-template-columns: 1fr; }
+.halving-card-header { grid-template-columns: 1fr; }
+.halving-card-num { flex-direction: row; gap: 12px; padding: 12px 16px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.halving-card-bitcoin { border-right: none; }
 }
 </style>
 
@@ -1164,6 +1581,67 @@ footer { padding: 40px 16px 24px; }
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
+<div class="auth-overlay" id="authOverlay">
+  <button class="auth-close" onclick="closeAuth()">×</button>
+  <div class="auth-box">
+    <div class="auth-header">
+      <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">LOGIN</button>
+      <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">REGISTER</button>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="authLogin">
+        <div class="auth-field">
+          <label class="auth-label">EMAIL OR NPUB</label>
+          <input type="text" class="auth-input" placeholder="satoshi@proton.me or npub1...">
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">PASSWORD</label>
+          <input type="password" class="auth-input" placeholder="••••••••••••">
+        </div>
+        <button class="auth-submit">LOGIN</button>
+        <div class="auth-divider"><span>OR</span></div>
+        <button class="auth-nostr">
+          <span class="auth-nostr-icon">⚡</span>
+          LOGIN WITH NOSTR
+        </button>
+        <div class="auth-note">
+          <span class="th-only">ล็อกอินด้วย Nostr key — ไม่ต้องมีรหัสผ่าน ไม่มีใครควบคุมตัวตนคุณ</span>
+          <span class="en-only">Login with your Nostr key — no password needed, no one controls your identity.</span>
+        </div>
+      </div>
+      <div class="auth-form" id="authRegister">
+        <div class="auth-field">
+          <label class="auth-label">EMAIL</label>
+          <input type="email" class="auth-input" placeholder="you@proton.me">
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">DISPLAY NAME</label>
+          <input type="text" class="auth-input" placeholder="Anonymous Verifier">
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">PASSWORD</label>
+          <input type="password" class="auth-input" placeholder="••••••••••••">
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">CONFIRM PASSWORD</label>
+          <input type="password" class="auth-input" placeholder="••••••••••••">
+        </div>
+        <button class="auth-submit">CREATE ACCOUNT</button>
+        <div class="auth-divider"><span>OR</span></div>
+        <button class="auth-nostr">
+          <span class="auth-nostr-icon">⚡</span>
+          REGISTER WITH NOSTR
+        </button>
+        <div class="auth-note">
+          <span class="th-only">Nostr = คุณเป็นเจ้าของตัวตน ไม่มีใครลบบัญชีคุณได้</span>
+          <span class="en-only">Nostr = you own your identity. No one can delete your account.</span>
+        </div>
+      </div>
+    </div>
+    <div class="auth-mockup-badge">UI MOCKUP — BACKEND PENDING</div>
+  </div>
+</div>
 
 <div class="modal-overlay" id="friedcatModal">
   <div class="modal-box">
@@ -1180,10 +1658,16 @@ footer { padding: 40px 16px 24px; }
   <a href="#" class="nav-logo">
     SATOSHi
   </a>
-  <button class="lang-toggle" onclick="toggleLang()">
-    <span class="th-only">EN / TH</span>
-    <span class="en-only">EN / TH</span>
-  </button>
+  <div class="nav-right">
+    <button class="nav-auth-btn" onclick="openAuth()">
+      <span class="th-only">เข้าสู่ระบบ</span>
+      <span class="en-only">LOGIN</span>
+    </button>
+    <button class="lang-toggle" onclick="toggleLang()">
+      <span class="th-only">EN / TH</span>
+      <span class="en-only">EN / TH</span>
+    </button>
+  </div>
 </nav>
 
 <section class="hero" id="hero">
@@ -1275,41 +1759,175 @@ footer { padding: 40px 16px 24px; }
 
 <section class="halving reveal" id="halving">
   <div class="section-header">
-    <div class="section-header-label">HALVING CYCLE</div>
-    <div class="section-header-title th-only">ทุก 210,000 blocks — รางวัลลดครึ่ง</div>
-    <div class="section-header-title en-only">Every 210,000 blocks — the reward halves.</div>
+    <div class="section-header-label">HALVING CYCLE × WORLD CRISIS</div>
+    <div class="section-header-title th-only">ทุก 210,000 blocks — รางวัลลดครึ่ง โลกก็เปลี่ยน</div>
+    <div class="section-header-title en-only">Every 210,000 blocks — the reward halves, and the world shifts.</div>
   </div>
+
   <div class="halving-timeline">
-    <div class="halving-block reveal">
-      <div class="halving-num">#0</div>
-      <div class="halving-year">2009</div>
-      <div class="halving-reward">50 BTC</div>
+
+    <div class="halving-card reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num">#0</div>
+          <div class="halving-year">2009</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward">50 BTC</div>
+          <div class="halving-btc-supply">0 → 10.5M BTC mined</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">วิกฤต Subprime — Lehman Brothers ล้มละลาย ธนาคารกลางพิมพ์เงินกู้โลก</div>
+          <div class="halving-crisis-text en-only">Subprime Crisis — Lehman Brothers collapses. Central banks print money to bail out the world.</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only">What were you doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
-    <div class="halving-block reveal">
-      <div class="halving-num">#1</div>
-      <div class="halving-year">2012</div>
-      <div class="halving-reward">25 BTC</div>
+
+    <div class="halving-card reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num">#1</div>
+          <div class="halving-year">2012</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward">25 BTC</div>
+          <div class="halving-btc-supply">10.5M → 15.75M BTC</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">วิกฤตหนี้ยุโรป — กรีซเกือบล้มละลาย ECB พิมพ์เงินไม่หยุด</div>
+          <div class="halving-crisis-text en-only">European Debt Crisis — Greece near-collapse. ECB prints without end.</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only">What were you doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
-    <div class="halving-block reveal">
-      <div class="halving-num">#2</div>
-      <div class="halving-year">2016</div>
-      <div class="halving-reward">12.5 BTC</div>
+
+    <div class="halving-card reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num">#2</div>
+          <div class="halving-year">2016</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward">12.5 BTC</div>
+          <div class="halving-btc-supply">15.75M → 18.375M BTC</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">Brexit / ดอกเบี้ยติดลบ — ญี่ปุ่น-ยุโรปเข้าสู่ดอกเบี้ยติดลบ ระบบ fiat เริ่มไม่สมเหตุสมผล</div>
+          <div class="halving-crisis-text en-only">Brexit / Negative Rates — Japan & Europe enter negative interest rates. The fiat system stops making sense.</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only">What were you doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
-    <div class="halving-block reveal">
-      <div class="halving-num">#3</div>
-      <div class="halving-year">2020</div>
-      <div class="halving-reward">6.25 BTC</div>
+
+    <div class="halving-card reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num">#3</div>
+          <div class="halving-year">2020</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward">6.25 BTC</div>
+          <div class="halving-btc-supply">18.375M → 19.69M BTC</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">COVID-19 — Lockdown ทั่วโลก พิมพ์เงิน $13 ล้านล้าน ธุรกิจรุ่นพ่อแม่พังทั้งแผง</div>
+          <div class="halving-crisis-text en-only">COVID-19 — Global lockdowns. $13 trillion printed. Family businesses destroyed overnight.</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only">What were you doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
-    <div class="halving-block reveal">
-      <div class="halving-num">#4</div>
-      <div class="halving-year">2024</div>
-      <div class="halving-reward">3.125 BTC</div>
+
+    <div class="halving-card reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num">#4</div>
+          <div class="halving-year">2024</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward">3.125 BTC</div>
+          <div class="halving-btc-supply">19.69M → 20.34M BTC</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">เงินเฟ้อทั่วโลก / SVB ล้ม — ผลของการพิมพ์เงินเริ่มปรากฏ ธนาคารล้มเป็นโดมิโน</div>
+          <div class="halving-crisis-text en-only">Global Inflation / SVB Collapse — Money printing consequences arrive. Banks fall like dominoes.</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only">What were you doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
-    <div class="halving-block reveal">
-      <div class="halving-num">#5</div>
-      <div class="halving-year">~2028</div>
-      <div class="halving-reward">1.5625 BTC</div>
+
+    <div class="halving-card halving-future reveal" onclick="toggleHalving(this)">
+      <div class="halving-card-header">
+        <div class="halving-card-num">
+          <div class="halving-num" style="color: var(--green);">#5</div>
+          <div class="halving-year">~2028</div>
+        </div>
+        <div class="halving-card-bitcoin">
+          <div class="halving-btc-label">BLOCK REWARD</div>
+          <div class="halving-btc-reward" style="color: var(--green);">1.5625 BTC</div>
+          <div class="halving-btc-supply">20.34M → 20.67M BTC</div>
+        </div>
+        <div class="halving-card-crisis">
+          <div class="halving-crisis-label" style="color: var(--green);">WORLD EVENT</div>
+          <div class="halving-crisis-text th-only">? — ยังไม่เกิด ยังไม่รู้ แต่ cycle ไม่เคยหยุด คุณจะอยู่ตรงไหนของประวัติศาสตร์?</div>
+          <div class="halving-crisis-text en-only">? — Hasn't happened yet. But the cycle never stops. Where will you be in history?</div>
+        </div>
+      </div>
+      <div class="halving-toggle">▾ SHARE YOUR PLAN</div>
+      <div class="halving-card-expand">
+        <div class="halving-memory">
+          <div class="halving-memory-label th-only" style="color: var(--green);">คุณจะทำอะไรอยู่?</div>
+          <div class="halving-memory-label en-only" style="color: var(--green);">What will you be doing?</div>
+          <input type="text" class="halving-memory-input" placeholder="I will be..." onclick="event.stopPropagation()">
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1992,16 +2610,44 @@ footer { padding: 40px 16px 24px; }
 </section>
 
 <footer>
-  <div class="footer-logo">SATOSHi</div>
-  <div class="footer-copy">© 2025 SATOSHI FILM — CONFIDENTIAL</div>
-  <div class="footer-links">
-    <a href="#">ABOUT</a>
-    <a href="#">PRESS</a>
-    <a href="#">CONTACT</a>
-    <a href="#" onclick="toggleLang(); return false;">
-      <span class="th-only">EN</span>
-      <span class="en-only">TH</span>
-    </a>
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-label">
+      <span class="th-only">SUBSCRIBE — รับข่าวสาร</span>
+      <span class="en-only">SUBSCRIBE — รับข่าวสาร</span>
+    </div>
+    <p class="footer-newsletter-desc th-only">รับอัปเดตเกี่ยวกับหนัง ความคืบหน้า และ community events — ไม่มี spam ไม่มีการขาย</p>
+    <p class="footer-newsletter-desc en-only">Get updates on the film, progress, and community events — no spam, no selling.</p>
+    <div class="footer-newsletter-form" id="newsletterForm">
+      <input type="email" class="footer-newsletter-input" id="newsletterEmail" placeholder="your@email.com">
+      <button class="footer-newsletter-btn" onclick="subscribeNewsletter()">
+        <span class="th-only">SUBSCRIBE</span>
+        <span class="en-only">SUBSCRIBE</span>
+      </button>
+    </div>
+    <div class="footer-newsletter-success" id="newsletterSuccess">
+      <span class="th-only">✓ SUBSCRIBED — ขอบคุณที่ร่วม verify</span>
+      <span class="en-only">✓ SUBSCRIBED — thank you for verifying with us.</span>
+    </div>
+    <div class="footer-newsletter-privacy">
+      <span class="th-only">EMAIL ของคุณจะไม่ถูกแชร์ — DON'T TRUST, VERIFY</span>
+      <span class="en-only">YOUR EMAIL WILL NEVER BE SHARED — DON'T TRUST, VERIFY</span>
+    </div>
+  </div>
+
+  <div class="section-divider" style="margin-bottom: 32px;"></div>
+
+  <div class="footer-content">
+    <div class="footer-logo">SATOSHi</div>
+    <div class="footer-copy">© 2025 SATOSHI FILM — CONFIDENTIAL</div>
+    <div class="footer-links">
+      <a href="#">ABOUT</a>
+      <a href="#">PRESS</a>
+      <a href="#">CONTACT</a>
+      <a href="#" onclick="toggleLang(); return false;">
+        <span class="th-only">EN</span>
+        <span class="en-only">TH</span>
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -2033,7 +2679,7 @@ function animateRing() {
 animateRing();
 
 // Hover effect on interactive elements
-document.querySelectorAll('a, button, .vote-card, .bundle-card, .verify-btn, .t-suggestion, .t-verify-link, .hw-item[data-hw]').forEach(el => {
+document.querySelectorAll('a, button, .vote-card, .bundle-card, .verify-btn, .t-suggestion, .t-verify-link, .hw-item[data-hw], .halving-card, .nav-auth-btn').forEach(el => {
   el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
   el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
 });
@@ -2048,16 +2694,13 @@ function toggleLang() {
 // ─── Block Height Counter ───
 (function blockCounter() {
   const el = document.getElementById('blockHeight');
-  // Simulate a live block height — starting from ~878,942
-  // In production, this would fetch from a mempool API
   let block = 878942;
   function update() {
     el.textContent = block.toLocaleString();
-    // Simulate ~1 block per 10 minutes = random increment
     setTimeout(() => {
       block += 1;
       update();
-    }, Math.random() * 20000 + 540000); // ~9-10 min
+    }, Math.random() * 20000 + 540000);
   }
   update();
 })();
@@ -2074,9 +2717,40 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => revealObserver.observe(el));
 
+// ─── Halving Toggle ───
+function toggleHalving(card) {
+  card.classList.toggle('expanded');
+}
+
+// ─── Auth Modal ───
+function openAuth() {
+  document.getElementById('authOverlay').classList.add('active');
+}
+function closeAuth() {
+  document.getElementById('authOverlay').classList.remove('active');
+}
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+  document.querySelector(`.auth-tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById(tab === 'login' ? 'authLogin' : 'authRegister').classList.add('active');
+}
+document.getElementById('authOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeAuth();
+});
+
+// ─── Newsletter ───
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletterEmail').value;
+  if (!email || !email.includes('@')) return;
+  document.getElementById('newsletterForm').classList.add('submitted');
+  document.getElementById('newsletterSuccess').classList.add('visible');
+}
+
 // ─── Verify Terminal System ───
 const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
 const BUNDLES={
+// Chapter 0
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 'back-lineage':B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work.`,['What is Hashcash?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
@@ -2086,12 +2760,19 @@ haber:B('Stuart Haber',`<span class="t-label">SUBJECT:</span> Stuart Haber — c
 merkle:B('Ralph Merkle',`<span class="t-label">SUBJECT:</span> Ralph Merkle — Merkle Tree | Whitepaper ref [7]\n<span class="t-muted">─────────────────────────</span>\nThe data structure that makes Bitcoin verifiable without downloading everything.`,['What is a Merkle Tree?'],[]),
 szabo:B('Nick Szabo',`<span class="t-label">SUBJECT:</span> Nick Szabo — Bit Gold (1998), Smart Contracts (1996) | 96%\n<span class="t-muted">─────────────────────────</span>\nClosest precursor to Bitcoin. Coined "smart contracts." Everything points to him. He denies it.`,['What is Bit Gold?','Why 96%?'],[{label:'Bit Gold',url:'https://nakamotoinstitute.org/bit-gold/'}]),
 chaum:B('David Chaum',`<span class="t-label">SUBJECT:</span> David Chaum — DigiCash (1983) | 80%\n<span class="t-muted">─────────────────────────</span>\nInvented digital cash 25 years before Bitcoin. Blind signatures made untraceable payments possible.`,['What are blind signatures?','Why did DigiCash fail?'],[]),
+// Chapter 1
 assange:B('Julian Assange',`<span class="t-label">SUBJECT:</span> Julian Assange — WikiLeaks | Released June 2024\n<span class="t-muted">─────────────────────────</span>\nTransparency must be taken, not given. Every leak is a block of truth no government can roll back.`,['WikiLeaks & Bitcoin connection?','Why is Assange a cypherpunk hero?'],[]),
 snowden:B('Edward Snowden',`<span class="t-label">SUBJECT:</span> Edward Snowden — NSA Whistleblower (2013)\n<span class="t-muted">─────────────────────────</span>\nProved what cypherpunks warned for decades. Sacrificed freedom to verify truth for the world.`,['What did Snowden reveal?','Impact on Bitcoin adoption?'],[]),
 appelbaum:B('Jacob Appelbaum',`<span class="t-label">SUBJECT:</span> Jacob Appelbaum — Tor Developer\n<span class="t-muted">─────────────────────────</span>\nBuilt tools for dissidents. Tor isn't about hiding — it's about choosing who sees you.`,['How does Tor work?','Why is anonymity a right?'],[{label:'Tor',url:'https://www.torproject.org'}]),
 'muller-maguhn':B('Andy Müller-Maguhn',`<span class="t-label">SUBJECT:</span> Andy Müller-Maguhn — CCC\n<span class="t-muted">─────────────────────────</span>\nHackers are not criminals — they are the immune system of the digital age.`,['What is CCC?'],[]),
+sassaman:B('Len Sassaman',`<span class="t-label">SUBJECT:</span> Len Sassaman (1980–2011) — Mixmaster | 86%\n<span class="t-muted">─────────────────────────</span>\nAnonymous remailer builder. Died 2011 — same year Satoshi vanished.`,['Remailers?','Blockchain memorial?'],[]),
+hughes:B('Eric Hughes',`<span class="t-label">SUBJECT:</span> Eric Hughes — Cypherpunk Manifesto (1993) | 79%\n<span class="t-muted">─────────────────────────</span>\n"Privacy is necessary for an open society."`,['What does the Manifesto say?'],[{label:'Manifesto',url:'https://www.activism.net/cypherpunk/manifesto.html'}]),
+may:B('Timothy May',`<span class="t-label">SUBJECT:</span> Timothy May (1951–2018) — Crypto Anarchist Manifesto | 74%\n<span class="t-muted">─────────────────────────</span>\nSaw Bitcoin coming 20 years early.`,['What did the Manifesto predict?'],[]),
+reesmogg:B('Lord Rees-Mogg',`<span class="t-label">SUBJECT:</span> Lord Rees-Mogg — The Sovereign Individual (1997) | 60%\n<span class="t-muted">─────────────────────────</span>\nPredicted digital currency 12 years before Genesis Block. A prophet.`,['What did the book predict?'],[]),
+// Chapter 2
 finney:B('Hal Finney',`<span class="t-label">SUBJECT:</span> Hal Finney (1956–2014) | "Running bitcoin." 11 Jan 2009\n<span class="t-muted">─────────────────────────</span>\nFirst TX receiver. RPOW creator. Coded until ALS took his body — never his proof of work.`,['First Bitcoin transaction?','Finney = Satoshi?'],[{label:'First TX',url:'https://mempool.space/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16'}]),
 andreas:B('Andreas Antonopoulos',`<span class="t-label">SUBJECT:</span> Andreas Antonopoulos — Mastering Bitcoin\n<span class="t-muted">─────────────────────────</span>\nDid not write code — wrote understanding. Made millions comprehend why Bitcoin matters.`,['What makes Mastering Bitcoin essential?'],[{label:'Book',url:'https://github.com/bitcoinbook/bitcoinbook'}]),
+// Chapter 3
 andresen:B('Gavin Andresen',`<span class="t-label">SUBJECT:</span> Gavin Andresen — First lead maintainer\n<span class="t-muted">─────────────────────────</span>\nSatoshi gave him repo access before disappearing.`,['How did Satoshi hand over?'],[]),
 wuille:B('Pieter Wuille',`<span class="t-label">SUBJECT:</span> Pieter Wuille — SegWit / Taproot\n<span class="t-muted">─────────────────────────</span>\nQuietly rewrote Bitcoin's foundations. His code speaks louder than talks.`,['What did SegWit solve?'],[]),
 maxwell:B('Gregory Maxwell',`<span class="t-label">SUBJECT:</span> Gregory Maxwell — Cryptographer\n<span class="t-muted">─────────────────────────</span>\nUncompromising guard of decentralization.`,['What are Confidential TX?'],[]),
@@ -2101,27 +2782,27 @@ ford:B('Michael Ford',`<span class="t-label">SUBJECT:</span> Michael Ford — Cu
 stepanov:B('Hennadii Stepanov',`<span class="t-label">SUBJECT:</span> Hennadii Stepanov — Core maintainer, Ukraine\n<span class="t-muted">─────────────────────────</span>\nMaintaining code while war raged around him. Proof of work — literally.`,['Bitcoin in conflict zones?'],[]),
 dashjr:B('Luke Dashjr',`<span class="t-label">SUBJECT:</span> Luke Dashjr — BIP-2, Knots\n<span class="t-muted">─────────────────────────</span>\nStands on principle even when unpopular.`,['What is Bitcoin Knots?'],[]),
 lopp:B('Jameson Lopp',`<span class="t-label">SUBJECT:</span> Jameson Lopp — Casa\n<span class="t-muted">─────────────────────────</span>\nCypherpunk in the open. Teaches security from hard experience.`,['What security measures?'],[{label:'Resources',url:'https://www.lopp.net/bitcoin-information.html'}]),
+// Chapter 4
 lightning:B('Lightning Network',`<span class="t-label">TECH:</span> Lightning — Layer 2 | Elizabeth Stark\n<span class="t-muted">─────────────────────────</span>\nBitcoin fast enough for coffee. Instant settlement, then anchored to chain.`,['How does Lightning work?'],[{label:'Lightning Labs',url:'https://lightning.engineering'}]),
 taproot:B('Taproot',`<span class="t-label">TECH:</span> Taproot — BIP-340/341/342 | Block 709,632 Nov 2021\n<span class="t-muted">─────────────────────────</span>\nSchnorr + MAST. Complex contracts look like simple payments. Privacy through math.`,['What are Schnorr signatures?'],[]),
 umbrel:B('Umbrel',`<span class="t-label">TECH:</span> Umbrel — Personal node\n<span class="t-muted">─────────────────────────</span>\nRaspberry Pi → sovereignty machine. Verify every transaction yourself.`,['Why run my own node?'],[{label:'Umbrel',url:'https://umbrel.com'}]),
 bip360:B('BIP-360',`<span class="t-label">TECH:</span> BIP-360 — Quantum Resistant Hash\n<span class="t-muted">─────────────────────────</span>\nPreparing Bitcoin for post-quantum era. Future-proofing in decades.`,['Quantum threat to Bitcoin?'],[]),
+// Chapter 5
 nostr:B('Nostr',`<span class="t-label">TECH:</span> Nostr — fiatjaf, Casarin, Zap\n<span class="t-muted">─────────────────────────</span>\nSocial media no one owns. Identity = keypair. No censor. Only verify.`,['How does Nostr work?'],[{label:'NIPs',url:'https://github.com/nostr-protocol/nips'}]),
 dorsey:B('Jack Dorsey',`<span class="t-label">SUBJECT:</span> Jack Dorsey — Block Inc.\n<span class="t-muted">─────────────────────────</span>\nFrom centralized Twitter to funding decentralized protocols.`,['Why leave Twitter for Bitcoin?'],[]),
 musk:B('Elon Musk',`<span class="t-label">SUBJECT:</span> Elon Musk — Signal Amplifier\n<span class="t-muted">─────────────────────────</span>\nAmplifies both directions. Verify the signal, not the person.`,['Musk impact on Bitcoin?'],[]),
 thiel:B('Peter Thiel',`<span class="t-label">SUBJECT:</span> Peter Thiel — PayPal → BTC maximalist\n<span class="t-muted">─────────────────────────</span>\n"The most honest market in the world." Sees trends before markets.`,['Thiel at Bitcoin 2022?'],[]),
+// Chapter 6
 ammous:B('Saifedean Ammous',`<span class="t-label">SUBJECT:</span> Saifedean Ammous — The Bitcoin Standard\n<span class="t-muted">─────────────────────────</span>\nThe book that changed how a generation thinks about money.`,['What is The Bitcoin Standard?'],[]),
 alden:B('Lyn Alden',`<span class="t-label">SUBJECT:</span> Lyn Alden — Broken Money\n<span class="t-muted">─────────────────────────</span>\nAnalyzing money with data, not belief. Engineering meets economics.`,['What is Broken Money?'],[{label:'Website',url:'https://www.lynalden.com'}]),
 bhatia:B('Nik Bhatia',`<span class="t-label">SUBJECT:</span> Nik Bhatia — Layered Money\n<span class="t-muted">─────────────────────────</span>\nBitcoin through the lens of monetary history.`,['What is Layered Money?'],[]),
+// Chapter 7
 tum:B('อ.ตั้ม พิริยะ',`<span class="t-label">SUBJECT:</span> อาจารย์ตั้ม พิริยะ — Right Shift\n<span class="t-muted">─────────────────────────</span>\nผู้สอน Bitcoin ให้คนไทยเข้าใจ proof of work ทุกตอน`,['Right Shift สอนอะไร?'],[]),
 chit:B('พี่ชิต — Chit Beer',`<span class="t-label">SUBJECT:</span> พี่ชิต — Chit Beer\n<span class="t-muted">─────────────────────────</span>\nเชื่อมวัฒนธรรม craft กับ Bitcoin proof of work ในทุกแก้ว`,['Chit Beer เชื่อม Bitcoin ยังไง?'],[]),
 blccm:B('BLC เชียงใหม่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Chiang Mai\n<span class="t-muted">─────────────────────────</span>\nพื้นที่เรียนรู้ Bitcoin จริง ในเมืองจริง`,['BLC สอนอะไร?'],[]),
 mick:B('มิค — ห้วยผึ้ง',`<span class="t-label">SUBJECT:</span> มิค — ห้วยผึ้ง\n<span class="t-muted">─────────────────────────</span>\nBitcoin farmer — proof of work ในดินจริง`,['มิคใช้ Bitcoin กับเกษตรยังไง?'],[]),
 arm:B('คุณอาร์ม — Notoshi',`<span class="t-label">SUBJECT:</span> คุณอาร์ม — Notoshi\n<span class="t-muted">─────────────────────────</span>\nBitcoiner ไทยผู้ส่งสัญญาณ`,['Notoshi คืออะไร?'],[]),
 bob:B('B.O.B Space',`<span class="t-label">SUBJECT:</span> B.O.B Space Bangkok\n<span class="t-muted">─────────────────────────</span>\nพื้นที่รวมตัว Bitcoiners ไทย proof of work เกิดเมื่อคนมาเจอกัน`,['B.O.B จัดอะไร?'],[]),
-sassaman:B('Len Sassaman',`<span class="t-label">SUBJECT:</span> Len Sassaman (1980–2011) — Mixmaster | 86%\n<span class="t-muted">─────────────────────────</span>\nAnonymous remailer builder. Died 2011 — same year Satoshi vanished.`,['Remailers?','Blockchain memorial?'],[]),
-hughes:B('Eric Hughes',`<span class="t-label">SUBJECT:</span> Eric Hughes — Cypherpunk Manifesto (1993) | 79%\n<span class="t-muted">─────────────────────────</span>\n"Privacy is necessary for an open society."`,['What does the Manifesto say?'],[{label:'Manifesto',url:'https://www.activism.net/cypherpunk/manifesto.html'}]),
-may:B('Timothy May',`<span class="t-label">SUBJECT:</span> Timothy May (1951–2018) — Crypto Anarchist Manifesto | 74%\n<span class="t-muted">─────────────────────────</span>\nSaw Bitcoin coming 20 years early.`,['What did the Manifesto predict?'],[]),
-reesmogg:B('Lord Rees-Mogg',`<span class="t-label">SUBJECT:</span> Lord Rees-Mogg — The Sovereign Individual (1997) | 60%\n<span class="t-muted">─────────────────────────</span>\nPredicted digital currency 12 years before Genesis Block. A prophet.`,['What did the book predict?'],[]),
 };
 
 function openTerminal(bundleId) {
@@ -2137,7 +2818,6 @@ function openTerminal(bundleId) {
   title.textContent = `verify@satoshi:~$ verify --${bundleId}`;
   output.innerHTML = b.output;
 
-  // Render suggestion prompts
   suggestions.innerHTML = '';
   b.prompts.forEach(p => {
     const btn = document.createElement('button');
@@ -2150,7 +2830,6 @@ function openTerminal(bundleId) {
     suggestions.appendChild(btn);
   });
 
-  // Render verify links
   links.innerHTML = '';
   if (b.links) {
     b.links.forEach(l => {
@@ -2173,12 +2852,10 @@ function closeTerminal() {
   document.getElementById('terminalInput').value = '';
 }
 
-// Close terminal on overlay click
 document.getElementById('terminalOverlay').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeTerminal();
 });
 
-// Terminal input enter key
 document.getElementById('terminalInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.target.value.trim()) {
     const q = e.target.value.trim();
@@ -2225,23 +2902,23 @@ RULES:
       .map(item => item.text)
       .join('\n') || 'No response received.';
 
-    // Remove the "verifying..." line and replace with answer
     const lines = outputEl.innerHTML.split('\n');
-    lines.pop(); // remove ⏳ verifying...
+    lines.pop();
     outputEl.innerHTML = lines.join('\n') + '\n' + answer;
   } catch (err) {
     const lines = outputEl.innerHTML.split('\n');
     lines.pop();
-    outputEl.innerHTML = lines.join('\n') + '\n<span class="t-muted">[VERIFY FAILED — network error: ' + err.message + ']</span>';
+    outputEl.innerHTML = lines.join('\n') + '\n<span class="t-muted">[VERIFY FAILED — API Key is missing or invalid]</span>';
   }
   outputEl.parentElement.scrollTop = outputEl.parentElement.scrollHeight;
 }
 
-// Add escape key for terminal
+// Escape key handler
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeTerminal();
     closeFriedcat();
+    closeAuth();
   }
 });
 
@@ -2257,12 +2934,9 @@ function closeFriedcat() {
   document.getElementById('friedcatModal').classList.remove('active');
 }
 
-// Close modal on overlay click
 document.getElementById('friedcatModal').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeFriedcat();
 });
-
-// Close modal on Escape — handled by terminal system above
 
 // ─── Smooth scroll for anchor links ───
 document.querySelectorAll('a[href^="#"]').forEach(a => {
