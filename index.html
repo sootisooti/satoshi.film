@@ -338,7 +338,7 @@ nav {
 .verify-btn { position: absolute; top: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.15); padding: 5px 10px; cursor: none; transition: all 0.3s; z-index: 2; }
 .verify-btn:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 12px rgba(0,255,65,0.15); }
 
-/* ─── YOU Chapter ─── */
+/* ─── YOU Chapter & Quote Miner ─── */
 .ch-you { text-align: center; padding: 60px 0; }
 .ch-header-you { justify-content: center; border-bottom-color: rgba(0,255,65,0.15); }
 .ch-num-you { color: #00FF41; opacity: 0.5; }
@@ -347,6 +347,13 @@ nav {
 .you-koan { max-width: 700px; margin: 0 auto; padding: 32px; border: 1px solid rgba(247,147,26,0.1); background: rgba(247,147,26,0.02); }
 .you-koan p { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 2.2; color: #F7931A; opacity: 0.8; }
 .koan-final { margin-top: 8px; font-weight: 700; opacity: 1 !important; }
+
+/* Quote Miner CSS */
+.quote-box { margin-top: 32px; padding-top: 32px; border-top: 1px dashed rgba(0, 255, 65, 0.2); text-align: center; }
+.quote-hash { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; margin-bottom: 12px; word-break: break-all; min-height: 15px; opacity: 0.5; }
+.quote-text { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; min-height: 45px; margin-bottom: 24px; font-style: italic; transition: opacity 0.3s; }
+.quote-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #00FF41; border: none; padding: 10px 24px; cursor: none; transition: all 0.3s; display: inline-block;}
+.quote-btn:hover { background: #d4d0c8; }
 
 /* ─── VERIFY TERMINAL MODAL ─── */
 .terminal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.94); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
@@ -421,6 +428,7 @@ nav {
 .auth-divider span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; background: #0a0a08; padding: 0 12px; position: relative; }
 .auth-nostr { width: 100%; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.2); padding: 12px; cursor: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .auth-nostr:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
+.auth-nostr-icon { font-size: 14px; }
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
 .auth-note { font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; text-align: center; margin-top: 20px; line-height: 1.8; opacity: 0.5; }
@@ -475,6 +483,9 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 /* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── FADE IN ─── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
@@ -869,8 +880,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         </div>
         <div class="halving-card-crisis">
           <div class="halving-crisis-label">WORLD & MINING EVENT</div>
-          <div class="halving-crisis-text th-only">เงินเฟ้อโลก / Heat Reuse & Home Mining — การขุดกลับสู่บ้าน (Nerdminer) และการนำความร้อนไปใช้ต่อ <a href="https://satuser.gitbook.io/th-bitcoin-mining-economics" target="_blank" style="color: #F7931A; text-decoration: underline;">คู่มือ Braiins แปลไทย</a></div>
-          <div class="halving-crisis-text en-only">Global Inflation / Home Mining & Heat Reuse — Mining returns home. Energy recycling becomes the standard.</div>
+          <div class="halving-crisis-text th-only">เงินเฟ้อโลก / Nation State Adoption — ยุคที่ประเทศและรัฐบาล (El Salvador, Bhutan) รวมถึงสถาบันการเงินยักษ์ใหญ่กระโดดเข้ามาถือครองและทำเหมืองขุด Bitcoin</div>
+          <div class="halving-crisis-text en-only">Global Inflation / Nation State Adoption — The era where sovereign states (El Salvador, Bhutan) and massive financial institutions jump in to hold and mine Bitcoin.</div>
         </div>
       </div>
       <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
@@ -1017,15 +1028,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-score">80%</div>
       </div>
     </div>
-    <details class="cpunk-methodology">
-      <summary>LINEAGE PROXIMITY SCORE METHODOLOGY</summary>
-      <div class="cpunk-methodology-content">
-        <div class="cpunk-factor">Technical Proximity <span>35%</span></div>
-        <div class="cpunk-factor">Philosophical Alignment <span>25%</span></div>
-        <div class="cpunk-factor">Timeline Overlap <span>25%</span></div>
-        <div class="cpunk-factor">Anonymity Behavior <span>15%</span></div>
-      </div>
-    </details>
   </div>
 
   <div class="ch-group reveal">
@@ -1340,6 +1342,13 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role en-only">The first publication dedicated to Bitcoin — founded by Vitalik Buterin and Mihai Alisie (2012).</div>
         <div class="bundle-tags"><span>Print Media</span><span>Founded 2012</span><span>Signal</span></div>
       </div>
+      <div class="bundle-card" data-bundle="mininghandbook">
+        <button class="verify-btn" onclick="openTerminal('mininghandbook')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">BITCOIN MINING HANDBOOK</div>
+        <div class="bundle-role th-only">คู่มือการขุดบิตคอยน์ — ตำราที่รวบรวมและแปลความรู้ด้านวิศวกรรมการขุดและการจัดการพลังงาน</div>
+        <div class="bundle-role en-only">Bitcoin Mining Handbook — translating and compiling deep engineering and energy management knowledge.</div>
+        <div class="bundle-tags"><span>Braiins</span><span>Thai Translation</span><span>Mining</span></div>
+      </div>
     </div>
   </div>
 
@@ -1455,6 +1464,13 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role en-only">A real Bitcoin learning space in a real city — the Northern stronghold.</div>
         <div class="bundle-tags"><span>Chiang Mai</span><span>Education Hub</span><span>Community Space</span></div>
       </div>
+      <div class="bundle-card bundle-th" data-bundle="blchatyai">
+        <button class="verify-btn" onclick="openTerminal('blchatyai')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">BLC หาดใหญ่</div>
+        <div class="bundle-role th-only">Bitcoin Learning Center ภาคใต้ — พื้นที่เรียนรู้และส่งต่อความรู้ที่ลึกซึ้งของชาวหาดใหญ่</div>
+        <div class="bundle-role en-only">Bitcoin Learning Center in the South — a knowledge hub for the Hat Yai community.</div>
+        <div class="bundle-tags"><span>Hat Yai</span><span>Education</span><span>Community Space</span></div>
+      </div>
       <div class="bundle-card bundle-th" data-bundle="bob">
         <button class="verify-btn" onclick="openTerminal('bob')" title="Don't Trust, Verify">✅ Verify</button>
         <div class="bundle-name">B.O.B Space</div>
@@ -1490,6 +1506,20 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role en-only">Local community space and outdoor Bitcoin learning hub in Nakhon Phanom.</div>
         <div class="bundle-tags"><span>Nakhon Phanom</span><span>Outdoor Space</span><span>Education Hub</span></div>
       </div>
+      <div class="bundle-card bundle-th" data-bundle="ybtc">
+        <button class="verify-btn" onclick="openTerminal('ybtc')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">YBTC — ยะลา</div>
+        <div class="bundle-role th-only">Yala Bitcoin Community — ชุมชนชาวบิตคอยเนอร์สุดแดนใต้ ศูนย์รวมการพบปะและศึกษา Bitcoin</div>
+        <div class="bundle-role en-only">Yala Bitcoin Community — the southernmost hub for meeting and studying Bitcoin.</div>
+        <div class="bundle-tags"><span>Yala</span><span>Meetups</span><span>Southern Node</span></div>
+      </div>
+      <div class="bundle-card bundle-th" data-bundle="ageofbitcoin">
+        <button class="verify-btn" onclick="openTerminal('ageofbitcoin')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Age of Bitcoin</div>
+        <div class="bundle-role th-only">บอร์ดเกมส์จำลองระบบเศรษฐกิจ — เครื่องมือเรียนรู้ที่ให้คุณได้สัมผัสการขุดและการโจมตีเครือข่ายด้วยตัวเอง</div>
+        <div class="bundle-role en-only">Economic simulation board game — an educational tool to experience mining and network attacks firsthand.</div>
+        <div class="bundle-tags"><span>Board Game</span><span>Education</span><span>Simulation</span></div>
+      </div>
     </div>
   </div>
 
@@ -1524,13 +1554,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role en-only">Discord community for Thai Bitcoiners. Real-time coordination.</div>
         <div class="bundle-tags"><span>Discord</span><span>Real-time Chat</span><span>Thai Community</span></div>
       </div>
-      <div class="bundle-card bundle-th" data-bundle="chit">
-        <button class="verify-btn" onclick="openTerminal('chit')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">พี่ชิต — Chit Beer</div>
-        <div class="bundle-role th-only">เชื่อม Bitcoin กับวัฒนธรรม craft — proof of work ในแก้วเบียร์บนเกาะเกร็ด</div>
-        <div class="bundle-role en-only">Bridging Bitcoin and craft culture — proof of work in a beer glass.</div>
-        <div class="bundle-tags"><span>Chit Beer</span><span>Bitcoin Community</span><span>Thai Culture</span></div>
-      </div>
     </div>
   </div>
 
@@ -1548,6 +1571,18 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <p class="en-only">"If you hold 1 sat — you are 1 of 2,100,000,000,000,000 of Satoshi."</p>
       <p class="th-only koan-final">"ถ้าคุณ verify ด้วยตัวเอง — คุณคือ Satoshi ทั้งหมด"</p>
       <p class="en-only koan-final">"If you verify for yourself — you are all of Satoshi."</p>
+      
+      <div class="quote-box">
+        <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
+        <div class="quote-text" id="quoteText">
+          <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
+          <span class="en-only">...System awaiting your verification...</span>
+        </div>
+        <button class="quote-btn" onclick="generateQuote()">
+          <span class="th-only">MINE A QUOTE ⚡</span>
+          <span class="en-only">MINE A QUOTE ⚡</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1811,12 +1846,48 @@ function subscribeNewsletter() {
   document.getElementById('newsletterSuccess').classList.add('visible');
 }
 
+// ─── Quote Generator ───
+const KOANS = [
+  { th: "\"Don't trust. Verify.\"", en: "\"Don't trust. Verify.\"" },
+  { th: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", en: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"" },
+  { th: "\"ถ้าคุณไม่เชื่อฉัน หรือไม่เข้าใจ ฉันก็ไม่มีเวลาที่จะอธิบายให้คุณฟัง ขอโทษด้วย\"", en: "\"If you don't believe me or don't get it, I don't have time to try to convince you, sorry.\"" },
+  { th: "\"ความลับคือสิ่งที่จำเป็นสำหรับสังคมที่เปิดกว้าง\"", en: "\"Privacy is necessary for an open society in the electronic age.\"" },
+  { th: "\"รหัสคอมพิวเตอร์คือคำพูด และคำพูดนั้นเป็นเสรีภาพ\"", en: "\"Code is speech, and speech is freedom.\"" },
+  { th: "\"มันอาจจะสมเหตุสมผลที่จะเก็บไว้บ้าง เผื่อว่ามันจะได้รับความนิยม\"", en: "\"It might make sense just to get some in case it catches on.\"" },
+  { th: "\"เมื่อทุกคนเป็น Satoshi จะไม่มีใครสามารถปิดระบบนี้ได้อีก\"", en: "\"When everyone is Satoshi, no one can shut the system down.\"" },
+  { th: "\"Running bitcoin.\"", en: "\"Running bitcoin.\"" }
+];
+
+function generateQuote() {
+  const hashEl = document.getElementById('quoteHash');
+  const textEl = document.getElementById('quoteText');
+  const isTh = document.body.classList.contains('lang-th');
+  
+  let counter = 0;
+  textEl.style.opacity = 0;
+  
+  const interval = setInterval(() => {
+    let fakeHash = '';
+    const chars = '0123456789abcdef';
+    for(let i=0; i<64; i++) fakeHash += chars[Math.floor(Math.random() * chars.length)];
+    hashEl.textContent = '00000000' + fakeHash.substring(8);
+    counter++;
+    
+    if(counter > 15) {
+      clearInterval(interval);
+      const q = KOANS[Math.floor(Math.random() * KOANS.length)];
+      textEl.innerHTML = `<span class="th-only">${q.th}</span><span class="en-only">${q.en}</span>`;
+      textEl.style.opacity = 1;
+    }
+  }, 50);
+}
+
 // ─── Verify Terminal System ───
 const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
 const BUNDLES={
 // Chapter 0
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
-dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกนิตยสาร Newsweek ตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
+dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกสื่อตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 weidai:B('Wei Dai',`<span class="t-label">SUBJECT:</span> Wei Dai — b-money (1998) | Whitepaper ref [2]\n<span class="t-muted">─────────────────────────</span>\nb-money proposed money created by computational work. Satoshi emailed Wei Dai first.`,['What is b-money?','Why contact Wei Dai first?'],[{label:'b-money',url:'https://nakamotoinstitute.org/b-money/'}]),
 stornetta:B('W. Scott Stornetta',`<span class="t-label">SUBJECT:</span> Stornetta & Haber — Timestamped chain (1991) | Refs [3,4,5]\n<span class="t-muted">─────────────────────────</span>\nLinking timestamped documents in a chain — the ancestor of blockchain.`,['How did timestamping lead to blockchain?'],[]),
@@ -1863,6 +1934,7 @@ ammous:B('Saifedean Ammous',`<span class="t-label">SUBJECT:</span> Saifedean Amm
 alden:B('Lyn Alden',`<span class="t-label">SUBJECT:</span> Lyn Alden — Broken Money\n<span class="t-muted">─────────────────────────</span>\nAnalyzing money with data, not belief. Engineering meets economics.`,['What is Broken Money?'],[{label:'Website',url:'https://www.lynalden.com'}]),
 bhatia:B('Nik Bhatia',`<span class="t-label">SUBJECT:</span> Nik Bhatia — Layered Money\n<span class="t-muted">─────────────────────────</span>\nBitcoin through the lens of monetary history.`,['What is Layered Money?'],[]),
 btcmag:B('Bitcoin Magazine',`<span class="t-label">SUBJECT:</span> Bitcoin Magazine\n<span class="t-muted">─────────────────────────</span>\nThe original print publication. Documenting the revolution since 2012.`,['Who founded it?'],[{label:'Website',url:'https://bitcoinmagazine.com/'}]),
+mininghandbook:B('Mining Handbook',`<span class="t-label">SUBJECT:</span> BITCOIN MINING HANDBOOK (คู่มือการขุดบิตคอยน์)\n<span class="t-muted">─────────────────────────</span>\nคู่มือแปลไทยจากต้นฉบับของ Braiins ที่เจาะลึกไปถึงกลไกการทำงาน การตั้งค่าเหมืองขุด และการนำความร้อนไปใช้ต่อ (Heat Reuse)`,['อ่านคู่มือได้ที่ไหน?'],[{label:'GitBook',url:'https://satuser.gitbook.io/th-bitcoin-mining-handbook-beta'}]),
 // Chapter 7 - DOCS
 dirtycoin:B('Dirty Coin',`<span class="t-label">SUBJECT:</span> Dirty Coin — Alana Mediavilla\n<span class="t-muted">─────────────────────────</span>\nDocumenting the truth about Bitcoin mining and global energy. Dispelling fiat propaganda with proof of work.`,['What is the film about?'],[{label:'Dirty Coin Website',url:'https://www.dirtycointhemovie.com/'}]),
 hbodoc:B('Money Electric',`<span class="t-label">SUBJECT:</span> Money Electric: The Bitcoin Mystery (HBO)\n<span class="t-muted">─────────────────────────</span>\nThe relentless media pursuit of Satoshi's identity by Cullen Hoback. The mystery remains, the code survives.`,['Did they find Satoshi?'],[{label:'HBO Max',url:'https://www.hbo.com/movies/money-electric-the-bitcoin-mystery'}]),
@@ -1876,6 +1948,9 @@ bhutan:B('Kingdom of Bhutan',`<span class="t-label">SUBJECT:</span> Kingdom of B
 // Chapter 10 - SPACES
 presidio:B('Presidio Bitcoin',`<span class="t-label">SUBJECT:</span> Presidio Bitcoin\n<span class="t-muted">─────────────────────────</span>\nA physical citadel for the community. Meatspace proof of work where Bitcoiners gather, build, and verify in the real world.`,['What is meatspace proof of work?'],[{label:'Verify on X',url:'https://twitter.com/search?q=Presidio+Bitcoin'}]),
 blccm:B('BLC เชียงใหม่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Chiang Mai\n<span class="t-muted">─────────────────────────</span>\nพื้นที่เรียนรู้ Bitcoin จริง ในเมืองจริง — ฐานที่มั่นภาคเหนือ`,['BLC สอนอะไร?'],[]),
+blchatyai:B('BLC หาดใหญ่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Hat Yai\n<span class="t-muted">─────────────────────────</span>\nฐานที่มั่นและพื้นที่เรียนรู้ Bitcoin แห่งแดนใต้`,['ติดตาม BLC หาดใหญ่ได้ที่ไหน?'],[{label:'Facebook',url:'https://www.facebook.com/blchatyai'}]),
+ybtc:B('YBTC ยะลา',`<span class="t-label">SUBJECT:</span> Yala Bitcoin Community\n<span class="t-muted">─────────────────────────</span>\nชุมชนชาวบิตคอยเนอร์จังหวัดยะลา พื้นที่แห่งความรู้ การพบปะ และ proof of work ในพื้นที่จริง`,['ชุมชนนี้ทำอะไรบ้าง?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61576030555913'}]),
+ageofbitcoin:B('Age of Bitcoin',`<span class="t-label">SUBJECT:</span> Board Game: Age of Bitcoin\n<span class="t-muted">─────────────────────────</span>\nเปลี่ยนโค้ดและ whitepaper ให้กลายเป็นบอร์ดเกมส์ที่ทุกคนจับต้องได้ เครื่องมือชั้นยอดในการเผยแพร่ความเข้าใจระบบเศรษฐกิจ Bitcoin`,['ซื้อหรือเล่นได้ที่ไหน?'],[{label:'Website',url:'https://www.fourcommagame.com/boardgames/ageofbitcoin/'}]),
 bob:B('B.O.B Space',`<span class="t-label">SUBJECT:</span> B.O.B Space Bangkok\n<span class="t-muted">─────────────────────────</span>\nพื้นที่รวมตัวใจกลางกรุงเทพฯ ของเหล่า Bitcoiners ไทย เกิด proof of work ทุกครั้งที่คนมาเจอกัน`,['B.O.B จัดอะไร?'],[]),
 citadelcafe:B('CITADEL COFFEE',`<span class="t-label">SUBJECT:</span> CITADEL COFFEE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่พบปะ พูดคุย แลกเปลี่ยนความรู้ และจิบกาแฟของชาวบิตคอยเนอร์`,['Citadel อยู่ที่ไหน?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61576360140677'}]),
 lankrongmun:B('ลานกรองมันส์',`<span class="t-label">SUBJECT:</span> ลานกรองมันส์\n<span class="t-muted">─────────────────────────</span>\nลานกิจกรรมและจุดรวมพลของสายธรรมไทย สร้าง Proof of Work ผ่านกิจกรรมในโลกจริง`,['มีกิจกรรมอะไรบ้าง?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61573404784328'}]),
