@@ -327,10 +327,18 @@ nav {
 .bundle-score { position: absolute; bottom: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 18px; color: #F7931A; opacity: 0.2; font-weight: 700; }
 .bundle-card:hover .bundle-score { opacity: 0.5; }
 
+.cpunk-methodology { max-width: 1000px; margin: 20px auto 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.04); text-align: left; }
+.cpunk-methodology summary { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; cursor: none; list-style: none; }
+.cpunk-methodology summary::before { content: '▸ '; color: #F7931A; }
+.cpunk-methodology[open] summary::before { content: '▾ '; }
+.cpunk-methodology-content { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.cpunk-factor { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; padding: 4px 0; }
+.cpunk-factor span { color: #F7931A; }
+
 .verify-btn { position: absolute; top: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.15); padding: 5px 10px; cursor: none; transition: all 0.3s; z-index: 2; }
 .verify-btn:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 12px rgba(0,255,65,0.15); }
 
-/* ─── YOU Chapter ─── */
+/* ─── YOU Chapter & Quote Miner ─── */
 .ch-you { text-align: center; padding: 60px 0; }
 .ch-header-you { justify-content: center; border-bottom-color: rgba(0,255,65,0.15); }
 .ch-num-you { color: #00FF41; opacity: 0.5; }
@@ -339,6 +347,14 @@ nav {
 .you-koan { max-width: 700px; margin: 0 auto; padding: 32px; border: 1px solid rgba(247,147,26,0.1); background: rgba(247,147,26,0.02); }
 .you-koan p { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 2.2; color: #F7931A; opacity: 0.8; }
 .koan-final { margin-top: 8px; font-weight: 700; opacity: 1 !important; }
+
+/* Quote Miner CSS */
+.quote-box { margin-top: 32px; padding-top: 32px; border-top: 1px dashed rgba(0, 255, 65, 0.2); text-align: center; }
+.quote-hash { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; margin-bottom: 12px; word-break: break-all; min-height: 15px; opacity: 0.5; }
+.quote-text { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; min-height: 45px; margin-bottom: 8px; font-style: italic; transition: opacity 0.3s; }
+.quote-author { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; margin-bottom: 24px; opacity: 0; transition: opacity 0.3s; }
+.quote-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #00FF41; border: none; padding: 10px 24px; cursor: none; transition: all 0.3s; display: inline-block;}
+.quote-btn:hover { background: #d4d0c8; }
 
 /* ─── RANDOM VOCAB BOX ─── */
 .seed-section { padding: 80px 40px; text-align: center; }
@@ -381,6 +397,19 @@ nav {
 .t-verify-link { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #8BA8C4; text-decoration: none; border: 1px solid rgba(139,168,196,0.2); padding: 4px 10px; transition: all 0.2s; }
 .t-verify-link:hover { background: rgba(139,168,196,0.1); color: #d4d0c8; }
 
+/* ─── HARDWARE TIMELINE ─── */
+.hardware { padding: 120px 40px; }
+.hw-timeline { max-width: 900px; margin: 60px auto 0; position: relative; }
+.hw-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(247,147,26,0.15); }
+.hw-item { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; position: relative; }
+.hw-item::before { content: ''; position: absolute; left: calc(50% - 4px); top: 6px; width: 9px; height: 9px; border: 1.5px solid #F7931A; border-radius: 50%; background: #080806; z-index: 1; }
+.hw-year { font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: right; padding-right: 40px; padding-top: 2px; }
+.hw-content { padding-left: 40px; text-align: left; }
+.hw-name { font-family: 'Space Mono', monospace; font-size: 13px; color: #d4d0c8; letter-spacing: 1px; margin-bottom: 6px; }
+.hw-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; line-height: 1.7; }
+.hw-item[data-hw="friedcat"] { cursor: none; }
+.hw-item[data-hw="friedcat"]:hover .hw-name { color: #00FF41; }
+
 /* ─── MODALS & FORMS ─── */
 .modal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.92); z-index: 10000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
 .modal-overlay.active { display: flex; }
@@ -412,8 +441,21 @@ nav {
 .auth-divider span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; background: #0a0a08; padding: 0 12px; position: relative; }
 .auth-nostr { width: 100%; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.2); padding: 12px; cursor: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .auth-nostr:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
+.auth-nostr-icon { font-size: 14px; }
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
+
+/* ─── COMMUNITY VERIFY ─── */
+.community { padding: 120px 40px; text-align: center; }
+.community-questions { max-width: 640px; margin: 60px auto 0; text-align: left; }
+.cq-item { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.cq-num { font-family: 'Space Mono', monospace; font-size: 10px; color: #F7931A; margin-bottom: 10px; }
+.cq-question { font-family: 'Noto Serif Thai', serif; font-size: 17px; color: #d4d0c8; line-height: 1.8; margin-bottom: 4px; }
+.cq-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); color: #d4d0c8; font-family: 'Sarabun', sans-serif; font-size: 14px; padding: 12px 0; margin-top: 12px; outline: none; transition: border-color 0.3s; }
+.cq-input:focus { border-color: #F7931A; }
+.cq-input::placeholder { color: #666660; opacity: 0.4; }
+.community-submit { display: block; margin: 40px auto 0; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #080806; background: #F7931A; border: none; padding: 14px 40px; cursor: none; transition: all 0.3s; }
+.community-submit:hover { background: #d4d0c8; }
 
 /* ─── SUPPORT / LIGHTNING ─── */
 .support { padding: 120px 40px; text-align: center; }
@@ -429,6 +471,19 @@ nav {
 
 /* ─── FOOTER ─── */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-newsletter { max-width: 480px; margin: 0 auto 48px; text-align: center; }
+.footer-newsletter-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #F7931A; margin-bottom: 8px; }
+.footer-newsletter-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; margin-bottom: 20px; line-height: 1.7; }
+.footer-newsletter-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
+.footer-newsletter-input { flex: 1; background: transparent; border: 1px solid rgba(247,147,26,0.2); border-right: none; color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 12px; padding: 12px 16px; outline: none; transition: border-color 0.3s; }
+.footer-newsletter-input:focus { border-color: #F7931A; }
+.footer-newsletter-input::placeholder { color: #666660; opacity: 0.4; font-size: 11px; }
+.footer-newsletter-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #080806; background: #F7931A; border: 1px solid #F7931A; padding: 12px 20px; cursor: none; transition: all 0.3s; white-space: nowrap; }
+.footer-newsletter-btn:hover { background: #d4d0c8; border-color: #d4d0c8; }
+.footer-newsletter-success { display: none; font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; padding: 12px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.03); }
+.footer-newsletter-form.submitted { display: none; }
+.footer-newsletter-success.visible { display: block; }
+.footer-newsletter-privacy { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 1px; color: #666660; margin-top: 10px; opacity: 0.4; }
 .footer-content { text-align: center; }
 .footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 6px; color: #F7931A; margin-bottom: 12px; }
 .footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; letter-spacing: 2px; margin-bottom: 16px; }
@@ -439,6 +494,9 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 /* ─── SCROLL REVEAL ─── */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── FADE IN ─── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
@@ -1120,6 +1178,12 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="bundle-role th-only">Broken Money — วิเคราะห์ระบบการเงินด้วยข้อมูลจริง ไม่ใช่ความเชื่อ</div>
         <div class="bundle-tags"><span>Broken Money</span></div>
       </div>
+      <div class="bundle-card" data-bundle="bhatia">
+        <button class="verify-btn" onclick="openTerminal('bhatia')">✅ Verify</button>
+        <div class="bundle-name">Nik Bhatia</div>
+        <div class="bundle-role th-only">Layered Money — อธิบาย Bitcoin ผ่านเลนส์ของประวัติศาสตร์การเงินโลก</div>
+        <div class="bundle-tags"><span>Layered Money</span></div>
+      </div>
       <div class="bundle-card" data-bundle="btcmag">
         <button class="verify-btn" onclick="openTerminal('btcmag')">✅ Verify</button>
         <div class="bundle-name">Bitcoin Magazine</div>
@@ -1273,19 +1337,19 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="bundle-card bundle-th" data-bundle="lankrongmun">
         <button class="verify-btn" onclick="openTerminal('lankrongmun')">✅ Verify</button>
         <div class="bundle-name">ลานกรองมันส์</div>
-        <div class="bundle-role th-only">ลานกิจกรรมและจุดรวมพลของสายธรรมไทย สร้าง Proof of Work ผ่านกิจกรรมจริง</div>
+        <div class="bundle-role th-only">ลานกิจกรรมและจุดรวมพลของสายธรรมไทย สร้าง Proof of Work ผ่านกิจกรรมในโลกจริง</div>
         <div class="bundle-tags"><span>Activity Space</span><span>Meetups</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="chithole">
         <button class="verify-btn" onclick="openTerminal('chithole')">✅ Verify</button>
         <div class="bundle-name">CHIT HOLE</div>
-        <div class="bundle-role th-only">พื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer</div>
-        <div class="bundle-tags"><span>Craft Beer</span><span>Community Bar</span></div>
+        <div class="bundle-role th-only">พื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer แหล่งรวมบทสนทนาคุณภาพ</div>
+        <div class="bundle-tags"><span>Craft Beer</span><span>Bar</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="samakkhi">
         <button class="verify-btn" onclick="openTerminal('samakkhi')">✅ Verify</button>
         <div class="bundle-name">สามัคคีชุมนุม (Nakhon Phanom)</div>
-        <div class="bundle-role th-only">พื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม</div>
+        <div class="bundle-role th-only">พื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม ขับเคลื่อนโดยคนในพื้นที่เพื่อคนในพื้นที่</div>
         <div class="bundle-tags"><span>Nakhon Phanom</span><span>Outdoor Space</span></div>
       </div>
     </div>
@@ -1339,13 +1403,26 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <p class="th-only">"ถ้าคุณถือ 1 sat — คุณคือ 1 ใน 2,100,000,000,000,000 ของ Satoshi"</p>
       <p class="th-only koan-final">"ถ้าคุณ verify ด้วยตัวเอง — คุณคือ Satoshi ทั้งหมด"</p>
       
+      <div class="quote-box">
+        <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
+        <div class="quote-text" id="quoteText">
+          <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
+          <span class="en-only">...System awaiting your verification...</span>
+        </div>
+        <div class="quote-author" id="quoteAuthor"></div>
+        <button class="quote-btn" onclick="generateQuote()">
+          <span class="th-only">MINE A QUOTE ⚡</span>
+          <span class="en-only">MINE A QUOTE ⚡</span>
+        </button>
+      </div>
+
       <div class="seed-section">
           <div class="seed-container">
             <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
             <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;">
               </div>
             <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; margin-bottom: 20px;">GENERATE ⚡</button>
-            <div style="font-family: 'Sarabun', sans-serif; font-size: 14px; color: #00FF41; font-style: italic;">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
+            <div class="seed-caption">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
           </div>
       </div>
       
@@ -1515,19 +1592,70 @@ function generateSeedWords() {
 document.addEventListener('DOMContentLoaded', generateSeedWords);
 
 
+// ─── Quote Generator ───
+const KOANS = [
+  { th: "\"Don't trust. Verify.\"", en: "\"Don't trust. Verify.\"", author: "Bitcoin Maxim" },
+  { th: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", en: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", author: "Satoshi Nakamoto" },
+  { th: "\"ถ้าคุณไม่เชื่อฉัน หรือไม่เข้าใจ ฉันก็ไม่มีเวลาที่จะอธิบายให้คุณฟัง ขอโทษด้วย\"", en: "\"If you don't believe me or don't get it, I don't have time to try to convince you, sorry.\"", author: "Satoshi Nakamoto" },
+  { th: "\"ความลับ (Privacy) คือสิ่งที่จำเป็นสำหรับสังคมที่เปิดกว้างในยุคอิเล็กทรอนิกส์\"", en: "\"Privacy is necessary for an open society in the electronic age.\"", author: "Eric Hughes" },
+  { th: "\"ชาวไซเฟอร์พังก์เขียนโค้ด... เราจะปกป้องความลับของเราด้วยวิทยาการเข้ารหัส\"", en: "\"Cypherpunks write code... We will defend our privacy with cryptography.\"", author: "Eric Hughes" },
+  { th: "\"มันอาจจะสมเหตุสมผลที่จะเก็บมันไว้บ้าง เผื่อว่ามันจะได้รับความนิยมขึ้นมา\"", en: "\"It might make sense just to get some in case it catches on.\"", author: "Satoshi Nakamoto" },
+  { th: "\"Running bitcoin.\"", en: "\"Running bitcoin.\"", author: "Hal Finney" },
+  { th: "\"คอมพิวเตอร์สามารถใช้เป็นเครื่องมือเพื่อปลดแอกและปกป้องผู้คนได้ แทนที่จะใช้เพื่อควบคุมพวกเขา\"", en: "\"The computer can be used as a tool to liberate and protect people, rather than to control them.\"", author: "Hal Finney" },
+  { th: "\"ตัวกลางที่น่าเชื่อถือ (Trusted third parties) คือช่องโหว่ของความปลอดภัย\"", en: "\"Trusted third parties are security holes.\"", author: "Nick Szabo" },
+  { th: "\"การบอกว่าคุณไม่สนเรื่องความเป็นส่วนตัวเพราะไม่มีอะไรต้องปิดบัง ก็เหมือนบอกว่าคุณไม่สนเสรีภาพในการพูดเพราะไม่มีอะไรจะพูด\"", en: "\"Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say.\"", author: "Edward Snowden" },
+  { th: "\"ความโปร่งใสเป็นเรื่องของรัฐ ความเป็นส่วนตัวเป็นเรื่องของประชาชน\"", en: "\"Transparency is for the state. Privacy is for the rest of us.\"", author: "Julian Assange" },
+  { th: "\"ในระบบ crypto-anarchy รัฐบาลไม่ได้ถูกทำลายชั่วคราว แต่ถูกห้ามอย่างถาวรและหมดความจำเป็นอย่างถาวร\"", en: "\"In a crypto-anarchy, the government is not temporarily destroyed but permanently forbidden and permanently unnecessary.\"", author: "Wei Dai" },
+  { th: "\"เทคโนโลยีการเข้ารหัสจะเปลี่ยนแปลงธรรมชาติขององค์กรและการแทรกแซงของรัฐในธุรกรรมทางเศรษฐกิจอย่างถาวร\"", en: "\"Cryptologic methods will fundamentally alter the nature of corporations and of government interference in economic transactions.\"", author: "Timothy C. May" },
+  { th: "\"รหัสคอมพิวเตอร์คือคำพูด และคำพูดนั้นเป็นเสรีภาพ\"", en: "\"Code is speech, and speech is freedom.\"", author: "Cypherpunk Maxim" },
+  { th: "\"เมื่อทุกคนคือ Satoshi จะไม่มีใครสามารถปิดระบบนี้ได้อีกต่อไป\"", en: "\"When everyone is Satoshi, no one can shut the system down.\"", author: "Anonymous" }
+];
+
+function generateQuote() {
+  const hashEl = document.getElementById('quoteHash');
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  
+  let counter = 0;
+  textEl.style.opacity = 0;
+  authorEl.style.opacity = 0;
+  
+  const interval = setInterval(() => {
+    let fakeHash = '';
+    const chars = '0123456789abcdef';
+    for(let i=0; i<64; i++) fakeHash += chars[Math.floor(Math.random() * chars.length)];
+    hashEl.textContent = '00000000' + fakeHash.substring(8);
+    counter++;
+    
+    if(counter > 15) {
+      clearInterval(interval);
+      const q = KOANS[Math.floor(Math.random() * KOANS.length)];
+      textEl.innerHTML = `<span class="th-only">${q.th}</span><span class="en-only">${q.en}</span>`;
+      authorEl.innerHTML = `— ${q.author}`;
+      textEl.style.opacity = 1;
+      authorEl.style.opacity = 1;
+    }
+  }, 50);
+}
+
+
 // ─── Block Height Fetch & Halving Countdown ───
 async function updateBlockData() {
   try {
     const response = await fetch('https://mempool.space/api/blocks/tip/height');
     const heightText = await response.text();
     const currentBlock = parseInt(heightText);
+
+    // 1. Update Block Height in Hero
     const el = document.getElementById('blockHeight');
     if (el) el.textContent = currentBlock.toLocaleString();
 
+    // 2. Update Halving Countdown Widget
     const halvingInterval = 210000;
     const nextHalving = Math.ceil(currentBlock / halvingInterval) * halvingInterval;
     const blocksLeft = nextHalving - currentBlock;
     
+    // Estimate Date (1 block = ~10 mins)
     const msLeft = blocksLeft * 10 * 60 * 1000; 
     const estDate = new Date(Date.now() + msLeft);
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -1539,22 +1667,28 @@ async function updateBlockData() {
     if (hcBlocks) hcBlocks.textContent = blocksLeft.toLocaleString();
     if (hcDate) hcDate.textContent = 'ESTIMATED: ~' + estDate.toLocaleDateString('en-US', options).toUpperCase();
     
+    // Calculate progress bar percentage within the current 210,000 block cycle
     const cycleStart = nextHalving - halvingInterval;
     const progress = ((currentBlock - cycleStart) / halvingInterval) * 100;
     if (hcProgress) hcProgress.style.width = progress + '%';
+
   } catch (error) {
     console.error('Failed to fetch block height from mempool:', error);
   }
 }
+// Run immediately and then every 60 seconds
 updateBlockData();
 setInterval(updateBlockData, 60000);
 
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
 reveals.forEach(el => revealObserver.observe(el));
 
 function toggleHalving(card) {
@@ -1663,6 +1797,7 @@ lankrongmun:B('ลานกรองมันส์',`<span class="t-label">SUBJ
 chithole:B('CHIT HOLE',`<span class="t-label">SUBJECT:</span> CHIT HOLE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer แหล่งรวมบทสนทนาคุณภาพ`,['Chit Hole อยู่ที่ไหน?'],[{label:'Website',url:'https://chitholding.com/current/th/'}]),
 samakkhi:B('สามัคคีชุมนุม',`<span class="t-label">SUBJECT:</span> สามัคคีชุมนุม (Nakhon Phanom)\n<span class="t-muted">─────────────────────────</span>\nพื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม ขับเคลื่อนโดยคนในพื้นที่เพื่อคนในพื้นที่`,['ทำไมต้องเป็นกลางแจ้ง?'],[{label:'Facebook',url:'https://www.facebook.com/samakichumnum'}]),
 issaradee:B('อิสระดี — เชียงราย',`<span class="t-label">SUBJECT:</span> อิสระดี Co-playing Space\n<span class="t-muted">─────────────────────────</span>\nพื้นที่แห่งอิสระ การเรียนรู้ และการรวมตัวของชาวบิตคอยเนอร์ตอนบนสุดของประเทศ`,['อิสระดีคืออะไร?'],[{label:'Facebook',url:'https://www.facebook.com/CoplayingSpace'}]),
+// Chapter 11 - THAI
 tum:B('อ.ตั้ม พิริยะ',`<span class="t-label">SUBJECT:</span> อาจารย์ตั้ม พิริยะ — Right Shift\n<span class="t-muted">─────────────────────────</span>\nผู้สอน Bitcoin ให้คนไทยเข้าใจ proof of work ทุกตอน`,['Right Shift สอนอะไร?'],[{label:'Right Shift YouTube',url:'https://www.youtube.com/@RightShift'}]),
 siamese:B('Siamese Bitcoiner',`<span class="t-label">SUBJECT:</span> Siamese Bitcoiner\n<span class="t-muted">─────────────────────────</span>\nFacebook group. The gathering ground for Thai nodes to share true signal over noise.`,['กลุ่มนี้คุยเรื่องอะไรบ้าง?'],[{label:'Facebook Group',url:'https://www.facebook.com/groups/siamesebitcoiner'}]),
 discordth:B('Bitcoin Local TH',`<span class="t-label">SUBJECT:</span> Bitcoin Local Thailand\n<span class="t-muted">─────────────────────────</span>\nDiscord ชุมชนคนรักบิตคอยน์ชาวไทย Real-time coordination and community verifying.`,['เข้าไปทำอะไรได้บ้าง?'],[{label:'Join Discord',url:'https://discord.gg/63Ubsq7g'}]),
