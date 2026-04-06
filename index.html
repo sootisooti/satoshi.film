@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATOSHi — ซาโตชิ</title>
+<title>SATOSHI — ซาโตชิ</title>
 <meta name="description" content="เราทุกคนถูกขังอยู่ในระบบที่ออกแบบมาเพื่อให้แพ้ — ความจริงรอการตรวจสอบจากทุกคน">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,229 +15,47 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-::selection {
-  background: #F7931A;
-  color: #080806;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: #080806;
-}
-
-body {
-  font-family: 'Sarabun', sans-serif;
-  background: #080806;
-  color: #d4d0c8;
-  overflow-x: hidden;
-  cursor: none;
-}
+::selection { background: #F7931A; color: #080806; }
+html { scroll-behavior: smooth; background: #080806; }
+body { font-family: 'Sarabun', sans-serif; background: #080806; color: #d4d0c8; overflow-x: hidden; cursor: none; }
 
 body.lang-th .en-only { display: none !important; }
 body.lang-en .th-only { display: none !important; }
 
 /* Custom Cursor */
-.cursor-dot {
-  width: 8px; height: 8px;
-  background: #F7931A;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.1s;
-  mix-blend-mode: difference;
-}
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1.5px solid #F7931A;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99998;
-  transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
-  transform: translate(-12px, -12px);
-}
-.cursor-ring.hovering {
-  width: 48px; height: 48px;
-  border-color: #00FF41;
-  transform: translate(-20px, -20px);
-}
+.cursor-dot { width: 8px; height: 8px; background: #F7931A; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: transform 0.1s; mix-blend-mode: difference; }
+.cursor-ring { width: 32px; height: 32px; border: 1.5px solid #F7931A; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99998; transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s; transform: translate(-12px, -12px); }
+.cursor-ring.hovering { width: 48px; height: 48px; border-color: #00FF41; transform: translate(-20px, -20px); }
 
 /* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: linear-gradient(180deg, #080806 60%, transparent);
-  backdrop-filter: blur(4px);
-}
-.nav-logo {
-  font-family: 'Space Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 6px;
-  color: #F7931A;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-.nav-menu {
-  display: flex;
-  gap: 24px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.nav-link {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: #666660;
-  text-decoration: none;
-  letter-spacing: 1px;
-  transition: color 0.3s;
-}
-.nav-link:hover {
-  color: #F7931A;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.nav-auth-btn {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #00FF41;
-  border: 1px solid rgba(0,255,65,0.3);
-  padding: 6px 14px;
-  background: transparent;
-  cursor: none;
-  transition: all 0.3s;
-}
-.nav-auth-btn:hover {
-  color: #080806;
-  background: #00FF41;
-  border-color: #00FF41;
-}
-.lang-toggle {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #666660;
-  border: 1px solid #666660;
-  padding: 6px 14px;
-  background: transparent;
-  cursor: none;
-  transition: all 0.3s;
-}
-.lang-toggle:hover {
-  color: #F7931A;
-  border-color: #F7931A;
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(180deg, #080806 60%, transparent); backdrop-filter: blur(4px); }
+.nav-logo { font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 6px; color: #F7931A; text-decoration: none; display: flex; align-items: center; }
+.nav-menu { display: flex; gap: 24px; position: absolute; left: 50%; transform: translateX(-50%); }
+.nav-link { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; }
+.nav-link:hover { color: #F7931A; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-auth-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; border: 1px solid rgba(0,255,65,0.3); padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
+.nav-auth-btn:hover { color: #080806; background: #00FF41; border-color: #00FF41; }
+.lang-toggle { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #666660; border: 1px solid #666660; padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
+.lang-toggle:hover { color: #F7931A; border-color: #F7931A; }
 
 /* ─── HERO ─── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 120px 20px 60px;
-  position: relative;
-}
-.hero-block {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #666660;
-  margin-bottom: 40px;
-}
-.hero-block a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.hero-block a:hover {
-  color: #F7931A;
-}
-.hero-block .block-num {
-  color: #F7931A;
-}
-.hero-title {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(48px, 12vw, 140px);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #d4d0c8;
-  opacity: 0.15;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.hero-title-th {
-  font-family: 'Noto Serif Thai', serif;
-  font-size: clamp(24px, 5vw, 52px);
-  color: #F7931A;
-  opacity: 0.6;
-  letter-spacing: 0.5em;
-  margin-bottom: 60px;
-}
-.hero-premise {
-  max-width: 700px;
-  margin: 0 auto;
-}
-.hero-premise p {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 16px;
-  line-height: 2;
-  color: #666660;
-  margin-bottom: 12px;
-}
-.hero-premise .highlight {
-  color: #F7931A;
-  font-weight: 600;
-}
-.hero-tags {
-  display: flex;
-  gap: 0;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
-}
-.hero-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: #d4d0c8;
-  opacity: 0.5;
-  padding: 8px 16px;
-  border-left: 2px solid #F7931A;
-}
-.hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #666660;
-  animation: pulse-down 2s infinite;
-}
-@keyframes pulse-down {
-  0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(6px); }
-}
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 60px; position: relative; }
+.hero-block { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #666660; margin-bottom: 40px; }
+.hero-block a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.hero-block a:hover { color: #F7931A; }
+.hero-block .block-num { color: #F7931A; }
+.hero-title { font-family: 'Space Mono', monospace; font-size: clamp(48px, 12vw, 140px); font-weight: 700; letter-spacing: 0.1em; color: #d4d0c8; opacity: 0.15; line-height: 1; margin-bottom: 8px; }
+.hero-title-th { font-family: 'Noto Serif Thai', serif; font-size: clamp(24px, 5vw, 52px); color: #F7931A; opacity: 0.6; letter-spacing: 0.5em; margin-bottom: 60px; }
+.hero-premise { max-width: 700px; margin: 0 auto; }
+.hero-premise p { font-family: 'Sarabun', sans-serif; font-size: 16px; line-height: 2; color: #666660; margin-bottom: 12px; }
+.hero-premise .highlight { color: #F7931A; font-weight: 600; }
+.hero-tags { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin-top: 50px; }
+.hero-tag { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #d4d0c8; opacity: 0.5; padding: 8px 16px; border-left: 2px solid #F7931A; }
+.hero-scroll { position: absolute; bottom: 40px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; color: #666660; animation: pulse-down 2s infinite; }
+@keyframes pulse-down { 0%, 100% { opacity: 0.4; transform: translateY(0); } 50% { opacity: 1; transform: translateY(6px); } }
 
-/* ─── SECTION DIVIDER ─── */
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #666660 20%, #666660 80%, transparent);
-  opacity: 0.2;
-  margin: 0;
-}
+.section-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #666660 20%, #666660 80%, transparent); opacity: 0.2; margin: 0; }
 
 /* ─── THREE WORLDS ─── */
 .worlds { padding: 120px 40px; }
@@ -285,7 +103,6 @@ nav {
 .halving-card:hover .halving-toggle { opacity: 0.6; }
 .halving-card.expanded .halving-toggle { opacity: 1; color: #F7931A; }
 
-/* Halving Countdown Widget */
 .halving-countdown { max-width: 600px; margin: 80px auto 0; padding: 32px 24px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.02); text-align: center; position: relative; overflow: hidden; }
 .hc-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #00FF41; margin-bottom: 16px; opacity: 0.7; }
 .hc-blocks { font-family: 'Space Mono', monospace; font-size: 28px; color: #d4d0c8; margin-bottom: 8px; }
@@ -326,14 +143,6 @@ nav {
 .bundle-tags span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #666660; border: 1px solid rgba(255,255,255,0.06); padding: 3px 8px; opacity: 0.6; }
 .bundle-score { position: absolute; bottom: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 18px; color: #F7931A; opacity: 0.2; font-weight: 700; }
 .bundle-card:hover .bundle-score { opacity: 0.5; }
-
-.cpunk-methodology { max-width: 1000px; margin: 20px auto 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.04); text-align: left; }
-.cpunk-methodology summary { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; cursor: none; list-style: none; }
-.cpunk-methodology summary::before { content: '▸ '; color: #F7931A; }
-.cpunk-methodology[open] summary::before { content: '▾ '; }
-.cpunk-methodology-content { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.cpunk-factor { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; padding: 4px 0; }
-.cpunk-factor span { color: #F7931A; }
 
 .verify-btn { position: absolute; top: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.15); padding: 5px 10px; cursor: none; transition: all 0.3s; z-index: 2; }
 .verify-btn:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 12px rgba(0,255,65,0.15); }
@@ -397,18 +206,23 @@ nav {
 .t-verify-link { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #8BA8C4; text-decoration: none; border: 1px solid rgba(139,168,196,0.2); padding: 4px 10px; transition: all 0.2s; }
 .t-verify-link:hover { background: rgba(139,168,196,0.1); color: #d4d0c8; }
 
-/* ─── HARDWARE TIMELINE ─── */
-.hardware { padding: 120px 40px; }
-.hw-timeline { max-width: 900px; margin: 60px auto 0; position: relative; }
-.hw-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(247,147,26,0.15); }
-.hw-item { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; position: relative; }
-.hw-item::before { content: ''; position: absolute; left: calc(50% - 4px); top: 6px; width: 9px; height: 9px; border: 1.5px solid #F7931A; border-radius: 50%; background: #080806; z-index: 1; }
-.hw-year { font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: right; padding-right: 40px; padding-top: 2px; }
-.hw-content { padding-left: 40px; text-align: left; }
-.hw-name { font-family: 'Space Mono', monospace; font-size: 13px; color: #d4d0c8; letter-spacing: 1px; margin-bottom: 6px; }
-.hw-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; line-height: 1.7; }
-.hw-item[data-hw="friedcat"] { cursor: none; }
-.hw-item[data-hw="friedcat"]:hover .hw-name { color: #00FF41; }
+/* ─── PHOTOBOOK EXHIBITION OVERLAY ─── */
+.pb-overlay { position: fixed; inset: 0; background: #080806; z-index: 2000; display: none; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.8s ease; }
+.pb-overlay.active { display: flex; opacity: 1; }
+.pb-grain { position: absolute; inset: 0; pointer-events: none; background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.08"/%3E%3C/svg%3E'); z-index: 2001; opacity: 0.6; }
+.pb-content { position: relative; z-index: 2002; display: flex; flex-direction: column; align-items: center; max-width: 800px; width: 90%; text-align: center; }
+.pb-img-container { position: relative; width: 100%; height: 55vh; margin-bottom: 32px; display: flex; justify-content: center; align-items: center; }
+.pb-img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(100%) contrast(1.2) sepia(0.2); opacity: 0; transition: opacity 1s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
+.pb-img.loaded { opacity: 1; }
+.pb-quote { font-family: 'Noto Serif Thai', serif; font-size: 18px; line-height: 1.8; color: #d4d0c8; margin-bottom: 12px; font-style: italic; }
+.pb-author { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #F7931A; margin-bottom: 32px; text-transform: uppercase; }
+.pb-controls { display: flex; gap: 24px; align-items: center; }
+.pb-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #666660; background: transparent; border: 1px solid #666660; padding: 10px 24px; cursor: none; transition: all 0.3s; }
+.pb-btn:hover { color: #F7931A; border-color: #F7931A; }
+.pb-close { position: absolute; top: 32px; right: 40px; font-size: 24px; color: #666660; background: none; border: none; cursor: none; z-index: 2003; transition: color 0.3s; }
+.pb-close:hover { color: #F7931A; }
+.pb-verify { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #8BA8C4; text-decoration: none; border-bottom: 1px solid rgba(139,168,196,0.3); padding-bottom: 2px; transition: all 0.3s; margin-top: 16px; }
+.pb-verify:hover { color: #d4d0c8; border-bottom-color: #d4d0c8; }
 
 /* ─── MODALS & FORMS ─── */
 .modal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.92); z-index: 10000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
@@ -441,7 +255,6 @@ nav {
 .auth-divider span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; background: #0a0a08; padding: 0 12px; position: relative; }
 .auth-nostr { width: 100%; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.2); padding: 12px; cursor: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .auth-nostr:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
-.auth-nostr-icon { font-size: 14px; }
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
 
@@ -495,9 +308,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ─── FADE IN ─── */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
   .nav-menu { display: none; }
@@ -522,6 +332,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .support-tiers { grid-template-columns: 1fr; }
   .seed-grid { grid-template-columns: repeat(3, 1fr); }
   .auth-box { width: 96%; }
+  .pb-img-container { height: 40vh; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 40px; }
@@ -537,6 +348,25 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
+<div class="pb-overlay" id="pbOverlay">
+  <div class="pb-grain"></div>
+  <button class="pb-close" onclick="closePhotobook()">×</button>
+  <div class="pb-content">
+    <div class="pb-img-container">
+      <img src="" alt="Historical Photo" class="pb-img" id="pbImg">
+    </div>
+    <div class="pb-quote" id="pbQuote"></div>
+    <div class="pb-author" id="pbAuthor"></div>
+    <div class="pb-controls">
+      <button class="pb-btn" onclick="nextPhoto()">
+        <span class="th-only">สุ่มภาพถัดไป</span>
+        <span class="en-only">NEXT PHOTO</span>
+      </button>
+      <a href="#" target="_blank" class="pb-verify" id="pbLink">🔗 VERIFY SOURCE</a>
+    </div>
+  </div>
+</div>
 
 <div class="auth-overlay" id="authOverlay">
   <div class="auth-box">
@@ -589,10 +419,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <span class="auth-nostr-icon">⚡</span>
           REGISTER WITH NOSTR
         </button>
-        <div class="auth-note">
-          <span class="th-only">Nostr = คุณเป็นเจ้าของตัวตน ไม่มีใครลบบัญชีคุณได้</span>
-          <span class="en-only">Nostr = you own your identity. No one can delete your account.</span>
-        </div>
       </div>
     </div>
     <div class="auth-mockup-badge">UI MOCKUP — BACKEND PENDING</div>
@@ -634,20 +460,11 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   </div>
 </div>
 
-<div class="modal-overlay" id="friedcatModal">
-  <div class="modal-box">
-    <h3>FRIEDCAT — 烤猫</h3>
-    <p class="th-only">Friedcat (张楠赓) — ผู้สร้าง ASIC miner ตัวแรกของโลก หายตัวไปในปี 2015 ไม่มีใครรู้ว่าเขาอยู่ที่ไหน</p>
-    <p class="en-only">Friedcat (Zhang Nangeng) — creator of the world's first ASIC miner. Disappeared in 2015. No one knows where he is.</p>
-    <p class="th-only">proof of work ที่ไม่มีใครได้เห็นอีก</p>
-    <p class="en-only">proof of work that no one will ever see again.</p>
-    <button class="modal-close" onclick="closeFriedcat()">CLOSE</button>
-  </div>
-</div>
-
 <nav>
   <a href="#" class="nav-logo">SATOSHi</a>
   <div class="nav-menu">
+    <a href="#" onclick="openPhotobook(); return false;" class="nav-link th-only" style="color: #00FF41;">[ เข้าสู่แกลเลอรี่ภาพ ]</a>
+    <a href="#" onclick="openPhotobook(); return false;" class="nav-link en-only" style="color: #00FF41;">[ ENTER PHOTOBOOK ]</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
@@ -1115,7 +932,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="bundle-card bundle-biz" data-bundle="welb">
         <button class="verify-btn" onclick="openTerminal('welb')">✅ Verify</button>
         <div class="bundle-name">WelB</div>
-        <div class="bundle-role th-only">ร้านค้ารับ Bitcoin — ผลักดันเศรษฐกิจคู่ขนานด้วยการรับชำระผ่านระบบ Lightning Network</div>
+        <div class="bundle-role th-only">ร้านค้ารับ Bitcoin — ผลักดันเศรษฐกิจคู่ขนานด้วยการรับชำระและสนับสนุนระบบ Lightning Network</div>
         <div class="bundle-tags"><span>Merchant</span><span>Lightning Network</span></div>
       </div>
     </div>
@@ -1571,6 +1388,77 @@ function toggleLang() {
   }
 }
 
+// ─── Photobook / Exhibition System ───
+const PHOTOBOOK_DATA = [
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/The_Times_3_January_2009.jpg',
+    quoteTh: '"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks" — รหัสที่ถูกฝังไว้ใน Genesis Block',
+    quoteEn: '"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks" — Embedded in the Genesis Block.',
+    author: 'Satoshi Nakamoto (2009)',
+    link: 'https://mempool.space/block/0'
+  },
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Hal_Finney.jpg',
+    quoteTh: '"คอมพิวเตอร์สามารถใช้เป็นเครื่องมือเพื่อปลดแอกและปกป้องผู้คนได้ แทนที่จะใช้เพื่อควบคุมพวกเขา"',
+    quoteEn: '"The computer can be used as a tool to liberate and protect people, rather than to control them."',
+    author: 'Hal Finney (1992)',
+    link: 'https://en.wikipedia.org/wiki/Hal_Finney_(computer_scientist)'
+  },
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Julian_Assange_2011.jpg',
+    quoteTh: '"ความโปร่งใสเป็นเรื่องของรัฐ ความเป็นส่วนตัวเป็นเรื่องของประชาชน"',
+    quoteEn: '"Transparency is for the state. Privacy is for the rest of us."',
+    author: 'Julian Assange',
+    link: 'https://wikileaks.org/'
+  },
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Dorian_Nakamoto.jpg/800px-Dorian_Nakamoto.jpg',
+    quoteTh: '"ผมไม่ได้มีส่วนเกี่ยวข้องกับเรื่องนี้อีกต่อไป และผมไม่สามารถพูดถึงมันได้" — การปฏิเสธของ Dorian Nakamoto หลังถูกสื่อคุกคาม',
+    quoteEn: '"I am no longer involved in that and I cannot discuss it." — Dorian Nakamoto denying Newsweek\'s claim.',
+    author: 'Dorian Prentice Satoshi Nakamoto (2014)',
+    link: 'https://www.newsweek.com/face-behind-bitcoin-247957'
+  },
+  {
+    img: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Edward_Snowden-2.jpg',
+    quoteTh: '"การบอกว่าคุณไม่สนเรื่องความเป็นส่วนตัวเพราะไม่มีอะไรต้องปิดบัง ก็เหมือนบอกว่าคุณไม่สนเสรีภาพในการพูดเพราะไม่มีอะไรจะพูด"',
+    quoteEn: '"Arguing that you don\'t care about the right to privacy because you have nothing to hide is no different than saying you don\'t care about free speech because you have nothing to say."',
+    author: 'Edward Snowden',
+    link: 'https://en.wikipedia.org/wiki/Edward_Snowden'
+  }
+];
+
+let currentPhoto = 0;
+function openPhotobook() {
+  document.getElementById('pbOverlay').classList.add('active');
+  loadPhoto(0);
+}
+function closePhotobook() {
+  document.getElementById('pbOverlay').classList.remove('active');
+}
+function nextPhoto() {
+  currentPhoto = (currentPhoto + 1) % PHOTOBOOK_DATA.length;
+  loadPhoto(currentPhoto);
+}
+function loadPhoto(index) {
+  const data = PHOTOBOOK_DATA[index];
+  const imgEl = document.getElementById('pbImg');
+  const quoteEl = document.getElementById('pbQuote');
+  const authorEl = document.getElementById('pbAuthor');
+  const linkEl = document.getElementById('pbLink');
+
+  imgEl.classList.remove('loaded');
+  
+  setTimeout(() => {
+    imgEl.src = data.img;
+    imgEl.onload = () => imgEl.classList.add('loaded');
+    
+    const isTh = document.body.classList.contains('lang-th');
+    quoteEl.textContent = isTh ? data.quoteTh : data.quoteEn;
+    authorEl.textContent = data.author;
+    linkEl.href = data.link;
+  }, 300);
+}
+
 // ─── Random Vocabulary Box Logic ───
 const safeWordList = [
   'abandon', 'ability', 'freedom', 'satoshi', 'verify', 'genesis', 'proof', 'work', 'timechain', 'cypherpunk', 'node', 'zap', 'truth', 'trust', 'code', 'math', 'energy', 'block', 'chain', 'future', 'seed', 'wealth', 'protect', 'sovereign', 'asset', 'value', 'system', 'network', 'power', 'public', 'private', 'key', 'shield', 'secure', 'peace', 'hope', 'life', 'choice', 'voice', 'signal', 'noise', 'world', 'earth', 'human', 'right', 'build', 'create', 'learn', 'teach', 'grow', 'plant', 'tree', 'root', 'branch', 'leaf', 'sun', 'water', 'fire', 'light', 'dark', 'moon', 'star', 'space', 'time', 'clock', 'hour', 'day', 'year', 'century', 'history', 'memory', 'mind', 'brain', 'think', 'idea', 'vision', 'dream', 'reality', 'matrix', 'escape', 'exit', 'door', 'path', 'road', 'journey', 'step', 'walk', 'run', 'fly', 'soar', 'rise', 'fall', 'stand', 'fight', 'brave', 'bold', 'strong', 'weak', 'true', 'false', 'real', 'fake'
@@ -1797,7 +1685,6 @@ lankrongmun:B('ลานกรองมันส์',`<span class="t-label">SUBJ
 chithole:B('CHIT HOLE',`<span class="t-label">SUBJECT:</span> CHIT HOLE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer แหล่งรวมบทสนทนาคุณภาพ`,['Chit Hole อยู่ที่ไหน?'],[{label:'Website',url:'https://chitholding.com/current/th/'}]),
 samakkhi:B('สามัคคีชุมนุม',`<span class="t-label">SUBJECT:</span> สามัคคีชุมนุม (Nakhon Phanom)\n<span class="t-muted">─────────────────────────</span>\nพื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม ขับเคลื่อนโดยคนในพื้นที่เพื่อคนในพื้นที่`,['ทำไมต้องเป็นกลางแจ้ง?'],[{label:'Facebook',url:'https://www.facebook.com/samakichumnum'}]),
 issaradee:B('อิสระดี — เชียงราย',`<span class="t-label">SUBJECT:</span> อิสระดี Co-playing Space\n<span class="t-muted">─────────────────────────</span>\nพื้นที่แห่งอิสระ การเรียนรู้ และการรวมตัวของชาวบิตคอยเนอร์ตอนบนสุดของประเทศ`,['อิสระดีคืออะไร?'],[{label:'Facebook',url:'https://www.facebook.com/CoplayingSpace'}]),
-// Chapter 11 - THAI
 tum:B('อ.ตั้ม พิริยะ',`<span class="t-label">SUBJECT:</span> อาจารย์ตั้ม พิริยะ — Right Shift\n<span class="t-muted">─────────────────────────</span>\nผู้สอน Bitcoin ให้คนไทยเข้าใจ proof of work ทุกตอน`,['Right Shift สอนอะไร?'],[{label:'Right Shift YouTube',url:'https://www.youtube.com/@RightShift'}]),
 siamese:B('Siamese Bitcoiner',`<span class="t-label">SUBJECT:</span> Siamese Bitcoiner\n<span class="t-muted">─────────────────────────</span>\nFacebook group. The gathering ground for Thai nodes to share true signal over noise.`,['กลุ่มนี้คุยเรื่องอะไรบ้าง?'],[{label:'Facebook Group',url:'https://www.facebook.com/groups/siamesebitcoiner'}]),
 discordth:B('Bitcoin Local TH',`<span class="t-label">SUBJECT:</span> Bitcoin Local Thailand\n<span class="t-muted">─────────────────────────</span>\nDiscord ชุมชนคนรักบิตคอยน์ชาวไทย Real-time coordination and community verifying.`,['เข้าไปทำอะไรได้บ้าง?'],[{label:'Join Discord',url:'https://discord.gg/63Ubsq7g'}]),
@@ -1917,6 +1804,7 @@ document.addEventListener('keydown', (e) => {
     closeFriedcat();
     closeAuth();
     closeZapModal();
+    closePhotobook();
   }
 });
 
