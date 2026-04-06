@@ -1,22 +1,3 @@
-การปรับแต่งครั้งนี้ถือว่า **จัดเต็มและยอดเยี่ยมมากครับ!** การตัดระบบ Pay-to-verify ออกไปแล้วแทนที่ด้วยปุ่ม "Zap" ที่ดึงให้คนมาโฟกัสที่การสนับสนุน (Support) ตรงๆ พร้อมกับโชว์บอร์ดรายชื่อผู้สนับสนุน (Supporters Board) จะช่วยสร้างแรงกระเพื่อมในคอมมูนิตี้ได้ดีมากๆ ครับ 
-
-ผมได้เพิ่มข้อมูลตามที่คุณขอทั้งหมด รวมถึงพื้นที่ **"สามัคคีชุมนุม"** (ซึ่งเป็น Space ที่น่าสนใจมากครับ) และหนังสือของ Braiins เข้าไปให้แล้วเรียบร้อยครับ
-
-✨ **สรุปสิ่งที่อัปเดตให้ในโค้ดด้านล่าง:**
-1. **เมนูด้านบน & ล่าง:** ฝังลิงก์ Gitbook ในคำว่า "ร่วมพัฒนาบทภาพยนตร์" และลิงก์ GitHub ใน "ร่วมพัฒนาเว็บไซต์"
-2. **เอา PAY-TO-VERIFY ออก:** เพื่อให้เว็บดูคลีนและนำสายตาไปที่การสนับสนุน
-3. **อัปเดตระบบ Support (Zap):** เมื่อกดปุ่ม ⚡ ZAP ระบบจะเด้งหน้าต่างขึ้นมา มี 2 แถบ คือ 
-   * **DONATE:** แสดง `satoshifilm@walletofsatoshi.com` พร้อมปุ่มกด Copy ได้ทันที
-   * **SUPPORTERS:** แสดงรายชื่อคนที่ Support แล้ว (ใส่ BLC เชียงใหม่ 210,000 sats ไว้เป็นอันดับ 1 ให้แล้วครับ!)
-4. **หมวด MINING TIMELINE:** เปลี่ยนชื่อ เพิ่มสถิติความเคลื่อนไหว และเพิ่มหนังสือ "Bitcoin Mining Heat Reuse" ของ Braiins
-5. **หมวด THE ENTREPRENEURS:** เพิ่ม Braiins (Slush Pool) เข้าไปในบทโครงสร้างพื้นฐาน (Scaling & Future-proofing)
-6. **หมวด PHYSICAL SPACES:** ย้าย BLC เชียงใหม่, B.O.B Space มาที่นี่ และเพิ่มร้านกาแฟ Citadel, ลานกรองมันส์, CHIT HOLE, และ สามัคคีชุมนุม พร้อมลิงก์ครบถ้วน
-7. **หมวด THAILAND BITCOINERS:** เปลี่ยน Subtitle เป็น "Thailand Bitcoiner Pioneer"
-8. **Footer:** เปลี่ยนลิขสิทธิ์เป็น **© 2026**
-
-📌 **วิธีนำไปใช้:** Copy โค้ดทั้งหมดด้านล่างนี้ ไป **Paste ทับโค้ดเดิมใน `index.html`** ของคุณแล้ว Commit เซฟได้เลยครับ!
-
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -346,6 +327,14 @@ nav {
 .bundle-score { position: absolute; bottom: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 18px; color: #F7931A; opacity: 0.2; font-weight: 700; }
 .bundle-card:hover .bundle-score { opacity: 0.5; }
 
+.cpunk-methodology { max-width: 1000px; margin: 20px auto 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.04); text-align: left; }
+.cpunk-methodology summary { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; cursor: none; list-style: none; }
+.cpunk-methodology summary::before { content: '▸ '; color: #F7931A; }
+.cpunk-methodology[open] summary::before { content: '▾ '; }
+.cpunk-methodology-content { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.cpunk-factor { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; padding: 4px 0; }
+.cpunk-factor span { color: #F7931A; }
+
 .verify-btn { position: absolute; top: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.15); padding: 5px 10px; cursor: none; transition: all 0.3s; z-index: 2; }
 .verify-btn:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 12px rgba(0,255,65,0.15); }
 
@@ -401,10 +390,18 @@ nav {
 .hw-item[data-hw="friedcat"] { cursor: none; }
 .hw-item[data-hw="friedcat"]:hover .hw-name { color: #00FF41; }
 
-/* ─── AUTH & ZAP MODAL ─── */
+/* ─── MODALS & FORMS ─── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.92); z-index: 10000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+.modal-overlay.active { display: flex; }
+.modal-box { max-width: 480px; padding: 48px; border: 1px solid rgba(247,147,26,0.2); background: #0e0e0b; text-align: center; }
+.modal-box h3 { font-family: 'Space Mono', monospace; font-size: 14px; color: #00FF41; letter-spacing: 3px; margin-bottom: 20px; }
+.modal-box p { font-family: 'Sarabun', sans-serif; font-size: 14px; color: #666660; line-height: 1.8; margin-bottom: 16px; }
+.modal-close { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; background: none; border: 1px solid #666660; padding: 8px 24px; cursor: none; margin-top: 20px; transition: all 0.3s; }
+.modal-close:hover { color: #F7931A; border-color: #F7931A; }
+
 .auth-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.95); z-index: 10002; display: none; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
 .auth-overlay.active { display: flex; }
-.auth-box { width: 90%; max-width: 480px; background: #0a0a08; border: 1px solid rgba(247,147,26,0.2); overflow: hidden; text-align: left; position: relative; }
+.auth-box { width: 90%; max-width: 420px; background: #0a0a08; border: 1px solid rgba(247,147,26,0.2); overflow: hidden; text-align: left; position: relative; }
 .auth-header { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .auth-tab { flex: 1; padding: 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-align: center; color: #666660; background: transparent; border: none; cursor: none; transition: all 0.3s; border-bottom: 2px solid transparent; }
 .auth-tab.active { color: #F7931A; border-bottom-color: #F7931A; background: rgba(247,147,26,0.03); }
@@ -467,6 +464,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .footer-newsletter-success { display: none; font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; padding: 12px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.03); }
 .footer-newsletter-form.submitted { display: none; }
 .footer-newsletter-success.visible { display: block; }
+.footer-newsletter-privacy { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 1px; color: #666660; margin-top: 10px; opacity: 0.4; }
 .footer-content { text-align: center; }
 .footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 6px; color: #F7931A; margin-bottom: 12px; }
 .footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; letter-spacing: 2px; margin-bottom: 16px; }
@@ -1466,8 +1464,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       </div>
       <div class="bundle-card bundle-th" data-bundle="citadelcafe">
         <button class="verify-btn" onclick="openTerminal('citadelcafe')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">ร้านกาแฟ Citadel</div>
-        <div class="bundle-role th-only">พื้นที่พบปะ พูดคุย และจิบกาแฟของชาวบิตคอยเนอร์</div>
+        <div class="bundle-name">CITADEL COFFEE</div>
+        <div class="bundle-role th-only">พื้นที่พบปะ พูดคุย แลกเปลี่ยนความรู้ และจิบกาแฟของชาวบิตคอยเนอร์</div>
         <div class="bundle-role en-only">A coffee space for Bitcoiners to meet and discuss.</div>
         <div class="bundle-tags"><span>Cafe</span><span>Meetups</span><span>Community</span></div>
       </div>
@@ -1818,7 +1816,7 @@ const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
 const BUNDLES={
 // Chapter 0
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
-dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกสื่อตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
+dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกนิตยสาร Newsweek ตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
 weidai:B('Wei Dai',`<span class="t-label">SUBJECT:</span> Wei Dai — b-money (1998) | Whitepaper ref [2]\n<span class="t-muted">─────────────────────────</span>\nb-money proposed money created by computational work. Satoshi emailed Wei Dai first.`,['What is b-money?','Why contact Wei Dai first?'],[{label:'b-money',url:'https://nakamotoinstitute.org/b-money/'}]),
 stornetta:B('W. Scott Stornetta',`<span class="t-label">SUBJECT:</span> Stornetta & Haber — Timestamped chain (1991) | Refs [3,4,5]\n<span class="t-muted">─────────────────────────</span>\nLinking timestamped documents in a chain — the ancestor of blockchain.`,['How did timestamping lead to blockchain?'],[]),
@@ -1879,7 +1877,7 @@ bhutan:B('Kingdom of Bhutan',`<span class="t-label">SUBJECT:</span> Kingdom of B
 presidio:B('Presidio Bitcoin',`<span class="t-label">SUBJECT:</span> Presidio Bitcoin\n<span class="t-muted">─────────────────────────</span>\nA physical citadel for the community. Meatspace proof of work where Bitcoiners gather, build, and verify in the real world.`,['What is meatspace proof of work?'],[{label:'Verify on X',url:'https://twitter.com/search?q=Presidio+Bitcoin'}]),
 blccm:B('BLC เชียงใหม่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Chiang Mai\n<span class="t-muted">─────────────────────────</span>\nพื้นที่เรียนรู้ Bitcoin จริง ในเมืองจริง — ฐานที่มั่นภาคเหนือ`,['BLC สอนอะไร?'],[]),
 bob:B('B.O.B Space',`<span class="t-label">SUBJECT:</span> B.O.B Space Bangkok\n<span class="t-muted">─────────────────────────</span>\nพื้นที่รวมตัวใจกลางกรุงเทพฯ ของเหล่า Bitcoiners ไทย เกิด proof of work ทุกครั้งที่คนมาเจอกัน`,['B.O.B จัดอะไร?'],[]),
-citadelcafe:B('Citadel Cafe',`<span class="t-label">SUBJECT:</span> ร้านกาแฟ Citadel\n<span class="t-muted">─────────────────────────</span>\nพื้นที่พบปะ พูดคุย แลกเปลี่ยนความรู้ และจิบกาแฟของชาวบิตคอยเนอร์`,['Citadel อยู่ที่ไหน?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61576360140677'}]),
+citadelcafe:B('CITADEL COFFEE',`<span class="t-label">SUBJECT:</span> CITADEL COFFEE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่พบปะ พูดคุย แลกเปลี่ยนความรู้ และจิบกาแฟของชาวบิตคอยเนอร์`,['Citadel อยู่ที่ไหน?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61576360140677'}]),
 lankrongmun:B('ลานกรองมันส์',`<span class="t-label">SUBJECT:</span> ลานกรองมันส์\n<span class="t-muted">─────────────────────────</span>\nลานกิจกรรมและจุดรวมพลของสายธรรมไทย สร้าง Proof of Work ผ่านกิจกรรมในโลกจริง`,['มีกิจกรรมอะไรบ้าง?'],[{label:'Facebook',url:'https://www.facebook.com/profile.php?id=61573404784328'}]),
 chithole:B('CHIT HOLE',`<span class="t-label">SUBJECT:</span> CHIT HOLE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer แหล่งรวมบทสนทนาคุณภาพ`,['Chit Hole อยู่ที่ไหน?'],[{label:'Website',url:'https://chitholding.com/current/th/'}]),
 samakkhi:B('สามัคคีชุมนุม',`<span class="t-label">SUBJECT:</span> สามัคคีชุมนุม (Nakhon Phanom)\n<span class="t-muted">─────────────────────────</span>\nพื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม ขับเคลื่อนโดยคนในพื้นที่เพื่อคนในพื้นที่`,['ทำไมต้องเป็นกลางแจ้ง?'],[{label:'Facebook',url:'https://www.facebook.com/samakichumnum'}]),
@@ -2038,4 +2036,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 </body>
 </html>
-```
