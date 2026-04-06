@@ -327,18 +327,10 @@ nav {
 .bundle-score { position: absolute; bottom: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 18px; color: #F7931A; opacity: 0.2; font-weight: 700; }
 .bundle-card:hover .bundle-score { opacity: 0.5; }
 
-.cpunk-methodology { max-width: 1000px; margin: 20px auto 0; padding: 20px 24px; border: 1px solid rgba(255,255,255,0.04); text-align: left; }
-.cpunk-methodology summary { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; cursor: none; list-style: none; }
-.cpunk-methodology summary::before { content: '▸ '; color: #F7931A; }
-.cpunk-methodology[open] summary::before { content: '▾ '; }
-.cpunk-methodology-content { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.cpunk-factor { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; padding: 4px 0; }
-.cpunk-factor span { color: #F7931A; }
-
 .verify-btn { position: absolute; top: 16px; right: 16px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.15); padding: 5px 10px; cursor: none; transition: all 0.3s; z-index: 2; }
 .verify-btn:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 12px rgba(0,255,65,0.15); }
 
-/* ─── YOU Chapter & Quote Miner ─── */
+/* ─── YOU Chapter ─── */
 .ch-you { text-align: center; padding: 60px 0; }
 .ch-header-you { justify-content: center; border-bottom-color: rgba(0,255,65,0.15); }
 .ch-num-you { color: #00FF41; opacity: 0.5; }
@@ -348,12 +340,17 @@ nav {
 .you-koan p { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 2.2; color: #F7931A; opacity: 0.8; }
 .koan-final { margin-top: 8px; font-weight: 700; opacity: 1 !important; }
 
-/* Quote Miner CSS */
-.quote-box { margin-top: 32px; padding-top: 32px; border-top: 1px dashed rgba(0, 255, 65, 0.2); text-align: center; }
-.quote-hash { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; margin-bottom: 12px; word-break: break-all; min-height: 15px; opacity: 0.5; }
-.quote-text { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; min-height: 45px; margin-bottom: 24px; font-style: italic; transition: opacity 0.3s; }
-.quote-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #00FF41; border: none; padding: 10px 24px; cursor: none; transition: all 0.3s; display: inline-block;}
-.quote-btn:hover { background: #d4d0c8; }
+/* ─── RANDOM VOCAB BOX ─── */
+.seed-section { padding: 80px 40px; text-align: center; }
+.seed-container { max-width: 700px; margin: 0 auto; padding: 40px 32px; border: 1px solid rgba(247,147,26,0.2); background: rgba(247,147,26,0.02); position: relative; overflow: hidden; }
+.seed-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #F7931A; opacity: 0.5; }
+.seed-header { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 32px; }
+.seed-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+.seed-word { background: #0a0a08; border: 1px solid rgba(255,255,255,0.06); padding: 12px 8px; font-family: 'Space Mono', monospace; font-size: 13px; color: #d4d0c8; text-align: left; display: flex; gap: 8px; }
+.seed-word span { color: #666660; font-size: 10px; min-width: 16px; }
+.seed-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #080806; background: #F7931A; border: none; padding: 14px 32px; cursor: none; transition: all 0.3s; margin-bottom: 24px; }
+.seed-btn:hover { background: #d4d0c8; }
+.seed-caption { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; font-style: italic; opacity: 0.8; }
 
 /* ─── VERIFY TERMINAL MODAL ─── */
 .terminal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.94); z-index: 10001; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
@@ -383,19 +380,6 @@ nav {
 .terminal-verify-links { padding: 8px 16px 12px; border-top: 1px solid rgba(255,255,255,0.04); display: flex; flex-wrap: wrap; gap: 8px; }
 .t-verify-link { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; color: #8BA8C4; text-decoration: none; border: 1px solid rgba(139,168,196,0.2); padding: 4px 10px; transition: all 0.2s; }
 .t-verify-link:hover { background: rgba(139,168,196,0.1); color: #d4d0c8; }
-
-/* ─── MINING TIMELINE ─── */
-.hardware { padding: 120px 40px; }
-.hw-timeline { max-width: 900px; margin: 60px auto 0; position: relative; }
-.hw-timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(247,147,26,0.15); }
-.hw-item { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; position: relative; }
-.hw-item::before { content: ''; position: absolute; left: calc(50% - 4px); top: 6px; width: 9px; height: 9px; border: 1.5px solid #F7931A; border-radius: 50%; background: #080806; z-index: 1; }
-.hw-year { font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: right; padding-right: 40px; padding-top: 2px; }
-.hw-content { padding-left: 40px; text-align: left; }
-.hw-name { font-family: 'Space Mono', monospace; font-size: 13px; color: #d4d0c8; letter-spacing: 1px; margin-bottom: 6px; }
-.hw-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; line-height: 1.7; }
-.hw-item[data-hw="friedcat"] { cursor: none; }
-.hw-item[data-hw="friedcat"]:hover .hw-name { color: #00FF41; }
 
 /* ─── MODALS & FORMS ─── */
 .modal-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.92); z-index: 10000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
@@ -428,23 +412,8 @@ nav {
 .auth-divider span { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; background: #0a0a08; padding: 0 12px; position: relative; }
 .auth-nostr { width: 100%; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; background: rgba(0,255,65,0.04); border: 1px solid rgba(0,255,65,0.2); padding: 12px; cursor: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .auth-nostr:hover { background: rgba(0,255,65,0.12); border-color: #00FF41; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
-.auth-nostr-icon { font-size: 14px; }
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
-.auth-note { font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; text-align: center; margin-top: 20px; line-height: 1.8; opacity: 0.5; }
-.auth-mockup-badge { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 3px; color: #8BA8C4; text-align: center; padding: 8px; border-top: 1px solid rgba(255,255,255,0.04); background: rgba(139,168,196,0.03); }
-
-/* ─── COMMUNITY VERIFY ─── */
-.community { padding: 120px 40px; text-align: center; }
-.community-questions { max-width: 640px; margin: 60px auto 0; text-align: left; }
-.cq-item { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.cq-num { font-family: 'Space Mono', monospace; font-size: 10px; color: #F7931A; margin-bottom: 10px; }
-.cq-question { font-family: 'Noto Serif Thai', serif; font-size: 17px; color: #d4d0c8; line-height: 1.8; margin-bottom: 4px; }
-.cq-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); color: #d4d0c8; font-family: 'Sarabun', sans-serif; font-size: 14px; padding: 12px 0; margin-top: 12px; outline: none; transition: border-color 0.3s; }
-.cq-input:focus { border-color: #F7931A; }
-.cq-input::placeholder { color: #666660; opacity: 0.4; }
-.community-submit { display: block; margin: 40px auto 0; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #080806; background: #F7931A; border: none; padding: 14px 40px; cursor: none; transition: all 0.3s; }
-.community-submit:hover { background: #d4d0c8; }
 
 /* ─── SUPPORT / LIGHTNING ─── */
 .support { padding: 120px 40px; text-align: center; }
@@ -460,19 +429,6 @@ nav {
 
 /* ─── FOOTER ─── */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-.footer-newsletter { max-width: 480px; margin: 0 auto 48px; text-align: center; }
-.footer-newsletter-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #F7931A; margin-bottom: 8px; }
-.footer-newsletter-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; margin-bottom: 20px; line-height: 1.7; }
-.footer-newsletter-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
-.footer-newsletter-input { flex: 1; background: transparent; border: 1px solid rgba(247,147,26,0.2); border-right: none; color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 12px; padding: 12px 16px; outline: none; transition: border-color 0.3s; }
-.footer-newsletter-input:focus { border-color: #F7931A; }
-.footer-newsletter-input::placeholder { color: #666660; opacity: 0.4; font-size: 11px; }
-.footer-newsletter-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #080806; background: #F7931A; border: 1px solid #F7931A; padding: 12px 20px; cursor: none; transition: all 0.3s; white-space: nowrap; }
-.footer-newsletter-btn:hover { background: #d4d0c8; border-color: #d4d0c8; }
-.footer-newsletter-success { display: none; font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; padding: 12px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.03); }
-.footer-newsletter-form.submitted { display: none; }
-.footer-newsletter-success.visible { display: block; }
-.footer-newsletter-privacy { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 1px; color: #666660; margin-top: 10px; opacity: 0.4; }
 .footer-content { text-align: center; }
 .footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 6px; color: #F7931A; margin-bottom: 12px; }
 .footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; letter-spacing: 2px; margin-bottom: 16px; }
@@ -484,9 +440,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ─── FADE IN ─── */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 /* ─── MOBILE ─── */
 @media (max-width: 900px) {
   .nav-menu { display: none; }
@@ -496,43 +449,21 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .nav-right { gap: 8px; }
   .nav-auth-btn { padding: 5px 10px; font-size: 9px; }
   .hero { padding: 100px 20px 60px; }
-  .hero-premise p { font-size: 14px; }
-  .hero-tags { flex-direction: column; align-items: center; }
-  .worlds { padding: 80px 16px; }
   .worlds-grid { grid-template-columns: 1fr; }
   .world-card { padding: 36px 24px; }
-  .halving { padding: 60px 16px; }
-  .halving-countdown { margin: 60px 16px 0; }
   .halving-card-header { grid-template-columns: 60px 1fr; }
   .halving-card-crisis { display: none; }
   .halving-card:hover .halving-card-crisis,
   .halving-card.expanded .halving-card-crisis { display: flex; }
   .halving-memory { flex-direction: column; gap: 8px; }
-  .halving-memory-label { min-width: unset; }
-  .cypherpunk { padding: 80px 16px; }
   .ch-grid { grid-template-columns: 1fr; }
   .ch-header { flex-direction: column; gap: 10px; }
-  .ch-num { font-size: 20px; }
   .terminal-box { width: 96%; max-height: 90vh; }
-  .terminal-suggestions { flex-direction: column; }
-  .bundle-name { padding-right: 60px; font-size: 12px; }
-  .hardware { padding: 80px 16px; }
-  .hw-timeline::before { left: 16px; }
   .hw-item { grid-template-columns: 1fr; gap: 8px; }
-  .hw-item::before { left: 12px; }
   .hw-year { text-align: left; padding-left: 40px; padding-right: 0; }
-  .hw-content { padding-left: 40px; }
-  .community { padding: 80px 16px; }
-  .support { padding: 80px 16px; }
   .support-tiers { grid-template-columns: 1fr; }
-  .cursor-dot, .cursor-ring { display: none; }
-  body { cursor: auto; }
-  .cpunk-methodology-content { grid-template-columns: 1fr; }
-  footer { padding: 40px 16px 24px; }
-  .footer-newsletter-form { flex-direction: column; }
-  .footer-newsletter-input { border-right: 1px solid rgba(247,147,26,0.2); border-bottom: none; }
+  .seed-grid { grid-template-columns: repeat(3, 1fr); }
   .auth-box { width: 96%; }
-  .auth-body { padding: 24px 20px; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 40px; }
@@ -540,6 +471,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .halving-card-header { grid-template-columns: 1fr; }
   .halving-card-num { flex-direction: row; gap: 12px; padding: 12px 16px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); }
   .halving-card-bitcoin { border-right: none; }
+  .seed-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -621,14 +553,12 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <h3 style="font-family: 'Space Mono', monospace; color: #F7931A; font-size: 14px; margin-bottom: 16px;">SUPPORT SATOSHI FILM</h3>
         <p class="th-only" style="font-family: 'Sarabun', sans-serif; color: #666660; font-size: 14px; margin-bottom: 24px; line-height: 1.6;">โอนผ่าน Lightning Network ไปที่ Address ด้านล่าง เพื่อร่วมเป็นส่วนหนึ่งของโปรเจกต์</p>
         <p class="en-only" style="font-family: 'Sarabun', sans-serif; color: #666660; font-size: 14px; margin-bottom: 24px; line-height: 1.6;">Send via Lightning Network to the address below to support the project.</p>
-        
         <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
           <span style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 12px; word-break: break-all;" id="zapAddressTxt">satoshifilm@walletofsatoshi.com</span>
           <button onclick="copyZap()" style="background: #F7931A; color: #080806; border: none; font-family: 'Space Mono', monospace; font-size: 10px; padding: 8px 16px; cursor: none; transition: all 0.3s;">COPY</button>
         </div>
         <div id="copySuccess" style="font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; margin-top: 12px; display: none;">✓ COPIED TO CLIPBOARD</div>
       </div>
-      
       <div class="auth-form" id="zapSupporters">
         <h3 style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 14px; margin-bottom: 24px; letter-spacing: 2px;">GENESIS SUPPORTERS</h3>
         <ul style="list-style: none; padding: 0; margin: 0; font-family: 'Space Mono', monospace; font-size: 12px; color: #d4d0c8; display: flex; flex-direction: column; gap: 16px;">
@@ -638,10 +568,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           </li>
           <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; opacity: 0.3;">
             <span>2. ----------------</span>
-            <span style="color: #F7931A;">--- SATS</span>
-          </li>
-          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; opacity: 0.3;">
-            <span>3. ----------------</span>
             <span style="color: #F7931A;">--- SATS</span>
           </li>
         </ul>
@@ -662,9 +588,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 </div>
 
 <nav>
-  <a href="#" class="nav-logo">
-    SATOSHi
-  </a>
+  <a href="#" class="nav-logo">SATOSHi</a>
   <div class="nav-menu">
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
@@ -672,13 +596,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
   </div>
   <div class="nav-right">
-    <button class="nav-auth-btn" onclick="openAuth()">
-      <span class="th-only">เข้าสู่ระบบ</span>
-      <span class="en-only">LOGIN</span>
-    </button>
-    <button class="lang-toggle" onclick="toggleLang()">
-      <span>EN / TH</span>
-    </button>
+    <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
+    <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
   </div>
 </nav>
 
@@ -716,10 +635,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 <section class="worlds reveal" id="worlds">
   <div class="section-header">
-    <div class="section-header-label">
-      <span class="th-only">สามโลก — THREE WORLDS</span>
-      <span class="en-only">THREE WORLDS — สามโลก</span>
-    </div>
+    <div class="section-header-label"><span class="th-only">สามโลก — THREE WORLDS</span><span class="en-only">THREE WORLDS — สามโลก</span></div>
     <div class="section-header-title th-only">ทุกคนทำสิ่งที่ถูกต้องในยุคของตัวเอง</div>
     <div class="section-header-title en-only">Everyone did the right thing in their own era.</div>
   </div>
@@ -748,7 +664,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="world-card-title-th th-only">อนาคต</div>
       <div class="world-card-title-th en-only">The Future</div>
       <div class="world-card-title-en">AFTER TRANSITION</div>
-      <p class="world-card-desc th-only">seed ของเขางอกแล้ว ไม่ใช่ utopia — ยังมีความขัดแย้ง ยังมีคำถาม แต่ฐานรากเปลี่ยนไปแล้ว</p>
+      <p class="world-card-desc th-only">เมล็ดพันธุ์ของเขางอกแล้ว ไม่ใช่ utopia — ยังมีความขัดแย้ง ยังมีคำถาม แต่ฐานรากเปลี่ยนไปแล้ว</p>
       <p class="world-card-desc en-only">His seed has grown. Not a utopia — conflicts and questions remain. But the foundation has changed.</p>
     </div>
   </div>
@@ -780,14 +696,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-text en-only">Subprime Crisis / CPU Mining — Started with home computers. Equal opportunity for all.</div>
         </div>
       </div>
-      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only">What were you doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
-        </div>
-      </div>
     </div>
     <div class="halving-card reveal" onclick="toggleHalving(this)">
       <div class="halving-card-header">
@@ -804,14 +712,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-label">WORLD & MINING EVENT</div>
           <div class="halving-crisis-text th-only">วิกฤตหนี้ยุโรป / FPGA & ASIC ยุคแรก — การแข่งขันทางเทคโนโลยีเริ่มขึ้น Friedcat สร้าง ASIC ตัวแรก</div>
           <div class="halving-crisis-text en-only">European Debt Crisis / FPGA & Early ASIC — Tech arms race begins. Friedcat builds the first ASIC.</div>
-        </div>
-      </div>
-      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only">What were you doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
         </div>
       </div>
     </div>
@@ -832,14 +732,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-text en-only">Negative Rates / Bitmain Era — Mining scales to industrial levels. Fierce Hashrate competition.</div>
         </div>
       </div>
-      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only">What were you doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
-        </div>
-      </div>
     </div>
     <div class="halving-card reveal" onclick="toggleHalving(this)">
       <div class="halving-card-header">
@@ -856,14 +748,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-label">WORLD & MINING EVENT</div>
           <div class="halving-crisis-text th-only">COVID-19 / China Ban (2021) — จีนแบนการขุด พลังงานไหลเวียนเปลี่ยนทิศ สู่การทำเหมืองแบบยั่งยืน</div>
           <div class="halving-crisis-text en-only">COVID-19 / China Ban — China bans mining. Global hashrate migrates toward sustainable energy.</div>
-        </div>
-      </div>
-      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only">What were you doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
         </div>
       </div>
     </div>
@@ -884,14 +768,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-text en-only">Global Inflation / Nation State Adoption — The era where sovereign states (El Salvador, Bhutan) and massive financial institutions jump in to hold and mine Bitcoin.</div>
         </div>
       </div>
-      <div class="halving-toggle">▾ SHARE YOUR MEMORY</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only">ตอนนั้นคุณทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only">What were you doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I was..." onclick="event.stopPropagation()">
-        </div>
-      </div>
     </div>
     <div class="halving-card halving-future reveal" onclick="toggleHalving(this)">
       <div class="halving-card-header">
@@ -908,14 +784,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <div class="halving-crisis-label" style="color: #00FF41;">WORLD EVENT</div>
           <div class="halving-crisis-text th-only">? — ยังไม่เกิด ยังไม่รู้ แต่ cycle ไม่เคยหยุด คุณจะอยู่ตรงไหนของประวัติศาสตร์?</div>
           <div class="halving-crisis-text en-only">? — Hasn't happened yet. But the cycle never stops. Where will you be in history?</div>
-        </div>
-      </div>
-      <div class="halving-toggle">▾ SHARE YOUR PLAN</div>
-      <div class="halving-card-expand">
-        <div class="halving-memory">
-          <div class="halving-memory-label th-only" style="color: #00FF41;">คุณจะทำอะไรอยู่?</div>
-          <div class="halving-memory-label en-only" style="color: #00FF41;">What will you be doing?</div>
-          <input type="text" class="halving-memory-input" placeholder="I will be..." onclick="event.stopPropagation()">
         </div>
       </div>
     </div>
@@ -935,18 +803,9 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 <section class="cypherpunk" id="cypherpunk">
   <div class="section-header">
-    <div class="section-header-label">
-      <span class="th-only">WE ARE ALL SATOSHI — เราทุกคนคือซาโตชิ</span>
-      <span class="en-only">WE ARE ALL SATOSHI — เราทุกคนคือซาโตชิ</span>
-    </div>
+    <div class="section-header-label"><span class="th-only">WE ARE ALL SATOSHI — เราทุกคนคือซาโตชิ</span><span class="en-only">WE ARE ALL SATOSHI — เราทุกคนคือซาโตชิ</span></div>
     <div class="section-header-title th-only">ผู้ใดมี satoshi — ผู้นั้นคือ Satoshi</div>
     <div class="section-header-title en-only">Whoever holds satoshi — is Satoshi.</div>
-  </div>
-  <div class="cypherpunk-intro">
-    <p class="th-only">Satoshi ไม่ใช่คนๆ เดียว — Satoshi คือทุกคนที่เชื่อว่าความจริงต้องพิสูจน์ได้<br>ทุกคนที่ถือ sat แม้แค่หนึ่งเดียว — คือส่วนหนึ่งของสิ่งเดียวกัน</p>
-    <p class="en-only">Satoshi is not one person — Satoshi is everyone who believes truth must be verifiable.<br>Everyone who holds even a single sat — is part of the same thing.</p>
-    <p class="satoshi-creed th-only">"If you don't believe me or don't get it, I don't have time to try to convince you, sorry."<br>— Satoshi Nakamoto, 29 July 2010</p>
-    <p class="satoshi-creed en-only">"If you don't believe me or don't get it, I don't have time to try to convince you, sorry."<br>— Satoshi Nakamoto, 29 July 2010</p>
   </div>
 
   <div class="ch-group reveal">
@@ -955,88 +814,69 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE WHITEPAPER — GENESIS</div>
         <div class="ch-subtitle th-only">ผู้ที่ Satoshi อ้างอิง — รากฐานที่ถูกเขียนลงใน whitepaper</div>
-        <div class="ch-subtitle en-only">Those Satoshi cited — the foundations written into the whitepaper.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-genesis" data-bundle="satoshi">
-        <button class="verify-btn" onclick="openTerminal('satoshi')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('satoshi')">✅ Verify</button>
         <div class="bundle-name">Satoshi Nakamoto</div>
         <div class="bundle-role th-only">ผู้สร้าง Bitcoin — ผู้ไร้ตัวตน ที่ให้ตัวตนกับทุกคน</div>
-        <div class="bundle-role en-only">Bitcoin creator — the anonymous one who gave identity to everyone.</div>
-        <div class="bundle-tags"><span>Genesis Block</span><span>Whitepaper 2008</span><span>Proof of Work</span></div>
+        <div class="bundle-tags"><span>Genesis Block</span><span>Whitepaper</span></div>
       </div>
       <div class="bundle-card" data-bundle="dorian">
-        <button class="verify-btn" onclick="openTerminal('dorian')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('dorian')">✅ Verify</button>
         <div class="bundle-name">Dorian Prentice Satoshi Nakamoto</div>
         <div class="bundle-role th-only">ชายผู้ถูกสื่อชี้เป้าว่าเป็นผู้สร้าง Bitcoin แต่เขาปฏิเสธอย่างสิ้นเชิง</div>
-        <div class="bundle-role en-only">The man media claimed was the creator of Bitcoin, who categorically denied it.</div>
-        <div class="bundle-tags"><span>Newsweek 2014</span><span>Model Trains</span><span>Not Satoshi</span></div>
+        <div class="bundle-tags"><span>Newsweek 2014</span><span>Not Satoshi</span></div>
         <div class="bundle-score">0%</div>
       </div>
       <div class="bundle-card" data-bundle="back">
-        <button class="verify-btn" onclick="openTerminal('back')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('back')">✅ Verify</button>
         <div class="bundle-name">Adam Back</div>
         <div class="bundle-role th-only">Hashcash 1997 — อ้างอิงใน whitepaper [1]</div>
-        <div class="bundle-role en-only">Hashcash 1997 — cited in the whitepaper [1].</div>
-        <div class="bundle-tags"><span>Hashcash</span><span>Whitepaper Ref [1]</span><span>Blockstream CEO</span></div>
+        <div class="bundle-tags"><span>Hashcash</span><span>Ref [1]</span></div>
         <div class="bundle-score">75%</div>
       </div>
       <div class="bundle-card" data-bundle="weidai">
-        <button class="verify-btn" onclick="openTerminal('weidai')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('weidai')">✅ Verify</button>
         <div class="bundle-name">Wei Dai</div>
-        <div class="bundle-role th-only">b-money 1998 — อ้างอิงใน whitepaper [2] — Satoshi ส่งอีเมลหาเป็นคนแรก</div>
-        <div class="bundle-role en-only">b-money 1998 — cited in the whitepaper [2] — Satoshi emailed him first.</div>
-        <div class="bundle-tags"><span>b-money</span><span>Whitepaper Ref [2]</span><span>Crypto++</span></div>
+        <div class="bundle-role th-only">b-money 1998 — อ้างอิงใน whitepaper [2]</div>
+        <div class="bundle-tags"><span>b-money</span><span>Ref [2]</span></div>
         <div class="bundle-score">85%</div>
       </div>
       <div class="bundle-card" data-bundle="stornetta">
-        <button class="verify-btn" onclick="openTerminal('stornetta')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('stornetta')">✅ Verify</button>
         <div class="bundle-name">W. Scott Stornetta</div>
-        <div class="bundle-role th-only">Timestamped chain 1991 — อ้างอิงใน whitepaper [3,4,5]</div>
-        <div class="bundle-role en-only">Timestamped chain 1991 — cited in the whitepaper [3,4,5].</div>
-        <div class="bundle-tags"><span>Timestamp Server</span><span>3 Papers Cited</span><span>Blockchain Ancestor</span></div>
+        <div class="bundle-role th-only">Timestamped chain 1991 — อ้างอิงใน whitepaper</div>
+        <div class="bundle-tags"><span>Timestamp Server</span></div>
       </div>
       <div class="bundle-card" data-bundle="haber">
-        <button class="verify-btn" onclick="openTerminal('haber')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('haber')">✅ Verify</button>
         <div class="bundle-name">Stuart Haber</div>
-        <div class="bundle-role th-only">Co-author ระบบ timestamping ร่วมกับ Stornetta — อ้างอิงใน whitepaper [3,4,5]</div>
-        <div class="bundle-role en-only">Co-author of timestamping with Stornetta — cited in the whitepaper [3,4,5].</div>
-        <div class="bundle-tags"><span>Surety</span><span>Digital Timestamps</span><span>Most-Cited in Whitepaper</span></div>
+        <div class="bundle-role th-only">Co-author ระบบ timestamping ร่วมกับ Stornetta</div>
+        <div class="bundle-tags"><span>Surety</span></div>
       </div>
       <div class="bundle-card" data-bundle="merkle">
-        <button class="verify-btn" onclick="openTerminal('merkle')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('merkle')">✅ Verify</button>
         <div class="bundle-name">Ralph Merkle</div>
-        <div class="bundle-role th-only">Merkle Tree — โครงสร้างข้อมูลที่ทำให้ Bitcoin verify ได้ — อ้างอิงใน whitepaper [7]</div>
-        <div class="bundle-role en-only">Merkle Tree — the data structure that makes Bitcoin verifiable — cited in the whitepaper [7].</div>
-        <div class="bundle-tags"><span>Merkle Tree</span><span>Whitepaper Ref [7]</span><span>Public Key Crypto</span></div>
+        <div class="bundle-role th-only">Merkle Tree — โครงสร้างข้อมูลที่ทำให้ Bitcoin verify ได้</div>
+        <div class="bundle-tags"><span>Merkle Tree</span></div>
       </div>
       <div class="bundle-card bundle-genesis" data-bundle="szabo">
-        <button class="verify-btn" onclick="openTerminal('szabo')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('szabo')">✅ Verify</button>
         <div class="bundle-name">Nick Szabo</div>
-        <div class="bundle-role th-only">Bit Gold & Smart Contracts — ไม่ถูกอ้างอิงใน whitepaper แต่ใกล้ Satoshi ที่สุด</div>
-        <div class="bundle-role en-only">Bit Gold & Smart Contracts — not cited in the whitepaper, but closest to Satoshi.</div>
-        <div class="bundle-tags"><span>Bit Gold</span><span>Smart Contracts</span><span>96% Proximity</span></div>
+        <div class="bundle-role th-only">Bit Gold & Smart Contracts — ใกล้ Satoshi ที่สุด</div>
+        <div class="bundle-tags"><span>Bit Gold</span><span>Smart Contracts</span></div>
         <div class="bundle-score">96%</div>
       </div>
       <div class="bundle-card" data-bundle="chaum">
-        <button class="verify-btn" onclick="openTerminal('chaum')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('chaum')">✅ Verify</button>
         <div class="bundle-name">David Chaum</div>
         <div class="bundle-role th-only">DigiCash & eCash — บิดาแห่ง digital money ก่อน Bitcoin 25 ปี</div>
-        <div class="bundle-role en-only">DigiCash & eCash — the father of digital money, 25 years before Bitcoin.</div>
-        <div class="bundle-tags"><span>DigiCash 1989</span><span>eCash</span><span>80% Proximity</span></div>
+        <div class="bundle-tags"><span>DigiCash 1989</span></div>
         <div class="bundle-score">80%</div>
       </div>
     </div>
-    <details class="cpunk-methodology">
-      <summary>LINEAGE PROXIMITY SCORE METHODOLOGY</summary>
-      <div class="cpunk-methodology-content">
-        <div class="cpunk-factor">Technical Proximity <span>35%</span></div>
-        <div class="cpunk-factor">Philosophical Alignment <span>25%</span></div>
-        <div class="cpunk-factor">Timeline Overlap <span>25%</span></div>
-        <div class="cpunk-factor">Anonymity Behavior <span>15%</span></div>
-      </div>
-    </details>
   </div>
 
   <div class="ch-group reveal">
@@ -1045,69 +885,53 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE CYPHERPUNKS</div>
         <div class="ch-subtitle th-only">ผู้จุดไฟ — ผู้ที่เชื่อว่าความลับคืออาวุธสุดท้ายของประชาชน</div>
-        <div class="ch-subtitle en-only">The Igniters — those who believed privacy is the people's last weapon.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card" data-bundle="assange">
-        <button class="verify-btn" onclick="openTerminal('assange')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('assange')">✅ Verify</button>
         <div class="bundle-name">Julian Assange</div>
         <div class="bundle-role th-only">ผู้ก่อตั้ง WikiLeaks — พิสูจน์ว่าความจริงมีราคา</div>
-        <div class="bundle-role en-only">WikiLeaks founder — proved that truth has a price.</div>
-        <div class="bundle-tags"><span>WikiLeaks</span><span>Radical Transparency</span><span>PGP</span></div>
+        <div class="bundle-tags"><span>WikiLeaks</span><span>PGP</span></div>
       </div>
       <div class="bundle-card" data-bundle="snowden">
-        <button class="verify-btn" onclick="openTerminal('snowden')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('snowden')">✅ Verify</button>
         <div class="bundle-name">Edward Snowden</div>
         <div class="bundle-role th-only">NSA Whistleblower — พิสูจน์ว่ารัฐบาลสอดแนมทุกคน</div>
-        <div class="bundle-role en-only">NSA Whistleblower — proved governments surveil everyone.</div>
-        <div class="bundle-tags"><span>PRISM</span><span>NSA Leaks 2013</span><span>Privacy</span></div>
+        <div class="bundle-tags"><span>PRISM</span><span>Privacy</span></div>
       </div>
       <div class="bundle-card" data-bundle="appelbaum">
-        <button class="verify-btn" onclick="openTerminal('appelbaum')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('appelbaum')">✅ Verify</button>
         <div class="bundle-name">Jacob Appelbaum</div>
         <div class="bundle-role th-only">Tor Developer — ผู้สร้างเกราะล่องหนบนอินเทอร์เน็ต</div>
-        <div class="bundle-role en-only">Tor Developer — built the internet's invisibility shield.</div>
-        <div class="bundle-tags"><span>Tor Project</span><span>NSA Leaks</span><span>Privacy</span></div>
+        <div class="bundle-tags"><span>Tor Project</span></div>
       </div>
       <div class="bundle-card" data-bundle="muller-maguhn">
-        <button class="verify-btn" onclick="openTerminal('muller-maguhn')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('muller-maguhn')">✅ Verify</button>
         <div class="bundle-name">Andy Müller-Maguhn</div>
-        <div class="bundle-role th-only">CCC / Wau Holland Foundation — เชื่อมโลก hacker กับสิทธิมนุษยชน</div>
-        <div class="bundle-role en-only">CCC / Wau Holland Foundation — bridging hackers and human rights.</div>
-        <div class="bundle-tags"><span>Chaos Computer Club</span><span>ICANN</span><span>WikiLeaks Support</span></div>
+        <div class="bundle-role th-only">CCC / Wau Holland Foundation</div>
+        <div class="bundle-tags"><span>Chaos Computer Club</span></div>
       </div>
       <div class="bundle-card" data-bundle="hughes">
-        <button class="verify-btn" onclick="openTerminal('hughes')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('hughes')">✅ Verify</button>
         <div class="bundle-name">Eric Hughes</div>
-        <div class="bundle-role th-only">ผู้เขียน A Cypherpunk's Manifesto — Privacy is necessary for an open society</div>
-        <div class="bundle-role en-only">Author, A Cypherpunk's Manifesto — Privacy is necessary for an open society.</div>
-        <div class="bundle-tags"><span>Manifesto 1993</span><span>Cypherpunks List</span><span>79% Proximity</span></div>
+        <div class="bundle-role th-only">ผู้เขียน A Cypherpunk's Manifesto</div>
+        <div class="bundle-tags"><span>Manifesto 1993</span></div>
         <div class="bundle-score">79%</div>
       </div>
       <div class="bundle-card" data-bundle="sassaman">
-        <button class="verify-btn" onclick="openTerminal('sassaman')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('sassaman')">✅ Verify</button>
         <div class="bundle-name">Len Sassaman</div>
-        <div class="bundle-role th-only">Remailer developer / Mixmaster — ผู้สร้างเกราะ anonymity ยุคแรก</div>
-        <div class="bundle-role en-only">Remailer developer / Mixmaster — early anonymity armor builder.</div>
-        <div class="bundle-tags"><span>Mixmaster</span><span>Remailers</span><span>86% Proximity</span></div>
+        <div class="bundle-role th-only">Remailer developer / Mixmaster</div>
+        <div class="bundle-tags"><span>Mixmaster</span></div>
         <div class="bundle-score">86%</div>
       </div>
       <div class="bundle-card" data-bundle="may">
-        <button class="verify-btn" onclick="openTerminal('may')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('may')">✅ Verify</button>
         <div class="bundle-name">Timothy May</div>
-        <div class="bundle-role th-only">ผู้เขียน Crypto Anarchist Manifesto 1988 — วิสัยทัศน์ก่อนอินเทอร์เน็ต</div>
-        <div class="bundle-role en-only">Author, The Crypto Anarchist Manifesto 1988 — a vision before the internet.</div>
-        <div class="bundle-tags"><span>Manifesto 1988</span><span>BlackNet</span><span>74% Proximity</span></div>
+        <div class="bundle-role th-only">ผู้เขียน Crypto Anarchist Manifesto 1988</div>
+        <div class="bundle-tags"><span>BlackNet</span></div>
         <div class="bundle-score">74%</div>
-      </div>
-      <div class="bundle-card" data-bundle="reesmogg">
-        <button class="verify-btn" onclick="openTerminal('reesmogg')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">Lord Rees-Mogg</div>
-        <div class="bundle-role th-only">The Sovereign Individual 1997 — ทำนายโลกหลัง nation-state ก่อน Bitcoin 10 ปี</div>
-        <div class="bundle-role en-only">The Sovereign Individual 1997 — predicted a post-nation-state world a decade before Bitcoin.</div>
-        <div class="bundle-tags"><span>Sovereign Individual</span><span>Prophecy</span><span>60% Proximity</span></div>
-        <div class="bundle-score">60%</div>
       </div>
     </div>
   </div>
@@ -1118,32 +942,27 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE PIONEERS & EDUCATORS</div>
         <div class="ch-subtitle th-only">ผู้สร้างและผู้สอน — จาก whitepaper สู่ห้องเรียนของโลก</div>
-        <div class="ch-subtitle en-only">The Creators & Teachers — from the whitepaper to the world's classroom.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card" data-bundle="finney">
-        <button class="verify-btn" onclick="openTerminal('finney')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('finney')">✅ Verify</button>
         <div class="bundle-name">Hal Finney</div>
         <div class="bundle-role th-only">ผู้รับ Bitcoin transaction แรก — Running bitcoin.</div>
-        <div class="bundle-role en-only">Received the first Bitcoin transaction — Running bitcoin.</div>
-        <div class="bundle-tags"><span>RPOW</span><span>First TX Receiver</span><span>PGP</span></div>
+        <div class="bundle-tags"><span>RPOW</span><span>First TX</span></div>
         <div class="bundle-score">90%</div>
-        <div class="bundle-easter finney-easter">Running bitcoin.</div>
       </div>
       <div class="bundle-card" data-bundle="andreas">
-        <button class="verify-btn" onclick="openTerminal('andreas')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('andreas')">✅ Verify</button>
         <div class="bundle-name">Andreas Antonopoulos</div>
         <div class="bundle-role th-only">ครูของโลก Bitcoin — ผู้ทำให้คนธรรมดาเข้าใจ</div>
-        <div class="bundle-role en-only">Bitcoin's world teacher — made ordinary people understand.</div>
-        <div class="bundle-tags"><span>Mastering Bitcoin</span><span>The Internet of Money</span><span>Education</span></div>
+        <div class="bundle-tags"><span>Mastering Bitcoin</span></div>
       </div>
       <div class="bundle-card" data-bundle="song">
-        <button class="verify-btn" onclick="openTerminal('song')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('song')">✅ Verify</button>
         <div class="bundle-name">Jimmy Song</div>
         <div class="bundle-role th-only">ผู้สอนนักพัฒนา Bitcoin ชั้นนำ — อธิบายด้วยความจริงและตัวโค้ด</div>
-        <div class="bundle-role en-only">Leading Bitcoin developer educator — speaks truth through code.</div>
-        <div class="bundle-tags"><span>Programming Bitcoin</span><span>Developer</span><span>Maximalist</span></div>
+        <div class="bundle-tags"><span>Programming Bitcoin</span></div>
       </div>
     </div>
   </div>
@@ -1154,72 +973,44 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE CORE ARCHITECTS & MAINTAINERS</div>
         <div class="ch-subtitle th-only">ผู้ดูแลวิหาร — ผู้ที่รักษา code ให้บริสุทธิ์โดยไม่มีใครจ้าง</div>
-        <div class="ch-subtitle en-only">The Temple Keepers — maintaining the code's purity with no employer.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card" data-bundle="andresen">
-        <button class="verify-btn" onclick="openTerminal('andresen')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('andresen')">✅ Verify</button>
         <div class="bundle-name">Gavin Andresen</div>
         <div class="bundle-role th-only">Lead maintainer คนแรกหลัง Satoshi จากไป</div>
-        <div class="bundle-role en-only">First lead maintainer after Satoshi departed.</div>
-        <div class="bundle-tags"><span>Bitcoin Core</span><span>First Lead</span><span>Bitcoin Foundation</span></div>
+        <div class="bundle-tags"><span>Bitcoin Core</span></div>
       </div>
       <div class="bundle-card" data-bundle="wuille">
-        <button class="verify-btn" onclick="openTerminal('wuille')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('wuille')">✅ Verify</button>
         <div class="bundle-name">Pieter Wuille</div>
         <div class="bundle-role th-only">SegWit / Taproot architect — เปลี่ยน DNA ของ Bitcoin อย่างเงียบๆ</div>
-        <div class="bundle-role en-only">SegWit / Taproot architect — quietly rewrote Bitcoin's DNA.</div>
-        <div class="bundle-tags"><span>BIP-141 SegWit</span><span>BIP-340 Schnorr</span><span>Taproot</span></div>
+        <div class="bundle-tags"><span>BIP-141 SegWit</span></div>
       </div>
       <div class="bundle-card" data-bundle="maxwell">
-        <button class="verify-btn" onclick="openTerminal('maxwell')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('maxwell')">✅ Verify</button>
         <div class="bundle-name">Gregory Maxwell</div>
         <div class="bundle-role th-only">Cryptographer — ผู้ปกป้อง decentralization อย่างดุเดือด</div>
-        <div class="bundle-role en-only">Cryptographer — ferocious defender of decentralization.</div>
-        <div class="bundle-tags"><span>Confidential TX</span><span>CoinJoin</span><span>Blockstream</span></div>
+        <div class="bundle-tags"><span>Confidential TX</span></div>
       </div>
       <div class="bundle-card" data-bundle="wladimir">
-        <button class="verify-btn" onclick="openTerminal('wladimir')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('wladimir')">✅ Verify</button>
         <div class="bundle-name">Wladimir van der Laan</div>
         <div class="bundle-role th-only">Lead maintainer 2014–2022 — ผู้ถือกุญแจโดยไม่มีใครรู้หน้า</div>
-        <div class="bundle-role en-only">Lead maintainer 2014–2022 — held the keys while no one knew his face.</div>
-        <div class="bundle-tags"><span>Bitcoin Core</span><span>8 Years Lead</span><span>Pseudonymous</span></div>
+        <div class="bundle-tags"><span>8 Years Lead</span></div>
       </div>
       <div class="bundle-card" data-bundle="zhao">
-        <button class="verify-btn" onclick="openTerminal('zhao')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('zhao')">✅ Verify</button>
         <div class="bundle-name">Gloria Zhao</div>
         <div class="bundle-role th-only">Mempool policy lead — คนรุ่นใหม่ที่ดูแล transaction pool</div>
-        <div class="bundle-role en-only">Mempool policy lead — the new generation guarding the transaction pool.</div>
-        <div class="bundle-tags"><span>Package Relay</span><span>Mempool Policy</span><span>Bitcoin Core</span></div>
+        <div class="bundle-tags"><span>Mempool Policy</span></div>
       </div>
       <div class="bundle-card" data-bundle="ford">
-        <button class="verify-btn" onclick="openTerminal('ford')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('ford')">✅ Verify</button>
         <div class="bundle-name">Michael Ford</div>
         <div class="bundle-role th-only">Current lead maintainer — สืบทอดหน้าที่ดูแล code</div>
-        <div class="bundle-role en-only">Current lead maintainer — carrying the duty of code stewardship.</div>
-        <div class="bundle-tags"><span>Bitcoin Core</span><span>Build System</span><span>CI/CD</span></div>
-      </div>
-      <div class="bundle-card" data-bundle="stepanov">
-        <button class="verify-btn" onclick="openTerminal('stepanov')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">Hennadii Stepanov</div>
-        <div class="bundle-role th-only">Core maintainer จากยูเครน — proof of work ท่ามกลางสงคราม</div>
-        <div class="bundle-role en-only">Core maintainer from Ukraine — proof of work amidst war.</div>
-        <div class="bundle-tags"><span>Bitcoin Core</span><span>GUI</span><span>Ukraine</span></div>
-      </div>
-      <div class="bundle-card" data-bundle="dashjr">
-        <button class="verify-btn" onclick="openTerminal('dashjr')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">Luke Dashjr</div>
-        <div class="bundle-role th-only">BIP author ผู้ยืนหยัดในหลักการ — แม้จะถูกโจมตี</div>
-        <div class="bundle-role en-only">BIP author who stands on principle — even under attack.</div>
-        <div class="bundle-tags"><span>BIP-2</span><span>Eligius Pool</span><span>Knots</span></div>
-      </div>
-      <div class="bundle-card" data-bundle="lopp">
-        <button class="verify-btn" onclick="openTerminal('lopp')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">Jameson Lopp</div>
-        <div class="bundle-role th-only">Cypherpunk ผู้อยู่ในที่แจ้ง — สอนเรื่อง security ด้วยชีวิตจริง</div>
-        <div class="bundle-role en-only">A cypherpunk in the open — teaches security through real life.</div>
-        <div class="bundle-tags"><span>Casa</span><span>Bitcoin Info</span><span>Physical Security</span></div>
+        <div class="bundle-tags"><span>Bitcoin Core</span></div>
       </div>
     </div>
   </div>
@@ -1230,51 +1021,44 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">SCALING, SOVEREIGNTY & FUTURE-PROOFING</div>
         <div class="ch-subtitle th-only">ผู้ขยาย ผู้คืนอำนาจ ผู้เตรียมพร้อม — สร้างโครงสร้างให้คนธรรมดาใช้ได้จริง</div>
-        <div class="ch-subtitle en-only">The Scalers, Sovereigns & Future-Proofers — building infrastructure for ordinary people.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-tech" data-bundle="lightning">
-        <button class="verify-btn" onclick="openTerminal('lightning')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('lightning')">✅ Verify</button>
         <div class="bundle-name">Lightning Network</div>
         <div class="bundle-role th-only">Elizabeth Stark & Lightning Labs — ทำให้ Bitcoin เร็วพอสำหรับกาแฟหนึ่งแก้ว</div>
-        <div class="bundle-role en-only">Elizabeth Stark & Lightning Labs — making Bitcoin fast enough for a cup of coffee.</div>
-        <div class="bundle-tags"><span>Layer 2</span><span>Payment Channels</span><span>Instant Settlement</span></div>
+        <div class="bundle-tags"><span>Layer 2</span><span>Payment Channels</span></div>
       </div>
       <div class="bundle-card bundle-tech" data-bundle="taproot">
-        <button class="verify-btn" onclick="openTerminal('taproot')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('taproot')">✅ Verify</button>
         <div class="bundle-name">Taproot Upgrade</div>
         <div class="bundle-role th-only">BIP-340/341/342 — ความเป็นส่วนตัวและ smart contract บน Bitcoin</div>
-        <div class="bundle-role en-only">BIP-340/341/342 — privacy and smart contracts native to Bitcoin.</div>
-        <div class="bundle-tags"><span>Schnorr Signatures</span><span>MAST</span><span>Activated Nov 2021</span></div>
+        <div class="bundle-tags"><span>Schnorr Signatures</span></div>
       </div>
       <div class="bundle-card bundle-tech" data-bundle="umbrel">
-        <button class="verify-btn" onclick="openTerminal('umbrel')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('umbrel')">✅ Verify</button>
         <div class="bundle-name">Umbrel</div>
         <div class="bundle-role th-only">Node ส่วนตัว — Don't Trust, Verify ที่จับต้องได้ ทุกคนรัน Node ได้</div>
-        <div class="bundle-role en-only">Personal node — Don't Trust, Verify made tangible. Everyone can run a node.</div>
-        <div class="bundle-tags"><span>Full Node</span><span>Self-Sovereignty</span><span>Raspberry Pi</span></div>
+        <div class="bundle-tags"><span>Full Node</span></div>
       </div>
       <div class="bundle-card bundle-tech bundle-quantum" data-bundle="bip360">
-        <button class="verify-btn" onclick="openTerminal('bip360')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('bip360')">✅ Verify</button>
         <div class="bundle-name">BIP-360</div>
         <div class="bundle-role th-only">Pay-to-Quantum-Resistant-Hash — เตรียมพร้อมสู่ยุคหลัง quantum</div>
-        <div class="bundle-role en-only">Pay-to-Quantum-Resistant-Hash — preparing for the post-quantum era.</div>
-        <div class="bundle-tags"><span>Quantum Resistance</span><span>P2QRH</span><span>Future-Proofing</span></div>
+        <div class="bundle-tags"><span>Quantum Resistance</span></div>
       </div>
       <div class="bundle-card bundle-tech" data-bundle="braiins">
-        <button class="verify-btn" onclick="openTerminal('braiins')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('braiins')">✅ Verify</button>
         <div class="bundle-name">Braiins (Slush Pool)</div>
         <div class="bundle-role th-only">Mining pool แห่งแรกของโลก และผู้ผลักดัน Stratum V2 ให้การขุดกระจายศูนย์</div>
-        <div class="bundle-role en-only">The world's first mining pool and pioneers of Stratum V2 for decentralized mining.</div>
-        <div class="bundle-tags"><span>Slush Pool</span><span>Stratum V2</span><span>Mining</span></div>
+        <div class="bundle-tags"><span>Slush Pool</span><span>Stratum V2</span></div>
       </div>
       <div class="bundle-card bundle-biz" data-bundle="welb">
-        <button class="verify-btn" onclick="openTerminal('welb')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('welb')">✅ Verify</button>
         <div class="bundle-name">WelB</div>
-        <div class="bundle-role th-only">ร้านค้ารับ Bitcoin — ผลักดันเศรษฐกิจคู่ขนานด้วยการรับชำระและสนับสนุนระบบ Lightning Network</div>
-        <div class="bundle-role en-only">Bitcoin-accepting merchant — driving the parallel economy through Lightning Network adoption.</div>
-        <div class="bundle-tags"><span>Merchant</span><span>Lightning Network</span><span>Circular Economy</span></div>
+        <div class="bundle-role th-only">ร้านค้ารับ Bitcoin — ผลักดันเศรษฐกิจคู่ขนานด้วยการรับชำระผ่านระบบ Lightning Network</div>
+        <div class="bundle-tags"><span>Merchant</span><span>Lightning Network</span></div>
       </div>
     </div>
   </div>
@@ -1285,37 +1069,32 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE SIGNAL AMPLIFIERS</div>
         <div class="ch-subtitle th-only">ผู้ขยายสัญญาณ — ผู้ที่ทำให้โลกได้ยิน ไม่ว่าจะเห็นด้วยหรือไม่</div>
-        <div class="ch-subtitle en-only">Those who made the world hear — whether you agree with them or not.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-signal" data-bundle="nostr">
-        <button class="verify-btn" onclick="openTerminal('nostr')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('nostr')">✅ Verify</button>
         <div class="bundle-name">Nostr Protocol</div>
         <div class="bundle-role th-only">William Casarin / Damus / Zap — social media ที่ไม่มีใครปิดได้</div>
-        <div class="bundle-role en-only">William Casarin / Damus / Zap — social media no one can shut down.</div>
-        <div class="bundle-tags"><span>Decentralized Social</span><span>Zap</span><span>NIP Protocol</span></div>
+        <div class="bundle-tags"><span>Decentralized Social</span></div>
       </div>
       <div class="bundle-card bundle-signal" data-bundle="dorsey">
-        <button class="verify-btn" onclick="openTerminal('dorsey')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('dorsey')">✅ Verify</button>
         <div class="bundle-name">Jack Dorsey</div>
         <div class="bundle-role th-only">Twitter → Nostr → Block, Inc. — จาก centralized สู่ open protocol</div>
-        <div class="bundle-role en-only">Twitter → Nostr → Block, Inc. — from centralized to open protocol.</div>
-        <div class="bundle-tags"><span>Block Inc.</span><span>Spiral</span><span>Nostr Funder</span></div>
+        <div class="bundle-tags"><span>Block Inc.</span></div>
       </div>
       <div class="bundle-card bundle-signal" data-bundle="musk">
-        <button class="verify-btn" onclick="openTerminal('musk')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('musk')">✅ Verify</button>
         <div class="bundle-name">Elon Musk</div>
         <div class="bundle-role th-only">สัญญาณที่ขยายทั้งสองทาง — ทั้งเชื่อและต้องตรวจสอบ</div>
-        <div class="bundle-role en-only">A signal that amplifies both ways — both to trust and to verify.</div>
-        <div class="bundle-tags"><span>Tesla BTC</span><span>X / Twitter</span><span>Signal vs Noise</span></div>
+        <div class="bundle-tags"><span>Tesla BTC</span></div>
       </div>
       <div class="bundle-card bundle-signal" data-bundle="thiel">
-        <button class="verify-btn" onclick="openTerminal('thiel')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('thiel')">✅ Verify</button>
         <div class="bundle-name">Peter Thiel</div>
         <div class="bundle-role th-only">PayPal → Palantir → Bitcoin maximalist — ผู้เห็นอนาคตก่อนตลาด</div>
-        <div class="bundle-role en-only">PayPal → Palantir → Bitcoin maximalist — sees the future before the market.</div>
-        <div class="bundle-tags"><span>Founders Fund</span><span>Zero to One</span><span>BTC Conference</span></div>
+        <div class="bundle-tags"><span>Founders Fund</span></div>
       </div>
     </div>
   </div>
@@ -1326,44 +1105,32 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE WRITERS</div>
         <div class="ch-subtitle th-only">ผู้บันทึก — ผู้ที่แปลงรหัสให้เป็นภาษาที่โลกอ่านออก</div>
-        <div class="ch-subtitle en-only">The Scribes — those who translated code into language the world can read.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card" data-bundle="ammous">
-        <button class="verify-btn" onclick="openTerminal('ammous')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('ammous')">✅ Verify</button>
         <div class="bundle-name">Saifedean Ammous</div>
         <div class="bundle-role th-only">The Bitcoin Standard — หนังสือที่เปลี่ยนวิธีคิดของคนทั้งรุ่น</div>
-        <div class="bundle-role en-only">The Bitcoin Standard — the book that changed how a generation thinks about money.</div>
-        <div class="bundle-tags"><span>The Bitcoin Standard</span><span>Austrian Economics</span><span>Sound Money</span></div>
+        <div class="bundle-tags"><span>The Bitcoin Standard</span></div>
       </div>
       <div class="bundle-card" data-bundle="alden">
-        <button class="verify-btn" onclick="openTerminal('alden')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('alden')">✅ Verify</button>
         <div class="bundle-name">Lyn Alden</div>
         <div class="bundle-role th-only">Broken Money — วิเคราะห์ระบบการเงินด้วยข้อมูลจริง ไม่ใช่ความเชื่อ</div>
-        <div class="bundle-role en-only">Broken Money — analyzing the monetary system with data, not belief.</div>
-        <div class="bundle-tags"><span>Broken Money</span><span>Macro Analysis</span><span>Engineering Background</span></div>
-      </div>
-      <div class="bundle-card" data-bundle="bhatia">
-        <button class="verify-btn" onclick="openTerminal('bhatia')" title="Don't Trust, Verify">✅ Verify</button>
-        <div class="bundle-name">Nik Bhatia</div>
-        <div class="bundle-role th-only">Layered Money — อธิบาย Bitcoin ผ่านเลนส์ของประวัติศาสตร์การเงินโลก</div>
-        <div class="bundle-role en-only">Layered Money — explains Bitcoin through the lens of global monetary history.</div>
-        <div class="bundle-tags"><span>Layered Money</span><span>Bond Market</span><span>USC Professor</span></div>
+        <div class="bundle-tags"><span>Broken Money</span></div>
       </div>
       <div class="bundle-card" data-bundle="btcmag">
-        <button class="verify-btn" onclick="openTerminal('btcmag')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('btcmag')">✅ Verify</button>
         <div class="bundle-name">Bitcoin Magazine</div>
         <div class="bundle-role th-only">สื่อสิ่งพิมพ์แรกของโลก Bitcoin — ก่อตั้งโดย Vitalik Buterin และ Mihai Alisie (2012)</div>
-        <div class="bundle-role en-only">The first publication dedicated to Bitcoin — founded by Vitalik Buterin and Mihai Alisie (2012).</div>
-        <div class="bundle-tags"><span>Print Media</span><span>Founded 2012</span><span>Signal</span></div>
+        <div class="bundle-tags"><span>Print Media</span><span>Founded 2012</span></div>
       </div>
       <div class="bundle-card" data-bundle="mininghandbook">
-        <button class="verify-btn" onclick="openTerminal('mininghandbook')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('mininghandbook')">✅ Verify</button>
         <div class="bundle-name">BITCOIN MINING HANDBOOK</div>
-        <div class="bundle-role th-only">คู่มือการขุดบิตคอยน์ — ตำราที่รวบรวมและแปลความรู้ด้านวิศวกรรมการขุดและการจัดการพลังงาน</div>
-        <div class="bundle-role en-only">Bitcoin Mining Handbook — translating and compiling deep engineering and energy management knowledge.</div>
-        <div class="bundle-tags"><span>Braiins</span><span>Thai Translation</span><span>Mining</span></div>
+        <div class="bundle-role th-only">คู่มือแปลไทยจากต้นฉบับ Braiins เจาะลึกกลไกเหมืองขุดและการจัดการพลังงาน (Heat Reuse)</div>
+        <div class="bundle-tags"><span>Braiins</span><span>Thai Translation</span></div>
       </div>
     </div>
   </div>
@@ -1374,30 +1141,26 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">DOCUMENTARY & FILM</div>
         <div class="ch-subtitle th-only">ผู้ถ่ายทอดความจริงบนหน้าจอ — สารคดีที่เปิดโปงและบันทึกประวัติศาสตร์</div>
-        <div class="ch-subtitle en-only">The On-Screen Truth Tellers — documentaries that expose and record history.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-doc" data-bundle="dirtycoin">
-        <button class="verify-btn" onclick="openTerminal('dirtycoin')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('dirtycoin')">✅ Verify</button>
         <div class="bundle-name">Dirty Coin</div>
         <div class="bundle-role th-only">Alana Mediavilla — สารคดีที่ตีแผ่ความจริงเรื่องเหมือง Bitcoin กับการใช้พลังงานโลก</div>
-        <div class="bundle-role en-only">Alana Mediavilla — uncovering the truth about Bitcoin mining and global energy.</div>
-        <div class="bundle-tags"><span>Alana Mediavilla</span><span>Energy FUD</span><span>Mining</span></div>
+        <div class="bundle-tags"><span>Energy FUD</span><span>Mining</span></div>
       </div>
       <div class="bundle-card bundle-doc" data-bundle="hbodoc">
-        <button class="verify-btn" onclick="openTerminal('hbodoc')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('hbodoc')">✅ Verify</button>
         <div class="bundle-name">Money Electric: The Bitcoin Mystery</div>
         <div class="bundle-role th-only">HBO (Cullen Hoback) — สารคดีที่พยายามสืบหาตัวตนของ Satoshi และทฤษฎี Peter Todd</div>
-        <div class="bundle-role en-only">HBO (Cullen Hoback) — the documentary that attempted to unmask Satoshi as Peter Todd.</div>
-        <div class="bundle-tags"><span>HBO Max</span><span>Cullen Hoback</span><span>Peter Todd</span></div>
+        <div class="bundle-tags"><span>HBO Max</span><span>Cullen Hoback</span></div>
       </div>
       <div class="bundle-card bundle-doc" data-bundle="netflixdoc">
-        <button class="verify-btn" onclick="openTerminal('netflixdoc')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('netflixdoc')">✅ Verify</button>
         <div class="bundle-name">Banking on Bitcoin</div>
         <div class="bundle-role th-only">Netflix (2016) — บันทึกยุคบุกเบิกของ Bitcoin ตั้งแต่ Cypherpunks จนถึง Silk Road</div>
-        <div class="bundle-role en-only">Netflix (2016) — documenting Bitcoin's early days from Cypherpunks to Silk Road.</div>
-        <div class="bundle-tags"><span>Netflix</span><span>Early Adoption</span><span>History</span></div>
+        <div class="bundle-tags"><span>Netflix</span><span>History</span></div>
       </div>
     </div>
   </div>
@@ -1408,23 +1171,20 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THE ENTREPRENEURS</div>
         <div class="ch-subtitle th-only">ผู้เปลี่ยนโลกธุรกิจ — จากกระดานเทรดสู่คลังสมบัติระดับองค์กร</div>
-        <div class="ch-subtitle en-only">The Business Changers — from exchanges to corporate treasuries.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-biz" data-bundle="saylor">
-        <button class="verify-btn" onclick="openTerminal('saylor')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('saylor')">✅ Verify</button>
         <div class="bundle-name">Michael Saylor</div>
         <div class="bundle-role th-only">MicroStrategy — ผู้เปลี่ยนคลังเงินบริษัทให้เป็น Bitcoin Vault ระดับโลก</div>
-        <div class="bundle-role en-only">MicroStrategy — turned a corporate treasury into a global Bitcoin vault.</div>
-        <div class="bundle-tags"><span>MicroStrategy</span><span>Corporate Treasury</span><span>Maximalist</span></div>
+        <div class="bundle-tags"><span>MicroStrategy</span><span>Corporate Treasury</span></div>
       </div>
       <div class="bundle-card bundle-biz" data-bundle="mallers">
-        <button class="verify-btn" onclick="openTerminal('mallers')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('mallers')">✅ Verify</button>
         <div class="bundle-name">Jack Mallers</div>
         <div class="bundle-role th-only">Strike — ผู้สร้างสะพานเชื่อม Lightning Network เข้าสู่ระบบการเงินดั้งเดิม</div>
-        <div class="bundle-role en-only">Strike — building the bridge between Lightning Network and legacy fiat rails.</div>
-        <div class="bundle-tags"><span>Strike</span><span>Lightning Network</span><span>Global Payments</span></div>
+        <div class="bundle-tags"><span>Strike</span><span>Lightning Network</span></div>
       </div>
     </div>
   </div>
@@ -1435,23 +1195,20 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">NATION STATE ADOPTION</div>
         <div class="ch-subtitle th-only">การตื่นรู้ของรัฐ — เมื่อประเทศเริ่มทำ proof of work และถือครอง Bitcoin</div>
-        <div class="ch-subtitle en-only">The Awakening of States — when countries start doing proof of work and holding Bitcoin.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-biz" data-bundle="bukele">
-        <button class="verify-btn" onclick="openTerminal('bukele')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('bukele')">✅ Verify</button>
         <div class="bundle-name">Nayib Bukele (El Salvador)</div>
         <div class="bundle-role th-only">ประธานาธิบดีผู้ทำให้ Bitcoin เป็นเงินที่ชำระหนี้ได้ตามกฎหมายประเทศแรกของโลก</div>
-        <div class="bundle-role en-only">The President who made Bitcoin legal tender for the first time in history.</div>
-        <div class="bundle-tags"><span>El Salvador</span><span>Legal Tender</span><span>Volcano Mining</span></div>
+        <div class="bundle-tags"><span>El Salvador</span><span>Legal Tender</span></div>
       </div>
       <div class="bundle-card bundle-biz" data-bundle="bhutan">
-        <button class="verify-btn" onclick="openTerminal('bhutan')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('bhutan')">✅ Verify</button>
         <div class="bundle-name">Kingdom of Bhutan</div>
         <div class="bundle-role th-only">ประเทศที่แอบทำเหมืองขุด Bitcoin อย่างเงียบๆ ด้วยพลังงานน้ำจากเทือกเขาหิมาลัย</div>
-        <div class="bundle-role en-only">Quietly mining Bitcoin using Himalayan hydro-power. Nation state proof of work.</div>
-        <div class="bundle-tags"><span>Bhutan</span><span>Hydro Power</span><span>State Mining</span></div>
+        <div class="bundle-tags"><span>Bhutan</span><span>Hydro Power</span></div>
       </div>
     </div>
   </div>
@@ -1462,86 +1219,74 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">PHYSICAL SPACES & COMMUNITIES</div>
         <div class="ch-subtitle th-only">พื้นที่โลกจริง — ศูนย์รวมคอมมูนิตี้ที่จับต้องได้นอกเหนือจากโลกออนไลน์</div>
-        <div class="ch-subtitle en-only">Meatspace — tangible community hubs beyond the internet.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-signal" data-bundle="presidio">
-        <button class="verify-btn" onclick="openTerminal('presidio')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('presidio')">✅ Verify</button>
         <div class="bundle-name">Presidio Bitcoin</div>
         <div class="bundle-role th-only">พื้นที่พบปะของชาว Bitcoin เพื่อสร้าง network แบบตัวเป็นๆ นอกหน้าจอ</div>
-        <div class="bundle-role en-only">A physical gathering space for Bitcoiners to build networks in meatspace.</div>
-        <div class="bundle-tags"><span>Physical Space</span><span>Community Hub</span><span>Meatspace</span></div>
+        <div class="bundle-tags"><span>Physical Space</span><span>Community Hub</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="blccm">
-        <button class="verify-btn" onclick="openTerminal('blccm')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('blccm')">✅ Verify</button>
         <div class="bundle-name">Bitcoin Learning Center — เชียงใหม่</div>
         <div class="bundle-role th-only">พื้นที่เรียนรู้ Bitcoin จริง ในเมืองจริง — ฐานที่มั่นภาคเหนือ</div>
-        <div class="bundle-role en-only">A real Bitcoin learning space in a real city — the Northern stronghold.</div>
-        <div class="bundle-tags"><span>Chiang Mai</span><span>Education Hub</span><span>Community Space</span></div>
+        <div class="bundle-tags"><span>Chiang Mai</span><span>Education Hub</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="blchatyai">
-        <button class="verify-btn" onclick="openTerminal('blchatyai')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('blchatyai')">✅ Verify</button>
         <div class="bundle-name">BLC หาดใหญ่</div>
         <div class="bundle-role th-only">Bitcoin Learning Center ภาคใต้ — พื้นที่เรียนรู้และส่งต่อความรู้ที่ลึกซึ้งของชาวหาดใหญ่</div>
-        <div class="bundle-role en-only">Bitcoin Learning Center in the South — a knowledge hub for the Hat Yai community.</div>
-        <div class="bundle-tags"><span>Hat Yai</span><span>Education</span><span>Community Space</span></div>
+        <div class="bundle-tags"><span>Hat Yai</span><span>Education Hub</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="ybtc">
-        <button class="verify-btn" onclick="openTerminal('ybtc')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('ybtc')">✅ Verify</button>
         <div class="bundle-name">YBTC — ยะลา</div>
         <div class="bundle-role th-only">Yala Bitcoin Community — ชุมชนชาวบิตคอยเนอร์สุดแดนใต้ ศูนย์รวมการพบปะและศึกษา Bitcoin</div>
-        <div class="bundle-role en-only">Yala Bitcoin Community — the southernmost hub for meeting and studying Bitcoin.</div>
-        <div class="bundle-tags"><span>Yala</span><span>Meetups</span><span>Southern Node</span></div>
+        <div class="bundle-tags"><span>Yala</span><span>Community Space</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="issaradee">
-        <button class="verify-btn" onclick="openTerminal('issaradee')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('issaradee')">✅ Verify</button>
         <div class="bundle-name">อิสระดี — เชียงราย</div>
         <div class="bundle-role th-only">Co-playing Space พื้นที่แห่งอิสระ การเรียนรู้ และคอมมูนิตี้ Bitcoin แห่งเชียงราย</div>
-        <div class="bundle-role en-only">Co-playing Space — a hub of freedom, learning, and the Bitcoin community in Chiang Rai.</div>
-        <div class="bundle-tags"><span>Chiang Rai</span><span>Co-playing Space</span><span>Community</span></div>
+        <div class="bundle-tags"><span>Chiang Rai</span><span>Co-playing Space</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="ageofbitcoin">
-        <button class="verify-btn" onclick="openTerminal('ageofbitcoin')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('ageofbitcoin')">✅ Verify</button>
         <div class="bundle-name">Age of Bitcoin</div>
         <div class="bundle-role th-only">บอร์ดเกมส์จำลองระบบเศรษฐกิจ — เครื่องมือเรียนรู้ที่ให้คุณได้สัมผัสการขุดและการโจมตีเครือข่ายด้วยตัวเอง</div>
-        <div class="bundle-role en-only">Economic simulation board game — an educational tool to experience mining and network attacks firsthand.</div>
-        <div class="bundle-tags"><span>Board Game</span><span>Education</span><span>Simulation</span></div>
+        <div class="bundle-tags"><span>Board Game</span><span>Education</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="bob">
-        <button class="verify-btn" onclick="openTerminal('bob')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('bob')">✅ Verify</button>
         <div class="bundle-name">B.O.B Space</div>
         <div class="bundle-role th-only">Bitcoin community space — พื้นที่รวมตัวใจกลางกรุงเทพฯ ของเหล่า Bitcoiners</div>
-        <div class="bundle-role en-only">Bitcoin community space — where Thai Bitcoiners gather in central Bangkok.</div>
-        <div class="bundle-tags"><span>Community Space</span><span>Meetups</span><span>Bangkok</span></div>
+        <div class="bundle-tags"><span>Community Space</span><span>Bangkok</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="citadelcafe">
-        <button class="verify-btn" onclick="openTerminal('citadelcafe')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('citadelcafe')">✅ Verify</button>
         <div class="bundle-name">CITADEL COFFEE</div>
         <div class="bundle-role th-only">พื้นที่พบปะ พูดคุย แลกเปลี่ยนความรู้ และจิบกาแฟของชาวบิตคอยเนอร์</div>
-        <div class="bundle-role en-only">A coffee space for Bitcoiners to meet and discuss.</div>
-        <div class="bundle-tags"><span>Cafe</span><span>Meetups</span><span>Community</span></div>
+        <div class="bundle-tags"><span>Cafe</span><span>Meetups</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="lankrongmun">
-        <button class="verify-btn" onclick="openTerminal('lankrongmun')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('lankrongmun')">✅ Verify</button>
         <div class="bundle-name">ลานกรองมันส์</div>
         <div class="bundle-role th-only">ลานกิจกรรมและจุดรวมพลของสายธรรมไทย สร้าง Proof of Work ผ่านกิจกรรมจริง</div>
-        <div class="bundle-role en-only">Activity ground and gathering spot for Thai Bitcoiners.</div>
-        <div class="bundle-tags"><span>Activity Space</span><span>Meetups</span><span>Thai Community</span></div>
+        <div class="bundle-tags"><span>Activity Space</span><span>Meetups</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="chithole">
-        <button class="verify-btn" onclick="openTerminal('chithole')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('chithole')">✅ Verify</button>
         <div class="bundle-name">CHIT HOLE</div>
         <div class="bundle-role th-only">พื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer</div>
-        <div class="bundle-role en-only">Bar, craft beer, and Bitcoin community space expanding from Chit Beer.</div>
-        <div class="bundle-tags"><span>Craft Beer</span><span>Community</span><span>Bar</span></div>
+        <div class="bundle-tags"><span>Craft Beer</span><span>Community Bar</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="samakkhi">
-        <button class="verify-btn" onclick="openTerminal('samakkhi')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('samakkhi')">✅ Verify</button>
         <div class="bundle-name">สามัคคีชุมนุม (Nakhon Phanom)</div>
         <div class="bundle-role th-only">พื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม</div>
-        <div class="bundle-role en-only">Local community space and outdoor Bitcoin learning hub in Nakhon Phanom.</div>
-        <div class="bundle-tags"><span>Nakhon Phanom</span><span>Outdoor Space</span><span>Education Hub</span></div>
+        <div class="bundle-tags"><span>Nakhon Phanom</span><span>Outdoor Space</span></div>
       </div>
     </div>
   </div>
@@ -1552,37 +1297,32 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title">THAILAND BITCOINERS — Thailand Bitcoiner Pioneer</div>
         <div class="ch-subtitle th-only">proof of work บนแผ่นดินไทย — คอมมูนิตี้และคนที่ลงมือทำจริง</div>
-        <div class="ch-subtitle en-only">Proof of work on Thai soil — the community and people who actually do the work.</div>
       </div>
     </div>
     <div class="ch-grid">
       <div class="bundle-card bundle-th" data-bundle="tum">
-        <button class="verify-btn" onclick="openTerminal('tum')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('tum')">✅ Verify</button>
         <div class="bundle-name">อาจารย์ตั้ม พิริยะ — Right Shift</div>
         <div class="bundle-role th-only">ผู้สอน Bitcoin ให้คนไทยเข้าใจลึกซึ้ง — รายการ Right Shift Podcast</div>
-        <div class="bundle-role en-only">Teaching Bitcoin deeply to Thailand — Right Shift Podcast.</div>
-        <div class="bundle-tags"><span>Right Shift</span><span>Education</span><span>Thai Bitcoin</span></div>
+        <div class="bundle-tags"><span>Right Shift</span><span>Education</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="siamese">
-        <button class="verify-btn" onclick="openTerminal('siamese')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('siamese')">✅ Verify</button>
         <div class="bundle-name">Siamese Bitcoiner</div>
         <div class="bundle-role th-only">กลุ่ม Facebook ศูนย์รวมคนไทยที่รวมตัวพูดคุยและให้ความรู้เรื่อง Bitcoin อย่างแท้จริง</div>
-        <div class="bundle-role en-only">Facebook group. The gathering ground for Thai nodes to share true signal over noise.</div>
-        <div class="bundle-tags"><span>Facebook Group</span><span>Community</span><span>Education</span></div>
+        <div class="bundle-tags"><span>Facebook Group</span><span>Community</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="discordth">
-        <button class="verify-btn" onclick="openTerminal('discordth')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('discordth')">✅ Verify</button>
         <div class="bundle-name">Bitcoin Local Thailand</div>
         <div class="bundle-role th-only">Discord ชุมชนคนรักบิตคอยน์ชาวไทย ศูนย์รวมการพูดคุยแบบ Real-time</div>
-        <div class="bundle-role en-only">Discord community for Thai Bitcoiners. Real-time coordination.</div>
-        <div class="bundle-tags"><span>Discord</span><span>Real-time Chat</span><span>Thai Community</span></div>
+        <div class="bundle-tags"><span>Discord</span><span>Real-time Chat</span></div>
       </div>
       <div class="bundle-card bundle-th" data-bundle="chit">
-        <button class="verify-btn" onclick="openTerminal('chit')" title="Don't Trust, Verify">✅ Verify</button>
+        <button class="verify-btn" onclick="openTerminal('chit')">✅ Verify</button>
         <div class="bundle-name">พี่ชิต — Chit Beer</div>
         <div class="bundle-role th-only">เชื่อม Bitcoin กับวัฒนธรรม craft — proof of work ในแก้วเบียร์บนเกาะเกร็ด</div>
-        <div class="bundle-role en-only">Bridging Bitcoin and craft culture — proof of work in a beer glass.</div>
-        <div class="bundle-tags"><span>Chit Beer</span><span>Bitcoin Community</span><span>Thai Culture</span></div>
+        <div class="bundle-tags"><span>Chit Beer</span><span>Thai Culture</span></div>
       </div>
     </div>
   </div>
@@ -1593,29 +1333,24 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="ch-info">
         <div class="ch-title ch-title-you">YOU — THE VERIFIER</div>
         <div class="ch-subtitle ch-subtitle-you th-only">ทุกคนที่ถือ sat แม้แค่หนึ่งเดียว — คือ Satoshi</div>
-        <div class="ch-subtitle ch-subtitle-you en-only">Everyone who holds even a single sat — is Satoshi.</div>
       </div>
     </div>
     <div class="you-koan">
       <p class="th-only">"ถ้าคุณถือ 1 sat — คุณคือ 1 ใน 2,100,000,000,000,000 ของ Satoshi"</p>
-      <p class="en-only">"If you hold 1 sat — you are 1 of 2,100,000,000,000,000 of Satoshi."</p>
       <p class="th-only koan-final">"ถ้าคุณ verify ด้วยตัวเอง — คุณคือ Satoshi ทั้งหมด"</p>
-      <p class="en-only koan-final">"If you verify for yourself — you are all of Satoshi."</p>
       
-      <div class="quote-box">
-        <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
-        <div class="quote-text" id="quoteText">
-          <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
-          <span class="en-only">...System awaiting your verification...</span>
-        </div>
-        <button class="quote-btn" onclick="generateQuote()">
-          <span class="th-only">MINE A QUOTE ⚡</span>
-          <span class="en-only">MINE A QUOTE ⚡</span>
-        </button>
+      <div class="seed-section">
+          <div class="seed-container">
+            <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
+            <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;">
+              </div>
+            <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; margin-bottom: 20px;">GENERATE ⚡</button>
+            <div style="font-family: 'Sarabun', sans-serif; font-size: 14px; color: #00FF41; font-style: italic;">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
+          </div>
       </div>
+      
     </div>
   </div>
-
 </section>
 
 <div class="terminal-overlay" id="terminalOverlay">
@@ -1685,24 +1420,19 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   <div class="footer-newsletter">
     <div class="footer-newsletter-label">
       <span class="th-only">SUBSCRIBE — รับข่าวสาร</span>
-      <span class="en-only">SUBSCRIBE — รับข่าวสาร</span>
     </div>
     <p class="footer-newsletter-desc th-only">รับอัปเดตเกี่ยวกับหนัง ความคืบหน้า และ community events — ไม่มี spam ไม่มีการขาย</p>
-    <p class="footer-newsletter-desc en-only">Get updates on the film, progress, and community events — no spam, no selling.</p>
     <div class="footer-newsletter-form" id="newsletterForm">
       <input type="email" class="footer-newsletter-input" id="newsletterEmail" placeholder="your@email.com">
       <button class="footer-newsletter-btn" onclick="subscribeNewsletter()">
         <span class="th-only">SUBSCRIBE</span>
-        <span class="en-only">SUBSCRIBE</span>
       </button>
     </div>
     <div class="footer-newsletter-success" id="newsletterSuccess">
       <span class="th-only">✓ SUBSCRIBED — ขอบคุณที่ร่วม verify</span>
-      <span class="en-only">✓ SUBSCRIBED — thank you for verifying with us.</span>
     </div>
     <div class="footer-newsletter-privacy">
       <span class="th-only">EMAIL ของคุณจะไม่ถูกแชร์ — DON'T TRUST, VERIFY</span>
-      <span class="en-only">YOUR EMAIL WILL NEVER BE SHARED — DON'T TRUST, VERIFY</span>
     </div>
   </div>
 
@@ -1713,9 +1443,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
     <div class="footer-copy">© 2026 SATOSHI FILM — CONFIDENTIAL</div>
     <div class="footer-links">
       <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="th-only">ร่วมพัฒนาบทภาพยนตร์</a>
-      <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="en-only">SCRIPT COLLAB</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
-      <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="en-only">WEB COLLAB</a>
       <a href="#" onclick="toggleLang(); return false;" style="margin-left: 20px;">
         <span>EN / TH</span>
       </a>
@@ -1750,13 +1478,11 @@ function animateRing() {
 }
 animateRing();
 
-// Hover effect on interactive elements
 document.querySelectorAll('a, button, .bundle-card, .verify-btn, .t-suggestion, .t-verify-link, .hw-item[data-hw], .halving-card, .nav-auth-btn').forEach(el => {
   el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
   el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
 });
 
-// ─── Language Toggle ───
 function toggleLang() {
   const body = document.body;
   if (body.classList.contains('lang-th')) {
@@ -1768,23 +1494,40 @@ function toggleLang() {
   }
 }
 
+// ─── Random Vocabulary Box Logic ───
+const safeWordList = [
+  'abandon', 'ability', 'freedom', 'satoshi', 'verify', 'genesis', 'proof', 'work', 'timechain', 'cypherpunk', 'node', 'zap', 'truth', 'trust', 'code', 'math', 'energy', 'block', 'chain', 'future', 'seed', 'wealth', 'protect', 'sovereign', 'asset', 'value', 'system', 'network', 'power', 'public', 'private', 'key', 'shield', 'secure', 'peace', 'hope', 'life', 'choice', 'voice', 'signal', 'noise', 'world', 'earth', 'human', 'right', 'build', 'create', 'learn', 'teach', 'grow', 'plant', 'tree', 'root', 'branch', 'leaf', 'sun', 'water', 'fire', 'light', 'dark', 'moon', 'star', 'space', 'time', 'clock', 'hour', 'day', 'year', 'century', 'history', 'memory', 'mind', 'brain', 'think', 'idea', 'vision', 'dream', 'reality', 'matrix', 'escape', 'exit', 'door', 'path', 'road', 'journey', 'step', 'walk', 'run', 'fly', 'soar', 'rise', 'fall', 'stand', 'fight', 'brave', 'bold', 'strong', 'weak', 'true', 'false', 'real', 'fake'
+];
+
+function generateSeedWords() {
+  const grid = document.getElementById('seedGrid');
+  grid.innerHTML = ''; 
+  const shuffled = safeWordList.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 12);
+  
+  selected.forEach((word, index) => {
+    const div = document.createElement('div');
+    div.style.cssText = "background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px; font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: left;";
+    div.innerHTML = `<span style="opacity: 0.5; font-size: 10px; margin-right: 8px; color: #666660;">${index + 1}</span>${word}`;
+    grid.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded', generateSeedWords);
+
+
 // ─── Block Height Fetch & Halving Countdown ───
 async function updateBlockData() {
   try {
     const response = await fetch('https://mempool.space/api/blocks/tip/height');
     const heightText = await response.text();
     const currentBlock = parseInt(heightText);
-
-    // 1. Update Block Height in Hero
     const el = document.getElementById('blockHeight');
     if (el) el.textContent = currentBlock.toLocaleString();
 
-    // 2. Update Halving Countdown Widget
     const halvingInterval = 210000;
     const nextHalving = Math.ceil(currentBlock / halvingInterval) * halvingInterval;
     const blocksLeft = nextHalving - currentBlock;
     
-    // Estimate Date (1 block = ~10 mins)
     const msLeft = blocksLeft * 10 * 60 * 1000; 
     const estDate = new Date(Date.now() + msLeft);
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -1796,71 +1539,51 @@ async function updateBlockData() {
     if (hcBlocks) hcBlocks.textContent = blocksLeft.toLocaleString();
     if (hcDate) hcDate.textContent = 'ESTIMATED: ~' + estDate.toLocaleDateString('en-US', options).toUpperCase();
     
-    // Calculate progress bar percentage within the current 210,000 block cycle
     const cycleStart = nextHalving - halvingInterval;
     const progress = ((currentBlock - cycleStart) / halvingInterval) * 100;
     if (hcProgress) hcProgress.style.width = progress + '%';
-
   } catch (error) {
     console.error('Failed to fetch block height from mempool:', error);
   }
 }
-// Run immediately and then every 60 seconds
 updateBlockData();
 setInterval(updateBlockData, 60000);
 
-
-// ─── Scroll Reveal ───
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
 reveals.forEach(el => revealObserver.observe(el));
 
-// ─── Halving Toggle ───
 function toggleHalving(card) {
   card.classList.toggle('expanded');
 }
 
-// ─── Auth Modal ───
-function openAuth() {
-  document.getElementById('authOverlay').classList.add('active');
-}
-function closeAuth() {
-  document.getElementById('authOverlay').classList.remove('active');
-}
+// ─── Auth / Zap Modals ───
+function openAuth() { document.getElementById('authOverlay').classList.add('active'); }
+function closeAuth() { document.getElementById('authOverlay').classList.remove('active'); }
 function switchAuthTab(tab) {
   document.querySelectorAll('#authOverlay .auth-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('#authOverlay .auth-form').forEach(f => f.classList.remove('active'));
   document.querySelector(`#authOverlay .auth-tab[data-tab="${tab}"]`).classList.add('active');
   document.getElementById(tab === 'login' ? 'authLogin' : 'authRegister').classList.add('active');
 }
-document.getElementById('authOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeAuth();
-});
+document.getElementById('authOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAuth(); });
 
-// ─── Zap Modal ───
 function openZapModal(tier) {
   document.getElementById('zapModalOverlay').classList.add('active');
   document.getElementById('copySuccess').style.display = 'none';
 }
-function closeZapModal() {
-  document.getElementById('zapModalOverlay').classList.remove('active');
-}
+function closeZapModal() { document.getElementById('zapModalOverlay').classList.remove('active'); }
 function switchZapTab(tab) {
   document.querySelectorAll('#zapModalOverlay .auth-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('#zapModalOverlay .auth-form').forEach(f => f.classList.remove('active'));
   document.querySelector(`#zapModalOverlay .auth-tab[data-tab="${tab}"]`).classList.add('active');
   document.getElementById(tab === 'donate' ? 'zapDonate' : 'zapSupporters').classList.add('active');
 }
-document.getElementById('zapModalOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeZapModal();
-});
+document.getElementById('zapModalOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeZapModal(); });
 function copyZap() {
   const address = document.getElementById('zapAddressTxt').innerText;
   navigator.clipboard.writeText(address).then(() => {
@@ -1868,7 +1591,6 @@ function copyZap() {
   });
 }
 
-// ─── Newsletter ───
 function subscribeNewsletter() {
   const email = document.getElementById('newsletterEmail').value;
   if (!email || !email.includes('@')) return;
@@ -1876,45 +1598,9 @@ function subscribeNewsletter() {
   document.getElementById('newsletterSuccess').classList.add('visible');
 }
 
-// ─── Quote Generator ───
-const KOANS = [
-  { th: "\"Don't trust. Verify.\"", en: "\"Don't trust. Verify.\"" },
-  { th: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", en: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"" },
-  { th: "\"ถ้าคุณไม่เชื่อฉัน หรือไม่เข้าใจ ฉันก็ไม่มีเวลาที่จะอธิบายให้คุณฟัง ขอโทษด้วย\"", en: "\"If you don't believe me or don't get it, I don't have time to try to convince you, sorry.\"" },
-  { th: "\"ความลับคือสิ่งที่จำเป็นสำหรับสังคมที่เปิดกว้าง\"", en: "\"Privacy is necessary for an open society in the electronic age.\"" },
-  { th: "\"รหัสคอมพิวเตอร์คือคำพูด และคำพูดนั้นเป็นเสรีภาพ\"", en: "\"Code is speech, and speech is freedom.\"" },
-  { th: "\"มันอาจจะสมเหตุสมผลที่จะเก็บไว้บ้าง เผื่อว่ามันจะได้รับความนิยม\"", en: "\"It might make sense just to get some in case it catches on.\"" },
-  { th: "\"เมื่อทุกคนเป็น Satoshi จะไม่มีใครสามารถปิดระบบนี้ได้อีก\"", en: "\"When everyone is Satoshi, no one can shut the system down.\"" },
-  { th: "\"Running bitcoin.\"", en: "\"Running bitcoin.\"" }
-];
-
-function generateQuote() {
-  const hashEl = document.getElementById('quoteHash');
-  const textEl = document.getElementById('quoteText');
-  
-  let counter = 0;
-  textEl.style.opacity = 0;
-  
-  const interval = setInterval(() => {
-    let fakeHash = '';
-    const chars = '0123456789abcdef';
-    for(let i=0; i<64; i++) fakeHash += chars[Math.floor(Math.random() * chars.length)];
-    hashEl.textContent = '00000000' + fakeHash.substring(8);
-    counter++;
-    
-    if(counter > 15) {
-      clearInterval(interval);
-      const q = KOANS[Math.floor(Math.random() * KOANS.length)];
-      textEl.innerHTML = `<span class="th-only">${q.th}</span><span class="en-only">${q.en}</span>`;
-      textEl.style.opacity = 1;
-    }
-  }, 50);
-}
-
 // ─── Verify Terminal System ───
 const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
 const BUNDLES={
-// Chapter 0
 satoshi:B('Satoshi Nakamoto',`<span class="t-label">SUBJECT:</span> Satoshi Nakamoto\n<span class="t-label">GENESIS:</span> Block 0 — 3 Jan 2009 | LAST SEEN: April 2011\n<span class="t-muted">─────────────────────────</span>\n"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"\nBuilt the system, ran it, disappeared — the ultimate proof of work.`,['Genesis Block message?','Why did Satoshi disappear?'],[{label:'Whitepaper',url:'https://bitcoin.org/bitcoin.pdf'},{label:'Genesis Block',url:'https://mempool.space/block/0'}]),
 dorian:B('Dorian Nakamoto',`<span class="t-label">SUBJECT:</span> Dorian Prentice Satoshi Nakamoto\n<span class="t-muted">─────────────────────────</span>\nชายวัยเกษียณที่ถูกสื่อตีพิมพ์ว่าเป็นผู้สร้าง Bitcoin ในปี 2014 ทำให้กองทัพนักข่าวไปล้อมบ้านเขา ท้ายที่สุดเขาปฏิเสธอย่างเป็นทางการ และชุมชน Bitcoin ได้ระดมทุนช่วยเหลือความเดือดร้อนให้เขา`,['Did he create Bitcoin?','What was the community reaction?'],[{label:'Newsweek Article',url:'https://www.newsweek.com/face-behind-bitcoin-247957'}]),
 back:B('Adam Back',`<span class="t-label">SUBJECT:</span> Adam Back — Hashcash (1997) | Whitepaper ref [1]\n<span class="t-muted">─────────────────────────</span>\nHashcash = DNA of proof of work. Only living person cited in Satoshi's whitepaper.`,['What is Hashcash?','Why is Back cited?'],[{label:'Hashcash',url:'http://www.hashcash.org/papers/hashcash.pdf'}]),
@@ -1924,7 +1610,6 @@ haber:B('Stuart Haber',`<span class="t-label">SUBJECT:</span> Stuart Haber — c
 merkle:B('Ralph Merkle',`<span class="t-label">SUBJECT:</span> Ralph Merkle — Merkle Tree | Whitepaper ref [7]\n<span class="t-muted">─────────────────────────</span>\nThe data structure that makes Bitcoin verifiable without downloading everything.`,['What is a Merkle Tree?'],[]),
 szabo:B('Nick Szabo',`<span class="t-label">SUBJECT:</span> Nick Szabo — Bit Gold (1998), Smart Contracts (1996) | 96%\n<span class="t-muted">─────────────────────────</span>\nClosest precursor to Bitcoin. Coined "smart contracts." Everything points to him. He denies it.`,['What is Bit Gold?','Why 96%?'],[{label:'Bit Gold',url:'https://nakamotoinstitute.org/bit-gold/'}]),
 chaum:B('David Chaum',`<span class="t-label">SUBJECT:</span> David Chaum — DigiCash (1983) | 80%\n<span class="t-muted">─────────────────────────</span>\nInvented digital cash 25 years before Bitcoin. Blind signatures made untraceable payments possible.`,['What are blind signatures?','Why did DigiCash fail?'],[]),
-// Chapter 1
 assange:B('Julian Assange',`<span class="t-label">SUBJECT:</span> Julian Assange — WikiLeaks | Released June 2024\n<span class="t-muted">─────────────────────────</span>\nTransparency must be taken, not given. Every leak is a block of truth no government can roll back.`,['WikiLeaks & Bitcoin connection?','Why is Assange a cypherpunk hero?'],[]),
 snowden:B('Edward Snowden',`<span class="t-label">SUBJECT:</span> Edward Snowden — NSA Whistleblower (2013)\n<span class="t-muted">─────────────────────────</span>\nProved what cypherpunks warned for decades. Sacrificed freedom to verify truth for the world.`,['What did Snowden reveal?','Impact on Bitcoin adoption?'],[]),
 appelbaum:B('Jacob Appelbaum',`<span class="t-label">SUBJECT:</span> Jacob Appelbaum — Tor Developer\n<span class="t-muted">─────────────────────────</span>\nBuilt tools for dissidents. Tor isn't about hiding — it's about choosing who sees you.`,['How does Tor work?','Why is anonymity a right?'],[{label:'Tor',url:'https://www.torproject.org'}]),
@@ -1933,11 +1618,9 @@ sassaman:B('Len Sassaman',`<span class="t-label">SUBJECT:</span> Len Sassaman (1
 hughes:B('Eric Hughes',`<span class="t-label">SUBJECT:</span> Eric Hughes — Cypherpunk Manifesto (1993) | 79%\n<span class="t-muted">─────────────────────────</span>\n"Privacy is necessary for an open society."`,['What does the Manifesto say?'],[{label:'Manifesto',url:'https://www.activism.net/cypherpunk/manifesto.html'}]),
 may:B('Timothy May',`<span class="t-label">SUBJECT:</span> Timothy May (1951–2018) — Crypto Anarchist Manifesto | 74%\n<span class="t-muted">─────────────────────────</span>\nSaw Bitcoin coming 20 years early.`,['What did the Manifesto predict?'],[]),
 reesmogg:B('Lord Rees-Mogg',`<span class="t-label">SUBJECT:</span> Lord Rees-Mogg — The Sovereign Individual (1997) | 60%\n<span class="t-muted">─────────────────────────</span>\nPredicted digital currency 12 years before Genesis Block. A prophet.`,['What did the book predict?'],[]),
-// Chapter 2
 finney:B('Hal Finney',`<span class="t-label">SUBJECT:</span> Hal Finney (1956–2014) | "Running bitcoin." 11 Jan 2009\n<span class="t-muted">─────────────────────────</span>\nFirst TX receiver. RPOW creator. Coded until ALS took his body — never his proof of work.`,['First Bitcoin transaction?','Finney = Satoshi?'],[{label:'First TX',url:'https://mempool.space/tx/f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16'}]),
 andreas:B('Andreas Antonopoulos',`<span class="t-label">SUBJECT:</span> Andreas Antonopoulos — Mastering Bitcoin\n<span class="t-muted">─────────────────────────</span>\nDid not write code — wrote understanding. Made millions comprehend why Bitcoin matters.`,['What makes Mastering Bitcoin essential?'],[{label:'Book',url:'https://github.com/bitcoinbook/bitcoinbook'}]),
 song:B('Jimmy Song',`<span class="t-label">SUBJECT:</span> Jimmy Song\n<span class="t-muted">─────────────────────────</span>\nEducating the next generation of Bitcoin developers. Code over marketing.`,['Programming Bitcoin?'],[{label:'Programming Bitcoin',url:'https://github.com/jimmysong/programmingbitcoin'}]),
-// Chapter 3
 andresen:B('Gavin Andresen',`<span class="t-label">SUBJECT:</span> Gavin Andresen — First lead maintainer\n<span class="t-muted">─────────────────────────</span>\nSatoshi gave him repo access before disappearing.`,['How did Satoshi hand over?'],[]),
 wuille:B('Pieter Wuille',`<span class="t-label">SUBJECT:</span> Pieter Wuille — SegWit / Taproot\n<span class="t-muted">─────────────────────────</span>\nQuietly rewrote Bitcoin's foundations. His code speaks louder than talks.`,['What did SegWit solve?'],[]),
 maxwell:B('Gregory Maxwell',`<span class="t-label">SUBJECT:</span> Gregory Maxwell — Cryptographer\n<span class="t-muted">─────────────────────────</span>\nUncompromising guard of decentralization.`,['What are Confidential TX?'],[]),
@@ -1947,35 +1630,28 @@ ford:B('Michael Ford',`<span class="t-label">SUBJECT:</span> Michael Ford — Cu
 stepanov:B('Hennadii Stepanov',`<span class="t-label">SUBJECT:</span> Hennadii Stepanov — Core maintainer, Ukraine\n<span class="t-muted">─────────────────────────</span>\nMaintaining code while war raged around him. Proof of work — literally.`,['Bitcoin in conflict zones?'],[]),
 dashjr:B('Luke Dashjr',`<span class="t-label">SUBJECT:</span> Luke Dashjr — BIP-2, Knots\n<span class="t-muted">─────────────────────────</span>\nStands on principle even when unpopular.`,['What is Bitcoin Knots?'],[]),
 lopp:B('Jameson Lopp',`<span class="t-label">SUBJECT:</span> Jameson Lopp — Casa\n<span class="t-muted">─────────────────────────</span>\nCypherpunk in the open. Teaches security from hard experience.`,['What security measures?'],[{label:'Resources',url:'https://www.lopp.net/bitcoin-information.html'}]),
-// Chapter 4
 lightning:B('Lightning Network',`<span class="t-label">TECH:</span> Lightning — Layer 2 | Elizabeth Stark\n<span class="t-muted">─────────────────────────</span>\nBitcoin fast enough for coffee. Instant settlement, then anchored to chain.`,['How does Lightning work?'],[{label:'Lightning Labs',url:'https://lightning.engineering'}]),
 taproot:B('Taproot',`<span class="t-label">TECH:</span> Taproot — BIP-340/341/342 | Block 709,632 Nov 2021\n<span class="t-muted">─────────────────────────</span>\nSchnorr + MAST. Complex contracts look like simple payments. Privacy through math.`,['What are Schnorr signatures?'],[]),
 umbrel:B('Umbrel',`<span class="t-label">TECH:</span> Umbrel — Personal node\n<span class="t-muted">─────────────────────────</span>\nRaspberry Pi → sovereignty machine. Verify every transaction yourself.`,['Why run my own node?'],[{label:'Umbrel',url:'https://umbrel.com'}]),
 bip360:B('BIP-360',`<span class="t-label">TECH:</span> BIP-360 — Quantum Resistant Hash\n<span class="t-muted">─────────────────────────</span>\nPreparing Bitcoin for post-quantum era. Future-proofing in decades.`,['Quantum threat to Bitcoin?'],[]),
 braiins:B('Braiins',`<span class="t-label">TECH:</span> Braiins (formerly Slush Pool)\n<span class="t-muted">─────────────────────────</span>\nOperating since 2010. Pushing Stratum V2 to ensure individual miners retain power over block templates, preventing pool centralization.`,['What is Stratum V2?'],[{label:'Braiins.com',url:'https://braiins.com'}]),
 welb:B('WelB',`<span class="t-label">SUBJECT:</span> WelB ร้านค้ารับ Bitcoin\n<span class="t-muted">─────────────────────────</span>\nธุรกิจที่เชื่อมั่นในระบบเศรษฐกิจคู่ขนาน พิสูจน์การใช้งานจริงผ่านการรับชำระด้วย Bitcoin`,['WelB รับชำระด้วยอะไร?'],[{label:'Website',url:'https://wel-b.net/'}]),
-// Chapter 5
 nostr:B('Nostr',`<span class="t-label">TECH:</span> Nostr — fiatjaf, Casarin, Zap\n<span class="t-muted">─────────────────────────</span>\nSocial media no one owns. Identity = keypair. No censor. Only verify.`,['How does Nostr work?'],[{label:'NIPs',url:'https://github.com/nostr-protocol/nips'}]),
 dorsey:B('Jack Dorsey',`<span class="t-label">SUBJECT:</span> Jack Dorsey — Block Inc.\n<span class="t-muted">─────────────────────────</span>\nFrom centralized Twitter to funding decentralized protocols.`,['Why leave Twitter for Bitcoin?'],[]),
 musk:B('Elon Musk',`<span class="t-label">SUBJECT:</span> Elon Musk — Signal Amplifier\n<span class="t-muted">─────────────────────────</span>\nAmplifies both directions. Verify the signal, not the person.`,['Musk impact on Bitcoin?'],[]),
 thiel:B('Peter Thiel',`<span class="t-label">SUBJECT:</span> Peter Thiel — PayPal → BTC maximalist\n<span class="t-muted">─────────────────────────</span>\n"The most honest market in the world." Sees trends before markets.`,['Thiel at Bitcoin 2022?'],[]),
-// Chapter 6
 ammous:B('Saifedean Ammous',`<span class="t-label">SUBJECT:</span> Saifedean Ammous — The Bitcoin Standard\n<span class="t-muted">─────────────────────────</span>\nThe book that changed how a generation thinks about money.`,['What is The Bitcoin Standard?'],[]),
 alden:B('Lyn Alden',`<span class="t-label">SUBJECT:</span> Lyn Alden — Broken Money\n<span class="t-muted">─────────────────────────</span>\nAnalyzing money with data, not belief. Engineering meets economics.`,['What is Broken Money?'],[{label:'Website',url:'https://www.lynalden.com'}]),
 bhatia:B('Nik Bhatia',`<span class="t-label">SUBJECT:</span> Nik Bhatia — Layered Money\n<span class="t-muted">─────────────────────────</span>\nBitcoin through the lens of monetary history.`,['What is Layered Money?'],[]),
 btcmag:B('Bitcoin Magazine',`<span class="t-label">SUBJECT:</span> Bitcoin Magazine\n<span class="t-muted">─────────────────────────</span>\nThe original print publication. Documenting the revolution since 2012.`,['Who founded it?'],[{label:'Website',url:'https://bitcoinmagazine.com/'}]),
 mininghandbook:B('Mining Handbook',`<span class="t-label">SUBJECT:</span> BITCOIN MINING HANDBOOK (คู่มือการขุดบิตคอยน์)\n<span class="t-muted">─────────────────────────</span>\nคู่มือแปลไทยจากต้นฉบับของ Braiins ที่เจาะลึกไปถึงกลไกการทำงาน การตั้งค่าเหมืองขุด และการนำความร้อนไปใช้ต่อ (Heat Reuse)`,['อ่านคู่มือได้ที่ไหน?'],[{label:'GitBook',url:'https://satuser.gitbook.io/th-bitcoin-mining-handbook-beta'}]),
-// Chapter 7 - DOCS
 dirtycoin:B('Dirty Coin',`<span class="t-label">SUBJECT:</span> Dirty Coin — Alana Mediavilla\n<span class="t-muted">─────────────────────────</span>\nDocumenting the truth about Bitcoin mining and global energy. Dispelling fiat propaganda with proof of work.`,['What is the film about?'],[{label:'Dirty Coin Website',url:'https://www.dirtycointhemovie.com/'}]),
 hbodoc:B('Money Electric',`<span class="t-label">SUBJECT:</span> Money Electric: The Bitcoin Mystery (HBO)\n<span class="t-muted">─────────────────────────</span>\nThe relentless media pursuit of Satoshi's identity by Cullen Hoback. The mystery remains, the code survives.`,['Did they find Satoshi?'],[{label:'HBO Max',url:'https://www.hbo.com/movies/money-electric-the-bitcoin-mystery'}]),
 netflixdoc:B('Banking on Bitcoin',`<span class="t-label">SUBJECT:</span> Banking on Bitcoin (Netflix, 2016)\n<span class="t-muted">─────────────────────────</span>\nEarly days of adoption. The wild west of Mt. Gox and the cypherpunk roots of the network.`,['What era does it cover?'],[]),
-// Chapter 8 - ENTREPRENEURS
 saylor:B('Michael Saylor',`<span class="t-label">SUBJECT:</span> Michael Saylor — MicroStrategy\n<span class="t-muted">─────────────────────────</span>\nTurned corporate treasury into a Bitcoin vault. A relentless signal amplifier moving Wall Street to the Bitcoin Standard.`,['How much BTC does MicroStrategy hold?'],[{label:'Hope.com',url:'https://hope.com'}]),
 mallers:B('Jack Mallers',`<span class="t-label">SUBJECT:</span> Jack Mallers — Strike\n<span class="t-muted">─────────────────────────</span>\nBuilding the rails to make fiat obsolete over the Lightning Network. From hoodies to global payments.`,['What is Strike?'],[{label:'Strike',url:'https://strike.me/'}]),
-// Chapter 9 - NATION STATE
 bukele:B('Nayib Bukele',`<span class="t-label">SUBJECT:</span> Nayib Bukele — President of El Salvador\n<span class="t-muted">─────────────────────────</span>\nFirst nation state to adopt the standard. Volcano bonds. Don't trust the IMF, verify the chain.`,['When did El Salvador adopt BTC?'],[{label:'Bitcoin Office',url:'https://bitcoin.gob.sv/'}]),
 bhutan:B('Kingdom of Bhutan',`<span class="t-label">SUBJECT:</span> Kingdom of Bhutan\n<span class="t-muted">─────────────────────────</span>\nQuietly mining Bitcoin with Himalayan hydro-power. Nation state proof of work hidden in the mountains.`,['Why is Bhutan mining?'],[{label:'Arkham Intelligence',url:'https://platform.arkhamintelligence.com/'}]),
-// Chapter 10 - SPACES
 presidio:B('Presidio Bitcoin',`<span class="t-label">SUBJECT:</span> Presidio Bitcoin\n<span class="t-muted">─────────────────────────</span>\nA physical citadel for the community. Meatspace proof of work where Bitcoiners gather, build, and verify in the real world.`,['What is meatspace proof of work?'],[{label:'Verify on X',url:'https://twitter.com/search?q=Presidio+Bitcoin'}]),
 blccm:B('BLC เชียงใหม่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Chiang Mai\n<span class="t-muted">─────────────────────────</span>\nพื้นที่เรียนรู้ Bitcoin จริง ในเมืองจริง — ฐานที่มั่นภาคเหนือ`,['BLC สอนอะไร?'],[]),
 blchatyai:B('BLC หาดใหญ่',`<span class="t-label">SUBJECT:</span> Bitcoin Learning Center Hat Yai\n<span class="t-muted">─────────────────────────</span>\nฐานที่มั่นและพื้นที่เรียนรู้ Bitcoin แห่งแดนใต้`,['ติดตาม BLC หาดใหญ่ได้ที่ไหน?'],[{label:'Facebook',url:'https://www.facebook.com/blchatyai'}]),
@@ -1987,7 +1663,6 @@ lankrongmun:B('ลานกรองมันส์',`<span class="t-label">SUBJ
 chithole:B('CHIT HOLE',`<span class="t-label">SUBJECT:</span> CHIT HOLE\n<span class="t-muted">─────────────────────────</span>\nพื้นที่บาร์ คราฟต์เบียร์ และคอมมูนิตี้บิตคอยน์ที่ต่อยอดจาก Chit Beer แหล่งรวมบทสนทนาคุณภาพ`,['Chit Hole อยู่ที่ไหน?'],[{label:'Website',url:'https://chitholding.com/current/th/'}]),
 samakkhi:B('สามัคคีชุมนุม',`<span class="t-label">SUBJECT:</span> สามัคคีชุมนุม (Nakhon Phanom)\n<span class="t-muted">─────────────────────────</span>\nพื้นที่ชุมชนและแหล่งเรียนรู้ Bitcoin กลางแจ้งในจังหวัดนครพนม ขับเคลื่อนโดยคนในพื้นที่เพื่อคนในพื้นที่`,['ทำไมต้องเป็นกลางแจ้ง?'],[{label:'Facebook',url:'https://www.facebook.com/samakichumnum'}]),
 issaradee:B('อิสระดี — เชียงราย',`<span class="t-label">SUBJECT:</span> อิสระดี Co-playing Space\n<span class="t-muted">─────────────────────────</span>\nพื้นที่แห่งอิสระ การเรียนรู้ และการรวมตัวของชาวบิตคอยเนอร์ตอนบนสุดของประเทศ`,['อิสระดีคืออะไร?'],[{label:'Facebook',url:'https://www.facebook.com/CoplayingSpace'}]),
-// Chapter 11 - THAI
 tum:B('อ.ตั้ม พิริยะ',`<span class="t-label">SUBJECT:</span> อาจารย์ตั้ม พิริยะ — Right Shift\n<span class="t-muted">─────────────────────────</span>\nผู้สอน Bitcoin ให้คนไทยเข้าใจ proof of work ทุกตอน`,['Right Shift สอนอะไร?'],[{label:'Right Shift YouTube',url:'https://www.youtube.com/@RightShift'}]),
 siamese:B('Siamese Bitcoiner',`<span class="t-label">SUBJECT:</span> Siamese Bitcoiner\n<span class="t-muted">─────────────────────────</span>\nFacebook group. The gathering ground for Thai nodes to share true signal over noise.`,['กลุ่มนี้คุยเรื่องอะไรบ้าง?'],[{label:'Facebook Group',url:'https://www.facebook.com/groups/siamesebitcoiner'}]),
 discordth:B('Bitcoin Local TH',`<span class="t-label">SUBJECT:</span> Bitcoin Local Thailand\n<span class="t-muted">─────────────────────────</span>\nDiscord ชุมชนคนรักบิตคอยน์ชาวไทย Real-time coordination and community verifying.`,['เข้าไปทำอะไรได้บ้าง?'],[{label:'Join Discord',url:'https://discord.gg/63Ubsq7g'}]),
@@ -2056,7 +1731,6 @@ document.getElementById('terminalInput').addEventListener('keydown', (e) => {
   }
 });
 
-// ─── Anthropic API Integration ───
 async function askVerifyAI(question, bundle, outputEl) {
   outputEl.innerHTML += `\n\n<span class="t-label">▸ ${question}</span>\n<span class="t-muted">⏳ verifying...</span>`;
   outputEl.parentElement.scrollTop = outputEl.parentElement.scrollHeight;
@@ -2102,7 +1776,6 @@ RULES:
   outputEl.parentElement.scrollTop = outputEl.parentElement.scrollHeight;
 }
 
-// Escape key handler
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeTerminal();
@@ -2112,23 +1785,15 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ─── Friedcat Easter Egg ───
 const friedcat = document.querySelector('[data-hw="friedcat"]');
 if (friedcat) {
   friedcat.addEventListener('click', () => {
     document.getElementById('friedcatModal').classList.add('active');
   });
 }
+function closeFriedcat() { document.getElementById('friedcatModal').classList.remove('active'); }
+document.getElementById('friedcatModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeFriedcat(); });
 
-function closeFriedcat() {
-  document.getElementById('friedcatModal').classList.remove('active');
-}
-
-document.getElementById('friedcatModal').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeFriedcat();
-});
-
-// ─── Smooth scroll for anchor links ───
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     const target = document.querySelector(a.getAttribute('href'));
