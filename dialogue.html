@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATOSHI — DIALOGUE บทสนทนา</title>
+<meta name="description" content="SATOSHI — เรื่องจริงของคนจริง กลายเป็นบทหนัง Real stories become the screenplay">
+<meta property="og:title" content="SATOSHI — DIALOGUE">
+<meta property="og:description" content="ร่วมเขียนบทหนัง SATOSHI ด้วยเรื่องจริงของคุณ">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sarabun:wght@300;400;500&family=Noto+Serif+Thai:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- React via CDN (no build step needed) -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --bg: #080806;
+    --orange: #F7931A;
+    --green: #00FF41;
+    --blue: #8BA8C4;
+    --text: #E8E6E1;
+    --dim: rgba(232,230,225,0.3);
+    --worldA: #D4A574;
+    --worldB: #8BA8C4;
+    --worldC: #D4AF37;
+    --mono: 'Space Mono', monospace;
+    --thai: 'Noto Serif Thai', serif;
+    --body: 'Sarabun', sans-serif;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  textarea:focus, input:focus, button:focus { outline: none; }
+  ::placeholder { color: rgba(232,230,225,0.15); }
+  
+  #root { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+  
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+  
+  .fade-in { animation: fadeIn 0.5s ease forwards; }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(247,147,26,0.2); }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ═══════════════════════════════════════════
+   SATOSHI DIALOGUE PAGE
+   Complete standalone version
+   ═══════════════════════════════════════════ */
+
+// ─── WORLD DATA ────────────────────────────
+const WORLDS = {
+  A: {
+    th: "อดีต", en: "PAST", color: "#D4A574",
+    desc: "โลกที่ระบบ fiat ทำงานอยู่โดยไม่มีใครตั้งคำถาม",
+    questions: [
+      { th: "คนรุ่นปู่ย่าของคุณทำอาชีพอะไร?", en: "What did your grandparents do for work?" },
+      { th: "พวกเขาส่งต่ออะไรมาถึงคุณ — ทั้งสิ่งที่เห็นและไม่เห็น?", en: "What did they pass down — both visible and invisible?" },
+      { th: "อะไรที่พวกเขาไม่รู้ว่ากำลังกัดกินทุกอย่างที่สร้างมา?", en: "What was silently eating everything they built?" }
+    ]
+  },
+  B: {
+    th: "ปัจจุบัน", en: "PRESENT", color: "#8BA8C4",
+    desc: "โลกที่ระบบกำลังพัง แต่ยังไม่มีใครเห็นชัด",
+    questions: [
+      { th: "คุณรู้สึกติดอยู่ในระบบอะไร?", en: "What system do you feel trapped in?" },
+      { th: "ช่วงเวลาไหนที่คุณรู้ว่าบางอย่างต้องเปลี่ยน?", en: "When did you realize something had to change?" },
+      { th: "คุณกำลังพยายามสร้างอะไรให้คนรุ่นถัดไป?", en: "What are you trying to build for the next generation?" }
+    ]
+  },
+  C: {
+    th: "อนาคต", en: "FUTURE", color: "#D4AF37",
+    desc: "โลกที่ seed งอกแล้ว ไม่ใช่ utopia แต่ฐานรากเปลี่ยนไป",
+    questions: [
+      { th: "คุณอยากให้ลูกหลานจำคุณว่าเป็นคนยังไง?", en: "How do you want to be remembered?" },
+      { th: "โลกที่คุณอยากสร้างให้เขา เป็นยังไง?", en: "What does the world you want to build look like?" },
+      { th: "อะไรที่ยังไม่สมบูรณ์ แม้ในอนาคตที่ดีที่สุด?", en: "What remains imperfect even in the best future?" }
+    ]
+  }
+};
+
+// ─── AI PROMPT ──────────────────────────────
+const SYSTEM_PROMPT = `You are the screenplay AI for SATOSHI (ซาโตชิ), a Thai feature film about generational debt and breaking free.
+
+Transform the user's real story into cinematic dialogue:
+
+RULES:
+1. Use ONLY relations: พ่อ/แม่/ปู่/ย่า/ลูก/หลาน/เขา/เธอ — NEVER character names
+2. Bilingual: Thai primary, English subtitle
+3. Maximum 6 lines of dialogue
+4. ONE stage direction at the start — both Thai and English
+5. Dialogue must feel OVERHEARD, not written — fragmented, real
+6. The last line should leave something unsaid
+7. NO Bitcoin jargon — truth is FELT not explained
+8. Stage directions reference Thai spaces: ห้องครัว, ร้านค้า, ริมน้ำ, สวน, หน้าบ้าน, ตลาด
+
+Return ONLY this JSON — no markdown, no backticks, no explanation:
+{"stage_direction":{"th":"...","en":"..."},"lines":[{"relation":{"th":"แม่","en":"MOTHER"},"th":"...","en":"..."}]}`;
+
+// ─── SAMPLE COLLECTION ─────────────────────
+const SAMPLE_COLLECTION = [
+  {
+    id: "col_001", world: "B", scene: "001",
+    stage_direction: { th: "ห้องครัว — แสงจากตู้เย็น ดึกแล้ว", en: "Kitchen — fridge light, late night" },
+    lines: [
+      { relation: { th: "แม่", en: "MOTHER" }, th: "เงินเดือนออกแล้วยัง", en: "Has your salary come in yet?" },
+      { relation: { th: "ลูก", en: "CHILD" }, th: "ออกแล้วครับ แต่มันไม่เหมือนเดิม", en: "It has. But it doesn't feel the same." },
+      { relation: { th: "แม่", en: "MOTHER" }, th: "ไม่เหมือนยังไง เงินก็เงิน", en: "What do you mean? Money is money." },
+      { relation: { th: "ลูก", en: "CHILD" }, th: "แม่เคยรู้สึกมั้ย ว่ายิ่งทำงาน ยิ่งเหมือนอยู่กับที่", en: "Have you ever felt like the harder you work, the more you stay in place?" },
+      { relation: { th: "แม่", en: "MOTHER" }, th: "...", en: "..." },
+      { relation: { th: "แม่", en: "MOTHER" }, th: "กินข้าวยัง", en: "Have you eaten?" }
+    ],
+    sats: 2100
+  },
+  {
+    id: "col_002", world: "A", scene: "002",
+    stage_direction: { th: "ร้านตัดเสื้อ — กรรไกรวางบนโต๊ะ แสงบ่าย", en: "Tailor shop — scissors on the table, afternoon light" },
+    lines: [
+      { relation: { th: "ปู่", en: "GRANDFATHER" }, th: "รู้มั้ย วิชานี่ใครเอาไปไม่ได้", en: "You know, no one can take this skill from you." },
+      { relation: { th: "หลาน", en: "GRANDCHILD" }, th: "แต่ปู่ ทำไมเราถึงไม่รวย", en: "But grandpa, why aren't we rich?" },
+      { relation: { th: "ปู่", en: "GRANDFATHER" }, th: "ปู่เลี้ยงคนได้แปดคน ไม่รวยหรือ", en: "I fed eight people. Isn't that rich?" },
+      { relation: { th: "หลาน", en: "GRANDCHILD" }, th: "แต่ทำไมไม่มีอะไรเหลือ", en: "Then why is nothing left?" },
+      { relation: { th: "ปู่", en: "GRANDFATHER" }, th: "...", en: "..." }
+    ],
+    sats: 840
+  },
+  {
+    id: "col_003", world: "C", scene: "003",
+    stage_direction: { th: "ห้องสมุดใต้ต้นไม้ — เช้า ลมเบา เงียบ", en: "Library under the tree — morning, soft wind, silence" },
+    lines: [
+      { relation: { th: "หลาน", en: "GRANDCHILD" }, th: "ทวดเป็นคนยังไง", en: "What kind of person was great-grandpa?" },
+      { relation: { th: "พ่อ", en: "FATHER" }, th: "เป็นคนธรรมดา ที่เห็นบางอย่างก่อน", en: "An ordinary person who saw something before others did." },
+      { relation: { th: "หลาน", en: "GRANDCHILD" }, th: "เห็นอะไร", en: "Saw what?" },
+      { relation: { th: "พ่อ", en: "FATHER" }, th: "ว่าระบบที่ทุกคนเชื่อ มันไม่ได้ดูแลใคร", en: "That the system everyone trusted wasn't looking after anyone." },
+      { relation: { th: "หลาน", en: "GRANDCHILD" }, th: "แล้วทวดทำอะไร", en: "So what did he do?" },
+      { relation: { th: "พ่อ", en: "FATHER" }, th: "สร้างที่นี่", en: "Built this place." }
+    ],
+    sats: 4200
+  }
+];
+
+
+// ─── DIALOGUE CARD COMPONENT ───────────────
+function DialogueCard({ d, compact, onSelect, selected }) {
+  const color = WORLDS[d.world]?.color || "#F7931A";
+  
+  return (
+    <div
+      onClick={onSelect}
+      style={{
+        background: selected ? color + "08" : "rgba(232,230,225,0.015)",
+        border: "1px solid " + (selected ? color + "55" : color + "18"),
+        padding: compact ? "16px 18px" : "28px 24px",
+        cursor: onSelect ? "pointer" : "default",
+        transition: "all 0.3s",
+        marginBottom: compact ? 10 : 16
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: compact ? 10 : 16 }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: color, letterSpacing: "0.2em" }}>
+          WORLD {d.world} — SCENE {d.scene}
+        </span>
+        {d.sats > 0 && (
+          <span style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "#F7931A" }}>
+            ⚡ {d.sats.toLocaleString()}
+          </span>
+        )}
+      </div>
+
+      <div style={{ fontStyle: "italic", color: "#00FF41", fontSize: compact ? "0.75rem" : "0.85rem", opacity: 0.5, marginBottom: compact ? 10 : 16, fontFamily: "var(--body)", lineHeight: 1.6 }}>
+        [{d.stage_direction.th}]
+        {!compact && <React.Fragment><br/>[{d.stage_direction.en}]</React.Fragment>}
+      </div>
+
+      {d.lines.map(function(line, i) {
+        return (
+          <div key={i} style={{ marginBottom: compact ? 8 : 14, paddingLeft: 14, borderLeft: "2px solid " + color + "28" }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: color, letterSpacing: "0.08em", marginBottom: 2 }}>
+              {line.relation.th}{!compact ? " / " + line.relation.en : ""}
+            </div>
+            <div style={{ fontFamily: "var(--body)", color: "#E8E6E1", fontSize: compact ? "0.9rem" : "1.05rem", lineHeight: 1.6 }}>
+              "{line.th}"
+            </div>
+            {!compact && (
+              <div style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.72rem", marginTop: 2 }}>
+                "{line.en}"
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
+// ─── BLOCK PROGRESS BAR ────────────────────
+function BlockBar({ count, max }) {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ display: "flex", gap: 2, height: 4 }}>
+        {Array.from({ length: max }, function(_, i) {
+          return <div key={i} style={{ flex: 1, background: i < count ? "#F7931A" : "rgba(247,147,26,0.1)", transition: "background 0.3s" }} />;
+        })}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontFamily: "var(--mono)", fontSize: "0.55rem", color: "rgba(232,230,225,0.3)" }}>
+        <span>BLOCK 0</span>
+        <span>{count} / {max}</span>
+      </div>
+    </div>
+  );
+}
+
+
+// ─── SECTION DIVIDER ───────────────────────
+function Divider({ color, label }) {
+  return (
+    <div style={{ position: "relative", margin: "70px 0 50px", textAlign: "center" }}>
+      <div style={{ height: 1, background: "linear-gradient(90deg, transparent, " + (color || "#F7931A") + "66, transparent)" }} />
+      {label && (
+        <span style={{
+          position: "absolute", top: -8, left: "50%", transform: "translateX(-50%)",
+          background: "#080806", padding: "0 16px",
+          fontFamily: "var(--mono)", fontSize: "0.6rem",
+          color: color || "#F7931A", letterSpacing: "0.25em", opacity: 0.6
+        }}>{label}</span>
+      )}
+    </div>
+  );
+}
+
+
+// ─── MAIN APP ──────────────────────────────
+function App() {
+  // ── State ──
+  const [nostrUser, setNostrUser] = useState(null);
+  const [loginStep, setLoginStep] = useState("idle");
+  const [selectedWorld, setSelectedWorld] = useState(null);
+  const [answers, setAnswers] = useState(["", "", ""]);
+  const [generating, setGenerating] = useState(false);
+  const [generatedDialogue, setGeneratedDialogue] = useState(null);
+  const [chain, setChain] = useState([]);
+  const [selectedChainItem, setSelectedChainItem] = useState(null);
+  const [submitState, setSubmitState] = useState("idle");
+  const [submitTarget, setSubmitTarget] = useState(null);
+  const [sceneCounter, setSceneCounter] = useState(4);
+  const [collectionFilter, setCollectionFilter] = useState("all");
+
+  var storyRef = useRef(null);
+  var generateRef = useRef(null);
+  var chainRef = useRef(null);
+
+  var storyReady = selectedWorld && answers.every(function(a) { return a.trim().length > 10; });
+
+  // ── Filtered collection ──
+  var filteredCollection = collectionFilter === "all" 
+    ? SAMPLE_COLLECTION 
+    : SAMPLE_COLLECTION.filter(function(d) { return d.world === collectionFilter; });
+
+  // ── Nostr Login ──
+  function handleLogin() {
+    setLoginStep("connecting");
+    setTimeout(function() {
+      var mockNpub = "npub1" + Math.random().toString(36).substr(2, 12) + "...";
+      setNostrUser({ npub: mockNpub });
+      setLoginStep("connected");
+      setTimeout(function() {
+        if (storyRef.current) storyRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 600);
+    }, 1800);
+  }
+
+  // ── Generate Dialogue ──
+  function handleGenerate() {
+    if (!storyReady) return;
+    setGenerating(true);
+    setGeneratedDialogue(null);
+
+    var sceneNum = String(sceneCounter).padStart(3, "0");
+    var qs = WORLDS[selectedWorld].questions;
+
+    fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [{
+          role: "user",
+          content: "World: " + selectedWorld + "\nScene: " + sceneNum + "\n\nStory:\n" +
+            qs.map(function(q, i) { return q.en + ": " + answers[i]; }).join("\n") +
+            "\n\nReturn ONLY JSON."
+        }]
+      })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var text = data.content[0].text.replace(/```json|```/g, "").trim();
+      var parsed = JSON.parse(text);
+      var dialogue = {
+        id: "dlg_" + Date.now(),
+        world: selectedWorld,
+        scene: sceneNum,
+        stage_direction: parsed.stage_direction,
+        lines: parsed.lines,
+        contributor: nostrUser ? nostrUser.npub : "anon",
+        sats: 0,
+        timestamp: Date.now()
+      };
+      setGeneratedDialogue(dialogue);
+      setSceneCounter(function(c) { return c + 1; });
+      setGenerating(false);
+      setTimeout(function() {
+        if (generateRef.current) generateRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+    })
+    .catch(function(err) {
+      console.error(err);
+      // Fallback demo dialogue
+      setGeneratedDialogue({
+        id: "dlg_demo_" + Date.now(), world: selectedWorld, scene: sceneNum,
+        stage_direction: { th: "หน้าบ้าน — แสงเย็น ลมพัดผ้าที่ตาก", en: "Front porch — evening light, wind on laundry" },
+        lines: [
+          { relation: { th: "ลูก", en: "CHILD" }, th: "ทำไมเราต้องจ่ายค่าของที่ปู่ซื้อ", en: "Why do we pay for things grandpa bought?" },
+          { relation: { th: "พ่อ", en: "FATHER" }, th: "เพราะปู่กู้เงินมาสร้างบ้านนี้", en: "Because grandpa borrowed to build this house." },
+          { relation: { th: "ลูก", en: "CHILD" }, th: "แต่บ้านนี้เป็นของเราแล้วไม่ใช่หรือ", en: "But isn't this house already ours?" },
+          { relation: { th: "พ่อ", en: "FATHER" }, th: "...", en: "..." },
+          { relation: { th: "พ่อ", en: "FATHER" }, th: "ไปถามธนาคารดู", en: "Go ask the bank." }
+        ],
+        contributor: nostrUser ? nostrUser.npub : "anon", sats: 0, timestamp: Date.now()
+      });
+      setGenerating(false);
+    });
+  }
+
+  // ── Accept to Chain ──
+  function acceptToChain() {
+    if (!generatedDialogue) return;
+    if (chain.length >= 21) {
+      alert("Chain เต็มแล้ว — Maximum 21 dialogues");
+      return;
+    }
+    setChain(function(prev) { return [generatedDialogue].concat(prev); });
+    setGeneratedDialogue(null);
+    setAnswers(["", "", ""]);
+    setSelectedWorld(null);
+    setTimeout(function() {
+      if (chainRef.current) chainRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+  }
+
+  // ── Submit ──
+  function handleSubmit(d) {
+    setSubmitTarget(d);
+    setSubmitState("confirming");
+  }
+  function confirmSubmit() {
+    setSubmitState("submitted");
+    setTimeout(function() {
+      setSubmitState("idle");
+      setSubmitTarget(null);
+    }, 3000);
+  }
+
+  // ── RENDER ──
+  return (
+    <div>
+
+      {/* ══════ HEADER ══════ */}
+      <div style={{ textAlign: "center", padding: "48px 0 8px" }}>
+        <a href="index.html" style={{ textDecoration: "none" }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: "0.55rem", color: "#F7931A", letterSpacing: "0.4em", marginBottom: 12 }}>
+            ← SATOSHI.FILM
+          </div>
+        </a>
+        <div style={{ fontFamily: "var(--mono)", fontSize: "0.55rem", color: "#F7931A", letterSpacing: "0.4em", marginBottom: 12 }}>
+          DON'T TRUST — VERIFY
+        </div>
+        <h1 style={{ fontFamily: "var(--mono)", fontSize: "2.2rem", fontWeight: 700, color: "#E8E6E1", letterSpacing: "0.12em", margin: 0, opacity: 0.12 }}>
+          SATOSHI
+        </h1>
+      </div>
+
+      <Divider color="#F7931A" label="DIALOGUE — บทสนทนา" />
+
+
+      {/* ══════ SECTION 1: COLLECTION ══════ */}
+      <div style={{ marginBottom: 20 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <p style={{ fontFamily: "var(--thai)", color: "#8BA8C4", fontSize: "1.1rem", margin: "0 0 6px", lineHeight: 1.8 }}>
+            เรื่องจริงของคนจริง กลายเป็นบทหนัง
+          </p>
+          <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.72rem" }}>
+            Real stories from real people, becoming the screenplay
+          </p>
+        </div>
+
+        {/* World filter */}
+        <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 28, flexWrap: "wrap" }}>
+          {["all", "A", "B", "C"].map(function(w) {
+            return (
+              <button key={w} onClick={function() { setCollectionFilter(w); }} style={{
+                fontFamily: "var(--mono)", fontSize: "0.65rem", padding: "6px 14px",
+                border: "1px solid " + (collectionFilter === w ? "#F7931A" : "rgba(247,147,26,0.12)"),
+                background: collectionFilter === w ? "rgba(247,147,26,0.06)" : "transparent",
+                color: collectionFilter === w ? "#F7931A" : "rgba(232,230,225,0.3)",
+                cursor: "pointer", letterSpacing: "0.1em"
+              }}>
+                {w === "all" ? "ALL" : w}
+              </button>
+            );
+          })}
+        </div>
+
+        {filteredCollection.map(function(d) {
+          return <DialogueCard key={d.id} d={d} />;
+        })}
+
+        <div style={{ textAlign: "center", padding: "20px 0", fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)" }}>
+          {SAMPLE_COLLECTION.length} dialogues collected — ร่วมสร้างบทต่อไป ↓
+        </div>
+      </div>
+
+
+      {/* ══════ SECTION 2: LOGIN ══════ */}
+      <Divider color="#00FF41" label="ENTER" />
+
+      <div style={{ textAlign: "center", padding: "0 0 20px" }}>
+        {loginStep === "idle" && (
+          <div>
+            <p style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "1rem", opacity: 0.6, margin: "0 0 8px" }}>
+              เข้าร่วมบทสนทนา
+            </p>
+            <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.7rem", margin: "0 0 28px" }}>
+              Login with Nostr to write your story
+            </p>
+            <button onClick={handleLogin} style={{
+              fontFamily: "var(--mono)", fontSize: "0.85rem", padding: "14px 40px",
+              border: "1px solid #00FF41", background: "transparent", color: "#00FF41",
+              cursor: "pointer", letterSpacing: "0.15em"
+            }}>
+              ⚡ LOGIN WITH NOSTR
+            </button>
+            <p style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(232,230,225,0.3)", marginTop: 16 }}>
+              Requires NIP-07 extension (Alby, nos2x)
+            </p>
+          </div>
+        )}
+
+        {loginStep === "connecting" && (
+          <div style={{ padding: "20px 0" }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.8rem", color: "#00FF41", animation: "pulse 1.2s infinite" }}>
+              Connecting to relay...
+            </div>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)", marginTop: 8 }}>
+              wss://relay.damus.io
+            </div>
+          </div>
+        )}
+
+        {loginStep === "connected" && nostrUser && (
+          <div style={{ padding: "10px 0" }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.7rem", color: "#00FF41", marginBottom: 6 }}>
+              ✓ CONNECTED
+            </div>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(232,230,225,0.3)", wordBreak: "break-all" }}>
+              {nostrUser.npub}
+            </div>
+          </div>
+        )}
+      </div>
+
+
+      {/* ══════ SECTION 3: YOUR STORY ══════ */}
+      {nostrUser && (
+        <div>
+          <Divider color="#F7931A" label="YOUR STORY — เรื่องของคุณ" />
+
+          <div ref={storyRef}>
+            {/* World Selection */}
+            <div style={{ textAlign: "center", marginBottom: 36 }}>
+              <p style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)", letterSpacing: "0.2em", marginBottom: 16 }}>
+                เลือกโลก — SELECT YOUR WORLD
+              </p>
+              <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+                {Object.keys(WORLDS).map(function(key) {
+                  var w = WORLDS[key];
+                  return (
+                    <button key={key} onClick={function() { setSelectedWorld(key); setAnswers(["","",""]); }} style={{
+                      fontFamily: "var(--mono)", fontSize: "0.7rem", padding: "14px 20px",
+                      border: "1px solid " + (selectedWorld === key ? w.color : w.color + "30"),
+                      background: selectedWorld === key ? w.color + "10" : "transparent",
+                      color: selectedWorld === key ? w.color : "rgba(232,230,225,0.3)",
+                      cursor: "pointer", letterSpacing: "0.08em", minWidth: 90
+                    }}>
+                      <div style={{ fontWeight: 700 }}>{key}</div>
+                      <div style={{ fontSize: "0.55rem", marginTop: 4, opacity: 0.7 }}>{w.th}</div>
+                    </button>
+                  );
+                })}
+              </div>
+              {selectedWorld && (
+                <div style={{ marginTop: 16 }} className="fade-in">
+                  <p style={{ fontFamily: "var(--body)", fontSize: "0.85rem", color: WORLDS[selectedWorld].color, opacity: 0.6 }}>
+                    {WORLDS[selectedWorld].desc}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Questions */}
+            {selectedWorld && (
+              <div className="fade-in">
+                {WORLDS[selectedWorld].questions.map(function(q, i) {
+                  return (
+                    <div key={selectedWorld + "-" + i} style={{ marginBottom: 30 }}>
+                      <label style={{ display: "block", fontFamily: "var(--thai)", color: WORLDS[selectedWorld].color, fontSize: "0.95rem", marginBottom: 4, lineHeight: 1.7 }}>
+                        {q.th}
+                      </label>
+                      <div style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)", marginBottom: 10 }}>
+                        {q.en}
+                      </div>
+                      <textarea
+                        value={answers[i]}
+                        onChange={function(e) { var a = answers.slice(); a[i] = e.target.value; setAnswers(a); }}
+                        maxLength={500}
+                        rows={4}
+                        placeholder="เล่าให้ฟัง..."
+                        style={{
+                          width: "100%", background: "rgba(232,230,225,0.025)",
+                          border: "1px solid " + WORLDS[selectedWorld].color + "20",
+                          color: "#E8E6E1", fontFamily: "var(--body)", fontSize: "1rem",
+                          padding: 14, resize: "vertical", lineHeight: 1.7, borderRadius: 0
+                        }}
+                      />
+                      <div style={{ textAlign: "right", fontFamily: "var(--mono)", fontSize: "0.55rem", color: "rgba(232,230,225,0.2)", marginTop: 4 }}>
+                        {answers[i].length}/500
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <button
+                  onClick={function() {
+                    if (generateRef.current) generateRef.current.scrollIntoView({ behavior: "smooth" });
+                    handleGenerate();
+                  }}
+                  disabled={!storyReady || generating}
+                  style={{
+                    width: "100%", padding: 16, fontFamily: "var(--mono)", fontSize: "0.9rem",
+                    letterSpacing: "0.15em", background: "transparent",
+                    border: "1px solid " + (storyReady ? "#F7931A" : "rgba(247,147,26,0.2)"),
+                    color: storyReady ? "#F7931A" : "rgba(247,147,26,0.2)",
+                    cursor: storyReady ? "pointer" : "not-allowed"
+                  }}
+                >
+                  {generating ? "GENERATING..." : "NEXT → GENERATE DIALOGUE"}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+
+      {/* ══════ SECTION 4: GENERATE RESULT ══════ */}
+      {(generating || generatedDialogue) && (
+        <div>
+          <Divider color={WORLDS[selectedWorld || "B"]?.color || "#8BA8C4"} label="GENERATED" />
+
+          <div ref={generateRef}>
+            {generating && (
+              <div style={{ textAlign: "center", padding: "40px 0" }}>
+                <div style={{ fontFamily: "var(--mono)", fontSize: "0.75rem", color: "#00FF41", marginBottom: 16 }}>
+                  <span style={{ animation: "blink 0.8s infinite" }}>█</span> generating dialogue...
+                </div>
+                <p style={{ fontFamily: "var(--body)", fontSize: "0.8rem", color: "rgba(232,230,225,0.3)" }}>
+                  กำลังแปลงเรื่องของคุณเป็นบทสนทนา
+                </p>
+              </div>
+            )}
+
+            {generatedDialogue && !generating && (
+              <div className="fade-in">
+                <DialogueCard d={generatedDialogue} />
+
+                <div style={{ display: "flex", gap: 10, marginTop: 20, flexWrap: "wrap" }}>
+                  <button onClick={acceptToChain} style={{
+                    flex: 1, padding: 14, fontFamily: "var(--mono)", fontSize: "0.8rem",
+                    border: "1px solid #00FF41", background: "transparent", color: "#00FF41",
+                    cursor: "pointer", letterSpacing: "0.1em", minWidth: 140
+                  }}>
+                    ✓ ACCEPT TO CHAIN
+                  </button>
+                  <button onClick={handleGenerate} style={{
+                    flex: 1, padding: 14, fontFamily: "var(--mono)", fontSize: "0.8rem",
+                    border: "1px solid rgba(247,147,26,0.3)", background: "transparent", color: "#F7931A",
+                    cursor: "pointer", letterSpacing: "0.1em", minWidth: 140, opacity: 0.7
+                  }}>
+                    ↻ REGENERATE
+                  </button>
+                </div>
+                <p style={{ textAlign: "center", fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(232,230,225,0.3)", marginTop: 12 }}>
+                  Accept adds to your chain (max 21)
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+
+      {/* ══════ SECTION 5: YOUR CHAIN ══════ */}
+      {chain.length > 0 && (
+        <div>
+          <Divider color="#F7931A" label={"YOUR CHAIN — " + chain.length + "/21"} />
+
+          <div ref={chainRef}>
+            <div style={{ textAlign: "center", marginBottom: 24 }}>
+              <p style={{ fontFamily: "var(--thai)", color: "#F7931A", fontSize: "1rem", margin: "0 0 6px", opacity: 0.8 }}>
+                บทสนทนาของคุณ
+              </p>
+              <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.65rem" }}>
+                Your dialogue chain — max 21 blocks
+              </p>
+            </div>
+
+            <BlockBar count={chain.length} max={21} />
+
+            {chain.map(function(d, i) {
+              return (
+                <div key={d.id}>
+                  <div style={{ fontFamily: "var(--mono)", fontSize: "0.55rem", color: "rgba(247,147,26,0.35)", marginBottom: 4, letterSpacing: "0.15em" }}>
+                    BLOCK {chain.length - i}
+                  </div>
+
+                  <DialogueCard
+                    d={d}
+                    compact={true}
+                    onSelect={function() { setSelectedChainItem(selectedChainItem === d.id ? null : d.id); }}
+                    selected={selectedChainItem === d.id}
+                  />
+
+                  {selectedChainItem === d.id && (
+                    <div style={{ padding: "0 0 16px" }} className="fade-in">
+                      <button onClick={function() { handleSubmit(d); }} style={{
+                        width: "100%", padding: 12, fontFamily: "var(--mono)", fontSize: "0.75rem",
+                        border: "1px solid #F7931A", background: "rgba(247,147,26,0.05)", color: "#F7931A",
+                        cursor: "pointer", letterSpacing: "0.12em"
+                      }}>
+                        SUBMIT TO SATOSHi →
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+
+      {/* ══════ SECTION 6: SUBMIT MODAL ══════ */}
+      {submitState !== "idle" && submitTarget && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999,
+          background: "rgba(8,8,6,0.95)",
+          display: "flex", justifyContent: "center", alignItems: "center",
+          padding: 20
+        }} onClick={function() { setSubmitState("idle"); }}>
+          <div onClick={function(e) { e.stopPropagation(); }} style={{ maxWidth: 500, width: "100%" }} className="fade-in">
+
+            {submitState === "confirming" && (
+              <div>
+                <div style={{ textAlign: "center", marginBottom: 28 }}>
+                  <div style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: "#F7931A", letterSpacing: "0.3em", marginBottom: 12 }}>
+                    SUBMIT TO SATOSHi
+                  </div>
+                  <p style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "0.95rem", lineHeight: 1.8, opacity: 0.7 }}>
+                    บทสนทนานี้จะถูกส่งเป็น Nostr event<br/>
+                    ทุกคนจะเห็นและ verify ได้<br/>
+                    ลบไม่ได้ — เหมือน block ใน chain
+                  </p>
+                  <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.65rem", marginTop: 8 }}>
+                    This will be published as a permanent Nostr event.
+                  </p>
+                </div>
+
+                <DialogueCard d={submitTarget} compact={true} />
+
+                <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+                  <button onClick={confirmSubmit} style={{
+                    flex: 1, padding: 14, fontFamily: "var(--mono)", fontSize: "0.8rem",
+                    border: "1px solid #F7931A", background: "#F7931A", color: "#080806",
+                    cursor: "pointer", letterSpacing: "0.12em", fontWeight: 700
+                  }}>
+                    CONFIRM — ยืนยัน
+                  </button>
+                  <button onClick={function() { setSubmitState("idle"); }} style={{
+                    flex: 1, padding: 14, fontFamily: "var(--mono)", fontSize: "0.8rem",
+                    border: "1px solid rgba(232,230,225,0.3)", background: "transparent",
+                    color: "rgba(232,230,225,0.3)", cursor: "pointer", letterSpacing: "0.12em"
+                  }}>
+                    CANCEL
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {submitState === "submitted" && (
+              <div style={{ textAlign: "center", padding: "40px 0" }}>
+                <div style={{ fontSize: 40, marginBottom: 16 }}>🌱</div>
+                <div style={{ fontFamily: "var(--mono)", fontSize: "1rem", color: "#00FF41", letterSpacing: "0.15em", marginBottom: 12 }}>
+                  SUBMITTED
+                </div>
+                <p style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "1rem", opacity: 0.7 }}>
+                  บทสนทนาของคุณกลายเป็นส่วนหนึ่งของ SATOSHI แล้ว
+                </p>
+                <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.7rem", marginTop: 8 }}>
+                  Your story is now part of the film.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+
+      {/* ══════ FOOTER ══════ */}
+      <div style={{ textAlign: "center", padding: "80px 0 40px" }}>
+        <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(247,147,26,0.15), transparent)", marginBottom: 20 }} />
+        <a href="index.html" style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "#F7931A", textDecoration: "none", letterSpacing: "0.15em" }}>
+          ← BACK TO SATOSHI.FILM
+        </a>
+        <div style={{ fontFamily: "var(--mono)", fontSize: "0.5rem", color: "rgba(232,230,225,0.2)", letterSpacing: "0.15em", marginTop: 12 }}>
+          SATOSHI © 2025 — DIALOGUE
+        </div>
+        <div style={{ fontFamily: "var(--mono)", fontSize: "0.45rem", color: "rgba(232,230,225,0.15)", marginTop: 6 }}>
+          Chain limit: 21 — because there will only ever be 21 million
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+// ── Mount ──
+var root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+
+</body>
+</html>
