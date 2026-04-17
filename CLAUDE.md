@@ -177,4 +177,4 @@ When creating a PR:
 ## CONTACT FOR AMBIGUITY
 
 If a task is ambiguous or falls outside the rules above, stop and post a
-comment on the issue asking for clarification. Do not guess.
+comment on the issue asking for clarification. Do not guess. 
