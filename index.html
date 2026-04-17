@@ -28,12 +28,12 @@ body.lang-en .th-only { display: none !important; }
 .cursor-ring.hovering { width: 48px; height: 48px; border-color: #00FF41; transform: translate(-20px, -20px); }
 
 /* ─── NAV ─── */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(180deg, #080806 60%, transparent); backdrop-filter: blur(4px); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 20px 40px; background: linear-gradient(180deg, #080806 60%, transparent); backdrop-filter: blur(4px); }
 .nav-logo { font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 6px; color: #F7931A; text-decoration: none; display: flex; align-items: center; }
-.nav-menu { display: flex; gap: 24px; position: absolute; left: 50%; transform: translateX(-50%); }
-.nav-link { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; }
+.nav-menu { display: flex; gap: 24px; justify-content: center; min-width: 0; flex-wrap: wrap; row-gap: 6px; }
+.nav-link { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap; }
 .nav-link:hover { color: #F7931A; }
-.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .nav-auth-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; border: 1px solid rgba(0,255,65,0.3); padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
 .nav-auth-btn:hover { color: #080806; background: #00FF41; border-color: #00FF41; }
 .lang-toggle { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #666660; border: 1px solid #666660; padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
@@ -342,6 +342,11 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ─── MOBILE ─── */
+@media (max-width: 1200px) {
+  nav { padding: 18px 24px; gap: 12px; }
+  .nav-menu { gap: 14px; }
+  .nav-link { font-size: 9px; letter-spacing: 0.5px; }
+}
 @media (max-width: 900px) {
   .nav-menu { display: none; }
 }
