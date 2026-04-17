@@ -282,6 +282,39 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .tier-btn { display: inline-block; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #F7931A; border: 1px solid rgba(247,147,26,0.3); padding: 10px 28px; background: none; cursor: none; transition: all 0.3s; }
 .tier-btn:hover { background: #F7931A; color: #080806; }
 
+/* ─── FORUM ─── */
+.forum { padding: 120px 40px; background: #080806; }
+.forum-eyebrow { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; margin-bottom: 12px; text-align: center; }
+.forum-section-title { font-family: 'Noto Serif Thai', serif; font-size: 32px; color: #d4d0c8; text-align: center; margin-bottom: 8px; }
+.forum-section-title-en { font-family: 'Space Mono', monospace; font-size: 18px; color: #8BA8C4; text-align: center; letter-spacing: 2px; margin-bottom: 24px; }
+.forum-subtitle { max-width: 720px; margin: 0 auto 16px; }
+.forum-subtitle-th { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #d4d0c8; line-height: 1.8; text-align: center; margin-bottom: 8px; }
+.forum-subtitle-en { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; line-height: 1.7; text-align: center; opacity: 0.7; }
+.forum-disclosure { max-width: 680px; margin: 32px auto; padding: 16px 20px; border-left: 3px solid #00FF41; background: rgba(0,255,65,0.03); }
+.forum-disclosure-text { font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; line-height: 1.7; letter-spacing: 0.5px; }
+.forum-meta { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 40px 0; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; }
+.forum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; }
+.forum-card { background: #0e0e0b; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.02); transition: all 0.3s; }
+.forum-card:hover { background: #121210; border-color: rgba(0,255,65,0.1); }
+.forum-card-num { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; margin-bottom: 16px; }
+.forum-card-title-th { font-family: 'Noto Serif Thai', serif; font-size: 17px; color: #d4d0c8; line-height: 1.5; margin-bottom: 8px; }
+.forum-card-title-en { font-family: 'Space Mono', monospace; font-size: 11px; color: #8BA8C4; line-height: 1.6; margin-bottom: 16px; opacity: 0.8; }
+.forum-card-summary-th { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #d4d0c8; line-height: 1.7; margin-bottom: 8px; }
+.forum-card-summary-en { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; line-height: 1.6; margin-bottom: 20px; opacity: 0.6; }
+.forum-card-take { padding: 16px; border-left: 3px solid #F7931A; background: rgba(247,147,26,0.03); margin-bottom: 20px; }
+.forum-card-take-label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 2px; color: #F7931A; margin-bottom: 8px; }
+.forum-card-take-th { font-family: 'Noto Serif Thai', serif; font-size: 13px; color: #d4d0c8; line-height: 1.7; font-style: italic; margin-bottom: 6px; }
+.forum-card-take-en { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; line-height: 1.6; font-style: italic; opacity: 0.7; }
+.forum-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); }
+.forum-card-author { font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; letter-spacing: 1px; }
+.forum-card-verify { font-family: 'Space Mono', monospace; font-size: 9px; color: #00FF41; letter-spacing: 1px; text-decoration: none; transition: opacity 0.3s; }
+.forum-card-verify:hover { opacity: 0.7; }
+.forum-attribution { text-align: center; margin-top: 48px; font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; letter-spacing: 1px; }
+.forum-skeleton { max-width: 600px; margin: 40px auto; padding: 20px; background: rgba(0,255,65,0.03); border: 1px solid rgba(0,255,65,0.1); }
+.forum-skeleton-text { font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; letter-spacing: 0.5px; }
+@media (max-width: 980px) { .forum-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .forum { padding: 80px 20px; } .forum-grid { grid-template-columns: 1fr; } .forum-card { padding: 28px 20px; } }
+
 /* ─── FOOTER ─── */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
 .footer-newsletter { max-width: 480px; margin: 0 auto 48px; text-align: center; }
@@ -471,6 +504,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
   </div>
   <div class="nav-right">
+    <a href="#forum" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;">DIALOGUE</a>
      <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
@@ -1409,6 +1443,44 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   </div>
 </section>
 
+<section class="forum" id="forum">
+  <div class="forum-eyebrow">BLOCK <span id="forumBlockHeight">---</span> · SOURCE: bitcointalk.org</div>
+
+  <div class="forum-section-title">ชุมชน — การตรวจสอบ</div>
+  <div class="forum-section-title-en">FORUM — COMMUNITY VERIFY</div>
+
+  <div class="forum-subtitle">
+    <div class="forum-subtitle-th">
+      ทุกสัปดาห์เราคัดเลือก 21 กระทู้จากฟอรัมที่ Satoshi เคยโพสต์ — ผ่านมุมมองของหนังเรื่องนี้ เราไม่คัดลอกโพสต์ เราสรุปด้วยเสียงของเราเอง และลิงก์กลับไปที่ต้นฉบับ
+    </div>
+    <div class="forum-subtitle-en">
+      Each week we select 21 threads from the forum where Satoshi posted — through the lens of this film. We don't copy posts. We summarize in our own voice and link back to the source.
+    </div>
+  </div>
+
+  <div class="forum-disclosure">
+    <div class="forum-disclosure-text">
+      EDITORIAL DISCLOSURE: We paraphrase thread titles and discussions. We do not reproduce original posts. Every thread links to its source on bitcointalk.org with the author's username. Our "take" reflects how each thread connects to the film's themes of generational debt, verification, and monetary sovereignty.
+    </div>
+  </div>
+
+  <div class="forum-meta">
+    <span>CURATED <span id="forumCuratedDate">---</span></span>
+    <span>·</span>
+    <span>COUNT <span id="forumCount">0</span>/21</span>
+  </div>
+
+  <div class="forum-grid" id="forumGrid">
+    <div class="forum-skeleton">
+      <div class="forum-skeleton-text">verify@satoshi:~$ loading forum threads...</div>
+    </div>
+  </div>
+
+  <div class="forum-attribution">
+    All threads live on bitcointalk.org — the forum where Satoshi Nakamoto posted from 2009-2010.
+  </div>
+</section>
+
 <footer>
   <div class="footer-newsletter">
     <div class="footer-newsletter-label">
@@ -1925,6 +1997,88 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ─── FORUM LOADER ─────────────────────────────────────────────────────────────
+(function() {
+  const escapeHtml = (str) => {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  };
+
+  const renderForumCards = (data) => {
+    const grid = document.getElementById('forumGrid');
+    const blockHeightEl = document.getElementById('forumBlockHeight');
+    const curatedDateEl = document.getElementById('forumCuratedDate');
+    const countEl = document.getElementById('forumCount');
+
+    if (!data || !data.topics || data.topics.length === 0) {
+      grid.innerHTML = `
+        <div class="forum-skeleton">
+          <div class="forum-skeleton-text">verify@satoshi:~$ no forum data available</div>
+        </div>
+      `;
+      return;
+    }
+
+    blockHeightEl.textContent = escapeHtml(data.block_height || '---');
+    curatedDateEl.textContent = escapeHtml(data.curated_date || '---');
+    countEl.textContent = data.topics.length;
+
+    const topics = data.topics.slice(0, 21);
+    const cardsHTML = topics.map((topic, index) => {
+      const num = String(index + 1).padStart(2, '0');
+      return `
+        <div class="forum-card reveal" id="forum-topic-${num}">
+          <div class="forum-card-num">TOPIC ${num} / 21</div>
+          <div class="forum-card-title-th">${escapeHtml(topic.title_th || '')}</div>
+          <div class="forum-card-title-en">${escapeHtml(topic.title_en || '')}</div>
+          <div class="forum-card-summary-th">${escapeHtml(topic.summary_th || '')}</div>
+          <div class="forum-card-summary-en">${escapeHtml(topic.summary_en || '')}</div>
+          <div class="forum-card-take">
+            <div class="forum-card-take-label">OUR TAKE · มุมของหนัง</div>
+            <div class="forum-card-take-th">${escapeHtml(topic.take_th || '')}</div>
+            <div class="forum-card-take-en">${escapeHtml(topic.take_en || '')}</div>
+          </div>
+          <div class="forum-card-footer">
+            <div class="forum-card-author">${escapeHtml(topic.author || 'unknown')} · ${escapeHtml(topic.board || 'Bitcoin Discussion')}</div>
+            <a href="${escapeHtml(topic.source_url || '#')}" target="_blank" rel="noopener" class="forum-card-verify">VERIFY ↗</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    grid.innerHTML = cardsHTML;
+
+    document.querySelectorAll('.forum-card.reveal').forEach((el, i) => {
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s, transform 0.6s';
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      }, i * 50);
+    });
+  };
+
+  fetch('forum-daily.json', { cache: 'no-store' })
+    .then(response => {
+      if (!response.ok) throw new Error('Forum data not found');
+      return response.json();
+    })
+    .then(data => renderForumCards(data))
+    .catch(err => {
+      console.warn('Forum loader:', err);
+      const grid = document.getElementById('forumGrid');
+      grid.innerHTML = `
+        <div class="forum-skeleton">
+          <div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable — check back soon</div>
+        </div>
+      `;
+    });
+})();
 
 </script>
 
