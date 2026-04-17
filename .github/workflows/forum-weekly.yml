@@ -1,0 +1,77 @@
+name: Forum Weekly Curation
+
+# Runs every Monday at 02:00 UTC (09:00 Bangkok time).
+# Fetches bitcointalk RSS, runs Claude-powered curation, opens a Draft PR
+# with an updated forum-daily.json for owner review.
+#
+# Can also be triggered manually from the Actions tab.
+
+on:
+  schedule:
+    - cron: "0 2 * * 1"
+  workflow_dispatch:
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run curation script
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/curate-forum.js
+
+      - name: Compute ISO week number for branch name
+        id: week
+        run: |
+          ISO_WEEK=$(date -u +%Y-W%V)
+          echo "iso_week=$ISO_WEEK" >> $GITHUB_OUTPUT
+          echo "Computed week: $ISO_WEEK"
+
+      - name: Open Draft Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "content: forum digest ${{ steps.week.outputs.iso_week }}"
+          title: "Forum Digest ${{ steps.week.outputs.iso_week }} — weekly curation"
+          body: |
+            ## Weekly Forum Curation
+
+            Automated weekly update for the Forum section.
+            21 topics curated from bitcointalk.org over the past week.
+
+            ### Review checklist (mobile-friendly)
+
+            - [ ] Titles translated naturally (not literal)
+            - [ ] "Our Take" has editorial voice, not generic summary
+            - [ ] No verbatim quoting from source posts
+            - [ ] All source URLs link to bitcointalk.org
+            - [ ] Thai text uses Sarabun register (not royal, not slang)
+
+            ### How to edit on mobile
+
+            Tap **Files changed** → tap the pencil icon on `forum-daily.json` → edit inline.
+            Most edits are in the `take_th` / `take_en` fields.
+
+            **Do not merge if any topic feels off-theme** — swap it out first.
+
+            ---
+            *Opened as Draft. Mark as Ready for Review when you've vetted the content.*
+          branch: forum-digest/${{ steps.week.outputs.iso_week }}
+          base: main
+          draft: true
+          delete-branch: true
+          labels: |
+            forum-digest
+            weekly-content
+            automated
