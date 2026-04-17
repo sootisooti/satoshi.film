@@ -2063,7 +2063,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   };
 
-  fetch('forum-daily.json', { cache: 'no-store' })
+  fetch('./forum-daily.json', { cache: 'no-store' })
     .then(response => {
       if (!response.ok) throw new Error('Forum data not found');
       return response.json();
