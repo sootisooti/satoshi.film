@@ -19,31 +19,76 @@ This is a **static site hosted on GitHub Pages** — no backend, no framework.
 
 ---
 
+## REPO LAYOUT
+
+```
+.
+├── index.html              # Main site (~170KB, ~2,086 lines, inline CSS+JS)
+├── dialogue.html           # Separate DIALOGUE page (React via CDN)
+├── forum-daily.json        # Curated bitcointalk digest (loaded by #forum)
+├── README.md               # Public project README (TH/EN)
+├── CLAUDE.md               # This file
+├── scripts/
+│   └── curate-forum.js     # Weekly forum curation (Node 20, ESM)
+└── .github/
+    └── workflows/
+        ├── claude.yml          # @claude mention bot
+        └── forum-weekly.yml    # Weekly forum digest + Draft PR
+```
+
+**Top-level sections in `index.html` (anchor IDs):**
+`#hero` · `#worlds` · `#halving` · `#cypherpunk` · `#community` ·
+`#support` · `#forum`. Add new sections after `#forum` unless the task
+says otherwise, and match the surrounding bilingual mode (see below).
+
+---
+
 ## TECH STACK — FIXED
 
-- **Single HTML file** (`index.html`) — no build step, no framework, no bundler
-- Vanilla JavaScript inside `<script>` tags — no npm dependencies in HTML
+- **Primary page is a single HTML file** (`index.html`, ~170KB / ~2,086 lines)
+  — no build step, no framework, no bundler
+- Vanilla JavaScript inside `<script>` tags — no npm dependencies in `index.html`
 - CSS inside `<style>` tags — no separate stylesheet
 - Fonts: Space Mono (mono), Noto Serif Thai (Thai display), Sarabun (Thai body)
 - Colors: `#080806` dark / `#F7931A` Bitcoin orange / `#00FF41` terminal green / `#8BA8C4` cool blue / `#F7F3E8` off-white
 
-**Do not** introduce React, Vue, a build step, a framework, or multiple HTML files.
-**Do not** split CSS or JS into separate files.
-The single-HTML constraint is a project value, not a limitation to fix.
+**Do not** add a build step, a bundler, or split `index.html`'s CSS/JS into
+separate files. The inline-everything constraint on `index.html` is a project
+value, not a limitation to fix.
+
+**Exception — `dialogue.html`:** a separate standalone page for the "DIALOGUE"
+feature (linked from the main nav at `index.html:508`). It uses **React 18 +
+Babel standalone via CDN** (no build step still). This is an established
+exception; don't port it back into `index.html` and don't remove React from it.
+New experimental sub-pages may follow the same pattern if justified, but the
+default is still vanilla JS.
 
 ---
 
 ## BILINGUAL PATTERN
 
-The site is fully bilingual Thai/English. In almost all sections, TH and EN
-are shown **simultaneously**, not toggled. Pattern:
+The site is fully bilingual Thai/English. There are **two coexisting modes** —
+know which one you're editing before you touch anything:
 
+**Mode A — Simultaneous (default for most sections).** TH and EN are shown at
+the same time, stacked.
 - Section headers: `<span class="title-th">ชื่อไทย</span><span class="title-en">ENGLISH TITLE</span>`
 - Body paragraphs: Thai in Sarabun above, English in Space Mono below, smaller and lower opacity
-- Nav links use `data-th` / `data-en` attributes where toggle exists
 
-When adding new sections, match the existing bilingual pattern exactly.
-Do not invent a new convention.
+**Mode B — Toggle via `.lang-th` / `.lang-en` classes on `<body>`.** A language
+switch button (`.lang-toggle` in the nav) flips a class on `<body>`, and CSS
+rules hide the opposite language:
+
+```css
+body.lang-th .en-only { display: none !important; }
+body.lang-en .th-only { display: none !important; }
+```
+
+Elements in this mode get `class="th-only"` or `class="en-only"`. Nav links
+often use `data-th` / `data-en` attributes read by the same toggle.
+
+**When adding new sections:** match whichever mode the surrounding sections
+use — don't mix modes inside one section, and don't invent a third convention.
 
 ---
 
@@ -51,9 +96,14 @@ Do not invent a new convention.
 
 ### Rule 1: **Targeted edits only. Never rewrite `index.html` from scratch.**
 
-The file is ~150KB and contains a large `BUNDLES` JavaScript object used by
-the Cypherpunk Directory, plus a Verify terminal modal wired to an Anthropic
-API endpoint. A full-file rebuild silently drops these structures.
+The file is ~170KB / ~2,086 lines and contains a large `BUNDLES` JavaScript
+object used by the Cypherpunk Directory, plus a Verify terminal modal wired
+to an Anthropic API endpoint. A full-file rebuild silently drops these
+structures.
+
+Prefer the single-HTML pattern for new work, but **`dialogue.html` is an
+established exception** using React via CDN — don't fold it back into
+`index.html` and don't rewrite it in vanilla JS just to satisfy the rule.
 
 Use small, surgical insertions. If a task requires large-scale
 changes, propose a plan first and break it into ≤5 edits per PR.
@@ -128,20 +178,33 @@ The Forum section at `#forum` is powered by a static JSON file at the repo root:
 `forum-daily.json`. The loader script inside `index.html` fetches this file
 on page load and renders up to 21 topic cards.
 
-There is a weekly GitHub Actions workflow
-(`.github/workflows/forum-weekly.yml`) that:
+The pipeline has two pieces:
 
-1. Runs every Monday at 02:00 UTC (09:00 Bangkok time)
-2. Fetches recent threads from bitcointalk.org RSS
-3. Calls the Claude API with a curation prompt
-4. Writes the result to `forum-daily.json`
-5. Opens a **Draft PR** for owner review
-6. Owner reviews on mobile, edits "Our Take" if needed, merges
+- `.github/workflows/forum-weekly.yml` — scheduled workflow
+- `scripts/curate-forum.js` — Node 20 ES-module script invoked by the workflow
+
+**Weekly flow:**
+
+1. Runs every Monday at 02:00 UTC (09:00 Bangkok time) via cron, or manually
+   via `workflow_dispatch`
+2. **Scrapes bitcointalk.org board HTML** (RSS was disabled by bitcointalk due
+   to load — do **not** revert to RSS). Boards scraped: `1` Bitcoin Discussion,
+   `6` Development & Technical, `73` Economics, `75` Politics & Society
+3. Deduplicates by `topic_id`, caps at 60 candidates
+4. Calls the Claude API (`claude-sonnet-4-5`, `max_tokens: 16000`) with the
+   curation prompt in `scripts/curate-forum.js`
+5. Writes the result to `forum-daily.json`
+6. Opens a **Draft PR** for owner review (branch `forum-digest/<ISO-week>`)
+7. Owner reviews on mobile, edits "Our Take" if needed, merges
 
 When editing this pipeline:
-- Keep the schema of `forum-daily.json` stable
-- Never commit the output directly to main — always go through a PR
-- If the RSS fetch fails, the workflow should skip, not publish a broken JSON
+- Keep the schema of `forum-daily.json` stable — `index.html` reads specific
+  field names (`title_th`, `title_en`, `summary_th/en`, `take_th/en`,
+  `source_url`, `author`, `board`, `bitcointalk_topic_id`)
+- Never commit the output directly to `main` — always go through a PR
+- If the HTML fetch fails or returns <5 candidates, the script aborts with
+  exit code `2` — it does not publish a broken JSON
+- `ANTHROPIC_API_KEY` must be set in repo secrets
 
 ---
 
@@ -159,6 +222,28 @@ It never reproduces posts.
 
 If a pull request contains summaries that feel close to verbatim, reject and
 rewrite in paraphrase.
+
+---
+
+## @CLAUDE MENTION BOT — `.github/workflows/claude.yml`
+
+There is a second workflow that runs Claude Code on demand when someone
+`@claude`-mentions the bot in an issue, issue comment, PR review, or PR
+review comment.
+
+- Triggers: `issues (opened/assigned)`, `issue_comment`,
+  `pull_request_review_comment`, `pull_request_review` — guarded by a
+  `contains(..., '@claude')` check
+- Uses `anthropics/claude-code-action@v1`
+- Model: `claude-sonnet-4-5`, `--max-turns 40`
+- Needs `ANTHROPIC_API_KEY` secret and `contents/pull-requests/issues/id-token`
+  write permissions
+
+When editing this workflow:
+- Don't remove the `@claude` guard — it keeps the action from running on
+  every comment
+- Keep `--max-turns` ≥ 40; lower values have truncated larger feature work
+  in the past (see commit `4fd2b83`)
 
 ---
 
