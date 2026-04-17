@@ -30,7 +30,7 @@ const BOARDS = [
 const MAX_CANDIDATES = 60;
 const OUT_FILE = "forum-daily.json";
 const MODEL = "claude-sonnet-4-5";
-const MAX_TOKENS = 8000;
+const MAX_TOKENS = 16000;
 const FETCH_TIMEOUT_MS = 15000;
 
 const USER_AGENT =
