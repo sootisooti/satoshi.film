@@ -41,5 +41,5 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: |
-            --max-turns 15
+            --max-turns 40
             --model claude-sonnet-4-5
