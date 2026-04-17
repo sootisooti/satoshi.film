@@ -312,6 +312,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .forum-attribution { text-align: center; margin-top: 48px; font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; letter-spacing: 1px; }
 .forum-skeleton { max-width: 600px; margin: 40px auto; padding: 20px; background: rgba(0,255,65,0.03); border: 1px solid rgba(0,255,65,0.1); }
 .forum-skeleton-text { font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; letter-spacing: 0.5px; }
+
+/* When EN-only mode is active, promote EN typography from secondary to primary
+   so it doesn't look like the dim subtext it shows next to the TH primary. */
+body.lang-en .forum-section-title-en { font-size: 32px; color: #d4d0c8; letter-spacing: 1px; margin-bottom: 24px; }
+body.lang-en .forum-subtitle-en { font-size: 15px; color: #d4d0c8; opacity: 1; line-height: 1.8; margin-bottom: 0; }
+body.lang-en .forum-card-title-en { font-size: 17px; color: #d4d0c8; opacity: 1; line-height: 1.5; margin-bottom: 16px; }
+body.lang-en .forum-card-summary-en { font-size: 12px; color: #d4d0c8; opacity: 0.95; line-height: 1.7; margin-bottom: 20px; }
+body.lang-en .forum-card-take-en { font-size: 12px; color: #d4d0c8; opacity: 0.95; line-height: 1.7; }
+
 @media (max-width: 980px) { .forum-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .forum { padding: 80px 20px; } .forum-grid { grid-template-columns: 1fr; } .forum-card { padding: 28px 20px; } }
 
@@ -1451,20 +1460,23 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 <section class="forum" id="forum">
   <div class="forum-eyebrow">BLOCK <span id="forumBlockHeight">---</span> · SOURCE: bitcointalk.org</div>
 
-  <div class="forum-section-title">ชุมชน — การตรวจสอบ</div>
-  <div class="forum-section-title-en">FORUM — COMMUNITY VERIFY</div>
+  <div class="forum-section-title th-only">ชุมชน — การตรวจสอบ</div>
+  <div class="forum-section-title-en en-only">FORUM — COMMUNITY VERIFY</div>
 
   <div class="forum-subtitle">
-    <div class="forum-subtitle-th">
+    <div class="forum-subtitle-th th-only">
       ทุกสัปดาห์เราคัดเลือก 21 กระทู้จากฟอรัมที่ Satoshi เคยโพสต์ — ผ่านมุมมองของหนังเรื่องนี้ เราไม่คัดลอกโพสต์ เราสรุปด้วยเสียงของเราเอง และลิงก์กลับไปที่ต้นฉบับ
     </div>
-    <div class="forum-subtitle-en">
+    <div class="forum-subtitle-en en-only">
       Each week we select 21 threads from the forum where Satoshi posted — through the lens of this film. We don't copy posts. We summarize in our own voice and link back to the source.
     </div>
   </div>
 
   <div class="forum-disclosure">
-    <div class="forum-disclosure-text">
+    <div class="forum-disclosure-text th-only">
+      คำชี้แจงทางบรรณาธิการ: เราสรุปและแปลความหัวข้อกระทู้ในแบบของเราเอง ไม่ได้คัดลอกโพสต์ต้นฉบับมา ทุกกระทู้ลิงก์กลับไปที่ต้นทางบน bitcointalk.org พร้อมชื่อผู้โพสต์ — และ "มุมของหนัง" สะท้อนว่าแต่ละกระทู้เชื่อมโยงกับธีมของเรื่องอย่างไร: หนี้ข้ามรุ่น, การตรวจสอบ, และอธิปไตยทางการเงิน
+    </div>
+    <div class="forum-disclosure-text en-only">
       EDITORIAL DISCLOSURE: We paraphrase thread titles and discussions. We do not reproduce original posts. Every thread links to its source on bitcointalk.org with the author's username. Our "take" reflects how each thread connects to the film's themes of generational debt, verification, and monetary sovereignty.
     </div>
   </div>
@@ -1482,7 +1494,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   </div>
 
   <div class="forum-attribution">
-    All threads live on bitcointalk.org — the forum where Satoshi Nakamoto posted from 2009-2010.
+    <span class="th-only">ทุกกระทู้ยังคงอยู่บน bitcointalk.org — ฟอรัมที่ Satoshi Nakamoto โพสต์ระหว่างปี 2009-2010</span>
+    <span class="en-only">All threads live on bitcointalk.org — the forum where Satoshi Nakamoto posted from 2009-2010.</span>
   </div>
 </section>
 
@@ -2036,14 +2049,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       return `
         <div class="forum-card reveal" id="forum-topic-${num}">
           <div class="forum-card-num">TOPIC ${num} / 21</div>
-          <div class="forum-card-title-th">${escapeHtml(topic.title_th || '')}</div>
-          <div class="forum-card-title-en">${escapeHtml(topic.title_en || '')}</div>
-          <div class="forum-card-summary-th">${escapeHtml(topic.summary_th || '')}</div>
-          <div class="forum-card-summary-en">${escapeHtml(topic.summary_en || '')}</div>
+          <div class="forum-card-title-th th-only">${escapeHtml(topic.title_th || '')}</div>
+          <div class="forum-card-title-en en-only">${escapeHtml(topic.title_en || '')}</div>
+          <div class="forum-card-summary-th th-only">${escapeHtml(topic.summary_th || '')}</div>
+          <div class="forum-card-summary-en en-only">${escapeHtml(topic.summary_en || '')}</div>
           <div class="forum-card-take">
-            <div class="forum-card-take-label">OUR TAKE · มุมของหนัง</div>
-            <div class="forum-card-take-th">${escapeHtml(topic.take_th || '')}</div>
-            <div class="forum-card-take-en">${escapeHtml(topic.take_en || '')}</div>
+            <div class="forum-card-take-label"><span class="th-only">มุมของหนัง</span><span class="en-only">OUR TAKE</span></div>
+            <div class="forum-card-take-th th-only">${escapeHtml(topic.take_th || '')}</div>
+            <div class="forum-card-take-en en-only">${escapeHtml(topic.take_en || '')}</div>
           </div>
           <div class="forum-card-footer">
             <div class="forum-card-author">${escapeHtml(topic.author || 'unknown')} · ${escapeHtml(topic.board || 'Bitcoin Discussion')}</div>
