@@ -1,27 +1,18 @@
 #!/usr/bin/env node
 /**
- * curate-forum.js
+ * curate-forum.js (v2 - HTML scraping)
  *
  * Weekly forum curation script for SATOSHI.FILM.
  *
- * Flow:
- *   1. Fetch bitcointalk.org RSS for a few key boards
- *   2. Parse titles + URLs + authors
- *   3. Call Claude API with the curation prompt
- *   4. Parse JSON response
- *   5. Write to forum-daily.json at repo root
- *
- * Requirements: Node 20+ (built-in fetch). No external npm packages.
- *
- * Environment:
- *   ANTHROPIC_API_KEY — required
+ * Why HTML and not RSS:
+ *   bitcointalk disabled the RSS endpoint (?action=.xml) due to load.
+ *   We scrape the standard board HTML pages instead, which are stable
+ *   (the forum runs SMF 1.1 with custom theme - unchanged for years).
  */
 
 import { writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-
-// ---------- config ----------
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) {
@@ -33,69 +24,107 @@ const BOARDS = [
   { id: 1,  name: "Bitcoin Discussion" },
   { id: 6,  name: "Development & Technical Discussion" },
   { id: 73, name: "Economics" },
-  { id: 75, name: "Philosophy" },
+  { id: 75, name: "Politics & Society" },
 ];
 
 const MAX_CANDIDATES = 60;
 const OUT_FILE = "forum-daily.json";
 const MODEL = "claude-sonnet-4-5";
 const MAX_TOKENS = 8000;
+const FETCH_TIMEOUT_MS = 15000;
 
-// ---------- utilities ----------
+const USER_AGENT =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) " +
+  "AppleWebKit/537.36 (KHTML, like Gecko) " +
+  "Chrome/120.0.0.0 Safari/537.36";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
 
 function log(msg) {
-  const ts = new Date().toISOString();
-  console.log(`[curate-forum ${ts}] ${msg}`);
+  console.log(`[curate-forum ${new Date().toISOString()}] ${msg}`);
 }
 
-function parseRss(xml) {
+function decodeEntities(s) {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, " ");
+}
+
+function stripTags(s) {
+  return s.replace(/<[^>]+>/g, "").trim();
+}
+
+function parseBoardHtml(html, boardName) {
   const items = [];
-  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
-  let match;
-  while ((match = itemRegex.exec(xml)) !== null) {
-    const block = match[1];
-    const title = (block.match(/<title>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/title>/) || [])[1] || "";
-    const link  = (block.match(/<link>([\s\S]*?)<\/link>/) || [])[1] || "";
-    const creator = (block.match(/<dc:creator>(?:<!\[CDATA\[)?([\s\S]*?)(?:\]\]>)?<\/dc:creator>/) || [])[1] || "anonymous";
-    const pubDate = (block.match(/<pubDate>([\s\S]*?)<\/pubDate>/) || [])[1] || "";
+  const spanRegex = /<span id="msg_(\d+)">\s*<a[^>]*href="[^"]*topic=(\d+)\.0[^"]*"[^>]*>([\s\S]*?)<\/a>/g;
 
-    if (!title || !link) continue;
+  let m;
+  while ((m = spanRegex.exec(html)) !== null) {
+    const topicId = m[2];
+    const title = decodeEntities(stripTags(m[3])).replace(/\s+/g, " ").trim();
 
-    const topicMatch = link.match(/topic=(\d+)/);
-    if (!topicMatch) continue;
+    if (!title || title.length < 5) continue;
+    if (/^\s*(Sticky|MOVED:|LOCKED:)/i.test(title)) continue;
 
     items.push({
-      title: title.trim(),
-      url: link.trim(),
-      author: creator.trim(),
-      topic_id: topicMatch[1],
-      pubDate: pubDate.trim(),
+      title,
+      url: `https://bitcointalk.org/index.php?topic=${topicId}.0`,
+      topic_id: topicId,
+      board: boardName,
+      author: "anonymous",
     });
   }
-  return items;
+
+  // Enrich with author from nearby profile link
+  return items.map((it) => {
+    const anchorIdx = html.indexOf(`topic=${it.topic_id}.0`);
+    if (anchorIdx === -1) return it;
+    const slice = html.slice(anchorIdx, anchorIdx + 800);
+    const profileMatch = slice.match(/<a[^>]*href="[^"]*action=profile;u=\d+[^"]*"[^>]*>([^<]+)<\/a>/);
+    if (profileMatch) {
+      it.author = decodeEntities(stripTags(profileMatch[1])).trim() || "anonymous";
+    }
+    return it;
+  });
 }
 
 async function fetchBoard(board) {
-  const url = `https://bitcointalk.org/index.php?type=rss;action=.xml;board=${board.id}`;
+  const url = `https://bitcointalk.org/index.php?board=${board.id}.0`;
   log(`Fetching board ${board.id} (${board.name})`);
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+
   try {
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "satoshi-film-curator/1.0 (+https://sootisooti.github.io/satoshi.film/)",
-        "Accept": "application/rss+xml, application/xml, text/xml",
+        "User-Agent": USER_AGENT,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
       },
+      signal: controller.signal,
+      redirect: "follow",
     });
+    clearTimeout(timeout);
+
     if (!res.ok) {
-      log(`  -> HTTP ${res.status}, skipping this board`);
+      log(`  -> HTTP ${res.status}, skipping`);
       return [];
     }
-    const xml = await res.text();
-    const items = parseRss(xml);
-    return items.map(it => ({ ...it, board: board.name }));
+
+    const html = await res.text();
+    log(`  -> received ${html.length} bytes`);
+    const items = parseBoardHtml(html, board.name);
+    log(`  -> parsed ${items.length} threads`);
+    return items;
   } catch (err) {
+    clearTimeout(timeout);
     log(`  -> fetch error: ${err.message}, skipping`);
     return [];
   }
@@ -103,20 +132,16 @@ async function fetchBoard(board) {
 
 function dedupeByTopicId(items) {
   const seen = new Set();
-  const out = [];
-  for (const it of items) {
-    if (seen.has(it.topic_id)) continue;
+  return items.filter((it) => {
+    if (seen.has(it.topic_id)) return false;
     seen.add(it.topic_id);
-    out.push(it);
-  }
-  return out;
+    return true;
+  });
 }
-
-// ---------- curation prompt ----------
 
 function buildPrompt(candidates) {
   const candidateLines = candidates
-    .map(c => `${c.title} | ${c.url} | ${c.author} | ${c.board}`)
+    .map((c) => `${c.title} | ${c.url} | ${c.author} | ${c.board}`)
     .join("\n");
 
   return `You are the editorial curator for SATOSHI.FILM - a Thai feature film about
@@ -125,7 +150,7 @@ across four generations. The film's core message: "We are all trapped in a
 system designed for us to lose. Truth waits to be verified."
 
 I will give you a list of recent bitcointalk.org thread titles and URLs.
-Select exactly 21 that resonate with the film's themes:
+Select up to 21 that resonate with the film's themes:
 - Generational economic trauma (parents passing debt to children)
 - Fiat system decay / inflation
 - Proof of work (as philosophy, not only as algorithm)
@@ -138,50 +163,48 @@ AVOID:
 - Price speculation threads, shitcoin pumps, trading tips
 - Threads that are mostly noise, drama, or scam accusations
 - Threads in languages other than English (unless specifically Thai)
-- Anything requiring us to reproduce the original post's content at length
+
+If fewer than 21 strong candidates exist, pick the best available and note
+this in the curator_note. Never invent threads - only use ones from the list.
 
 For each chosen thread, produce this JSON object:
 
 {
   "bitcointalk_topic_id": "<number from the URL>",
   "title_en": "<the original thread title, cleaned>",
-  "title_th": "<natural Thai translation of the title, NOT literal>",
-  "author": "<OP username if known, else 'anonymous'>",
-  "board": "<section name, e.g. 'Bitcoin Discussion'>",
-  "summary_en": "<ONE sentence, YOUR words, describing what the thread is about - do NOT quote from the original post>",
-  "summary_th": "<ONE sentence Thai version - natural, not a direct translation of the EN summary>",
-  "take_en": "<ONE sentence: how this thread connects to SATOSHI's themes. Literary voice, not academic.>",
-  "take_th": "<ONE sentence Thai version - can reference the film's world but never name characters directly>",
+  "title_th": "<natural Thai translation, NOT literal>",
+  "author": "<OP username from the list>",
+  "board": "<board name from the list>",
+  "summary_en": "<ONE sentence, YOUR words - do NOT quote from the original>",
+  "summary_th": "<ONE sentence Thai version - natural>",
+  "take_en": "<ONE sentence: how this connects to SATOSHI's themes. Literary voice.>",
+  "take_th": "<ONE sentence Thai - can reference the film's world, never name characters>",
   "source_url": "https://bitcointalk.org/index.php?topic=<id>"
 }
 
-RULES for summaries and takes:
-- Paraphrase only. Never quote more than 5 words from the original post.
-- If a thread discusses a book, a person, or a historical event - you can name them.
-- If a thread is mostly one user's opinion - describe the QUESTION they raised, not their answer.
-- "Our take" should give the film's editorial voice. Contemplative, not hype.
-- Avoid exclamation marks. Avoid the word "revolutionary". Avoid "game-changer".
-- Thai: use Sarabun register (moderately formal, accessible). Not royal. Not slang.
+RULES:
+- Paraphrase only. Never quote more than 5 words from the original.
+- "Our take" = film's editorial voice. Contemplative, not hype.
+- Avoid exclamation marks. Avoid "revolutionary" and "game-changer".
+- Thai: Sarabun register (moderately formal). Not royal. Not slang.
 
-Return ONLY a valid JSON object in this exact shape:
+Return ONLY valid JSON in this shape:
 
 {
   "curated_date": "YYYY-MM-DD",
   "block_height": "-",
-  "curator_note_th": "<ONE sentence explaining this week's theme>",
-  "curator_note_en": "<ONE sentence explaining this week's theme>",
-  "topics": [ ...21 objects... ]
+  "curator_note_th": "<ONE sentence about this week's theme>",
+  "curator_note_en": "<ONE sentence about this week's theme>",
+  "topics": [ ...up to 21 objects... ]
 }
 
-Do not include markdown code fences. Return raw JSON only.
+No markdown code fences. Raw JSON only.
 
-Here are this week's candidate threads:
+Candidate threads:
 
 ${candidateLines}
 `;
 }
-
-// ---------- Claude API call ----------
 
 async function callClaude(prompt) {
   log(`Calling Claude API (${MODEL}, max_tokens=${MAX_TOKENS})`);
@@ -205,29 +228,32 @@ async function callClaude(prompt) {
   }
 
   const data = await res.json();
-  const text = data.content
-    .filter(b => b.type === "text")
-    .map(b => b.text)
+  return data.content
+    .filter((b) => b.type === "text")
+    .map((b) => b.text)
     .join("\n")
     .replace(/^```json\s*/m, "")
     .replace(/```\s*$/m, "")
     .trim();
-
-  return text;
 }
-
-// ---------- main ----------
 
 (async () => {
   try {
-    log("Starting weekly curation run");
+    log("Starting weekly curation run (HTML scraping mode)");
     const boardResults = await Promise.all(BOARDS.map(fetchBoard));
     let candidates = boardResults.flat();
     candidates = dedupeByTopicId(candidates);
     log(`Collected ${candidates.length} unique candidates across ${BOARDS.length} boards`);
 
-    if (candidates.length < 21) {
-      log("Not enough candidates to select 21 topics. Aborting.");
+    if (candidates.length < 5) {
+      log("Too few candidates (<5). Aborting - likely a parsing or fetch issue.");
+      if (candidates.length) {
+        await writeFile(
+          resolve(repoRoot, "forum-daily.debug.json"),
+          JSON.stringify(candidates, null, 2)
+        );
+        log("Wrote forum-daily.debug.json with partial candidates");
+      }
       process.exit(2);
     }
 
@@ -240,7 +266,7 @@ async function callClaude(prompt) {
     try {
       parsed = JSON.parse(raw);
     } catch (err) {
-      log("Failed to parse Claude response as JSON. Raw output saved for debugging.");
+      log("Failed to parse Claude response as JSON.");
       await writeFile(resolve(repoRoot, "forum-daily.raw.txt"), raw);
       throw err;
     }
