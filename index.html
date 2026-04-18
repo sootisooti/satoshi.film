@@ -292,7 +292,11 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .forum-subtitle-en { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; line-height: 1.7; text-align: center; opacity: 0.7; }
 .forum-disclosure { max-width: 680px; margin: 32px auto; padding: 16px 20px; border-left: 3px solid #00FF41; background: rgba(0,255,65,0.03); }
 .forum-disclosure-text { font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; line-height: 1.7; letter-spacing: 0.5px; }
-.forum-meta { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 40px 0; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; }
+.forum-meta { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 40px 0; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; flex-wrap: wrap; }
+.forum-week-picker-container { display: inline-flex; align-items: center; }
+.forum-week-picker { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; background: #0e0e0b; color: #d4d0c8; border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; min-height: 44px; cursor: pointer; transition: all 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4d0c8' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; background-size: 8px; padding-right: 28px; }
+.forum-week-picker:hover { border-color: rgba(0,255,65,0.3); background: #121210; }
+.forum-week-picker:focus { outline: none; border-color: #00FF41; box-shadow: 0 0 0 2px rgba(0,255,65,0.1); }
 .forum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; }
 .forum-card { background: #0e0e0b; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.02); transition: all 0.3s; }
 .forum-card:hover { background: #121210; border-color: rgba(0,255,65,0.1); }
@@ -322,7 +326,7 @@ body.lang-en .forum-card-summary-en { font-size: 12px; color: #d4d0c8; opacity: 
 body.lang-en .forum-card-take-en { font-size: 12px; color: #d4d0c8; opacity: 0.95; line-height: 1.7; }
 
 @media (max-width: 980px) { .forum-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .forum { padding: 80px 20px; } .forum-grid { grid-template-columns: 1fr; } .forum-card { padding: 28px 20px; } }
+@media (max-width: 640px) { .forum { padding: 80px 20px; } .forum-grid { grid-template-columns: 1fr; } .forum-card { padding: 28px 20px; } .forum-meta { gap: 12px; font-size: 8px; } }
 
 /* ─── FOOTER ─── */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -1586,6 +1590,13 @@ window.addEventListener('unhandledrejection', function(e) {
     <span>CURATED <span id="forumCuratedDate">---</span></span>
     <span>·</span>
     <span>COUNT <span id="forumCount">0</span>/21</span>
+    <span>·</span>
+    <span class="forum-week-picker-container">
+      <label for="forumWeekPicker" style="margin-right: 4px;">WEEK</label>
+      <select id="forumWeekPicker" class="forum-week-picker">
+        <option value="current">CURRENT</option>
+      </select>
+    </span>
   </div>
 
   <div class="forum-grid" id="forumGrid">
@@ -2198,19 +2209,64 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   };
 
-  fetch('./forum-daily.json', { cache: 'no-store' })
-    .then(response => {
-      if (!response.ok) throw new Error('Forum data not found');
-      return response.json();
-    })
-    .then(data => renderForumCards(data))
-    .catch(err => {
-      console.warn('Forum loader:', err);
-      const countEl = document.getElementById('forumCount');
-      if (countEl) countEl.textContent = 'ERR';
-      const grid = document.getElementById('forumGrid');
-      if (grid) grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable: ${err.message}</div></div>`;
+  const loadWeekData = (isoWeek) => {
+    const url = isoWeek === 'current'
+      ? './forum-daily.json'
+      : `./forum-archive/${isoWeek}.json`;
+
+    fetch(url, { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('Forum data not found');
+        return response.json();
+      })
+      .then(data => renderForumCards(data))
+      .catch(err => {
+        console.warn('Forum loader:', err);
+        const countEl = document.getElementById('forumCount');
+        if (countEl) countEl.textContent = 'ERR';
+        const grid = document.getElementById('forumGrid');
+        if (grid) grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable: ${err.message}</div></div>`;
+      });
+  };
+
+  const initWeekPicker = () => {
+    const picker = document.getElementById('forumWeekPicker');
+    if (!picker) return;
+
+    // Load manifest and populate picker
+    fetch('./forum-archive/index.json', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('No archive manifest');
+        return response.json();
+      })
+      .then(manifest => {
+        if (!manifest.weeks || manifest.weeks.length === 0) {
+          // No archives yet, keep only "CURRENT" option
+          return;
+        }
+
+        // Add archive weeks to picker
+        manifest.weeks.forEach(week => {
+          const option = document.createElement('option');
+          option.value = week.iso_week;
+          option.textContent = week.iso_week;
+          picker.appendChild(option);
+        });
+      })
+      .catch(err => {
+        console.warn('Archive manifest not found (first run?):', err);
+        // Keep only "CURRENT" option - graceful fallback
+      });
+
+    // Handle week selection
+    picker.addEventListener('change', (e) => {
+      loadWeekData(e.target.value);
     });
+  };
+
+  // Initialize
+  initWeekPicker();
+  loadWeekData('current');
 })();
 </script>
 
