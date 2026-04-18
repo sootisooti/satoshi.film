@@ -108,16 +108,21 @@ python3 -m http.server 8000
 ---
 
 ## 📝 Contributing — การมีส่วนร่วม
-This project follows a mobile-first workflow — most development happens from iPhone/iPad via GitHub web + @claude automation.
-For code contributions:
-	1.	Read CLAUDE.md first — it encodes all project constraints
-	2.	Open an issue describing what you want to change
-	3.	Comment @claude with instructions for targeted edits
-	4.	Review the generated PR before merging
-For content contributions (community verify / forum curation):
-	•	Merge weekly Draft PRs from the forum curation workflow
-	•	Submit community stories via the forum section UI
-	•	All contributions honor the “Editorial voice only, paraphrase always” copyright boundary
+
+This project follows a **mobile-first workflow** — most development happens from iPhone/iPad via GitHub web + `@claude` automation.
+
+### For code contributions:
+
+1. Read `CLAUDE.md` first — it encodes all project constraints
+2. Open an issue describing what you want to change
+3. Comment `@claude` with instructions for targeted edits
+4. Review the generated PR before merging
+
+### For content contributions (community verify / forum curation):
+
+- Merge weekly Draft PRs from the forum curation workflow
+- Submit community stories via the forum section UI
+- All contributions honor the "Editorial voice only, paraphrase always" copyright boundary
 
 ---
 
@@ -134,9 +139,19 @@ For content contributions (community verify / forum curation):
 
 ---
 
-## 🟡 Support the Film : satoshifilm@walletofsatoshi.com ⚡️
-Lightning donations + Bitcoin co-production inquiries are accepted on the live site. Current supporter:
-- **🏛️ Bitcoin Learning Center Chiang Mai (first community supporter)
+## 🟡 Support the Film — สนับสนุนหนัง
+
+⚡ **Lightning Address:** [`satoshifilm@walletofsatoshi.com`](lightning:satoshifilm@walletofsatoshi.com)
+
+Tap or click the address above to open your Lightning wallet directly (works with Wallet of Satoshi, Phoenix, Breez, Blue Wallet, Zeus, Alby, and any LNURL-compatible wallet).
+
+**No Lightning wallet yet?** [Install Wallet of Satoshi](https://www.walletofsatoshi.com) — the simplest way to send Lightning payments.
+
+Bitcoin co-production inquiries are also accepted on the live site.
+
+### Current supporters:
+
+- 🏛️ **Bitcoin Learning Center Chiang Mai** (first community supporter)
 
 ---
 
