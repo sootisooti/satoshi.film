@@ -357,7 +357,10 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .nav-link { font-size: 9px; letter-spacing: 0.5px; }
 }
 @media (max-width: 900px) {
-  .nav-menu { display: none; }
+  nav { grid-template-columns: auto 1fr; padding: 16px 20px; gap: 12px; }
+  .nav-menu { gap: 12px 8px; justify-content: flex-start; }
+  .nav-link { font-size: 8px; letter-spacing: 0.5px; }
+  .nav-right { grid-column: 1 / -1; justify-content: flex-end; margin-top: 4px; }
 }
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
@@ -525,8 +528,7 @@ window.addEventListener('unhandledrejection', function(e) {
 <nav>
   <a href="#" class="nav-logo">SATOSHi</a>
   <div class="nav-menu">
-    <a href="#" onclick="openPhotobook(); return false;" class="nav-link th-only" style="color: #00FF41;">[ เข้าสู่แกลเลอรี่ภาพ ]</a>
-    <a href="#" onclick="openPhotobook(); return false;" class="nav-link en-only" style="color: #00FF41;">[ ENTER PHOTOBOOK ]</a>
+    <a href="photobook.html" class="nav-link"><span class="th-only">หนังสือภาพ</span><span class="en-only">PHOTOBOOK</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
@@ -534,7 +536,7 @@ window.addEventListener('unhandledrejection', function(e) {
   </div>
   <div class="nav-right">
     <a href="#forum" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
-    <a href="dialogue.html" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;">DIALOGUE</a>
+    <a href="dialogue.html" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
      <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
   </div>
