@@ -121,18 +121,22 @@ For content contributions (community verify / forum curation):
 
 ---
 
-## 🚫 Content Boundaries — สิ่งที่ไม่เพิ่ม
-Per project identity (documented in CLAUDE.md):
-	•	No director’s real name or identity (protagonist is anonymous by design)
-	•	No film industry comparisons
-	•	No screenplay character names
-	•	No Bitcoin-maxi slang that alienates non-crypto viewers
+## 🎯 Editorial Principles — หลักการ
+
+- **Anonymous by design** — the protagonist represents anyone 
+  trapped in the system, not a specific identity
+- **Universal over niche** — accessible to a 25-45 year-old 
+  audience who feels economically squeezed, regardless of 
+  crypto knowledge
+- **Our own voice** — we summarize and curate in our own 
+  editorial voice; we link back to original sources
+
 
 ---
 
-## 🟡 Support the Film
+## 🟡 Support the Film : satoshifilm@walletofsatoshi.com ⚡️
 Lightning donations + Bitcoin co-production inquiries are accepted on the live site. Current supporter:
-	•	🏛️ Bitcoin Learning Center Chiang Mai (first community supporter)
+- **🏛️ Bitcoin Learning Center Chiang Mai (first community supporter)
 
 ---
 
