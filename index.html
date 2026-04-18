@@ -392,6 +392,21 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 </style>
 </head>
 <body class="lang-th">
+<div id="errorOverlay" style="display:none;position:fixed;top:0;left:0;right:0;background:#ff3b3b;color:#fff;font-family:monospace;font-size:12px;padding:8px;z-index:999999;max-height:40vh;overflow:auto;"></div>
+<script>
+window.addEventListener('error', function(e) {
+  var el = document.getElementById('errorOverlay');
+  if (!el) return;
+  el.style.display = 'block';
+  el.innerHTML += '<div>⚠ ' + (e.filename || 'script') + ':' + (e.lineno || '?') + ' — ' + (e.message || 'error') + '</div>';
+});
+window.addEventListener('unhandledrejection', function(e) {
+  var el = document.getElementById('errorOverlay');
+  if (!el) return;
+  el.style.display = 'block';
+  el.innerHTML += '<div>⚠ promise rejection: ' + (e.reason && e.reason.message ? e.reason.message : e.reason) + '</div>';
+});
+</script>
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -2106,7 +2121,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ─── FORUM LOADER ─────────────────────────────────────────────────────────────
+</script>
+
+<!-- Forum loader — isolated from main script for resilience -->
+<script>
 (function() {
   const escapeHtml = (str) => {
     const div = document.createElement('div');
@@ -2179,15 +2197,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     .then(data => renderForumCards(data))
     .catch(err => {
       console.warn('Forum loader:', err);
+      const countEl = document.getElementById('forumCount');
+      if (countEl) countEl.textContent = 'ERR';
       const grid = document.getElementById('forumGrid');
-      grid.innerHTML = `
-        <div class="forum-skeleton">
-          <div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable — check back soon</div>
-        </div>
-      `;
+      if (grid) grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable: ${err.message}</div></div>`;
     });
 })();
-
 </script>
 
 </body>
