@@ -140,9 +140,83 @@ body {
   .title-en { font-size: 28px; margin-bottom: 60px; }
   .back-link { font-size: 10px; padding: 10px 20px; }
 }
+
+/* Pre-production banner */
+.preprod-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(247, 147, 26, 0.95);
+  color: #080806;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(8, 8, 6, 0.1);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+.preprod-banner.dismissed {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.preprod-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 16px;
+}
+.preprod-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.preprod-text span:first-child {
+  font-family: 'Sarabun', sans-serif;
+}
+.preprod-close {
+  background: transparent;
+  border: none;
+  color: #080806;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+  font-family: 'Space Mono', monospace;
+}
+.preprod-close:hover {
+  opacity: 0.7;
+}
+@media (max-width: 640px) {
+  .preprod-text { font-size: 11px; }
+  .preprod-banner { padding: 8px 12px; }
+}
 </style>
 </head>
 <body>
+<div id="preProdBanner" class="preprod-banner">
+  <div class="preprod-content">
+    <span class="preprod-text">
+      <span>เว็บไซต์และภาพยนตร์อยู่ในช่วง pre-production · ขออภัยด้วยหาก feature บางส่วนยังไม่ทำงาน</span>
+      <span>Website and film are in pre-production · Apologies if some features don't work yet</span>
+    </span>
+    <button class="preprod-close" onclick="dismissPreProdBanner()" aria-label="Close banner">×</button>
+  </div>
+</div>
 
 <div class="container">
   <div class="block-height">
@@ -178,6 +252,64 @@ window.addEventListener('error', function(e) {
   document.getElementById('errorMessage').textContent = e.message || 'An unexpected error occurred';
   document.getElementById('errorOverlay').classList.add('active');
 });
+</script>
+
+<script>
+// Pre-production banner initialization and dismissal
+(function() {
+  var banner = document.getElementById('preProdBanner');
+  if (!banner) return;
+
+  // Check if banner was previously dismissed
+  try {
+    if (localStorage.getItem('satoshi_preprod_banner_dismissed') === '1') {
+      banner.style.display = 'none';
+      return;
+    }
+  } catch (e) {
+    // localStorage not available (private browsing) - show banner anyway
+  }
+
+  // Adjust nav position if it exists and is fixed
+  function adjustNav() {
+    var nav = document.querySelector('nav');
+    if (nav && window.getComputedStyle(nav).position === 'fixed') {
+      var bannerHeight = banner.offsetHeight;
+      nav.style.top = bannerHeight + 'px';
+      nav.style.transition = 'top 0.3s ease-out';
+    }
+  }
+
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', adjustNav);
+  } else {
+    adjustNav();
+  }
+})();
+
+function dismissPreProdBanner() {
+  var banner = document.getElementById('preProdBanner');
+  if (!banner) return;
+
+  banner.classList.add('dismissed');
+
+  // Save dismissal state
+  try {
+    localStorage.setItem('satoshi_preprod_banner_dismissed', '1');
+  } catch (e) {
+    // localStorage not available - dismissal won't persist
+  }
+
+  // Reset nav position after animation
+  setTimeout(function() {
+    banner.style.display = 'none';
+    var nav = document.querySelector('nav');
+    if (nav && window.getComputedStyle(nav).position === 'fixed') {
+      nav.style.top = '0';
+    }
+  }, 300);
+}
 </script>
 
 </body>
