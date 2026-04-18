@@ -1,265 +1,143 @@
 # CLAUDE.md — SATOSHI.FILM Repository Guide
 
-This file is read by Claude Code on every invocation. It defines the project,
-constraints, and how to edit the codebase safely.
+This file is read by Claude Code on every invocation.
+It defines the project identity, technical constraints, and editorial rules.
+Treat this as the single Source of Truth for all automated and manual edits.
 
----
+-----
 
-## PROJECT
+## PROJECT IDENTITY
 
-SATOSHI.FILM is the public-facing website for a Thai feature film about
-generational debt, fiat money, and Bitcoin. Live at
-`https://sootisooti.github.io/satoshi.film/`.
+SATOSHI.FILM is a static site for a Thai feature film about generational debt,
+fiat money, and Bitcoin — told through one ordinary family across four generations.
 
-The film follows one ordinary Thai-Vietnamese family across four generations.
-Core message: **"We are all trapped in a system designed for us to lose.
-Truth waits to be verified."**
+- **Visual DNA:** Cypherpunk × Thai Auteur × Satoshi Internet Art
+- **Core Aesthetic:** Raw, cinematic, and lived-in
+- **STRICT PROHIBITION:** Do NOT apply “Modern Minimalist” or “Japandi” styles.
+  Those belong to the Giraffe School project. Keep SATOSHI gritty and distinct.
+- **Tone:** Universal — the protagonist is anonymous, representing anyone trapped
+  in the system. Target audience: age 25–45 who feel economically squeezed.
+- **Core Message:** “We are all trapped in a system designed for us to lose.
+  Truth waits to be verified.”
 
-This is a **static site hosted on GitHub Pages** — no backend, no framework.
+-----
 
----
+## ROUTES
 
-## REPO LAYOUT
+|Route         |Status |Notes                                               |
+|--------------|-------|----------------------------------------------------|
+|index.html    |Live   |Main entry (~170KB). Single-file. All inline CSS/JS.|
+|dialogue.html |Live   |React 18 + Babel via CDN. Do not rewrite in vanilla.|
+|photobook.html|Planned|Visual diary / mood board. Inherits visual DNA.     |
+|forum.html    |Planned|Migrate from #forum section when content scales.    |
 
-```
-.
-├── index.html              # Main site (~170KB, ~2,086 lines, inline CSS+JS)
-├── dialogue.html           # Separate DIALOGUE page (React via CDN)
-├── forum-daily.json        # Curated bitcointalk digest (loaded by #forum)
-├── README.md               # Public project README (TH/EN)
-├── CLAUDE.md               # This file
-├── scripts/
-│   └── curate-forum.js     # Weekly forum curation (Node 20, ESM)
-└── .github/
-    └── workflows/
-        ├── claude.yml          # @claude mention bot
-        └── forum-weekly.yml    # Weekly forum digest + Draft PR
-```
+**Migration trigger for forum.html:** when forum content exceeds inline capacity
+inside index.html. Until then, forum lives as `<section id="forum">` in index.html.
 
-**Top-level sections in `index.html` (anchor IDs):**
-`#hero` · `#worlds` · `#halving` · `#cypherpunk` · `#community` ·
-`#support` · `#forum`. Add new sections after `#forum` unless the task
-says otherwise, and match the surrounding bilingual mode (see below).
+-----
 
----
+## TECH STACK & ARCHITECTURE
 
-## TECH STACK — FIXED
+- **Pattern:** Single HTML file per route. Inline CSS/JS only. No frameworks, no bundlers.
+- **Exception — dialogue.html:** Uses React 18 + Babel via CDN. This is an established
+  exception. Do not remove React and do not rewrite in vanilla JS.
+- **Fonts:** Space Mono (English) / Noto Serif Thai (Thai headings) / Sarabun (Thai body)
+- **Colors:**
+  - `#080806` Dark background
+  - `#F7931A` Bitcoin orange
+  - `#00FF41` Terminal green
+  - `#8BA8C4` Cool blue
+  - `#F7F3E8` Cream
 
-- **Primary page is a single HTML file** (`index.html`, ~170KB / ~2,086 lines)
-  — no build step, no framework, no bundler
-- Vanilla JavaScript inside `<script>` tags — no npm dependencies in `index.html`
-- CSS inside `<style>` tags — no separate stylesheet
-- Fonts: Space Mono (mono), Noto Serif Thai (Thai display), Sarabun (Thai body)
-- Colors: `#080806` dark / `#F7931A` Bitcoin orange / `#00FF41` terminal green / `#8BA8C4` cool blue / `#F7F3E8` off-white
+-----
 
-**Do not** add a build step, a bundler, or split `index.html`'s CSS/JS into
-separate files. The inline-everything constraint on `index.html` is a project
-value, not a limitation to fix.
+## BILINGUAL PATTERN (TH/EN)
 
-**Exception — `dialogue.html`:** a separate standalone page for the "DIALOGUE"
-feature (linked from the main nav at `index.html:508`). It uses **React 18 +
-Babel standalone via CDN** (no build step still). This is an established
-exception; don't port it back into `index.html` and don't remove React from it.
-New experimental sub-pages may follow the same pattern if justified, but the
-default is still vanilla JS.
+- **Mode A — Simultaneous (Default):** Thai and English shown together (stacked).
+  Use for all standard sections. Maintain parity in emphasis and meaning.
+- **Mode B — Toggle:** Supported via `<body>` classes `.lang-th` and `.lang-en`.
+  Available for specific interactive components when appropriate.
+- **Typography rule:** English → Space Mono always. Thai headings → Noto Serif Thai.
+  Thai body → Sarabun.
 
----
+-----
 
-## BILINGUAL PATTERN
+## EDITING RULES — CRITICAL
 
-The site is fully bilingual Thai/English. There are **two coexisting modes** —
-know which one you're editing before you touch anything:
-
-**Mode A — Simultaneous (default for most sections).** TH and EN are shown at
-the same time, stacked.
-- Section headers: `<span class="title-th">ชื่อไทย</span><span class="title-en">ENGLISH TITLE</span>`
-- Body paragraphs: Thai in Sarabun above, English in Space Mono below, smaller and lower opacity
-
-**Mode B — Toggle via `.lang-th` / `.lang-en` classes on `<body>`.** A language
-switch button (`.lang-toggle` in the nav) flips a class on `<body>`, and CSS
-rules hide the opposite language:
-
-```css
-body.lang-th .en-only { display: none !important; }
-body.lang-en .th-only { display: none !important; }
-```
-
-Elements in this mode get `class="th-only"` or `class="en-only"`. Nav links
-often use `data-th` / `data-en` attributes read by the same toggle.
-
-**When adding new sections:** match whichever mode the surrounding sections
-use — don't mix modes inside one section, and don't invent a third convention.
-
----
-
-## EDITING RULES — READ BEFORE MAKING CHANGES
-
-### Rule 1: **Targeted edits only. Never rewrite `index.html` from scratch.**
-
-The file is ~170KB / ~2,086 lines and contains a large `BUNDLES` JavaScript
-object used by the Cypherpunk Directory, plus a Verify terminal modal wired
-to an Anthropic API endpoint. A full-file rebuild silently drops these
-structures.
-
-Prefer the single-HTML pattern for new work, but **`dialogue.html` is an
-established exception** using React via CDN — don't fold it back into
-`index.html` and don't rewrite it in vanilla JS just to satisfy the rule.
-
-Use small, surgical insertions. If a task requires large-scale
-changes, propose a plan first and break it into ≤5 edits per PR.
-
-### Rule 2: **Preserve existing interactive features.**
-
-These are wired up and must not be broken:
-- Custom cursor
-- Block height counter (pulls from mempool.space in realtime)
-- Scroll reveal animations
-- Cypherpunk score bars
-- Halving timeline
-- Easter eggs (Hal Finney hover, Friedcat modal, World C silence)
+1. **Targeted edits only.** Never rewrite `index.html` from scratch.
+   Use surgical string replacements to preserve structure.
+1. **Must-preserve list — do not break these on any edit:**
+- `BUNDLES` JavaScript object (44 bundle cards, Cypherpunk Directory data)
 - Verify terminal modal (wired to Anthropic API)
-- Login/Register UI mockup
-- Lightning zap UI, newsletter subscribe form
+- Custom cursor
+- Block height counter (mempool.space)
+- Scroll reveal
+- Easter eggs: Hal Finney hover, Friedcat modal, World C silence
+1. **Mobile-first:** Test at 375px width first. Tap targets ≥ 44px.
+   No horizontal scroll. Grids collapse to 1 column at 640px.
+1. **For major changes:** Propose a plan and diff before editing.
+   Never execute a large rewrite without explicit approval.
 
-If your change might affect one of these, check before acting. If you're
-unsure, open the PR as **Draft** and explain the uncertainty in the description.
+-----
 
-### Rule 3: **Mobile-first workflow.**
+## FORUM PIPELINE (WEEKLY CURATION)
 
-The project owner works primarily from iPhone and iPad. Keep these in mind:
-- New UI should test well at 375px width
-- Don't introduce horizontal scroll
-- Tap targets ≥ 44px
-- All new CSS grids collapse to single column at 640px
+- **Source:** HTML scraping from bitcointalk.org boards (1, 6, 73, 75)
+- **CRITICAL CONSTRAINT:** DO NOT USE RSS. Bitcointalk RSS is disabled.
+  Use the scraping logic in `scripts/curate-forum.js` only.
+- **Schedule:** GitHub Action every Monday 09:00 Bangkok time
+- **Output:** Writes `forum-daily.json` → opens Draft PR for review
+- **Editorial voice:** Paraphrase only. Never copy verbatim posts (copyright boundary).
+  Claude API curates 21 threads per run.
 
-### Rule 4: **Accessible commit messages.**
+-----
 
-Use conventional commits. Short, present tense:
-- `feat: add forum digest section`
-- `fix: correct mobile padding on halving timeline`
-- `content: update forum-daily.json for 2026-W16`
+## PAY-TO-VOTE ARCHITECTURE
 
----
+- Protocol: Nostr (kind:1 event)
+- Lightning zap attached to each vote
+- Vote weight: log₂(sats) — whale-resistant
+- Minimum: 21 sats per vote
+- All votes public on Nostr relay — cannot be deleted
+- Backend: pending
 
-## CONTENT RULES — NEVER ADD
+-----
 
-These have been explicitly excluded from the website and must not be re-introduced:
+## CYPHERPUNK SCORE METHODOLOGY
 
-- The director's real name or identity — protagonist is anonymous by design
-- Film industry comparisons (e.g., "like Koreeda", "Farhadi-style", "GDH does")
-- Specific character names from the screenplay
-- Mining sound-design references
-- Bitcoin-maxi language that alienates non-crypto viewers
-  (e.g., "have fun staying poor", "number go up", "tick tock next block" as CTAs)
+Do not change these scores without explicit instruction.
 
-If a task appears to require adding any of the above, stop and ask the
-repository owner instead of proceeding.
+|Name          |Score|
+|--------------|-----|
+|Nick Szabo    |96%  |
+|Hal Finney    |90%  |
+|Len Sassaman  |86%  |
+|David Chaum   |80%  |
+|Eric Hughes   |79%  |
+|Adam Back     |75%  |
+|Timothy May   |74%  |
+|Lord Rees-Mogg|60%  |
 
----
+Formula: Technical proximity (35%) + Philosophical alignment (25%) +
+Timeline overlap (25%) + Anonymity behavior (15%)
 
-## CYPHERPUNK SCORE METHODOLOGY — DO NOT CHANGE WITHOUT REASON
+-----
 
-The Cypherpunk Directory assigns percentage scores to figures in the Satoshi
-lineage. These numbers are editorial judgments, not computed:
+## CONTENT RESTRICTIONS — NEVER ADD
 
-- Nick Szabo 96% / Hal Finney 90% / Len Sassaman 86% / David Chaum 80%
-- Eric Hughes 79% / Adam Back 75% / Timothy May 74% / Lord Rees-Mogg 60%
+- Director’s real name or identity (protagonist must remain anonymous)
+- Film comparisons: Koreeda, Farhadi, GDH, or any other filmmaker
+- Character names from the screenplay 
+- Mining sound-design text references
+- Bitcoin-maximalist slang that alienates non-crypto viewers:
+  “HFSP”, “have fun staying poor”, “number go up”, “tick tock next block”
 
-Formula for context: Technical proximity 35% + Philosophical alignment 25%
-+ Timeline overlap 25% + Anonymity behavior 15%.
+-----
 
-Only update these if the owner explicitly asks. Don't recalculate opportunistically.
+## AUTOMATION (@claude)
 
----
-
-## FORUM SECTION — how the weekly-curation feature works
-
-The Forum section at `#forum` is powered by a static JSON file at the repo root:
-`forum-daily.json`. The loader script inside `index.html` fetches this file
-on page load and renders up to 21 topic cards.
-
-The pipeline has two pieces:
-
-- `.github/workflows/forum-weekly.yml` — scheduled workflow
-- `scripts/curate-forum.js` — Node 20 ES-module script invoked by the workflow
-
-**Weekly flow:**
-
-1. Runs every Monday at 02:00 UTC (09:00 Bangkok time) via cron, or manually
-   via `workflow_dispatch`
-2. **Scrapes bitcointalk.org board HTML** (RSS was disabled by bitcointalk due
-   to load — do **not** revert to RSS). Boards scraped: `1` Bitcoin Discussion,
-   `6` Development & Technical, `73` Economics, `75` Politics & Society
-3. Deduplicates by `topic_id`, caps at 60 candidates
-4. Calls the Claude API (`claude-sonnet-4-5`, `max_tokens: 16000`) with the
-   curation prompt in `scripts/curate-forum.js`
-5. Writes the result to `forum-daily.json`
-6. Opens a **Draft PR** for owner review (branch `forum-digest/<ISO-week>`)
-7. Owner reviews on mobile, edits "Our Take" if needed, merges
-
-When editing this pipeline:
-- Keep the schema of `forum-daily.json` stable — `index.html` reads specific
-  field names (`title_th`, `title_en`, `summary_th/en`, `take_th/en`,
-  `source_url`, `author`, `board`, `bitcointalk_topic_id`)
-- Never commit the output directly to `main` — always go through a PR
-- If the HTML fetch fails or returns <5 candidates, the script aborts with
-  exit code `2` — it does not publish a broken JSON
-- `ANTHROPIC_API_KEY` must be set in repo secrets
-
----
-
-## FORUM COPYRIGHT BOUNDARY — CRITICAL
-
-The forum feature summarizes bitcointalk threads in our own editorial voice.
-It never reproduces posts.
-
-- OK: Thread title (factual reference)
-- OK: 1-sentence paraphrased summary in our words
-- OK: "Our take" on how the thread relates to the film's themes
-- **NOT OK**: Copying paragraphs from the original post
-- **NOT OK**: Translating an entire original post into Thai
-- **ALWAYS**: Link back to the source thread with OP's username
-
-If a pull request contains summaries that feel close to verbatim, reject and
-rewrite in paraphrase.
-
----
-
-## @CLAUDE MENTION BOT — `.github/workflows/claude.yml`
-
-There is a second workflow that runs Claude Code on demand when someone
-`@claude`-mentions the bot in an issue, issue comment, PR review, or PR
-review comment.
-
-- Triggers: `issues (opened/assigned)`, `issue_comment`,
-  `pull_request_review_comment`, `pull_request_review` — guarded by a
-  `contains(..., '@claude')` check
-- Uses `anthropics/claude-code-action@v1`
-- Model: `claude-sonnet-4-5`, `--max-turns 40`
-- Needs `ANTHROPIC_API_KEY` secret and `contents/pull-requests/issues/id-token`
-  write permissions
-
-When editing this workflow:
-- Don't remove the `@claude` guard — it keeps the action from running on
-  every comment
-- Keep `--max-turns` ≥ 40; lower values have truncated larger feature work
-  in the past (see commit `4fd2b83`)
-
----
-
-## PR PROCESS
-
-When creating a PR:
-1. Title: descriptive, ≤60 chars
-2. Description: what changed, why, any risks, screenshots if visual
-3. Never merge to `main` yourself — always leave for owner approval
-4. If the change touches any of the "preserve existing features" list above,
-   mark the PR as **Draft** and flag the feature by name in the description
-5. Keep diffs small. A 500-line diff should probably be 3 smaller PRs.
-
----
-
-## CONTACT FOR AMBIGUITY
-
-If a task is ambiguous or falls outside the rules above, stop and post a
-comment on the issue asking for clarification. Do not guess. 
+- Triggered via `.github/workflows/claude.yml` on issue/PR comments
+- Claude Code must follow this CLAUDE.md strictly on every invocation
+- Targeted edits only — BUNDLES object, Verify modal, and easter eggs
+  must be preserved on every single edit without exception
+- For major changes: propose plan first, edit second
