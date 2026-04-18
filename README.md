@@ -11,7 +11,7 @@ This repository contains the source code for the official interactive website of
 
 ## ⬛️ Overview — เกี่ยวกับโปรเจกต์
 
-**SATOSHI (ซาโตชิ)** คือภาพยนตร์ไทย-เวียดนาม ที่เล่าเรื่องครอบครัวสี่รุ่นที่ถูกขังในระบบเงิน fiat และการเดินทางของคนธรรมดาคนหนึ่งที่พยายามพาครอบครัวออกจากวงจรหนี้ด้วย Bitcoin — พิสูจน์ให้รุ่นถัดไปเห็นว่า *future* มีจริง
+**SATOSHI (ซาโตชิ)** คือภาพยนตร์ที่เล่าเรื่องครอบครัวสี่รุ่นที่ถูกขังในระบบเงิน fiat และการเดินทางของคนธรรมดาคนหนึ่งที่พยายามพาครอบครัวออกจากวงจรหนี้ด้วย Bitcoin — พิสูจน์ให้รุ่นถัดไปเห็นว่า *future* มีจริง
 
 เว็บไซต์นี้คือ **interactive platform** สำหรับแนะนำโปรเจกต์หนัง, เก็บข้อมูลชุมชน (community research), และรับการสนับสนุนผ่าน Bitcoin Lightning — ออกแบบในสไตล์ **Cypherpunk × Thai Auteur × Satoshi Internet Art** เขียนด้วยโค้ดแบบไร้เฟรมเวิร์ก (zero-dependencies) เพื่อสะท้อนจริยธรรมของ "Don't Trust, Verify"
 
