@@ -103,6 +103,7 @@ start index.html         # Windows
 
 python3 -m http.server 8000
 # then visit http://localhost:8000
+```
 
 📝 Contributing — การมีส่วนร่วม
 This project follows a mobile-first workflow — most development happens from iPhone/iPad via GitHub web + @claude automation.
