@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * curate-forum.js (v2 - HTML scraping)
+ * curate-forum.js (v3 - archive support)
  *
  * Weekly forum curation script for SATOSHI.FILM.
  *
@@ -8,9 +8,15 @@
  *   bitcointalk disabled the RSS endpoint (?action=.xml) due to load.
  *   We scrape the standard board HTML pages instead, which are stable
  *   (the forum runs SMF 1.1 with custom theme - unchanged for years).
+ *
+ * Archive behavior (v3):
+ *   Each run writes TWO files:
+ *   1. forum-archive/YYYY-W##.json (permanent snapshot)
+ *   2. forum-daily.json (latest week, overwritten)
+ *   Also maintains forum-archive/index.json manifest for week picker.
  */
 
-import { writeFile } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -40,9 +46,23 @@ const USER_AGENT =
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
+const archiveDir = resolve(repoRoot, "forum-archive");
 
 function log(msg) {
   console.log(`[curate-forum ${new Date().toISOString()}] ${msg}`);
+}
+
+/**
+ * Calculate ISO week number (YYYY-W##) for a given date.
+ * ISO week starts on Monday, week 1 contains the first Thursday of the year.
+ */
+function getISOWeek(date = new Date()) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
 }
 
 function decodeEntities(s) {
@@ -280,6 +300,52 @@ async function callClaude(prompt) {
       parsed.curated_date = today;
     }
 
+    // Calculate ISO week and add to JSON
+    const isoWeek = getISOWeek(new Date());
+    parsed.iso_week = isoWeek;
+    log(`ISO week: ${isoWeek}`);
+
+    // Ensure archive directory exists
+    await mkdir(archiveDir, { recursive: true });
+
+    // 1. Write archive snapshot FIRST (before overwriting forum-daily.json)
+    const archiveFileName = `${isoWeek}.json`;
+    const archivePath = resolve(archiveDir, archiveFileName);
+    await writeFile(archivePath, JSON.stringify(parsed, null, 2) + "\n");
+    log(`Wrote archive: forum-archive/${archiveFileName}`);
+
+    // 2. Update archive manifest (index.json)
+    const manifestPath = resolve(archiveDir, "index.json");
+    let manifest = { weeks: [] };
+    try {
+      const existingManifest = await readFile(manifestPath, "utf-8");
+      manifest = JSON.parse(existingManifest);
+    } catch (err) {
+      log("No existing manifest, creating new one");
+    }
+
+    // Add this week if not already present
+    if (!manifest.weeks.find(w => w.iso_week === isoWeek)) {
+      manifest.weeks.unshift({
+        iso_week: isoWeek,
+        curated_date: parsed.curated_date,
+        topic_count: parsed.topics.length
+      });
+      log(`Added ${isoWeek} to manifest`);
+    } else {
+      log(`${isoWeek} already in manifest, updating entry`);
+      const existing = manifest.weeks.find(w => w.iso_week === isoWeek);
+      existing.curated_date = parsed.curated_date;
+      existing.topic_count = parsed.topics.length;
+    }
+
+    // Keep manifest sorted by ISO week (newest first)
+    manifest.weeks.sort((a, b) => b.iso_week.localeCompare(a.iso_week));
+
+    await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+    log("Updated manifest: forum-archive/index.json");
+
+    // 3. Write forum-daily.json (overwrites previous week)
     const outPath = resolve(repoRoot, OUT_FILE);
     await writeFile(outPath, JSON.stringify(parsed, null, 2) + "\n");
     log(`Wrote ${parsed.topics.length} topics to ${OUT_FILE}`);
