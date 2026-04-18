@@ -116,6 +116,11 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .cypherpunk-intro { max-width: 600px; margin: 0 auto 80px; text-align: center; }
 .cypherpunk-intro p { font-family: 'Sarabun', sans-serif; font-size: 15px; line-height: 1.9; color: #666660; }
 .ch-group { max-width: 1000px; margin: 0 auto 80px; }
+.ch-flashback { border: 1px dashed rgba(247, 243, 232, 0.3); padding: 40px 32px; background: rgba(247, 243, 232, 0.01); }
+.ch-flashback .bundle-card { background: rgba(247, 243, 232, 0.02); filter: sepia(0.08); }
+.ch-flashback .bundle-card:hover { background: rgba(247, 243, 232, 0.04); }
+.ch-flashback .ch-num { color: #F7F3E8; }
+.ch-flashback .ch-title { color: #F7F3E8; }
 .ch-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid rgba(247,147,26,0.12); }
 .ch-num { font-family: 'Space Mono', monospace; font-size: 28px; color: #F7931A; opacity: 0.3; line-height: 1; min-width: 40px; text-align: left;}
 .ch-info { text-align: left; }
@@ -830,6 +835,76 @@ window.addEventListener('unhandledrejection', function(e) {
         <div class="bundle-role en-only">DigiCash & eCash — father of digital money, 25 years before Bitcoin.</div>
         <div class="bundle-tags"><span>DigiCash 1989</span></div>
         <div class="bundle-score">80%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-group reveal ch-flashback">
+    <div class="ch-header">
+      <div class="ch-num">-1</div>
+      <div class="ch-info">
+        <div class="ch-title">THE FORETHINKERS ROOT</div>
+        <div class="ch-title th-only">รากเหง้าของผู้คิดล่วงหน้า</div>
+        <div class="ch-subtitle en-only">FLASHBACK · BEFORE BLOCK 0 — where the ideas took root</div>
+        <div class="ch-subtitle th-only">ย้อนอดีต · ก่อน Block 0 — ที่ความคิดหยั่งรากลึก</div>
+      </div>
+    </div>
+    <div class="ch-grid">
+      <div class="bundle-card" data-bundle="menger">
+        <button class="verify-btn" onclick="openTerminal('menger')">✅ Verify</button>
+        <div class="bundle-name">Carl Menger</div>
+        <div class="bundle-role th-only">ผู้ก่อตั้ง Austrian School — พิสูจน์ว่าค่าอยู่ในใจคน ไม่ใช่ในของ</div>
+        <div class="bundle-role en-only">Founder of Austrian School — value lives in the mind, not in things</div>
+        <div class="bundle-tags"><span>Principles of Economics</span><span>1871</span><span>Subjective Value</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="bohm_bawerk">
+        <button class="verify-btn" onclick="openTerminal('bohm_bawerk')">✅ Verify</button>
+        <div class="bundle-name">Eugen von Böhm-Bawerk</div>
+        <div class="bundle-role th-only">นักเศรษฐศาสตร์ยุคที่สอง — ผู้อธิบาย time preference</div>
+        <div class="bundle-role en-only">Second-generation Austrian — explained time preference</div>
+        <div class="bundle-tags"><span>Time Preference</span><span>Capital Theory</span><span>Vienna 1851</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="mises">
+        <button class="verify-btn" onclick="openTerminal('mises')">✅ Verify</button>
+        <div class="bundle-name">Ludwig von Mises</div>
+        <div class="bundle-role th-only">สถาปนิกทฤษฎีเงินของออสเตรียน — ผู้เห็นปัญหา trust ก่อน Satoshi 96 ปี</div>
+        <div class="bundle-role en-only">Architect of Austrian monetary theory — saw the trust problem 96 years before Satoshi</div>
+        <div class="bundle-tags"><span>Human Action</span><span>Theory of Money</span><span>Regression Theorem</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="hayek">
+        <button class="verify-btn" onclick="openTerminal('hayek')">✅ Verify</button>
+        <div class="bundle-name">Friedrich Hayek</div>
+        <div class="bundle-role th-only">Nobel 1974 — ผู้ทำนายเงินเอกชนก่อน Bitcoin เกิด 33 ปี</div>
+        <div class="bundle-role en-only">Nobel Prize 1974 — predicted private money 33 years before Bitcoin</div>
+        <div class="bundle-tags"><span>Denationalization of Money</span><span>1976</span><span>Currency Competition</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="rothbard">
+        <button class="verify-btn" onclick="openTerminal('rothbard')">✅ Verify</button>
+        <div class="bundle-name">Murray Rothbard</div>
+        <div class="bundle-role th-only">ลูกศิษย์ Mises — สะพานระหว่าง Austrian คลาสสิก กับ crypto-anarchism</div>
+        <div class="bundle-role en-only">Mises's student — bridge between classical Austrian and crypto-anarchism</div>
+        <div class="bundle-tags"><span>The Case Against the Fed</span><span>Libertarianism</span><span>Sound Money</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="hazlitt">
+        <button class="verify-btn" onclick="openTerminal('hazlitt')">✅ Verify</button>
+        <div class="bundle-name">Henry Hazlitt</div>
+        <div class="bundle-role th-only">นักข่าวผู้ทำให้ economics อ่านง่าย — ต้นแบบของ Saifedean และ Right Shift</div>
+        <div class="bundle-role en-only">Journalist who made economics readable — template for Saifedean and Right Shift</div>
+        <div class="bundle-tags"><span>Economics in One Lesson</span><span>1946</span><span>1M+ copies sold</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="wieser">
+        <button class="verify-btn" onclick="openTerminal('wieser')">✅ Verify</button>
+        <div class="bundle-name">Friedrich von Wieser</div>
+        <div class="bundle-role th-only">ผู้ตั้งคำว่า opportunity cost — mental model ของทุก Bitcoiner</div>
+        <div class="bundle-role en-only">Coined "opportunity cost" — mental model of every Bitcoiner</div>
+        <div class="bundle-tags"><span>Opportunity Cost</span><span>First-gen Austrian</span><span>1851</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="hoppe">
+        <button class="verify-btn" onclick="openTerminal('hoppe')">✅ Verify</button>
+        <div class="bundle-name">Hans-Hermann Hoppe</div>
+        <div class="bundle-role th-only">ลูกศิษย์ Rothbard — เขียนการวินิจฉัยทางการเมืองก่อน Bitcoin 7 ปี</div>
+        <div class="bundle-role en-only">Rothbard's student — wrote the political diagnosis 7 years before Bitcoin</div>
+        <div class="bundle-tags"><span>Democracy: The God That Failed</span><span>2001</span><span>Anarcho-Capitalism</span></div>
       </div>
     </div>
   </div>
@@ -1994,6 +2069,14 @@ discordth:B('Bitcoin Local TH',`<span class="t-label">SUBJECT:</span> Bitcoin Lo
 chit:B('พี่ชิต — Chit Beer',`<span class="t-label">SUBJECT:</span> พี่ชิต — Chit Beer\n<span class="t-muted">─────────────────────────</span>\nเชื่อมวัฒนธรรม craft กับ Bitcoin proof of work ในทุกแก้ว`,['Chit Beer เชื่อม Bitcoin ยังไง?'],[]),
 rightshift_writer:B('Right Shift',`<span class="t-label">SUBJECT:</span> Right Shift\n<span class="t-muted">─────────────────────────</span>\nสำนักพิมพ์ที่คัดสรรและแปลหนังสือสำคัญระดับโลกด้านเศรษฐศาสตร์และ Bitcoin เพื่อให้คนไทยเข้าถึงความจริงได้ด้วยภาษาของตัวเอง`,['มีหนังสืออะไรบ้าง?'],[{label:'Website',url:'https://rightshift.to/'}]),
 siamstr:B('#siamstr',`<span class="t-label">SUBJECT:</span> #siamstr\n<span class="t-muted">─────────────────────────</span>\nสัญญาณของชาวไทยบน Nostr เครือข่ายไร้ศูนย์กลางที่ไม่มีใครปิดกั้นหรือควบคุมได้ โลกใหม่ที่ทุกคนเป็นเจ้าของข้อมูลตัวเอง`,['Nostr คืออะไร?'],[{label:'SlideStr',url:'https://slidestr.net/tags/siamstr'}]),
+menger:B('Carl Menger',`<span class="t-label">SUBJECT:</span> Carl Menger (1840–1921)\n<span class="t-label">ORIGIN:</span> Vienna, Austria-Hungary\n<span class="t-label">FOUNDED:</span> Austrian School of Economics (1871)\n<span class="t-label">KEY WORK:</span> Principles of Economics\n<span class="t-muted">───────────────────────────────</span>\nMenger taught the world that value is not intrinsic —\nit lives in the mind of the individual.\nNick Szabo cited Menger in "Shelling Out" (2002).\nThe root reached Satoshi through that citation.`,['What is the subjective theory of value?','How did Menger influence Nick Szabo\'s thinking?','Why is "Shelling Out" essential Bitcoin reading?'],[{label:'Principles of Economics (1871)',url:'https://cdn.mises.org/Principles%20of%20Economics_5.pdf'},{label:'Shelling Out — Nick Szabo',url:'https://nakamotoinstitute.org/shelling-out/'}]),
+bohm_bawerk:B('Eugen von Böhm-Bawerk',`<span class="t-label">SUBJECT:</span> Eugen von Böhm-Bawerk (1851–1914)\n<span class="t-label">ROLE:</span> Second-generation Austrian\n<span class="t-label">KEY CONCEPT:</span> Time Preference\n<span class="t-muted">───────────────────────────────</span>\nWhy do we prefer a bowl of rice today\nover two bowls next year?\nBöhm-Bawerk answered this question —\nand gave future HODLers their discipline.`,['What is time preference and why does it matter?','How does low-time-preference culture relate to Bitcoin?','What is Böhm-Bawerk\'s theory of capital?'],[{label:'Capital and Interest',url:'https://mises.org/library/capital-and-interest'}]),
+mises:B('Ludwig von Mises',`<span class="t-label">SUBJECT:</span> Ludwig von Mises (1881–1973)\n<span class="t-label">ORIGIN:</span> Austria → United States\n<span class="t-label">KEY WORK:</span> The Theory of Money and Credit (1912)\n<span class="t-label">KEY WORK:</span> Human Action (1949)\n<span class="t-muted">───────────────────────────────</span>\n"The root problem with conventional currency\nis all the trust that's required to make it work."\n— Satoshi, 2009.\nMises said it first — in 1912.`,['What is the Regression Theorem?','How did Mises predict fiat collapse?','What is the Austrian critique of central banking?'],[{label:'Theory of Money and Credit',url:'https://mises.org/library/theory-money-and-credit'},{label:'Human Action',url:'https://mises.org/library/human-action-0'}]),
+hayek:B('Friedrich Hayek',`<span class="t-label">SUBJECT:</span> Friedrich Hayek (1899–1992)\n<span class="t-label">ORIGIN:</span> Vienna → LSE → Chicago\n<span class="t-label">AWARD:</span> Nobel Prize in Economics (1974)\n<span class="t-label">KEY WORK:</span> The Denationalization of Money (1976)\n<span class="t-muted">───────────────────────────────</span>\n"I don't believe we shall ever have a good money again\nbefore we take the thing out of the hands of government.\nWe can't take it violently... all we can do is\nby some sly roundabout way introduce something\nthey can't stop."\nSatoshi introduced that sly roundabout way. 33 years later.`,['What is "The Denationalization of Money" about?','How did Hayek predict cryptocurrency?','What is currency competition theory?'],[{label:'Denationalization of Money',url:'https://mises.org/library/denationalisation-money-argument-refined'},{label:'Hayek 1984 Prediction',url:'https://www.youtube.com/watch?v=EYhEDxFwFRU'}]),
+rothbard:B('Murray Rothbard',`<span class="t-label">SUBJECT:</span> Murray Rothbard (1926–1995)\n<span class="t-label">ROLE:</span> Libertarian philosopher, Mises student\n<span class="t-label">KEY WORK:</span> What Has Government Done to Our Money? (1963)\n<span class="t-label">KEY WORK:</span> The Case Against the Fed (1994)\n<span class="t-muted">───────────────────────────────</span>\nRothbard was the bridge.\nHe took Mises's Viennese theories\nand translated them for American rebels —\nthe same rebels who would become cypherpunks.\nThe gateway drug between Austrian classical and crypto-anarchism.`,['What is "What Has Government Done to Our Money?"','How did Rothbard influence libertarianism?','Why do cypherpunks cite Rothbard?'],[{label:'What Has Government Done to Our Money?',url:'https://mises.org/library/what-has-government-done-our-money'},{label:'The Case Against the Fed',url:'https://mises.org/library/case-against-fed'}]),
+hazlitt:B('Henry Hazlitt',`<span class="t-label">SUBJECT:</span> Henry Hazlitt (1894–1993)\n<span class="t-label">ROLE:</span> Journalist, popularizer of Austrian economics\n<span class="t-label">KEY WORK:</span> Economics in One Lesson (1946)\n<span class="t-label">COPIES SOLD:</span> Over 1,000,000\n<span class="t-muted">───────────────────────────────</span>\nThe greatest theories are useless\nif only professors can read them.\nHazlitt made Mises readable for everyone.\nToday, Right Shift and Saifedean carry that torch forward —\nfor the same reason.`,['What is the "broken window fallacy"?','Why is "Economics in One Lesson" essential?','How do you explain sound money to non-economists?'],[{label:'Economics in One Lesson',url:'https://mises.org/library/economics-one-lesson'}]),
+wieser:B('Friedrich von Wieser',`<span class="t-label">SUBJECT:</span> Friedrich von Wieser (1851–1926)\n<span class="t-label">ROLE:</span> First-generation Austrian, alongside Menger\n<span class="t-label">KEY CONTRIBUTION:</span> Coined "opportunity cost"\n<span class="t-muted">───────────────────────────────</span>\nEvery choice is a refusal of another.\nEvery sat stacked — is a coffee not bought.\nEvery block mined — is energy not spent elsewhere.\nWieser gave us the mental model\nfor how every Bitcoiner thinks about time.`,['What is opportunity cost?','How does opportunity cost apply to stacking sats?','Why is Wieser important to Austrian economics?'],[{label:'Social Economics',url:'https://mises.org/library/social-economics'}]),
+hoppe:B('Hans-Hermann Hoppe',`<span class="t-label">SUBJECT:</span> Hans-Hermann Hoppe (1949– )\n<span class="t-label">ROLE:</span> Rothbard student, contemporary Austrian\n<span class="t-label">KEY WORK:</span> Democracy: The God That Failed (2001)\n<span class="t-muted">───────────────────────────────</span>\nSeven years before the whitepaper,\nHoppe was already writing the political diagnosis\nfor which Bitcoin would become the technical cure.\nWhen the patient refuses to heal through politics —\ncode heals.`,['What is "Democracy: The God That Failed" about?','How does Hoppe critique central banking?','Why do Bitcoiners cite Hoppe?'],[{label:'Democracy: The God That Failed',url:'https://mises.org/library/democracy-god-failed-economics-and-politics-monarchy-democracy-and-natural-order'}]),
 };
 
 function openTerminal(bundleId) {
