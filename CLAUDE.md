@@ -141,3 +141,8 @@ Timeline overlap (25%) + Anonymity behavior (15%)
 - Targeted edits only — BUNDLES object, Verify modal, and easter eggs
   must be preserved on every single edit without exception
 - For major changes: propose plan first, edit second
+
+## NAV TERMINOLOGY
+- DIALOGUE (dialogue.html) = "บทภาพยนตร์" — screenplay writing feature
+- FORUM (#forum section) = "ชุมชน" — bitcointalk community curation
+These two must stay distinct to avoid user confusion.
