@@ -105,7 +105,9 @@ python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-📝 Contributing — การมีส่วนร่วม
+---
+
+## 📝 Contributing — การมีส่วนร่วม
 This project follows a mobile-first workflow — most development happens from iPhone/iPad via GitHub web + @claude automation.
 For code contributions:
 	1.	Read CLAUDE.md first — it encodes all project constraints
@@ -117,18 +119,24 @@ For content contributions (community verify / forum curation):
 	•	Submit community stories via the forum section UI
 	•	All contributions honor the “Editorial voice only, paraphrase always” copyright boundary
 
-🚫 Content Boundaries — สิ่งที่ไม่เพิ่ม
+---
+
+## 🚫 Content Boundaries — สิ่งที่ไม่เพิ่ม
 Per project identity (documented in CLAUDE.md):
 	•	No director’s real name or identity (protagonist is anonymous by design)
 	•	No film industry comparisons
 	•	No screenplay character names
 	•	No Bitcoin-maxi slang that alienates non-crypto viewers
 
-🟡 Support the Film
+---
+
+## 🟡 Support the Film
 Lightning donations + Bitcoin co-production inquiries are accepted on the live site. Current supporter:
 	•	🏛️ Bitcoin Learning Center Chiang Mai (first community supporter)
 
-📜 License
+---
+
+## 📜 License
 Source code: MIT License
 Film content, story, and world bibles: All rights reserved © 2026 SATOSHi Film
 
