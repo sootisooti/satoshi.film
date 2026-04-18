@@ -2105,11 +2105,18 @@ document.addEventListener('keydown', (e) => {
 const friedcat = document.querySelector('[data-hw="friedcat"]');
 if (friedcat) {
   friedcat.addEventListener('click', () => {
-    document.getElementById('friedcatModal').classList.add('active');
+    const modal = document.getElementById('friedcatModal');
+    if (modal) modal.classList.add('active');
   });
 }
-function closeFriedcat() { document.getElementById('friedcatModal').classList.remove('active'); }
-document.getElementById('friedcatModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeFriedcat(); });
+function closeFriedcat() {
+  const modal = document.getElementById('friedcatModal');
+  if (modal) modal.classList.remove('active');
+}
+const friedcatModal = document.getElementById('friedcatModal');
+if (friedcatModal) {
+  friedcatModal.addEventListener('click', (e) => { if (e.target === e.currentTarget) closeFriedcat(); });
+}
 
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
