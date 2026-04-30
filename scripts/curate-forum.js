@@ -226,6 +226,26 @@ ${candidateLines}
 `;
 }
 
+function extractJson(responseText) {
+  // Extract content from a complete markdown code fence (handles preamble text)
+  const fenceMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch) return fenceMatch[1].trim();
+
+  // Strip incomplete leading/trailing fences
+  const cleaned = responseText
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
+
+  // Last resort: find outermost JSON object by brace boundaries (handles preamble)
+  const start = cleaned.indexOf("{");
+  const end = cleaned.lastIndexOf("}");
+  if (start !== -1 && end > start) return cleaned.slice(start, end + 1);
+
+  return cleaned;
+}
+
 async function callClaude(prompt) {
   log(`Calling Claude API (${MODEL}, max_tokens=${MAX_TOKENS})`);
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -248,13 +268,12 @@ async function callClaude(prompt) {
   }
 
   const data = await res.json();
-  return data.content
+  const responseText = data.content
     .filter((b) => b.type === "text")
     .map((b) => b.text)
-    .join("\n")
-    .replace(/^```json\s*/m, "")
-    .replace(/```\s*$/m, "")
-    .trim();
+    .join("\n");
+
+  return extractJson(responseText);
 }
 
 (async () => {
