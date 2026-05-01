@@ -23,7 +23,7 @@
       "author": "Oshosondy",
       "board": "Bitcoin Discussion",
       "summary_en": "The author questions the logic of taxing a currency that was designed to operate beyond state control.",
-      "summary_th": "ผู้เขียนตั้งคำถามต่อตmanticsของการเก็บภาษีสกุลเงินที่ออกแบบมาให้อยู่นอกเหนือการควบคุมของรัฐ",
+      "summary_th": "ผู้เขียนตั้งคำถามถึงเหตุผลของการเก็บภาษีสกุลเงินที่ออกแบบมาให้อยู่นอกเหนือการควบคุมของรัฐ",
       "take_en": "The state extends its hand even to that which was built to exist without it.",
       "take_th": "รัฐยื่นมือเข้ามาแม้กระทั่งในสิ่งที่สร้างขึ้นเพื่ออยู่โดยปราศจากมัน",
       "source_url": "https://bitcointalk.org/index.php?topic=5580415"
@@ -211,7 +211,7 @@
     {
       "bitcointalk_topic_id": "5550298",
       "title_en": "J. Lopp's Post-Quantum Migration BIP",
-      "title_th": "ข้อเสนอการย้ายถิ่นหลังควอนตัมของ J. Lopp",
+      "title_th": "BIP Post-Quantum Migration ของ J. Lopp",
       "author": "Pmalek",
       "board": "Development & Technical Discussion",
       "summary_en": "A technical proposal addresses how Bitcoin might transition to resist future cryptographic threats.",
@@ -235,7 +235,7 @@
     {
       "bitcointalk_topic_id": "5580401",
       "title_en": "Avoiding An Unnecessary Quantum Freeze",
-      "title_th": "หลีกเลี่ยงการแช่แข็งควอนตัมที่ไม่จำเป็น",
+      "title_th": "หลีกเลี่ยง Quantum Freeze ที่ไม่จำเป็น",
       "author": "tromp",
       "board": "Development & Technical Discussion",
       "summary_en": "The author cautions against premature protocol changes that might cause more harm than the threat they address.",
