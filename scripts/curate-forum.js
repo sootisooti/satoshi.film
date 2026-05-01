@@ -35,7 +35,7 @@ const BOARDS = [
 
 const MAX_CANDIDATES = 60;
 const OUT_FILE = "forum-daily.json";
-const MODEL = "claude-sonnet-4-5";
+const MODEL = "claude-sonnet-4-6";
 const MAX_TOKENS = 16000;
 const FETCH_TIMEOUT_MS = 15000;
 
@@ -208,6 +208,24 @@ RULES:
 - Avoid exclamation marks. Avoid "revolutionary" and "game-changer".
 - Thai: Sarabun register (moderately formal). Not royal. Not slang.
 
+TRANSLATION RULES FOR THAI FIELDS (title_th, summary_th, take_th):
+
+KEEP IN ENGLISH — do NOT translate these terms, ever:
+  private key, public key, hard fork, soft fork, proof of work, hash rate,
+  block, blockchain, mining, mempool, UTXO, node, wallet, address, script,
+  Lightning Network, Nostr, Taproot, SegWit, Schnorr, semantics, quantum,
+  post-quantum, quantum hard fork, post-quantum migration, cryptography,
+  protocol, algorithm, consensus, Byzantine, Merkle, elliptic curve, Bitcoin
+
+TRANSLATE TO THAI naturally — avoid over-literal translations:
+  "migration" in a technical/crypto context → "การอัปเกรด" or "การเปลี่ยนระบบ"
+    (NOT "ย้ายถิ่น", which means emigrating to another country)
+  "frozen" / "locked" → use the contextually correct Thai equivalent
+
+UTF-8 SAFETY: Thai output fields must contain ONLY Thai Unicode characters,
+  standard ASCII, or the approved English terms above. Do NOT output Cyrillic
+  letters, look-alike Latin substitutes, or any other non-Thai non-ASCII glyphs.
+
 Return ONLY valid JSON in this shape:
 
 {
@@ -258,6 +276,7 @@ async function callClaude(prompt) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: MAX_TOKENS,
+      system: "You are a JSON-only API endpoint. Respond with raw JSON exclusively. Do not include markdown code fences, preamble text, or any explanation — only the JSON object itself.",
       messages: [{ role: "user", content: prompt }],
     }),
   });
@@ -272,6 +291,8 @@ async function callClaude(prompt) {
     .filter((b) => b.type === "text")
     .map((b) => b.text)
     .join("\n");
+
+  log(`[DEBUG] Raw response (first 500 chars): ${responseText.slice(0, 500)}`);
 
   return extractJson(responseText);
 }
