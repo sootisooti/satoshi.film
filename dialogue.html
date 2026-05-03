@@ -310,6 +310,21 @@ function pickRandom(arr, n) {
   return result;
 }
 
+function pickWeekly(arr, n) {
+  // Returns a deterministic set of n items based on current ISO week number
+  // Changes every 7 days so content rotates weekly without repeating
+  var msPerWeek = 7 * 24 * 60 * 60 * 1000;
+  var week = Math.floor(Date.now() / msPerWeek);
+  var copy = arr.slice();
+  var result = [];
+  for (var i = 0; i < n && copy.length > 0; i++) {
+    var s = Math.sin(week * 997 + i * 31) * 99991;
+    var idx = Math.floor(Math.abs(s) % copy.length);
+    result.push(copy.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
 const SATOSHI_QUOTES = [
   {
     id: "sq_01",
@@ -334,7 +349,7 @@ const SATOSHI_QUOTES = [
         th: "คุณจะไม่พบทางออกสำหรับปัญหาทางการเมืองในวิทยาการเข้ารหัสลับ",
         en: "You will not find a solution to political problems in cryptography." },
       { who: "satoshi",
-        th: "ใช่ แต่เราสามารถชนะการต่อสู้สำคัญในสงครามอาวุธนี้ รัฐบาลเก่งในการตัดหัวเครือข่ายรวมศูนย์อย่าง Napster แต่เครือข่าย P2P แท้จริงอย่าง Gnutella และ Tor ดูเหมือนยืนหยัดอยู่ได้",
+        th: "ใช่ แต่เราสามารถชนะการต่อสู้สำคัญในสงครามอาวุธนี้ รัฐบาลเก่งในการตัดหัวเครือข่ายรวมศูนย์อย่าง Napster แต่เครือข่าย P2P ที่แท้จริงอย่าง Gnutella และ Tor ดูเหมือนจะยืนหยัดอยู่ได้",
         en: "Yes, but we can win a major battle in the arms race. Governments are good at cutting off the heads of a centrally controlled network like Napster, but pure P2P networks like Gnutella and Tor seem to be holding their own." }
     ]
   },
@@ -346,7 +361,7 @@ const SATOSHI_QUOTES = [
     chapter: "Ch.8",
     exchanges: [
       { who: "satoshi",
-        th: "จริงๆ แล้วผมทำมันย้อนหลัง ผมต้องเขียนโค้ดทั้งหมดก่อน ถึงจะโน้มน้าวตัวเองได้ว่าสามารถแก้ปัญหาทุกอย่างได้ แล้วจึงเขียน whitepaper",
+        th: "จริงๆ แล้วผมทำมันกลับด้าน ผมต้องเขียนโค้ดทั้งหมดก่อน ถึงจะโน้มน้าวตัวเองได้ว่าสามารถแก้ปัญหาทุกอย่างได้ แล้วจึงเขียน whitepaper",
         en: "I actually did this kind of backwards. I had to write all the code before I could convince myself that I could solve every problem, then I wrote the paper." }
     ]
   },
@@ -370,7 +385,7 @@ const SATOSHI_QUOTES = [
     chapter: "Ch.21",
     exchanges: [
       { who: "satoshi",
-        th: "ปัญหาหลักของสกุลเงินแบบดั้งเดิมคือความไว้วางใจทั้งหมดที่จำเป็น ธนาคารกลางต้องได้รับความไว้วางใจว่าจะไม่ทำให้ค่าเงินเสื่อมลง แต่ประวัติศาสตร์ของสกุลเงิน fiat เต็มไปด้วยการละเมิดความไว้วางใจนั้น",
+        th: "ปัญหาหลักของสกุลเงินแบบดั้งเดิมคือความไว้วางใจทั้งหมดที่จำเป็น ธนาคารกลางต้องได้รับความไว้วางใจว่าจะไม่ทำให้เงินเสื่อมค่า แต่ประวัติศาสตร์ของสกุลเงิน fiat เต็มไปด้วยการละเมิดความไว้วางใจนั้น",
         en: "The root problem with conventional currency is all the trust that's required to make it work. The central bank must be trusted not to debase the currency, but the history of fiat currencies is full of breaches of that trust." }
     ]
   },
@@ -382,7 +397,7 @@ const SATOSHI_QUOTES = [
     chapter: "Ch.22",
     exchanges: [
       { who: "satoshi",
-        th: "คนจำนวนมากมักปัดทิ้ง e-currency ว่าเป็นเรื่องสูญเปล่า เพราะบริษัทที่ล้มเหลวมากมายในยุค 90s ผมหวังว่ามันชัดเจนแล้วว่าธรรมชาติของระบบรวมศูนย์เท่านั้นที่ทำให้มันพัง นี่เป็นครั้งแรกที่เราลองใช้ระบบกระจายศูนย์ที่ไม่ต้องอาศัยความไว้วางใจ",
+        th: "คนจำนวนมากมักปัดทิ้ง e-currency ว่าเป็นเรื่องสูญเปล่า เพราะบริษัทที่ล้มเหลวมากมายในยุค 90s ผมหวังว่ามันชัดเจนแล้วว่าธรรมชาติของระบบรวมศูนย์เท่านั้นที่ทำให้มันพัง นี่เป็นครั้งแรกที่เราลองใช้ระบบกระจายอำนาจที่ไม่ต้องอาศัยความไว้วางใจ",
         en: "A lot of people automatically dismiss e-currency as a lost cause because of all the companies that failed since the 1990's. I think this is the first time we're trying a decentralized, non-trust-based system." }
     ]
   },
@@ -603,7 +618,8 @@ function Divider({ color, label }) {
           position: "absolute", top: -8, left: "50%", transform: "translateX(-50%)",
           background: "#080806", padding: "0 16px",
           fontFamily: "var(--mono)", fontSize: "0.6rem",
-          color: color || "#F7931A", letterSpacing: "0.25em", opacity: 0.6
+          color: color || "#F7931A", letterSpacing: "0.25em", opacity: 0.6,
+          whiteSpace: "nowrap"
         }}>{label}</span>
       )}
     </div>
@@ -626,7 +642,7 @@ function App() {
   const [submitTarget, setSubmitTarget] = useState(null);
   const [sceneCounter, setSceneCounter] = useState(4);
   const [collectionFilter, setCollectionFilter] = useState("all");
-  const [satoshiSample, setSatoshiSample] = useState(function() { return pickRandom(SATOSHI_QUOTES, 5); });
+  const [satoshiSample, setSatoshiSample] = useState(function() { return pickWeekly(SATOSHI_QUOTES, 5); });
 
   var storyRef = useRef(null);
   var generateRef = useRef(null);
@@ -830,7 +846,7 @@ function App() {
               cursor: "pointer", letterSpacing: "0.15em", transition: "all 0.2s"
             }}
           >
-            ↻ RANDOM 5
+            🔀 RANDOM 5
           </button>
         </div>
 
