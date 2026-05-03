@@ -15,16 +15,13 @@ body {
   background: #080806;
   color: #d4d0c8;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
+  padding: 80px 20px 60px;
 }
 
 .container {
   text-align: center;
-  max-width: 600px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .block-height {
@@ -63,7 +60,112 @@ body {
   color: #F7931A;
   opacity: 0.6;
   letter-spacing: 0.3em;
+  margin-bottom: 24px;
+}
+
+.photobook-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #666660;
+  margin-bottom: 60px;
+}
+.photobook-meta span { color: #00FF41; }
+
+.photobook-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-bottom: 80px;
+}
+
+.photobook-frame {
+  position: relative;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 12px 36px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: inherit;
+  text-align: left;
+}
+.photobook-frame:hover {
+  border-color: rgba(247,147,26,0.4);
+  background: rgba(247,147,26,0.02);
+}
+.photobook-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  filter: grayscale(0.15) brightness(0.92);
+  transition: filter 0.3s;
+}
+.photobook-frame:hover img {
+  filter: grayscale(0) brightness(1);
+}
+.photobook-frame-num {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #666660;
+}
+.photobook-frame:hover .photobook-frame-num { color: #F7931A; }
+
+@media (max-width: 900px) {
+  .photobook-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 560px) {
+  .photobook-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.photobook-lightbox {
+  position: fixed; inset: 0; z-index: 100000;
+  background: #080806;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  gap: 20px;
+}
+.photobook-lightbox.active { display: flex; }
+.photobook-lightbox img {
+  max-width: min(90vw, 720px);
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+}
+.photobook-lightbox-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #666660;
+}
+.photobook-lightbox-meta span { color: #F7931A; }
+.photobook-lightbox-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #d4d0c8;
+  font-family: 'Space Mono', monospace;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.photobook-lightbox-close:hover { border-color: #F7931A; color: #F7931A; }
+@media (max-width: 768px) {
+  .photobook-lightbox { padding: 20px; }
+  .photobook-lightbox-close { top: 12px; right: 12px; }
 }
 
 .back-link {
@@ -223,10 +325,32 @@ body {
     BLOCK <a href="https://mempool.space/" target="_blank" rel="noopener"><span class="block-num">———</span></a>
   </div>
 
-  <h1 class="title-th">หนังสือภาพ — เร็วๆ นี้</h1>
-  <h2 class="title-en">PHOTOBOOK — COMING SOON</h2>
+  <h1 class="title-th">หนังสือภาพ</h1>
+  <h2 class="title-en">PHOTOBOOK</h2>
+  <div class="photobook-meta">FIRST FRAMES · <span>03</span> · WORK IN PROGRESS</div>
+
+  <div class="photobook-grid">
+    <button class="photobook-frame" data-img="assets/posters/poster-01.jpg" data-num="01" aria-label="Open frame 01">
+      <img src="assets/posters/poster-01.jpg" alt="Frame 01" loading="lazy">
+      <div class="photobook-frame-num">FRAME 01 / 03</div>
+    </button>
+    <button class="photobook-frame" data-img="assets/posters/poster-02.jpg" data-num="02" aria-label="Open frame 02">
+      <img src="assets/posters/poster-02.jpg" alt="Frame 02" loading="lazy">
+      <div class="photobook-frame-num">FRAME 02 / 03</div>
+    </button>
+    <button class="photobook-frame" data-img="assets/posters/poster-03.jpg" data-num="03" aria-label="Open frame 03">
+      <img src="assets/posters/poster-03.jpg" alt="Frame 03" loading="lazy">
+      <div class="photobook-frame-num">FRAME 03 / 03</div>
+    </button>
+  </div>
 
   <a href="index.html" class="back-link">← กลับหน้าหลัก / BACK HOME</a>
+</div>
+
+<div class="photobook-lightbox" id="photobookLightbox" role="dialog" aria-label="Photobook frame">
+  <button class="photobook-lightbox-close" id="photobookLightboxClose" aria-label="Close">×</button>
+  <img id="photobookLightboxImg" src="" alt="">
+  <div class="photobook-lightbox-meta">FRAME <span id="photobookLightboxNum">01</span> / 03 · ESC TO CLOSE</div>
 </div>
 
 <div class="error-overlay" id="errorOverlay">
@@ -252,6 +376,39 @@ window.addEventListener('error', function(e) {
   document.getElementById('errorMessage').textContent = e.message || 'An unexpected error occurred';
   document.getElementById('errorOverlay').classList.add('active');
 });
+
+// Photobook lightbox
+(function() {
+  const lightbox = document.getElementById('photobookLightbox');
+  const lightboxImg = document.getElementById('photobookLightboxImg');
+  const lightboxNum = document.getElementById('photobookLightboxNum');
+  const lightboxClose = document.getElementById('photobookLightboxClose');
+  if (!lightbox) return;
+
+  const open = (src, num, alt) => {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightboxNum.textContent = num;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  };
+
+  document.querySelectorAll('.photobook-frame').forEach(frame => {
+    frame.addEventListener('click', () => {
+      open(frame.dataset.img, frame.dataset.num, frame.querySelector('img').alt);
+    });
+  });
+  lightboxClose.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) close();
+  });
+})();
 </script>
 
 <script>

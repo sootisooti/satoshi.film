@@ -467,17 +467,19 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .preprod-banner { padding: 8px 12px; }
 }
 
-.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 24px; opacity: 1; transition: opacity 0.6s ease-out; }
+.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 28px; opacity: 1; transition: opacity 0.6s ease-out; overflow-y: auto; }
 .poster-cover.dismissed { opacity: 0; pointer-events: none; }
-.poster-cover-image { max-width: min(90vw, 720px); max-height: 82vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
+.poster-cover-image { max-width: min(90vw, 560px); max-height: 60vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
 .poster-cover-image.loaded { opacity: 1; }
+.poster-cover-caption { font-family: 'Tahoma', Arial, sans-serif; font-size: 2.1cm; line-height: 1.25; color: #d4d0c8; text-align: center; max-width: 92vw; letter-spacing: 0.01em; }
 .poster-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; }
 .poster-cover-meta span { color: #F7931A; }
-.poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
 .poster-cover-close:hover { border-color: #F7931A; color: #F7931A; }
 @media (max-width: 768px) {
-  .poster-cover { padding: 20px; gap: 16px; }
-  .poster-cover-image { max-height: 78vh; }
+  .poster-cover { padding: 20px; gap: 18px; }
+  .poster-cover-image { max-height: 45vh; }
+  .poster-cover-caption { font-size: clamp(18px, 5vw, 2.1cm); }
   .poster-cover-meta { font-size: 8px; letter-spacing: 2px; }
   .poster-cover-close { top: 12px; right: 12px; }
 }
@@ -487,20 +489,23 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 <div id="posterCover" class="poster-cover" role="dialog" aria-label="SATOSHI.FILM cover">
   <button id="posterCoverClose" class="poster-cover-close" aria-label="Close cover">×</button>
   <img id="posterCoverImg" class="poster-cover-image" src="" alt="SATOSHI.FILM">
+  <div id="posterCoverCaption" class="poster-cover-caption"></div>
   <div class="poster-cover-meta">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03 · ESC TO ENTER</div>
 </div>
 <script>
 (function() {
   const POSTERS = [
-    'assets/posters/poster-01.jpg',
-    'assets/posters/poster-02.jpg',
-    'assets/posters/poster-03.jpg'
+    { img: 'assets/posters/poster-01.jpg', caption: 'เราเปลี่ยนพ่อแม่ไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🌱' },
+    { img: 'assets/posters/poster-02.jpg', caption: 'เราเปลี่ยนลูกไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🥛' },
+    { img: 'assets/posters/poster-03.jpg', caption: 'เราเปลี่ยนรัฐบาลไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🔐' }
   ];
   const idx = Math.floor(Math.random() * POSTERS.length);
+  const pick = POSTERS[idx];
   const overlay = document.getElementById('posterCover');
   const img = document.getElementById('posterCoverImg');
   img.addEventListener('load', () => img.classList.add('loaded'));
-  img.src = POSTERS[idx];
+  img.src = pick.img;
+  document.getElementById('posterCoverCaption').textContent = pick.caption;
   document.getElementById('posterCoverNum').textContent = String(idx + 1).padStart(2, '0');
   document.body.style.overflow = 'hidden';
   const close = () => {
