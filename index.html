@@ -466,9 +466,54 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .preprod-text { font-size: 11px; }
   .preprod-banner { padding: 8px 12px; }
 }
+
+.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 24px; opacity: 1; transition: opacity 0.6s ease-out; }
+.poster-cover.dismissed { opacity: 0; pointer-events: none; }
+.poster-cover-image { max-width: min(90vw, 720px); max-height: 82vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
+.poster-cover-image.loaded { opacity: 1; }
+.poster-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; }
+.poster-cover-meta span { color: #F7931A; }
+.poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.poster-cover-close:hover { border-color: #F7931A; color: #F7931A; }
+@media (max-width: 768px) {
+  .poster-cover { padding: 20px; gap: 16px; }
+  .poster-cover-image { max-height: 78vh; }
+  .poster-cover-meta { font-size: 8px; letter-spacing: 2px; }
+  .poster-cover-close { top: 12px; right: 12px; }
+}
 </style>
 </head>
 <body class="lang-th">
+<div id="posterCover" class="poster-cover" role="dialog" aria-label="SATOSHI.FILM cover">
+  <button id="posterCoverClose" class="poster-cover-close" aria-label="Close cover">×</button>
+  <img id="posterCoverImg" class="poster-cover-image" src="" alt="SATOSHI.FILM">
+  <div class="poster-cover-meta">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03 · ESC TO ENTER</div>
+</div>
+<script>
+(function() {
+  const POSTERS = [
+    'assets/posters/poster-01.jpg',
+    'assets/posters/poster-02.jpg',
+    'assets/posters/poster-03.jpg'
+  ];
+  const idx = Math.floor(Math.random() * POSTERS.length);
+  const overlay = document.getElementById('posterCover');
+  const img = document.getElementById('posterCoverImg');
+  img.addEventListener('load', () => img.classList.add('loaded'));
+  img.src = POSTERS[idx];
+  document.getElementById('posterCoverNum').textContent = String(idx + 1).padStart(2, '0');
+  document.body.style.overflow = 'hidden';
+  const close = () => {
+    overlay.classList.add('dismissed');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    setTimeout(() => overlay.remove(), 700);
+  };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  document.getElementById('posterCoverClose').addEventListener('click', close);
+  document.addEventListener('keydown', onKey);
+})();
+</script>
 <div id="preProdBanner" class="preprod-banner">
   <div class="preprod-content">
     <span class="preprod-text">
