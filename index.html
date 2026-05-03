@@ -467,27 +467,18 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .preprod-banner { padding: 8px 12px; }
 }
 
-.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; align-items: center; justify-content: center; padding: 48px; opacity: 1; transition: opacity 0.6s ease-out; }
+.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 24px; opacity: 1; transition: opacity 0.6s ease-out; }
 .poster-cover.dismissed { opacity: 0; pointer-events: none; }
-.poster-cover-inner { display: flex; align-items: center; gap: 64px; max-width: 1200px; width: 100%; }
-.poster-cover-image { flex: 0 0 auto; max-width: 55%; max-height: 82vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
+.poster-cover-image { max-width: min(90vw, 720px); max-height: 82vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
 .poster-cover-image.loaded { opacity: 1; }
-.poster-cover-caption { flex: 1; min-width: 0; }
-.poster-cover-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #666660; margin-bottom: 28px; }
-.poster-cover-eyebrow span { color: #F7931A; }
-.poster-cover-quote-th { font-family: 'Noto Serif Thai', serif; font-size: 30px; line-height: 1.5; color: #d4d0c8; margin-bottom: 24px; }
-.poster-cover-quote-en { font-family: 'Space Mono', monospace; font-size: 14px; line-height: 1.7; color: #8BA8C4; letter-spacing: 0.5px; max-width: 480px; }
-.poster-cover-meta { margin-top: 48px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #00FF41; opacity: 0.7; }
+.poster-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; }
+.poster-cover-meta span { color: #F7931A; }
 .poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .poster-cover-close:hover { border-color: #F7931A; color: #F7931A; }
 @media (max-width: 768px) {
-  .poster-cover { padding: 24px; }
-  .poster-cover-inner { flex-direction: column; gap: 28px; align-items: center; text-align: center; }
-  .poster-cover-image { max-width: 100%; max-height: 52vh; }
-  .poster-cover-quote-th { font-size: 22px; margin-bottom: 16px; }
-  .poster-cover-quote-en { font-size: 12px; }
-  .poster-cover-eyebrow { margin-bottom: 20px; font-size: 9px; }
-  .poster-cover-meta { margin-top: 28px; }
+  .poster-cover { padding: 20px; gap: 16px; }
+  .poster-cover-image { max-height: 78vh; }
+  .poster-cover-meta { font-size: 8px; letter-spacing: 2px; }
   .poster-cover-close { top: 12px; right: 12px; }
 }
 </style>
@@ -495,32 +486,21 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 <body class="lang-th">
 <div id="posterCover" class="poster-cover" role="dialog" aria-label="SATOSHI.FILM cover">
   <button id="posterCoverClose" class="poster-cover-close" aria-label="Close cover">×</button>
-  <div class="poster-cover-inner">
-    <img id="posterCoverImg" class="poster-cover-image" src="" alt="">
-    <div class="poster-cover-caption">
-      <div class="poster-cover-eyebrow">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03</div>
-      <div id="posterCoverQuoteTh" class="poster-cover-quote-th"></div>
-      <div id="posterCoverQuoteEn" class="poster-cover-quote-en"></div>
-      <div class="poster-cover-meta">PRESS ESC OR × TO ENTER</div>
-    </div>
-  </div>
+  <img id="posterCoverImg" class="poster-cover-image" src="" alt="SATOSHI.FILM">
+  <div class="poster-cover-meta">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03 · ESC TO ENTER</div>
 </div>
 <script>
 (function() {
-  const COVERS = [
-    { img: 'assets/posters/poster-01.jpg', th: 'ยังไม่มีชื่อ ให้สิ่งที่เขากำลังทำ', en: 'There is no name yet for what he is making.' },
-    { img: 'assets/posters/poster-02.jpg', th: 'เธอกอดลูกไว้ — ในขณะที่กลายเป็นอย่างอื่น', en: 'She holds her child while becoming something else.' },
-    { img: 'assets/posters/poster-03.jpg', th: 'วันสุดท้าย ที่ไม่มีใครรู้จักเขา', en: 'The last day no one knew him.' }
+  const POSTERS = [
+    'assets/posters/poster-01.jpg',
+    'assets/posters/poster-02.jpg',
+    'assets/posters/poster-03.jpg'
   ];
-  const idx = Math.floor(Math.random() * COVERS.length);
-  const pick = COVERS[idx];
+  const idx = Math.floor(Math.random() * POSTERS.length);
   const overlay = document.getElementById('posterCover');
   const img = document.getElementById('posterCoverImg');
   img.addEventListener('load', () => img.classList.add('loaded'));
-  img.src = pick.img;
-  img.alt = pick.en;
-  document.getElementById('posterCoverQuoteTh').textContent = pick.th;
-  document.getElementById('posterCoverQuoteEn').textContent = pick.en;
+  img.src = POSTERS[idx];
   document.getElementById('posterCoverNum').textContent = String(idx + 1).padStart(2, '0');
   document.body.style.overflow = 'hidden';
   const close = () => {
