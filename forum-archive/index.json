@@ -1,3 +1,9 @@
 {
-  "weeks": []
+  "weeks": [
+    {
+      "iso_week": "2026-W17",
+      "curated_date": "2025-04-27",
+      "topic_count": 21
+    }
+  ]
 }

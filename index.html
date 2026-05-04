@@ -466,9 +466,71 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .preprod-text { font-size: 11px; }
   .preprod-banner { padding: 8px 12px; }
 }
+
+.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 28px; opacity: 1; transition: opacity 0.6s ease-out; overflow-y: auto; }
+.poster-cover.dismissed { opacity: 0; pointer-events: none; }
+.poster-cover-image { max-width: min(90vw, 560px); max-height: 60vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
+.poster-cover-image.loaded { opacity: 1; }
+.poster-cover-caption { font-family: 'Tahoma', Arial, sans-serif; font-size: 1.05cm; line-height: 1.3; color: #d4d0c8; text-align: center; max-width: 92vw; letter-spacing: 0.01em; }
+.poster-cover-caption .en-only { font-size: 0.78em; }
+.poster-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; }
+.poster-cover-meta span { color: #F7931A; }
+.poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.poster-cover-close:hover { border-color: #F7931A; color: #F7931A; }
+.poster-cover-lang { position: absolute; top: 24px; left: 24px; height: 44px; padding: 0 14px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.poster-cover-lang:hover { border-color: #F7931A; color: #F7931A; }
+@media (max-width: 768px) {
+  .poster-cover { padding: 20px; gap: 18px; }
+  .poster-cover-image { max-height: 45vh; }
+  .poster-cover-caption { font-size: clamp(14px, 3vw, 1.05cm); }
+  .poster-cover-meta { font-size: 8px; letter-spacing: 2px; }
+  .poster-cover-close { top: 12px; right: 12px; }
+  .poster-cover-lang { top: 12px; left: 12px; height: 36px; padding: 0 10px; font-size: 10px; }
+}
 </style>
 </head>
 <body class="lang-th">
+<div id="posterCover" class="poster-cover" role="dialog" aria-label="SATOSHI.FILM cover">
+  <button id="posterCoverLang" class="poster-cover-lang" aria-label="Toggle language">EN | TH</button>
+  <button id="posterCoverClose" class="poster-cover-close" aria-label="Close cover">×</button>
+  <img id="posterCoverImg" class="poster-cover-image" src="" alt="SATOSHI.FILM">
+  <div id="posterCoverCaption" class="poster-cover-caption">
+    <span class="th-only" id="posterCoverCaptionTh"></span>
+    <span class="en-only" id="posterCoverCaptionEn"></span>
+  </div>
+  <div class="poster-cover-meta">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03 · ESC TO ENTER</div>
+</div>
+<script>
+(function() {
+  const POSTERS = [
+    { img: 'assets/posters/poster-01.jpg', th: 'เราเปลี่ยนพ่อแม่ไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🌱', en: "We can't change our parents, but we can change ourselves. 🌱" },
+    { img: 'assets/posters/poster-02.jpg', th: 'เราเปลี่ยนลูกไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🥛', en: "We can't change our children, but we can change ourselves. 🥛" },
+    { img: 'assets/posters/poster-03.jpg', th: 'เราเปลี่ยนรัฐบาลไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🔐', en: "We can't change the government, but we can change ourselves. 🔐" }
+  ];
+  const idx = Math.floor(Math.random() * POSTERS.length);
+  const pick = POSTERS[idx];
+  const overlay = document.getElementById('posterCover');
+  const img = document.getElementById('posterCoverImg');
+  img.addEventListener('load', () => img.classList.add('loaded'));
+  img.src = pick.img;
+  document.getElementById('posterCoverCaptionTh').textContent = pick.th;
+  document.getElementById('posterCoverCaptionEn').textContent = pick.en;
+  document.getElementById('posterCoverNum').textContent = String(idx + 1).padStart(2, '0');
+  document.body.style.overflow = 'hidden';
+  const close = () => {
+    overlay.classList.add('dismissed');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    setTimeout(() => overlay.remove(), 700);
+  };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  document.getElementById('posterCoverClose').addEventListener('click', close);
+  document.getElementById('posterCoverLang').addEventListener('click', () => {
+    if (typeof window.toggleLang === 'function') window.toggleLang();
+  });
+  document.addEventListener('keydown', onKey);
+})();
+</script>
 <div id="preProdBanner" class="preprod-banner">
   <div class="preprod-content">
     <span class="preprod-text">
@@ -669,7 +731,7 @@ function dismissPreProdBanner() {
 <nav>
   <a href="#" class="nav-logo">SATOSHi</a>
   <div class="nav-menu">
-    <a href="photobook.html" class="nav-link"><span class="th-only">หนังสือภาพ</span><span class="en-only">PHOTOBOOK</span></a>
+    <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
@@ -692,12 +754,12 @@ function dismissPreProdBanner() {
   <h1 class="hero-title">SATOSHi</h1>
   <div class="hero-title-th">ซ า โ ต ชิ</div>
   <div class="hero-premise">
-    <p class="th-only" style="color: #666660; opacity: 0.7;">เราทุกคนถูกขังอยู่ในระบบที่ออกแบบมาเพื่อให้แพ้</p>
-    <p class="en-only" style="color: #666660; opacity: 0.7;">We are all trapped in a system designed for us to lose.</p>
-    <p class="th-only">คนธรรมดาคนหนึ่ง — ที่อาจจะคือใครก็ได้ในพวกเรา — พยายามพาครอบครัวออกจากวงจรหนี้ที่ไม่มีที่สิ้นสุด ด้วยรหัสที่ไม่มีใครควบคุมได้</p>
-    <p class="en-only">An ordinary person — who could be any of us — tries to break his family free from an endless cycle of debt, using a code no one can control.</p>
-    <p class="th-only">เขาพิสูจน์ให้รุ่นถัดไปเห็นว่า <span class="highlight">อนาคตที่แท้จริงมีอยู่จริง</span></p>
-    <p class="en-only">He proves to the next generation that <span class="highlight">a real future exists</span>.</p>
+    <p class="th-only" style="color: #666660; opacity: 0.7;">เราต่างถูกขังอยู่ในระบบที่กำลังล่มสลายอยู่ตลอดเวลา</p>
+    <p class="en-only" style="color: #666660; opacity: 0.7;">We are all trapped in a system in constant collapse.</p>
+    <p class="th-only">คนหนึ่งคน<br>กับคอมหนึ่งเครื่อง<br>จะเปลี่ยนอะไรในโลกได้</p>
+    <p class="en-only">One person.<br>One computer.<br>What in the world can it change.</p>
+    <p class="th-only">เราจะพิสูจน์ความจริงในอนาคตได้อย่างไร<br><span class="highlight">ในเมื่อปัจจุบันยังถูกบิดเบือน</span></p>
+    <p class="en-only">How can we verify truth in the future<br><span class="highlight">when the present is still being distorted.</span></p>
     <p class="th-only">ในโลกที่ความจริงไม่ถูกกำหนดโดยใครอีกต่อไป — มันรอการตรวจสอบจากทุกคน</p>
     <p class="en-only">In a world where truth is no longer dictated by anyone — it waits to be verified by everyone.</p>
   </div>

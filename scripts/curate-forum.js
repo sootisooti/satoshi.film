@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * curate-forum.js (v3 - archive support)
+ * curate-forum.js (v4 - correct archive semantics)
  *
  * Weekly forum curation script for SATOSHI.FILM.
  *
@@ -9,11 +9,16 @@
  *   We scrape the standard board HTML pages instead, which are stable
  *   (the forum runs SMF 1.1 with custom theme - unchanged for years).
  *
- * Archive behavior (v3):
- *   Each run writes TWO files:
- *   1. forum-archive/YYYY-W##.json (permanent snapshot)
- *   2. forum-daily.json (latest week, overwritten)
- *   Also maintains forum-archive/index.json manifest for week picker.
+ * Archive behavior (v4):
+ *   On each run, the existing forum-daily.json (previous week's curation)
+ *   is snapshotted to forum-archive/<prev-iso-week>.json BEFORE
+ *   forum-daily.json is overwritten with this week's curation. The
+ *   current week lives only in forum-daily.json (served as "CURRENT" in
+ *   the week picker); forum-archive/index.json lists past weeks only.
+ *
+ *   v3 wrote the current week to both files on the same run, producing
+ *   byte-identical files and a manifest entry that duplicated CURRENT
+ *   in the dropdown (issue #29).
  */
 
 import { writeFile, mkdir, readFile } from "node:fs/promises";
@@ -35,7 +40,7 @@ const BOARDS = [
 
 const MAX_CANDIDATES = 60;
 const OUT_FILE = "forum-daily.json";
-const MODEL = "claude-sonnet-4-5";
+const MODEL = "claude-sonnet-4-6";
 const MAX_TOKENS = 16000;
 const FETCH_TIMEOUT_MS = 15000;
 
@@ -208,6 +213,24 @@ RULES:
 - Avoid exclamation marks. Avoid "revolutionary" and "game-changer".
 - Thai: Sarabun register (moderately formal). Not royal. Not slang.
 
+TRANSLATION RULES FOR THAI FIELDS (title_th, summary_th, take_th):
+
+KEEP IN ENGLISH — do NOT translate these terms, ever:
+  private key, public key, hard fork, soft fork, proof of work, hash rate,
+  block, blockchain, mining, mempool, UTXO, node, wallet, address, script,
+  Lightning Network, Nostr, Taproot, SegWit, Schnorr, semantics, quantum,
+  post-quantum, quantum hard fork, post-quantum migration, cryptography,
+  protocol, algorithm, consensus, Byzantine, Merkle, elliptic curve, Bitcoin
+
+TRANSLATE TO THAI naturally — avoid over-literal translations:
+  "migration" in a technical/crypto context → "การอัปเกรด" or "การเปลี่ยนระบบ"
+    (NOT "ย้ายถิ่น", which means emigrating to another country)
+  "frozen" / "locked" → use the contextually correct Thai equivalent
+
+UTF-8 SAFETY: Thai output fields must contain ONLY Thai Unicode characters,
+  standard ASCII, or the approved English terms above. Do NOT output Cyrillic
+  letters, look-alike Latin substitutes, or any other non-Thai non-ASCII glyphs.
+
 Return ONLY valid JSON in this shape:
 
 {
@@ -226,6 +249,26 @@ ${candidateLines}
 `;
 }
 
+function extractJson(responseText) {
+  // Extract content from a complete markdown code fence (handles preamble text)
+  const fenceMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch) return fenceMatch[1].trim();
+
+  // Strip incomplete leading/trailing fences
+  const cleaned = responseText
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
+
+  // Last resort: find outermost JSON object by brace boundaries (handles preamble)
+  const start = cleaned.indexOf("{");
+  const end = cleaned.lastIndexOf("}");
+  if (start !== -1 && end > start) return cleaned.slice(start, end + 1);
+
+  return cleaned;
+}
+
 async function callClaude(prompt) {
   log(`Calling Claude API (${MODEL}, max_tokens=${MAX_TOKENS})`);
   const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -238,6 +281,7 @@ async function callClaude(prompt) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: MAX_TOKENS,
+      system: "You are a JSON-only API endpoint. Respond with raw JSON exclusively. Do not include markdown code fences, preamble text, or any explanation — only the JSON object itself.",
       messages: [{ role: "user", content: prompt }],
     }),
   });
@@ -248,13 +292,14 @@ async function callClaude(prompt) {
   }
 
   const data = await res.json();
-  return data.content
+  const responseText = data.content
     .filter((b) => b.type === "text")
     .map((b) => b.text)
-    .join("\n")
-    .replace(/^```json\s*/m, "")
-    .replace(/```\s*$/m, "")
-    .trim();
+    .join("\n");
+
+  log(`[DEBUG] Raw response (first 500 chars): ${responseText.slice(0, 500)}`);
+
+  return extractJson(responseText);
 }
 
 (async () => {
@@ -308,13 +353,34 @@ async function callClaude(prompt) {
     // Ensure archive directory exists
     await mkdir(archiveDir, { recursive: true });
 
-    // 1. Write archive snapshot FIRST (before overwriting forum-daily.json)
-    const archiveFileName = `${isoWeek}.json`;
-    const archivePath = resolve(archiveDir, archiveFileName);
-    await writeFile(archivePath, JSON.stringify(parsed, null, 2) + "\n");
-    log(`Wrote archive: forum-archive/${archiveFileName}`);
+    const outPath = resolve(repoRoot, OUT_FILE);
 
-    // 2. Update archive manifest (index.json)
+    // 1. Read existing forum-daily.json to capture the PREVIOUS week's data
+    //    before we overwrite it. That snapshot is what belongs in the archive.
+    let previousWeekData = null;
+    try {
+      const existingDailyRaw = await readFile(outPath, "utf-8");
+      const existingDaily = JSON.parse(existingDailyRaw);
+      if (existingDaily.iso_week && existingDaily.iso_week !== isoWeek) {
+        previousWeekData = existingDaily;
+      } else if (!existingDaily.iso_week) {
+        log("Existing forum-daily.json has no iso_week field, skipping archive");
+      } else {
+        log(`Existing forum-daily.json is same week (${isoWeek}), skipping archive`);
+      }
+    } catch (err) {
+      log("No existing forum-daily.json to archive (first run?)");
+    }
+
+    // 2. Snapshot the previous week to forum-archive/<prev-iso-week>.json
+    if (previousWeekData) {
+      const prevWeek = previousWeekData.iso_week;
+      const prevArchivePath = resolve(archiveDir, `${prevWeek}.json`);
+      await writeFile(prevArchivePath, JSON.stringify(previousWeekData, null, 2) + "\n");
+      log(`Archived previous week: forum-archive/${prevWeek}.json`);
+    }
+
+    // 3. Update archive manifest (index.json)
     const manifestPath = resolve(archiveDir, "index.json");
     let manifest = { weeks: [] };
     try {
@@ -324,19 +390,30 @@ async function callClaude(prompt) {
       log("No existing manifest, creating new one");
     }
 
-    // Add this week if not already present
-    if (!manifest.weeks.find(w => w.iso_week === isoWeek)) {
-      manifest.weeks.unshift({
-        iso_week: isoWeek,
-        curated_date: parsed.curated_date,
-        topic_count: parsed.topics.length
-      });
-      log(`Added ${isoWeek} to manifest`);
-    } else {
-      log(`${isoWeek} already in manifest, updating entry`);
-      const existing = manifest.weeks.find(w => w.iso_week === isoWeek);
-      existing.curated_date = parsed.curated_date;
-      existing.topic_count = parsed.topics.length;
+    // Current week lives in forum-daily.json (CURRENT option), never the archive.
+    // Drop any stale entry for the current week from older buggy runs.
+    const beforeLen = manifest.weeks.length;
+    manifest.weeks = manifest.weeks.filter(w => w.iso_week !== isoWeek);
+    if (manifest.weeks.length !== beforeLen) {
+      log(`Removed stale current-week entry (${isoWeek}) from manifest`);
+    }
+
+    // Record the previous week we just archived
+    if (previousWeekData) {
+      const prevWeek = previousWeekData.iso_week;
+      const existing = manifest.weeks.find(w => w.iso_week === prevWeek);
+      if (existing) {
+        existing.curated_date = previousWeekData.curated_date;
+        existing.topic_count = previousWeekData.topics?.length || 0;
+        log(`Updated ${prevWeek} in manifest`);
+      } else {
+        manifest.weeks.unshift({
+          iso_week: prevWeek,
+          curated_date: previousWeekData.curated_date,
+          topic_count: previousWeekData.topics?.length || 0,
+        });
+        log(`Added ${prevWeek} to manifest`);
+      }
     }
 
     // Keep manifest sorted by ISO week (newest first)
@@ -345,8 +422,7 @@ async function callClaude(prompt) {
     await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
     log("Updated manifest: forum-archive/index.json");
 
-    // 3. Write forum-daily.json (overwrites previous week)
-    const outPath = resolve(repoRoot, OUT_FILE);
+    // 4. Write forum-daily.json (overwrites previous week's content)
     await writeFile(outPath, JSON.stringify(parsed, null, 2) + "\n");
     log(`Wrote ${parsed.topics.length} topics to ${OUT_FILE}`);
     log("Done.");

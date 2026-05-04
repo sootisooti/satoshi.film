@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SATOSHI — DIALOGUE บทสนทนา</title>
-<meta name="description" content="SATOSHI — เรื่องจริงของคนจริง กลายเป็นบทหนัง Real stories become the screenplay">
+<meta name="description" content="SATOSHI — สนทนาภาษาซาโตชิ — Speak Satoshi's Language">
 <meta property="og:title" content="SATOSHI — DIALOGUE">
 <meta property="og:description" content="ร่วมเขียนบทหนัง SATOSHI ด้วยเรื่องจริงของคุณ">
 <meta property="og:type" content="website">
@@ -299,6 +299,201 @@ const SAMPLE_COLLECTION = [
 ];
 
 
+// ─── SATOSHI QUOTES (The Book of Satoshi by Phil Champagne) ───
+function pickRandom(arr, n) {
+  var copy = arr.slice();
+  var result = [];
+  for (var i = 0; i < n && copy.length > 0; i++) {
+    var idx = Math.floor(Math.random() * copy.length);
+    result.push(copy.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
+function pickWeekly(arr, n) {
+  // Returns a deterministic set of n items based on current ISO week number
+  // Changes every 7 days so content rotates weekly without repeating
+  var msPerWeek = 7 * 24 * 60 * 60 * 1000;
+  var week = Math.floor(Date.now() / msPerWeek);
+  var copy = arr.slice();
+  var result = [];
+  for (var i = 0; i < n && copy.length > 0; i++) {
+    var s = Math.sin(week * 997 + i * 31) * 99991;
+    var idx = Math.floor(Math.abs(s) % copy.length);
+    result.push(copy.splice(idx, 1)[0]);
+  }
+  return result;
+}
+
+const SATOSHI_QUOTES = [
+  {
+    id: "sq_01",
+    date_th: "1 พ.ย. 2551", date_en: "Nov 1, 2008",
+    context_th: "ประกาศครั้งแรก — Cryptography Mailing List",
+    context_en: "First Announcement — Cryptography Mailing List",
+    chapter: "Ch.3",
+    exchanges: [
+      { who: "satoshi",
+        th: "ผมกำลังพัฒนาระบบเงินอิเล็กทรอนิกส์แบบใหม่ที่เป็น peer-to-peer อย่างสมบูรณ์ โดยไม่ต้องมีตัวกลางที่ไว้วางใจ",
+        en: "I've been working on a new electronic cash system that's fully peer-to-peer, with no trusted third party." }
+    ]
+  },
+  {
+    id: "sq_02",
+    date_th: "7 พ.ย. 2551", date_en: "Nov 7, 2008",
+    context_th: "ตอบโต้นักวิจารณ์ — Cryptography Mailing List",
+    context_en: "Reply to Critics — Cryptography Mailing List",
+    chapter: "Ch.6",
+    exchanges: [
+      { who: "other", name_en: "Anonymous",
+        th: "คุณจะไม่พบทางออกสำหรับปัญหาทางการเมืองในวิทยาการเข้ารหัสลับ",
+        en: "You will not find a solution to political problems in cryptography." },
+      { who: "satoshi",
+        th: "ใช่ แต่เราสามารถชนะการต่อสู้สำคัญในสงครามอาวุธนี้ รัฐบาลเก่งในการตัดหัวเครือข่ายรวมศูนย์อย่าง Napster แต่เครือข่าย P2P ที่แท้จริงอย่าง Gnutella และ Tor ดูเหมือนจะยืนหยัดอยู่ได้",
+        en: "Yes, but we can win a major battle in the arms race. Governments are good at cutting off the heads of a centrally controlled network like Napster, but pure P2P networks like Gnutella and Tor seem to be holding their own." }
+    ]
+  },
+  {
+    id: "sq_03",
+    date_th: "9 พ.ย. 2551", date_en: "Nov 9, 2008",
+    context_th: "ตอบ Hal Finney — Cryptography Mailing List",
+    context_en: "Reply to Hal Finney — Cryptography Mailing List",
+    chapter: "Ch.8",
+    exchanges: [
+      { who: "satoshi",
+        th: "จริงๆ แล้วผมทำมันกลับด้าน ผมต้องเขียนโค้ดทั้งหมดก่อน ถึงจะโน้มน้าวตัวเองได้ว่าสามารถแก้ปัญหาทุกอย่างได้ แล้วจึงเขียน whitepaper",
+        en: "I actually did this kind of backwards. I had to write all the code before I could convince myself that I could solve every problem, then I wrote the paper." }
+    ]
+  },
+  {
+    id: "sq_04",
+    date_th: "14 พ.ย. 2551", date_en: "Nov 14, 2008",
+    context_th: "ถึง Hal Finney — Cryptography Mailing List",
+    context_en: "To Hal Finney — Cryptography Mailing List",
+    chapter: "Ch.14",
+    exchanges: [
+      { who: "satoshi",
+        th: "มันน่าดึงดูดมากสำหรับมุมมองแบบ libertarian ถ้าเราอธิบายได้ถูกต้อง แต่ผมถนัดโค้ดมากกว่าคำพูด",
+        en: "It's very attractive to the libertarian viewpoint if we can explain it properly. I'm better with code than with words though." }
+    ]
+  },
+  {
+    id: "sq_05",
+    date_th: "11 ก.พ. 2552", date_en: "Feb 11, 2009",
+    context_th: "ประกาศบน P2P Foundation",
+    context_en: "Post on P2P Foundation",
+    chapter: "Ch.21",
+    exchanges: [
+      { who: "satoshi",
+        th: "ปัญหาหลักของสกุลเงินแบบดั้งเดิมคือความไว้วางใจทั้งหมดที่จำเป็น ธนาคารกลางต้องได้รับความไว้วางใจว่าจะไม่ทำให้เงินเสื่อมค่า แต่ประวัติศาสตร์ของสกุลเงิน fiat เต็มไปด้วยการละเมิดความไว้วางใจนั้น",
+        en: "The root problem with conventional currency is all the trust that's required to make it work. The central bank must be trusted not to debase the currency, but the history of fiat currencies is full of breaches of that trust." }
+    ]
+  },
+  {
+    id: "sq_06",
+    date_th: "15 ก.พ. 2552", date_en: "Feb 15, 2009",
+    context_th: "ตอบ Sepp Hasslberger — P2P Foundation",
+    context_en: "Reply to Sepp Hasslberger — P2P Foundation",
+    chapter: "Ch.22",
+    exchanges: [
+      { who: "satoshi",
+        th: "คนจำนวนมากมักปัดทิ้ง e-currency ว่าเป็นเรื่องสูญเปล่า เพราะบริษัทที่ล้มเหลวมากมายในยุค 90s ผมหวังว่ามันชัดเจนแล้วว่าธรรมชาติของระบบรวมศูนย์เท่านั้นที่ทำให้มันพัง นี่เป็นครั้งแรกที่เราลองใช้ระบบกระจายอำนาจที่ไม่ต้องอาศัยความไว้วางใจ",
+        en: "A lot of people automatically dismiss e-currency as a lost cause because of all the companies that failed since the 1990's. I think this is the first time we're trying a decentralized, non-trust-based system." }
+    ]
+  },
+  {
+    id: "sq_07",
+    date_th: "18 ก.พ. 2552", date_en: "Feb 18, 2009",
+    context_th: "เรื่องอุปทานเงิน — P2P Foundation",
+    context_en: "On Money Supply — P2P Foundation",
+    chapter: "Ch.23",
+    exchanges: [
+      { who: "satoshi",
+        th: "ในแง่นี้มันเหมือนโลหะมีค่ามากกว่า แทนที่อุปทานจะเปลี่ยนเพื่อรักษามูลค่า อุปทานถูกกำหนดไว้ล่วงหน้าและมูลค่าต่างหากที่เปลี่ยนแปลง เมื่อจำนวนผู้ใช้เพิ่มขึ้น มูลค่าต่อเหรียญก็เพิ่มขึ้น",
+        en: "In this sense, it's more typical of a precious metal. Instead of the supply changing to keep the value the same, the supply is predetermined and the value changes. As the number of users grows, the value per coin increases." }
+    ]
+  },
+  {
+    id: "sq_08",
+    date_th: "10 ธ.ค. 2552", date_en: "Dec 10, 2009",
+    context_th: "ตอบ SmokeTooMuch เรื่อง Open Source — Bitcointalk Forum",
+    context_en: "On Open Source — Bitcointalk Forum",
+    chapter: "Ch.29",
+    exchanges: [
+      { who: "satoshi",
+        th: "การเป็น open source หมายความว่าทุกคนสามารถตรวจสอบโค้ดได้อย่างอิสระ ถ้ามันเป็น closed source ก็ไม่มีใครยืนยันความปลอดภัยได้ ผมคิดว่าโปรแกรมแบบนี้จำเป็นต้องเป็น open source",
+        en: "Being open source means anyone can independently review the code. If it was closed source, nobody could verify the security. I think it's essential for a program of this nature to be open source." }
+    ]
+  },
+  {
+    id: "sq_09",
+    date_th: "10 ธ.ค. 2552", date_en: "Dec 10, 2009",
+    context_th: "ตอบ SmokeTooMuch เรื่อง wallet หาย — Bitcointalk Forum",
+    context_en: "On Lost Wallets — Bitcointalk Forum",
+    chapter: "Ch.29",
+    exchanges: [
+      { who: "other", name_en: "SmokeTooMuch",
+        th: "ถ้าใครสูญเสีย wallet ไป เหรียญเหล่านั้นก็หายไปตลอดกาลเลยหรือ?",
+        en: "If someone loses their wallet, those coins are lost forever?" },
+      { who: "satoshi",
+        th: "เหรียญเหล่านั้นจะไม่มีวันถูกกู้คืน และการหมุนเวียนทั้งหมดก็น้อยลง เนื่องจากการหมุนเวียนที่มีประสิทธิภาพลดลง เหรียญที่เหลืออยู่จึงมีค่ามากขึ้นเล็กน้อย",
+        en: "Those coins can never be recovered, and the total circulation is less. Since the effective circulation is reduced, all the remaining coins are worth slightly more." }
+    ]
+  },
+  {
+    id: "sq_10",
+    date_th: "21 มิ.ย. 2553", date_en: "Jun 21, 2010",
+    context_th: "ตอบ virtualcoin — Bitcointalk Forum",
+    context_en: "Reply to virtualcoin — Bitcointalk Forum",
+    chapter: "Ch.30",
+    exchanges: [
+      { who: "satoshi",
+        th: "เหรียญที่หายไปทำให้เหรียญของทุกคนมีมูลค่าสูงขึ้นเล็กน้อย คิดว่ามันเป็นการบริจาคให้กับทุกคน",
+        en: "Lost coins only make everyone else's coins worth slightly more. Think of it as a donation to everyone." }
+    ]
+  },
+  {
+    id: "sq_11",
+    date_th: "5 ธ.ค. 2553", date_en: "Dec 5, 2010",
+    context_th: "เรื่อง WikiLeaks — Bitcointalk Forum",
+    context_en: "On WikiLeaks — Bitcointalk Forum",
+    chapter: "Ch.65",
+    exchanges: [
+      { who: "other", name_en: "RHorning",
+        th: "ให้ WikiLeaks ใช้ Bitcoin เลย ต้อนรับมัน",
+        en: "Basically, bring it on. Let's encourage Wikileaks to use Bitcoins." },
+      { who: "satoshi",
+        th: "ไม่ อย่า 'ต้อนรับมัน' โครงการนี้ต้องเติบโตอย่างค่อยเป็นค่อยไปเพื่อให้ซอฟต์แวร์แข็งแกร่งขึ้น ความร้อนแรงที่พวกเขาจะนำมาอาจทำลายเราในขั้นตอนนี้",
+        en: "No, don't 'bring it on'. The project needs to grow gradually so the software can be strengthened along the way. The heat you would bring would likely destroy us at this stage." }
+    ]
+  },
+  {
+    id: "sq_12",
+    date_th: "11 ธ.ค. 2553", date_en: "Dec 11, 2010",
+    context_th: "โพสต์เกือบสุดท้าย — Bitcointalk Forum",
+    context_en: "Penultimate Public Post — Bitcointalk Forum",
+    chapter: "Ch.67",
+    exchanges: [
+      { who: "satoshi",
+        th: "คงดีกว่าถ้าได้รับความสนใจแบบนี้ในบริบทอื่น WikiLeaks ได้เขย่ารังตัวต่อ และฝูงกำลังมุ่งหน้ามาหาเรา",
+        en: "It would have been nice to get this attention in any other context. WikiLeaks has kicked the hornet's nest, and the swarm is headed towards us." }
+    ]
+  },
+  {
+    id: "sq_13",
+    date_th: "26 เม.ย. 2554", date_en: "Apr 26, 2011",
+    context_th: "อีเมลสุดท้ายถึง Gavin Andresen",
+    context_en: "Last Known Email to Gavin Andresen",
+    chapter: "Ch.70",
+    exchanges: [
+      { who: "satoshi",
+        th: "ผมหวังว่าคุณจะไม่พูดถึงผมว่าเป็นบุคคลลึกลับที่อยู่ในเงา สื่อจะเปลี่ยนมันเป็นมุมมองสกุลเงินโจรสลัด บางทีแทนที่จะพูดถึง open source project แล้วให้เครดิตนักพัฒนาของคุณมากขึ้น มันช่วยสร้างแรงจูงใจให้พวกเขา",
+        en: "I wish you wouldn't keep talking about me as a mysterious shadowy figure, the press just turns that into a pirate currency angle. Maybe instead make it about the open source project and give more credit to your dev contributors." }
+    ]
+  }
+];
+
+
 // ─── DIALOGUE CARD COMPONENT ───────────────
 function DialogueCard({ d, compact, onSelect, selected }) {
   const color = WORLDS[d.world]?.color || "#F7931A";
@@ -371,6 +566,48 @@ function BlockBar({ count, max }) {
 }
 
 
+// ─── SATOSHI QUOTE CARD ────────────────────
+function SatoshiCard({ q }) {
+  return (
+    <div style={{
+      background: "rgba(0,255,65,0.015)",
+      border: "1px solid rgba(0,255,65,0.12)",
+      padding: "20px 22px",
+      marginBottom: 14
+    }} className="fade-in">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8, flexWrap: "wrap", gap: 4 }}>
+        <span style={{ fontFamily: "var(--mono)", fontSize: "0.58rem", color: "#00FF41", opacity: 0.5, letterSpacing: "0.15em" }}>
+          {q.chapter}
+        </span>
+        <span style={{ fontFamily: "var(--mono)", fontSize: "0.55rem", color: "rgba(232,230,225,0.2)", letterSpacing: "0.08em" }}>
+          {q.date_en}
+        </span>
+      </div>
+      <div style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(0,255,65,0.35)", letterSpacing: "0.08em", marginBottom: 14, lineHeight: 1.5 }}>
+        {q.context_th}<br/>
+        <span style={{ color: "rgba(0,255,65,0.2)" }}>{q.context_en}</span>
+      </div>
+      {q.exchanges.map(function(ex, i) {
+        var isSatoshi = ex.who === "satoshi";
+        return (
+          <div key={i} style={{ marginBottom: 12, paddingLeft: 14, borderLeft: "2px solid " + (isSatoshi ? "rgba(247,147,26,0.4)" : "rgba(139,168,196,0.2)") }}>
+            <div style={{ fontFamily: "var(--mono)", fontSize: "0.55rem", color: isSatoshi ? "#F7931A" : "#8BA8C4", letterSpacing: "0.12em", marginBottom: 4 }}>
+              {isSatoshi ? "SATOSHI" : (ex.name_en || "—")}
+            </div>
+            <div style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "1rem", lineHeight: 1.75 }}>
+              "{ex.th}"
+            </div>
+            <div style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.25)", fontSize: "0.67rem", marginTop: 4, lineHeight: 1.6 }}>
+              "{ex.en}"
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
 // ─── SECTION DIVIDER ───────────────────────
 function Divider({ color, label }) {
   return (
@@ -381,7 +618,8 @@ function Divider({ color, label }) {
           position: "absolute", top: -8, left: "50%", transform: "translateX(-50%)",
           background: "#080806", padding: "0 16px",
           fontFamily: "var(--mono)", fontSize: "0.6rem",
-          color: color || "#F7931A", letterSpacing: "0.25em", opacity: 0.6
+          color: color || "#F7931A", letterSpacing: "0.25em", opacity: 0.6,
+          whiteSpace: "nowrap"
         }}>{label}</span>
       )}
     </div>
@@ -404,6 +642,7 @@ function App() {
   const [submitTarget, setSubmitTarget] = useState(null);
   const [sceneCounter, setSceneCounter] = useState(4);
   const [collectionFilter, setCollectionFilter] = useState("all");
+  const [satoshiSample, setSatoshiSample] = useState(function() { return pickWeekly(SATOSHI_QUOTES, 5); });
 
   var storyRef = useRef(null);
   var generateRef = useRef(null);
@@ -548,10 +787,10 @@ function App() {
       <div style={{ marginBottom: 20 }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <p style={{ fontFamily: "var(--thai)", color: "#8BA8C4", fontSize: "1.1rem", margin: "0 0 6px", lineHeight: 1.8 }}>
-            เรื่องจริงของคนจริง กลายเป็นบทหนัง
+            สนทนาภาษาซาโตชิ
           </p>
           <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.72rem" }}>
-            Real stories from real people, becoming the screenplay
+            Speak Satoshi's Language
           </p>
         </div>
 
@@ -578,6 +817,73 @@ function App() {
 
         <div style={{ textAlign: "center", padding: "20px 0", fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)" }}>
           {SAMPLE_COLLECTION.length} dialogues collected — ร่วมสร้างบทต่อไป ↓
+        </div>
+      </div>
+
+
+      {/* ══════ SATOSHI VOICE SECTION ══════ */}
+      <div>
+        <Divider color="#00FF41" label="SATOSHI — เสียงจากต้นทาง" />
+
+        <div style={{ textAlign: "center", marginBottom: 28 }}>
+          <p style={{ fontFamily: "var(--thai)", color: "#00FF41", fontSize: "1.05rem", opacity: 0.75, margin: "0 0 6px", lineHeight: 1.7 }}>
+            บทสนทนาจริงของซาโตชิ
+          </p>
+          <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.68rem", margin: "0 0 4px" }}>
+            Real words — The Book of Satoshi by Phil Champagne
+          </p>
+          <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.15)", fontSize: "0.56rem", letterSpacing: "0.1em" }}>
+            NOV 2008 — APR 2011
+          </p>
+        </div>
+
+        <div style={{ textAlign: "center", marginBottom: 28 }}>
+          <button
+            onClick={function() { setSatoshiSample(pickRandom(SATOSHI_QUOTES, 5)); }}
+            style={{
+              fontFamily: "var(--mono)", fontSize: "0.75rem", padding: "10px 28px",
+              border: "1px solid rgba(0,255,65,0.35)", background: "transparent", color: "#00FF41",
+              cursor: "pointer", letterSpacing: "0.15em", transition: "all 0.2s"
+            }}
+          >
+            RANDOM
+          </button>
+        </div>
+
+        {satoshiSample.map(function(q) {
+          return <SatoshiCard key={q.id} q={q} />;
+        })}
+
+        <div style={{ textAlign: "center", padding: "24px 0 8px" }}>
+          <p style={{ fontFamily: "var(--mono)", fontSize: "0.58rem", color: "rgba(232,230,225,0.2)", marginBottom: 14, letterSpacing: "0.1em" }}>
+            อ่านบทสนทนาฉบับเต็มได้ที่ — Read the full conversations at
+          </p>
+          <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+            <a
+              href="https://satuser.gitbook.io/en-the-book-of-satoshi-by-phil-champagne-beta"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--mono)", fontSize: "0.62rem", padding: "8px 18px",
+                border: "1px solid rgba(0,255,65,0.22)", color: "#00FF41",
+                textDecoration: "none", letterSpacing: "0.1em", display: "inline-block"
+              }}
+            >
+              EN — The Book of Satoshi ↗
+            </a>
+            <a
+              href="https://satuser.gitbook.io/th-the-book-of-satoshi-by-phil-champagne-beta-844543"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--mono)", fontSize: "0.62rem", padding: "8px 18px",
+                border: "1px solid rgba(0,255,65,0.22)", color: "#00FF41",
+                textDecoration: "none", letterSpacing: "0.1em", display: "inline-block"
+              }}
+            >
+              TH — หนังสือของซาโตชิ ↗
+            </a>
+          </div>
         </div>
       </div>
 
