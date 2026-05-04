@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATOSHI.MEDIA — SATOSHI</title>
+<title>PHOTOBOOK — SATOSHI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
@@ -15,240 +15,386 @@ body {
   background: #080806;
   color: #d4d0c8;
   min-height: 100vh;
-  padding: 80px 20px 60px;
+  padding-top: 56px;
 }
 
-.container {
-  text-align: center;
-  max-width: 1200px;
+/* ── LAYOUT ── */
+.page-wrap {
+  max-width: 760px;
   margin: 0 auto;
+  padding: 40px 20px 80px;
 }
 
+/* ── BLOCK HEIGHT ── */
 .block-height {
   font-family: 'Space Mono', monospace;
   font-size: 11px;
   letter-spacing: 3px;
   color: #666660;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  text-align: center;
 }
+.block-height a { color: inherit; text-decoration: none; transition: color 0.3s; }
+.block-height a:hover { color: #F7931A; }
+.block-num { color: #F7931A; }
 
-.block-height a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s;
+/* ── PAGE TITLE ── */
+.page-titles {
+  text-align: center;
+  margin-bottom: 48px;
 }
-
-.block-height a:hover {
-  color: #F7931A;
-}
-
-.block-num {
-  color: #F7931A;
-}
-
 .title-th {
   font-family: 'Noto Serif Thai', serif;
-  font-size: clamp(28px, 6vw, 42px);
-  color: #d4d0c8;
-  margin-bottom: 16px;
+  font-size: clamp(13px, 3vw, 16px);
+  color: #666660;
+  letter-spacing: 0.35em;
+  margin-bottom: 6px;
+}
+.title-en {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(22px, 5.5vw, 36px);
+  color: #F7931A;
   letter-spacing: 0.2em;
 }
 
-.title-en {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(32px, 7vw, 52px);
-  color: #F7931A;
-  opacity: 0.6;
-  letter-spacing: 0.3em;
-  margin-bottom: 24px;
+/* ── ALBUM SWITCHER ── */
+.album-switcher {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.album-switcher::-webkit-scrollbar { display: none; }
 
-.photobook-meta {
+.album-tab {
   font-family: 'Space Mono', monospace;
   font-size: 10px;
-  letter-spacing: 3px;
-  color: #666660;
-  margin-bottom: 60px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888880;
+  border: 1px solid rgba(180, 40, 40, 0.45);
+  padding: 11px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  flex-shrink: 0;
+  margin-right: -1px;
+  transition: color 0.2s, border-color 0.2s;
+  min-height: 44px;
 }
-.photobook-meta span { color: #00FF41; }
+.album-tab:hover {
+  color: #d4d0c8;
+  border-color: rgba(180, 40, 40, 0.75);
+}
+.album-tab.active {
+  color: #F7931A;
+  border-color: rgba(200, 45, 45, 0.95);
+  z-index: 1;
+}
+.album-tab-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+.album-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  background: #00FF41;
+  color: #080806;
+  padding: 1px 5px;
+  min-width: 24px;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
 
-.photobook-grid {
+/* ── VIEW SWITCHER ── */
+.view-switcher {
+  display: flex;
+  border: 1px solid rgba(102, 102, 96, 0.3);
+  margin-top: -1px;
+  margin-bottom: 32px;
+}
+.view-tab {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555550;
+  padding: 9px 0;
+  flex: 1;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(102, 102, 96, 0.3);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  min-height: 44px;
+}
+.view-tab:last-child { border-right: none; }
+.view-tab:hover { color: #d4d0c8; }
+.view-tab.active {
+  color: #00FF41;
+  background: rgba(0, 255, 65, 0.04);
+}
+
+/* ── ALBUM GRID VIEW ── */
+.photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 80px;
+  gap: 3px;
 }
-
-.photobook-frame {
-  position: relative;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 12px 12px 36px;
+.photo-thumb {
+  aspect-ratio: 1;
+  background: #0f0f0d;
   cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-family: inherit;
-  text-align: left;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(102, 102, 96, 0.12);
 }
-.photobook-frame:hover {
-  border-color: rgba(247,147,26,0.4);
-  background: rgba(247,147,26,0.02);
-}
-.photobook-frame img {
+.photo-thumb img {
   width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 2 / 3;
+  height: 100%;
   object-fit: cover;
-  filter: grayscale(0.15) brightness(0.92);
-  transition: filter 0.3s;
+  display: block;
+  transition: opacity 0.25s;
 }
-.photobook-frame:hover img {
-  filter: grayscale(0) brightness(1);
-}
-.photobook-frame-num {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
+.photo-thumb:hover img { opacity: 0.65; }
+.thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 2px;
-  color: #666660;
+  color: #2a2a28;
 }
-.photobook-frame:hover .photobook-frame-num { color: #F7931A; }
+.thumb-num {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #555550;
+  pointer-events: none;
+}
 
-@media (max-width: 900px) {
-  .photobook-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+/* ── PHOTO SINGLE VIEW ── */
+.photo-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
-@media (max-width: 560px) {
-  .photobook-grid { grid-template-columns: 1fr; gap: 16px; }
+.photo-frame {
+  width: 100%;
+  max-width: 560px;
+  background: #0f0f0d;
+  border: 1px solid rgba(102, 102, 96, 0.18);
 }
-
-.photobook-lightbox {
-  position: fixed; inset: 0; z-index: 100000;
-  background: #080806;
-  display: none;
+.photo-frame img {
+  width: 100%;
+  display: block;
+}
+.photo-placeholder {
+  aspect-ratio: 4/5;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px;
-  gap: 20px;
+  gap: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #2a2a28;
 }
-.photobook-lightbox.active { display: flex; }
-.photobook-lightbox img {
-  max-width: min(90vw, 720px);
-  max-height: 82vh;
-  object-fit: contain;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+.photo-placeholder .ph-icon {
+  font-size: 32px;
+  opacity: 0.15;
 }
-.photobook-lightbox-meta {
+.photo-meta {
+  width: 100%;
+  max-width: 560px;
+}
+.photo-caption-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #d4d0c8;
+  margin-bottom: 14px;
+  white-space: pre-line;
+}
+.photo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.photo-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #8BA8C4;
+}
+.photo-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+.photo-nav span {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #444440;
+}
+.photo-nav button {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #666660;
+  background: transparent;
+  border: 1px solid rgba(102, 102, 96, 0.3);
+  padding: 8px 14px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.photo-nav button:hover {
+  color: #F7931A;
+  border-color: rgba(247, 147, 26, 0.5);
+}
+
+/* ── WORDS VIEW ── */
+.words-panel {
+  max-width: 560px;
+}
+.words-entry {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(102, 102, 96, 0.18);
+}
+.words-entry:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.words-num {
   font-family: 'Space Mono', monospace;
   font-size: 9px;
   letter-spacing: 3px;
-  color: #666660;
+  color: #2a2a28;
+  margin-bottom: 20px;
 }
-.photobook-lightbox-meta span { color: #F7931A; }
-.photobook-lightbox-close {
-  position: absolute; top: 24px; right: 24px;
-  width: 44px; height: 44px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.18);
+.words-text-th {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 18px;
+  line-height: 2.1;
   color: #d4d0c8;
-  font-family: 'Space Mono', monospace;
-  font-size: 22px; line-height: 1;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
+  margin-bottom: 18px;
+  white-space: pre-line;
 }
-.photobook-lightbox-close:hover { border-color: #F7931A; color: #F7931A; }
-@media (max-width: 768px) {
-  .photobook-lightbox { padding: 20px; }
-  .photobook-lightbox-close { top: 12px; right: 12px; }
+.words-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.words-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #8BA8C4;
+}
+.ordinal-embed {
+  border: 1px solid rgba(102, 102, 96, 0.3);
+}
+.ordinal-header {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #555550;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(102, 102, 96, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ordinal-hash {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #00FF41;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+.ordinal-frame {
+  width: 100%;
+  aspect-ratio: 1;
+  border: none;
+  background: #0d0d0b;
+  display: block;
+}
+.ordinal-pending {
+  padding: 44px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0d0d0b;
+}
+.ordinal-pending p {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #2a2a28;
 }
 
+/* ── EMPTY STATE ── */
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+.empty-state p {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #2a2a28;
+}
+
+/* ── BACK LINK ── */
 .back-link {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 2px;
   color: #666660;
   text-decoration: none;
-  border: 1px solid rgba(102,102,96,0.3);
-  padding: 12px 24px;
+  border: 1px solid rgba(102, 102, 96, 0.3);
+  padding: 11px 20px;
   display: inline-block;
-  transition: all 0.3s;
+  transition: color 0.3s, border-color 0.3s;
+  margin-top: 48px;
+  min-height: 44px;
+  line-height: 22px;
 }
-
 .back-link:hover {
   color: #F7931A;
-  border-color: #F7931A;
+  border-color: rgba(247, 147, 26, 0.5);
 }
 
-.error-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(8,8,6,0.98);
-  z-index: 99999;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-}
-
-.error-overlay.active { display: flex; }
-
-.error-content {
-  max-width: 600px;
-  text-align: center;
-}
-
-.error-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 14px;
-  letter-spacing: 3px;
-  color: #F7931A;
-  margin-bottom: 16px;
-}
-
-.error-message {
-  font-family: 'Sarabun', sans-serif;
-  font-size: 13px;
-  color: #666660;
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
-.error-close {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #666660;
-  background: transparent;
-  border: 1px solid rgba(102,102,96,0.3);
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.error-close:hover {
-  color: #F7931A;
-  border-color: #F7931A;
-}
-
-@media (max-width: 640px) {
-  .title-th { font-size: 24px; }
-  .title-en { font-size: 28px; margin-bottom: 60px; }
-  .back-link { font-size: 10px; padding: 10px 20px; }
-}
-
-/* Pre-production banner */
+/* ── PREPROD BANNER ── */
 .preprod-banner {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 9999;
   background: rgba(247, 147, 26, 0.95);
   color: #080806;
@@ -260,10 +406,7 @@ body {
   border-bottom: 1px solid rgba(8, 8, 6, 0.1);
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
-.preprod-banner.dismissed {
-  transform: translateY(-100%);
-  opacity: 0;
-}
+.preprod-banner.dismissed { transform: translateY(-100%); opacity: 0; }
 .preprod-content {
   display: flex;
   align-items: center;
@@ -280,9 +423,7 @@ body {
   flex-direction: column;
   gap: 2px;
 }
-.preprod-text span:first-child {
-  font-family: 'Sarabun', sans-serif;
-}
+.preprod-text span:first-child { font-family: 'Sarabun', sans-serif; }
 .preprod-close {
   background: transparent;
   border: none;
@@ -291,8 +432,7 @@ body {
   line-height: 1;
   cursor: pointer;
   padding: 0;
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,16 +440,64 @@ body {
   transition: opacity 0.2s;
   font-family: 'Space Mono', monospace;
 }
-.preprod-close:hover {
-  opacity: 0.7;
+.preprod-close:hover { opacity: 0.7; }
+
+/* ── ERROR OVERLAY ── */
+.error-overlay {
+  position: fixed; inset: 0;
+  background: rgba(8,8,6,0.98);
+  z-index: 99999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
+.error-overlay.active { display: flex; }
+.error-content { max-width: 600px; text-align: center; }
+.error-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #F7931A;
+  margin-bottom: 16px;
+}
+.error-message {
+  font-family: 'Sarabun', sans-serif;
+  font-size: 13px;
+  color: #666660;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.error-close {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #666660;
+  background: transparent;
+  border: 1px solid rgba(102,102,96,0.3);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+.error-close:hover { color: #F7931A; border-color: #F7931A; }
+
+/* ── RESPONSIVE ── */
 @media (max-width: 640px) {
+  .page-wrap { padding: 28px 16px 60px; }
+  .title-en { font-size: 22px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .album-tab { font-size: 9px; padding: 9px 12px; }
+  .album-tab-th { font-size: 12px; }
+  .view-tab { font-size: 9px; }
+  .words-text-th { font-size: 16px; }
   .preprod-text { font-size: 11px; }
   .preprod-banner { padding: 8px 12px; }
 }
 </style>
 </head>
 <body>
+
 <div id="preProdBanner" class="preprod-banner">
   <div class="preprod-content">
     <span class="preprod-text">
@@ -320,37 +508,30 @@ body {
   </div>
 </div>
 
-<div class="container">
+<div class="page-wrap">
   <div class="block-height">
     BLOCK <a href="https://mempool.space/" target="_blank" rel="noopener"><span class="block-num">———</span></a>
   </div>
 
-  <h1 class="title-th">หนัง / สื่อ / ภาพ</h1>
-  <h2 class="title-en">SATOSHI.MEDIA</h2>
-  <div class="photobook-meta">FIRST FRAMES · <span>03</span> · WORK IN PROGRESS</div>
-
-  <div class="photobook-grid">
-    <button class="photobook-frame" data-img="assets/posters/poster-01.jpg" data-num="01" aria-label="Open frame 01">
-      <img src="assets/posters/poster-01.jpg" alt="Frame 01" loading="lazy">
-      <div class="photobook-frame-num">FRAME 01 / 03</div>
-    </button>
-    <button class="photobook-frame" data-img="assets/posters/poster-03.jpg" data-num="02" aria-label="Open frame 02">
-      <img src="assets/posters/poster-03.jpg" alt="Frame 02" loading="lazy">
-      <div class="photobook-frame-num">FRAME 02 / 03</div>
-    </button>
-    <button class="photobook-frame" data-img="assets/posters/poster-02.jpg" data-num="03" aria-label="Open frame 03">
-      <img src="assets/posters/poster-02.jpg" alt="Frame 03" loading="lazy">
-      <div class="photobook-frame-num">FRAME 03 / 03</div>
-    </button>
+  <div class="page-titles">
+    <div class="title-th">หนัง / สื่อ / ภาพ</div>
+    <div class="title-en">SATOSHI.MEDIA</div>
   </div>
 
-  <a href="index.html" class="back-link">← กลับหน้าหลัก / BACK HOME</a>
-</div>
+  <!-- ALBUM SWITCHER -->
+  <div class="album-switcher" id="albumSwitcher"></div>
 
-<div class="photobook-lightbox" id="photobookLightbox" role="dialog" aria-label="Photobook frame">
-  <button class="photobook-lightbox-close" id="photobookLightboxClose" aria-label="Close">×</button>
-  <img id="photobookLightboxImg" src="" alt="">
-  <div class="photobook-lightbox-meta">FRAME <span id="photobookLightboxNum">01</span> / 03 · ESC TO CLOSE</div>
+  <!-- VIEW SWITCHER -->
+  <div class="view-switcher">
+    <button class="view-tab active" data-view="album" onclick="switchView('album')">ALBUM</button>
+    <button class="view-tab" data-view="photo" onclick="switchView('photo')">PHOTO</button>
+    <button class="view-tab" data-view="words" onclick="switchView('words')">WORDS</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="contentArea"></div>
+
+  <a href="index.html" class="back-link">← กลับหน้าหลัก / BACK HOME</a>
 </div>
 
 <div class="error-overlay" id="errorOverlay">
@@ -362,109 +543,229 @@ body {
 </div>
 
 <script>
-// Block height counter
-fetch('https://mempool.space/api/blocks/tip/height')
-  .then(r => r.json())
-  .then(h => {
-    const nums = document.querySelectorAll('.block-num');
-    nums.forEach(n => n.textContent = h.toLocaleString());
-  })
-  .catch(e => console.error('Block height fetch failed:', e));
+// ── ALBUM DATA ──
+// To add a new album: push a new object into ALBUMS.
+// To add a photo: push into the album's entries array.
+// ordinal_id: the inscription ID from ordinals.com (null = not yet inscribed)
+var ALBUMS = [
+  {
+    id: 'mai-ru',
+    name_th: 'ไม่รู้เกี่ยวกับหนังไหม',
+    name_en: 'NOTHING TO DO WITH FILM',
+    entries: [
+      {
+        id: 1,
+        img: null,
+        caption_th: 'ต้นไม้รดน้ำตัวเองไม่ได้ แต่สังเคราะห์แสงได้\nมนุษย์สังเคราะห์แสงไม่ได้ แต่รดน้ำตัวเองได้',
+        caption_en: null,
+        tags: ['#craftpot', '#siamstr'],
+        ordinal_id: null
+      }
+    ]
+  }
+];
 
-// Global error handler
+// ── STATE ──
+var activeAlbumId = ALBUMS[0].id;
+var activeView = 'album';
+var activePhotoIdx = 0;
+
+// ── ALBUM SWITCHER ──
+function renderAlbumSwitcher() {
+  var el = document.getElementById('albumSwitcher');
+  el.innerHTML = ALBUMS.map(function(album) {
+    var isActive = album.id === activeAlbumId;
+    var count = String(album.entries.length).padStart(2, '0');
+    return '<button class="album-tab' + (isActive ? ' active' : '') + '" onclick="switchAlbum(\'' + album.id + '\')">'
+      + '<span class="album-tab-th">' + album.name_th + '</span>'
+      + ' · '
+      + '<span class="album-badge">' + count + '</span>'
+      + '</button>';
+  }).join('');
+}
+
+// ── CONTENT RENDERING ──
+function renderContent() {
+  var album = ALBUMS.find(function(a) { return a.id === activeAlbumId; });
+  if (!album) return;
+  var el = document.getElementById('contentArea');
+  if (activeView === 'album') renderAlbumGrid(album, el);
+  else if (activeView === 'photo') renderPhotoView(album, el);
+  else if (activeView === 'words') renderWordsView(album, el);
+}
+
+function renderAlbumGrid(album, el) {
+  if (!album.entries.length) {
+    el.innerHTML = '<div class="empty-state"><p>— NO ENTRIES YET —</p></div>';
+    return;
+  }
+  var html = '<div class="photo-grid">';
+  album.entries.forEach(function(entry, i) {
+    html += '<div class="photo-thumb" onclick="openPhoto(' + i + ')" role="button" tabindex="0" aria-label="Photo ' + (i+1) + '">';
+    if (entry.img) {
+      html += '<img src="' + entry.img + '" alt="" loading="lazy">';
+    } else {
+      html += '<div class="thumb-placeholder">[ ]</div>';
+    }
+    html += '<div class="thumb-num">' + String(i + 1).padStart(2, '0') + '</div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function renderPhotoView(album, el) {
+  if (!album.entries.length) {
+    el.innerHTML = '<div class="empty-state"><p>— NO ENTRIES YET —</p></div>';
+    return;
+  }
+  var idx = Math.min(activePhotoIdx, album.entries.length - 1);
+  var entry = album.entries[idx];
+
+  var imgHtml = entry.img
+    ? '<img src="' + entry.img + '" alt="">'
+    : '<div class="photo-placeholder"><span class="ph-icon">[ ]</span>NO IMAGE YET</div>';
+
+  var tagsHtml = (entry.tags || []).map(function(t) {
+    return '<span class="photo-tag">' + t + '</span>';
+  }).join('');
+
+  var html = '<div class="photo-single">';
+  html += '<div class="photo-frame">' + imgHtml + '</div>';
+  html += '<div class="photo-meta">';
+  if (entry.caption_th) html += '<div class="photo-caption-th">' + entry.caption_th + '</div>';
+  if (tagsHtml) html += '<div class="photo-tags">' + tagsHtml + '</div>';
+  html += '</div>';
+  html += '<div class="photo-nav">'
+    + '<button onclick="navPhoto(-1)">← PREV</button>'
+    + '<span>' + String(idx + 1).padStart(2, '0') + ' / ' + String(album.entries.length).padStart(2, '0') + '</span>'
+    + '<button onclick="navPhoto(1)">NEXT →</button>'
+    + '</div>';
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function renderWordsView(album, el) {
+  if (!album.entries.length) {
+    el.innerHTML = '<div class="empty-state"><p>— NO ENTRIES YET —</p></div>';
+    return;
+  }
+  var html = '<div class="words-panel">';
+  album.entries.forEach(function(entry, i) {
+    var tagsHtml = (entry.tags || []).map(function(t) {
+      return '<span class="words-tag">' + t + '</span>';
+    }).join('');
+
+    var ordinalBody;
+    if (entry.ordinal_id) {
+      ordinalBody = '<iframe class="ordinal-frame" src="https://ordinals.com/inscription/' + entry.ordinal_id + '" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>';
+    } else {
+      ordinalBody = '<div class="ordinal-pending"><p>— NOT YET INSCRIBED —</p><p>PENDING</p></div>';
+    }
+
+    var hashLabel = entry.ordinal_id
+      ? '<span class="ordinal-hash">' + entry.ordinal_id + '</span>'
+      : '';
+
+    html += '<div class="words-entry">'
+      + '<div class="words-num">— ' + String(i + 1).padStart(2, '0') + ' —</div>'
+      + (entry.caption_th ? '<div class="words-text-th">' + entry.caption_th + '</div>' : '')
+      + (tagsHtml ? '<div class="words-tags">' + tagsHtml + '</div>' : '')
+      + '<div class="ordinal-embed">'
+      + '<div class="ordinal-header"><span>ORDINAL INSCRIPTION</span>' + hashLabel + '</div>'
+      + ordinalBody
+      + '</div>'
+      + '</div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+// ── SWITCH FUNCTIONS ──
+function switchAlbum(albumId) {
+  activeAlbumId = albumId;
+  activePhotoIdx = 0;
+  renderAlbumSwitcher();
+  renderContent();
+}
+
+function switchView(view) {
+  activeView = view;
+  document.querySelectorAll('.view-tab').forEach(function(tab) {
+    tab.classList.toggle('active', tab.dataset.view === view);
+  });
+  renderContent();
+}
+
+function openPhoto(idx) {
+  activePhotoIdx = idx;
+  switchView('photo');
+}
+
+function navPhoto(dir) {
+  var album = ALBUMS.find(function(a) { return a.id === activeAlbumId; });
+  if (!album || !album.entries.length) return;
+  activePhotoIdx = (activePhotoIdx + dir + album.entries.length) % album.entries.length;
+  renderContent();
+}
+
+// ── KEYBOARD NAV in PHOTO view ──
+document.addEventListener('keydown', function(e) {
+  if (activeView !== 'photo') return;
+  if (e.key === 'ArrowLeft') navPhoto(-1);
+  else if (e.key === 'ArrowRight') navPhoto(1);
+});
+
+// ── INIT ──
+renderAlbumSwitcher();
+renderContent();
+
+// ── BLOCK HEIGHT ──
+fetch('https://mempool.space/api/blocks/tip/height')
+  .then(function(r) { return r.json(); })
+  .then(function(h) {
+    document.querySelectorAll('.block-num').forEach(function(n) { n.textContent = h.toLocaleString(); });
+  })
+  .catch(function() {});
+
+// ── GLOBAL ERROR ──
 window.addEventListener('error', function(e) {
   document.getElementById('errorMessage').textContent = e.message || 'An unexpected error occurred';
   document.getElementById('errorOverlay').classList.add('active');
 });
-
-// Photobook lightbox
-(function() {
-  const lightbox = document.getElementById('photobookLightbox');
-  const lightboxImg = document.getElementById('photobookLightboxImg');
-  const lightboxNum = document.getElementById('photobookLightboxNum');
-  const lightboxClose = document.getElementById('photobookLightboxClose');
-  if (!lightbox) return;
-
-  const open = (src, num, alt) => {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
-    lightboxNum.textContent = num;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = () => {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    lightboxImg.src = '';
-  };
-
-  document.querySelectorAll('.photobook-frame').forEach(frame => {
-    frame.addEventListener('click', () => {
-      open(frame.dataset.img, frame.dataset.num, frame.querySelector('img').alt);
-    });
-  });
-  lightboxClose.addEventListener('click', close);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) close();
-  });
-})();
 </script>
 
 <script>
-// Pre-production banner initialization and dismissal
+// Pre-production banner
 (function() {
   var banner = document.getElementById('preProdBanner');
   if (!banner) return;
-
-  // Check if banner was previously dismissed
   try {
     if (localStorage.getItem('satoshi_preprod_banner_dismissed') === '1') {
       banner.style.display = 'none';
       return;
     }
-  } catch (e) {
-    // localStorage not available (private browsing) - show banner anyway
-  }
-
-  // Adjust nav position if it exists and is fixed
+  } catch(e) {}
   function adjustNav() {
     var nav = document.querySelector('nav');
     if (nav && window.getComputedStyle(nav).position === 'fixed') {
-      var bannerHeight = banner.offsetHeight;
-      nav.style.top = bannerHeight + 'px';
+      nav.style.top = banner.offsetHeight + 'px';
       nav.style.transition = 'top 0.3s ease-out';
     }
   }
-
-  // Wait for DOM to be fully loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', adjustNav);
-  } else {
-    adjustNav();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', adjustNav);
+  else adjustNav();
 })();
 
 function dismissPreProdBanner() {
   var banner = document.getElementById('preProdBanner');
   if (!banner) return;
-
   banner.classList.add('dismissed');
-
-  // Save dismissal state
-  try {
-    localStorage.setItem('satoshi_preprod_banner_dismissed', '1');
-  } catch (e) {
-    // localStorage not available - dismissal won't persist
-  }
-
-  // Reset nav position after animation
+  try { localStorage.setItem('satoshi_preprod_banner_dismissed', '1'); } catch(e) {}
   setTimeout(function() {
     banner.style.display = 'none';
     var nav = document.querySelector('nav');
-    if (nav && window.getComputedStyle(nav).position === 'fixed') {
-      nav.style.top = '0';
-    }
+    if (nav && window.getComputedStyle(nav).position === 'fixed') nav.style.top = '0';
   }, 300);
 }
 </script>
