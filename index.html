@@ -1027,6 +1027,29 @@ function dismissPreProdBanner() {
         <div class="bundle-tags"><span>DigiCash 1989</span></div>
         <div class="bundle-score">80%</div>
       </div>
+      <div class="bundle-card" data-bundle="okamoto">
+        <button class="verify-btn" onclick="openTerminal('okamoto')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Tatsuaki Okamoto</div>
+        <div class="bundle-role th-only">Universal Electronic Cash (1991) — สาย e-cash ญี่ปุ่นที่ NTT เกือบ deploy จริงปี 1996</div>
+        <div class="bundle-role en-only">Universal Electronic Cash (1991) — the Japanese e-cash line NTT nearly deployed in 1996.</div>
+        <div class="bundle-tags"><span>NTT Research</span><span>Crypto '91</span><span>Fujisaki-Okamoto</span></div>
+        <div class="bundle-score">65%</div>
+      </div>
+      <div class="bundle-card" data-bundle="ohta">
+        <button class="verify-btn" onclick="openTerminal('ohta')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Kazuo Ohta</div>
+        <div class="bundle-role th-only">คู่หูวิจัยของ Okamoto — zero-knowledge proofs สำหรับ untraceable cash</div>
+        <div class="bundle-role en-only">Okamoto's research partner — zero-knowledge proofs for untraceable cash.</div>
+        <div class="bundle-tags"><span>NTT</span><span>Crypto '89</span><span>Zero-Knowledge</span></div>
+      </div>
+      <div class="bundle-card" data-bundle="matsui">
+        <button class="verify-btn" onclick="openTerminal('matsui')" title="Don't Trust, Verify">✅ Verify</button>
+        <div class="bundle-name">Mitsuru Matsui</div>
+        <div class="bundle-role th-only">Linear Cryptanalysis (1993) — คนแรกในโลกที่ break DES ได้จริง</div>
+        <div class="bundle-role en-only">Linear Cryptanalysis (1993) — the first to experimentally break DES.</div>
+        <div class="bundle-tags"><span>Mitsubishi Electric</span><span>MISTY</span><span>Camellia</span></div>
+        <div class="bundle-score">55%</div>
+      </div>
     </div>
   </div>
 
@@ -2196,6 +2219,9 @@ haber:B('Stuart Haber',`<span class="t-label">SUBJECT:</span> Stuart Haber — c
 merkle:B('Ralph Merkle',`<span class="t-label">SUBJECT:</span> Ralph Merkle — Merkle Tree | Whitepaper ref [7]\n<span class="t-muted">─────────────────────────</span>\nThe data structure that makes Bitcoin verifiable without downloading everything.`,['What is a Merkle Tree?'],[]),
 szabo:B('Nick Szabo',`<span class="t-label">SUBJECT:</span> Nick Szabo — Bit Gold (1998), Smart Contracts (1996) | 96%\n<span class="t-muted">─────────────────────────</span>\nClosest precursor to Bitcoin. Coined "smart contracts." Everything points to him. He denies it.`,['What is Bit Gold?','Why 96%?'],[{label:'Bit Gold',url:'https://nakamotoinstitute.org/bit-gold/'}]),
 chaum:B('David Chaum',`<span class="t-label">SUBJECT:</span> David Chaum — DigiCash (1983) | 80%\n<span class="t-muted">─────────────────────────</span>\nInvented digital cash 25 years before Bitcoin. Blind signatures made untraceable payments possible.`,['What are blind signatures?','Why did DigiCash fail?'],[]),
+okamoto:B('Tatsuaki Okamoto',`<span class="t-label">SUBJECT:</span> Tatsuaki Okamoto — Universal Electronic Cash (1991) | 65%\n<span class="t-muted">─────────────────────────</span>\nNTT cryptographer since 1978. Co-authored "Universal Electronic Cash" at Crypto '91 — the first ideal untraceable e-cash with divisibility. NTT scheduled a live trial deployment in 1996. Also behind the Fujisaki-Okamoto transform (now foundational in post-quantum crypto) and the MOV reduction on ECC. Used the exact phrase "electronic cash" 17 years before Satoshi's whitepaper.`,['What is Universal Electronic Cash?','Is Okamoto Satoshi?'],[{label:'Crypto 91 Paper',url:'https://link.springer.com/chapter/10.1007/3-540-46766-1_27'}]),
+ohta:B('Kazuo Ohta',`<span class="t-label">SUBJECT:</span> Kazuo Ohta — co-author of Universal Electronic Cash\n<span class="t-muted">─────────────────────────</span>\nOkamoto's research partner at NTT through the late 1980s and 1990s. Co-authored "Disposable Zero-Knowledge Authentications and Their Applications to Untraceable Electronic Cash" (Crypto '89) and "Universal Electronic Cash" (Crypto '91). Built the zero-knowledge proof scaffolding that made untraceable e-cash provably secure.`,['What is Zero-Knowledge?'],[]),
+matsui:B('Mitsuru Matsui',`<span class="t-label">SUBJECT:</span> Mitsuru Matsui — Linear Cryptanalysis (1993) | 55%\n<span class="t-muted">─────────────────────────</span>\nMitsubishi Electric researcher since 1987. Invented linear cryptanalysis in 1993 — one of the two foundational techniques for breaking block ciphers (alongside Biham-Shamir's differential cryptanalysis). In 1994 became the first person to experimentally break DES, using 12 workstations over 50 days. Designer of MISTY-1, MISTY-2, and co-designer of Camellia and KASUMI — the cipher running inside 3G mobile networks worldwide. RSA Conference Excellence in Mathematics Award (2012).`,['What is Linear Cryptanalysis?','How was DES broken?'],[]),
 assange:B('Julian Assange',`<span class="t-label">SUBJECT:</span> Julian Assange — WikiLeaks | Released June 2024\n<span class="t-muted">─────────────────────────</span>\nTransparency must be taken, not given. Every leak is a block of truth no government can roll back.`,['WikiLeaks & Bitcoin connection?','Why is Assange a cypherpunk hero?'],[]),
 snowden:B('Edward Snowden',`<span class="t-label">SUBJECT:</span> Edward Snowden — NSA Whistleblower (2013)\n<span class="t-muted">─────────────────────────</span>\nProved what cypherpunks warned for decades. Sacrificed freedom to verify truth for the world.`,['What did Snowden reveal?','Impact on Bitcoin adoption?'],[]),
 appelbaum:B('Jacob Appelbaum',`<span class="t-label">SUBJECT:</span> Jacob Appelbaum — Tor Developer\n<span class="t-muted">─────────────────────────</span>\nBuilt tools for dissidents. Tor isn't about hiding — it's about choosing who sees you.`,['How does Tor work?','Why is anonymity a right?'],[{label:'Tor',url:'https://www.torproject.org'}]),
