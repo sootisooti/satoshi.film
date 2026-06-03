@@ -467,65 +467,93 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .preprod-banner { padding: 8px 12px; }
 }
 
-.poster-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px; gap: 28px; opacity: 1; transition: opacity 0.6s ease-out; overflow-y: auto; }
-.poster-cover.dismissed { opacity: 0; pointer-events: none; }
-.poster-cover-image { max-width: min(90vw, 560px); max-height: 60vh; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.8s ease-out; }
-.poster-cover-image.loaded { opacity: 1; }
-.poster-cover-caption { font-family: 'Tahoma', Arial, sans-serif; font-size: 1.05cm; line-height: 1.3; color: #d4d0c8; text-align: center; max-width: 92vw; letter-spacing: 0.01em; }
-.poster-cover-caption .en-only { font-size: 0.78em; }
-.poster-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; }
-.poster-cover-meta span { color: #F7931A; }
-.poster-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
-.poster-cover-close:hover { border-color: #F7931A; color: #F7931A; }
-.poster-cover-lang { position: absolute; top: 24px; left: 24px; height: 44px; padding: 0 14px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
-.poster-cover-lang:hover { border-color: #F7931A; color: #F7931A; }
+/* ─── TEASER COVER ─── */
+.teaser-cover { position: fixed; inset: 0; z-index: 100000; background: #080806; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px 40px; opacity: 1; transition: opacity 0.6s ease-out; overflow-y: auto; }
+.teaser-cover.dismissed { opacity: 0; pointer-events: none; }
+.teaser-cover-inner { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 860px; }
+.teaser-cover-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 5px; color: #F7931A; text-align: center; }
+.teaser-video-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; box-shadow: 0 0 60px rgba(247,147,26,0.12); border: 1px solid rgba(247,147,26,0.2); }
+.teaser-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.teaser-cover-bff { display: flex; justify-content: center; }
+.bff-badge { display: flex; align-items: center; gap: 10px; border: 1px solid rgba(0,255,65,0.25); padding: 10px 20px; background: rgba(0,255,65,0.03); }
+.bff-badge-icon { font-size: 14px; color: #00FF41; }
+.bff-badge-text { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #666660; }
+.bff-badge-text strong { color: #00FF41; letter-spacing: 2px; }
+.teaser-cover-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; text-align: center; }
+.teaser-cover-meta span { color: #F7931A; }
+.teaser-cover-close { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 22px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.teaser-cover-close:hover { border-color: #F7931A; color: #F7931A; }
+.teaser-cover-lang { position: absolute; top: 24px; left: 24px; height: 44px; padding: 0 14px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; line-height: 1; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.teaser-cover-lang:hover { border-color: #F7931A; color: #F7931A; }
 @media (max-width: 768px) {
-  .poster-cover { padding: 20px; gap: 18px; }
-  .poster-cover-image { max-height: 45vh; }
-  .poster-cover-caption { font-size: clamp(14px, 3vw, 1.05cm); }
-  .poster-cover-meta { font-size: 8px; letter-spacing: 2px; }
-  .poster-cover-close { top: 12px; right: 12px; }
-  .poster-cover-lang { top: 12px; left: 12px; height: 36px; padding: 0 10px; font-size: 10px; }
+  .teaser-cover { padding: 70px 16px 32px; }
+  .teaser-cover-close { top: 12px; right: 12px; }
+  .teaser-cover-lang { top: 12px; left: 12px; height: 36px; padding: 0 10px; font-size: 10px; }
+  .bff-badge-text { font-size: 10px; }
+}
+
+/* ─── BITCOIN FILM FEST SECTION ─── */
+.bff-section { padding: 80px 40px; text-align: center; border-top: 1px solid rgba(0,255,65,0.08); border-bottom: 1px solid rgba(0,255,65,0.08); background: rgba(0,255,65,0.01); }
+.bff-section-inner { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.bff-section-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 5px; color: #00FF41; opacity: 0.7; }
+.bff-section-title { font-family: 'Space Mono', monospace; font-size: clamp(22px, 4vw, 40px); color: #d4d0c8; letter-spacing: 0.08em; font-weight: 700; }
+.bff-section-title span { color: #F7931A; }
+.bff-section-year { font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 6px; color: #F7931A; opacity: 0.6; }
+.bff-section-divider { width: 60px; height: 1px; background: rgba(0,255,65,0.3); }
+.bff-section-desc { font-family: 'Sarabun', sans-serif; font-size: 15px; line-height: 1.9; color: #666660; max-width: 600px; }
+.bff-section-cta { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #00FF41; border: 1px solid rgba(0,255,65,0.3); padding: 12px 28px; background: transparent; cursor: none; transition: all 0.3s; text-decoration: none; display: inline-block; margin-top: 4px; }
+.bff-section-cta:hover { background: rgba(0,255,65,0.08); border-color: #00FF41; }
+@media (max-width: 640px) {
+  .bff-section { padding: 60px 20px; }
+  .bff-section-desc { font-size: 14px; }
 }
 </style>
 </head>
 <body class="lang-th">
-<div id="posterCover" class="poster-cover" role="dialog" aria-label="SATOSHI.FILM cover">
-  <button id="posterCoverLang" class="poster-cover-lang" aria-label="Toggle language">EN | TH</button>
-  <button id="posterCoverClose" class="poster-cover-close" aria-label="Close cover">×</button>
-  <img id="posterCoverImg" class="poster-cover-image" src="" alt="SATOSHI.FILM">
-  <div id="posterCoverCaption" class="poster-cover-caption">
-    <span class="th-only" id="posterCoverCaptionTh"></span>
-    <span class="en-only" id="posterCoverCaptionEn"></span>
+<div id="teaserCover" class="teaser-cover" role="dialog" aria-label="SATOSHI.FILM TEASER">
+  <button id="teaserCoverLang" class="teaser-cover-lang" aria-label="Toggle language">EN | TH</button>
+  <button id="teaserCoverClose" class="teaser-cover-close" aria-label="Close cover">×</button>
+  <div class="teaser-cover-inner">
+    <div class="teaser-cover-label">
+      <span class="th-only">ตัวอย่างภาพยนตร์อย่างเป็นทางการ</span>
+      <span class="en-only">OFFICIAL TEASER TRAILER</span>
+    </div>
+    <div class="teaser-video-wrap">
+      <iframe id="teaserIframe" src="https://www.youtube.com/embed/JxJdUSh11_o?autoplay=1&rel=0&modestbranding=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="teaser-cover-bff">
+      <div class="bff-badge">
+        <span class="bff-badge-icon">◈</span>
+        <span class="bff-badge-text">
+          <span class="th-only">ส่งเข้าร่วม · <strong>BITCOIN FILM FEST 2026</strong></span>
+          <span class="en-only">Submitted to · <strong>BITCOIN FILM FEST 2026</strong></span>
+        </span>
+      </div>
+    </div>
+    <div class="teaser-cover-meta">SATOSHI<span>.</span>FILM · <span class="th-only">กด ESC เพื่อเข้าสู่เว็บ</span><span class="en-only">PRESS ESC TO ENTER</span></div>
   </div>
-  <div class="poster-cover-meta">SATOSHI<span>.</span>FILM · <span id="posterCoverNum">01</span> / 03 · ESC TO ENTER</div>
 </div>
 <script>
 (function() {
-  const POSTERS = [
-    { img: 'assets/posters/poster-01.jpg', th: 'เราเปลี่ยนพ่อแม่ไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🌱', en: "We can't change our parents, but we can change ourselves. 🌱" },
-    { img: 'assets/posters/poster-02.jpg', th: 'เราเปลี่ยนลูกไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🥛', en: "We can't change our children, but we can change ourselves. 🥛" },
-    { img: 'assets/posters/poster-03.jpg', th: 'เราเปลี่ยนรัฐบาลไม่ได้ แต่เราเปลี่ยนตัวเองได้ 🔐', en: "We can't change the government, but we can change ourselves. 🔐" }
-  ];
-  const idx = Math.floor(Math.random() * POSTERS.length);
-  const pick = POSTERS[idx];
-  const overlay = document.getElementById('posterCover');
-  const img = document.getElementById('posterCoverImg');
-  img.addEventListener('load', () => img.classList.add('loaded'));
-  img.src = pick.img;
-  document.getElementById('posterCoverCaptionTh').textContent = pick.th;
-  document.getElementById('posterCoverCaptionEn').textContent = pick.en;
-  document.getElementById('posterCoverNum').textContent = String(idx + 1).padStart(2, '0');
+  const overlay = document.getElementById('teaserCover');
+  const iframe = document.getElementById('teaserIframe');
+  const TEASER_SRC = 'https://www.youtube.com/embed/JxJdUSh11_o?autoplay=1&rel=0&modestbranding=1';
   document.body.style.overflow = 'hidden';
   const close = () => {
     overlay.classList.add('dismissed');
+    iframe.src = '';
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onKey);
-    setTimeout(() => overlay.remove(), 700);
+  };
+  window.openTeaser = () => {
+    iframe.src = TEASER_SRC;
+    overlay.classList.remove('dismissed');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
   };
   const onKey = (e) => { if (e.key === 'Escape') close(); };
-  document.getElementById('posterCoverClose').addEventListener('click', close);
-  document.getElementById('posterCoverLang').addEventListener('click', () => {
+  document.getElementById('teaserCoverClose').addEventListener('click', close);
+  document.getElementById('teaserCoverLang').addEventListener('click', () => {
     if (typeof window.toggleLang === 'function') window.toggleLang();
   });
   document.addEventListener('keydown', onKey);
@@ -731,6 +759,7 @@ function dismissPreProdBanner() {
 <nav>
   <a href="#" class="nav-logo">SATOSHi</a>
   <div class="nav-menu">
+    <a href="#" class="nav-link" onclick="openTeaser();return false;" style="color:#F7931A;border-bottom:1px solid rgba(247,147,26,0.4);padding-bottom:1px;">TEASER</a>
     <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
@@ -769,6 +798,25 @@ function dismissPreProdBanner() {
   <div class="hero-scroll">
     <span class="th-only">DON'T TRUST — VERIFY ↓</span>
     <span class="en-only">DON'T TRUST — VERIFY ↓</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="bff" class="bff-section reveal">
+  <div class="bff-section-inner">
+    <div class="bff-section-tag">OFFICIAL SELECTION</div>
+    <div class="bff-section-title">BITCOIN FILM <span>FEST</span></div>
+    <div class="bff-section-year">2 0 2 6</div>
+    <div class="bff-section-divider"></div>
+    <div class="bff-section-desc">
+      <span class="th-only">SATOSHI.FILM ได้รับการส่งเข้าร่วมงาน <strong>Bitcoin Film Fest 2026</strong> — เทศกาลภาพยนตร์นานาชาติที่อุทิศให้กับเรื่องราวของ Bitcoin ความจริง และอิสรภาพทางการเงิน เปิดรับผลงานจากผู้สร้างภาพยนตร์อิสระทั่วโลก</span>
+      <span class="en-only">SATOSHI.FILM has been submitted to <strong>Bitcoin Film Fest 2026</strong> — an international festival dedicated to Bitcoin, truth, and financial freedom. Celebrating independent filmmakers from across the world.</span>
+    </div>
+    <a href="#" class="bff-section-cta" onclick="openTeaser();return false;">
+      <span class="th-only">ดูตัวอย่างภาพยนตร์ →</span>
+      <span class="en-only">WATCH TEASER →</span>
+    </a>
   </div>
 </section>
 
