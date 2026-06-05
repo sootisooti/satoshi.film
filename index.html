@@ -398,7 +398,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
-  .nav-forum-link, .nav-dialogue-link { display: none; }
+  .nav-verify-link, .nav-forum-link, .nav-dialogue-link { display: none; }
   .mobile-only { display: block !important; }
   nav { grid-template-columns: auto 1fr auto; }
   .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
@@ -720,12 +720,14 @@ function dismissPreProdBanner() {
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
     <div class="nav-mobile-divider mobile-only"></div>
     <a href="#support" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
-    <a href="#forum" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="verifier.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ตรวจสอบ</span><span class="en-only">VERIFY</span></a>
+    <a href="forum.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
   </div>
   <div class="nav-right">
     <a href="#support" onclick="event.preventDefault();openZapModal();" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.5);padding:6px 14px;transition:background 0.2s,box-shadow 0.2s;" onmouseenter="this.style.background='rgba(247,147,26,0.12)';this.style.boxShadow='0 0 10px rgba(247,147,26,0.25)';" onmouseleave="this.style.background='';this.style.boxShadow='';"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
-    <a href="#forum" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="verifier.html" class="nav-verify-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ตรวจสอบ</span><span class="en-only">VERIFY</span></a>
+    <a href="forum.html" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
@@ -1714,7 +1716,7 @@ function dismissPreProdBanner() {
     </div>
   </div>
 
-  <div class="ch-group ch-you reveal">
+  <div class="ch-group ch-you reveal" style="text-align:center; padding: 60px 0;">
     <div class="ch-header ch-header-you">
       <div class="ch-num ch-num-you">∞</div>
       <div class="ch-info">
@@ -1723,36 +1725,8 @@ function dismissPreProdBanner() {
         <div class="ch-subtitle ch-subtitle-you en-only">Anyone who holds even a single sat — is Satoshi.</div>
       </div>
     </div>
-    <div class="you-koan">
-      <p class="th-only">"ถ้าคุณถือ 1 sat — คุณคือ 1 ใน 2,100,000,000,000,000 ของ Satoshi"</p>
-      <p class="en-only">"If you hold 1 sat — you are 1 of 2,100,000,000,000,000 parts of Satoshi."</p>
-      <p class="th-only koan-final">"ถ้าคุณ verify ด้วยตัวเอง — คุณคือ Satoshi ทั้งหมด"</p>
-      <p class="en-only koan-final">"If you verify for yourself — you are all of Satoshi."</p>
-      
-      <div class="quote-box">
-        <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
-        <div class="quote-text" id="quoteText">
-          <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
-          <span class="en-only">...System awaiting your verification...</span>
-        </div>
-        <div class="quote-author" id="quoteAuthor"></div>
-        <button class="quote-btn" onclick="generateQuote()">
-          <span class="th-only">MINE A QUOTE ⚡</span>
-          <span class="en-only">MINE A QUOTE ⚡</span>
-        </button>
-      </div>
-
-      <div class="seed-section">
-          <div class="seed-container">
-            <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
-            <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;">
-              </div>
-            <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; margin-bottom: 20px;">GENERATE ⚡</button>
-            <div class="seed-caption th-only">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
-            <div class="seed-caption en-only">"Have you started planting your own seed of freedom today?"</div>
-          </div>
-      </div>
-      
+    <div style="margin-top: 32px;">
+      <a href="verifier.html" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:#00FF41;border:1px solid rgba(0,255,65,0.4);padding:14px 32px;text-decoration:none;display:inline-block;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,255,65,0.08)';this.style.borderColor='#00FF41';" onmouseleave="this.style.background='';this.style.borderColor='rgba(0,255,65,0.4)';"><span class="th-only">MINE A QUOTE + FREEDOM VOCABULARY →</span><span class="en-only">MINE A QUOTE + FREEDOM VOCABULARY →</span></a>
     </div>
   </div>
 </section>
@@ -1818,52 +1792,12 @@ function dismissPreProdBanner() {
   </div>
 </section>
 
-<section class="forum" id="forum">
-  <div class="forum-eyebrow">BLOCK <span id="forumBlockHeight">---</span> · SOURCE: bitcointalk.org</div>
-
+<section class="forum" id="forum" style="padding: 80px 40px; text-align: center;">
+  <div class="forum-eyebrow">SOURCE: bitcointalk.org</div>
   <div class="forum-section-title th-only">ชุมชน — การตรวจสอบ</div>
   <div class="forum-section-title-en en-only">FORUM — COMMUNITY VERIFY</div>
-
-  <div class="forum-subtitle">
-    <div class="forum-subtitle-th th-only">
-      ทุกสัปดาห์เราคัดเลือก 21 กระทู้จากฟอรัมที่ Satoshi เคยโพสต์ — ผ่านมุมมองของหนังเรื่องนี้ เราไม่คัดลอกโพสต์ เราสรุปด้วยเสียงของเราเอง และลิงก์กลับไปที่ต้นฉบับ
-    </div>
-    <div class="forum-subtitle-en en-only">
-      Each week we select 21 threads from the forum where Satoshi posted — through the lens of this film. We don't copy posts. We summarize in our own voice and link back to the source.
-    </div>
-  </div>
-
-  <div class="forum-disclosure">
-    <div class="forum-disclosure-text th-only">
-      คำชี้แจงทางบรรณาธิการ: เราสรุปและแปลความหัวข้อกระทู้ในแบบของเราเอง ไม่ได้คัดลอกโพสต์ต้นฉบับมา ทุกกระทู้ลิงก์กลับไปที่ต้นทางบน bitcointalk.org พร้อมชื่อผู้โพสต์ — และ "มุมของหนัง" สะท้อนว่าแต่ละกระทู้เชื่อมโยงกับธีมของเรื่องอย่างไร: หนี้ข้ามรุ่น, การตรวจสอบ, และอธิปไตยทางการเงิน
-    </div>
-    <div class="forum-disclosure-text en-only">
-      EDITORIAL DISCLOSURE: We paraphrase thread titles and discussions. We do not reproduce original posts. Every thread links to its source on bitcointalk.org with the author's username. Our "take" reflects how each thread connects to the film's themes of generational debt, verification, and monetary sovereignty.
-    </div>
-  </div>
-
-  <div class="forum-meta">
-    <span>CURATED <span id="forumCuratedDate">---</span></span>
-    <span>·</span>
-    <span>COUNT <span id="forumCount">0</span>/21</span>
-    <span>·</span>
-    <span class="forum-week-picker-container">
-      <label for="forumWeekPicker" style="margin-right: 4px;">WEEK</label>
-      <select id="forumWeekPicker" class="forum-week-picker">
-        <option value="current">CURRENT</option>
-      </select>
-    </span>
-  </div>
-
-  <div class="forum-grid" id="forumGrid">
-    <div class="forum-skeleton">
-      <div class="forum-skeleton-text">verify@satoshi:~$ loading forum threads...</div>
-    </div>
-  </div>
-
-  <div class="forum-attribution">
-    <span class="th-only">ทุกกระทู้ยังคงอยู่บน bitcointalk.org — ฟอรัมที่ Satoshi Nakamoto โพสต์ระหว่างปี 2009-2010</span>
-    <span class="en-only">All threads live on bitcointalk.org — the forum where Satoshi Nakamoto posted from 2009-2010.</span>
+  <div style="margin-top: 32px;">
+    <a href="forum.html" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:#00FF41;border:1px solid rgba(0,255,65,0.4);padding:14px 32px;text-decoration:none;display:inline-block;transition:all 0.3s;" onmouseenter="this.style.background='rgba(0,255,65,0.08)';this.style.borderColor='#00FF41';" onmouseleave="this.style.background='';this.style.borderColor='rgba(0,255,65,0.4)';"><span class="th-only">ดู 21 กระทู้ที่คัดสรรสัปดาห์นี้ →</span><span class="en-only">VIEW THIS WEEK'S 21 CURATED THREADS →</span></a>
   </div>
 </section>
 
@@ -2013,7 +1947,7 @@ function generateSeedWords() {
     grid.appendChild(div);
   });
 }
-document.addEventListener('DOMContentLoaded', generateSeedWords);
+// generateSeedWords moved to verifier.html
 
 
 // ─── Quote Generator ───
@@ -2373,132 +2307,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 </script>
 
-<!-- Forum loader — isolated from main script for resilience -->
-<script>
-(function() {
-  const escapeHtml = (str) => {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  };
-
-  const renderForumCards = (data) => {
-    const grid = document.getElementById('forumGrid');
-    const blockHeightEl = document.getElementById('forumBlockHeight');
-    const curatedDateEl = document.getElementById('forumCuratedDate');
-    const countEl = document.getElementById('forumCount');
-
-    if (!data || !data.topics || data.topics.length === 0) {
-      grid.innerHTML = `
-        <div class="forum-skeleton">
-          <div class="forum-skeleton-text">verify@satoshi:~$ no forum data available</div>
-        </div>
-      `;
-      return;
-    }
-
-    blockHeightEl.textContent = escapeHtml(data.block_height || '---');
-    curatedDateEl.textContent = escapeHtml(data.curated_date || '---');
-    countEl.textContent = data.topics.length;
-
-    const topics = data.topics.slice(0, 21);
-    const cardsHTML = topics.map((topic, index) => {
-      const num = String(index + 1).padStart(2, '0');
-      return `
-        <div class="forum-card reveal" id="forum-topic-${num}">
-          <div class="forum-card-num">TOPIC ${num} / 21</div>
-          <div class="forum-card-title-th th-only">${escapeHtml(topic.title_th || '')}</div>
-          <div class="forum-card-title-en en-only">${escapeHtml(topic.title_en || '')}</div>
-          <div class="forum-card-summary-th th-only">${escapeHtml(topic.summary_th || '')}</div>
-          <div class="forum-card-summary-en en-only">${escapeHtml(topic.summary_en || '')}</div>
-          <div class="forum-card-take">
-            <div class="forum-card-take-label"><span class="th-only">มุมของหนัง</span><span class="en-only">OUR TAKE</span></div>
-            <div class="forum-card-take-th th-only">${escapeHtml(topic.take_th || '')}</div>
-            <div class="forum-card-take-en en-only">${escapeHtml(topic.take_en || '')}</div>
-          </div>
-          <div class="forum-card-footer">
-            <div class="forum-card-author">${escapeHtml(topic.author || 'unknown')} · ${escapeHtml(topic.board || 'Bitcoin Discussion')}</div>
-            <a href="${escapeHtml(topic.source_url || '#')}" target="_blank" rel="noopener" class="forum-card-verify">VERIFY ↗</a>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    grid.innerHTML = cardsHTML;
-
-    document.querySelectorAll('.forum-card.reveal').forEach((el, i) => {
-      setTimeout(() => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s, transform 0.6s';
-        requestAnimationFrame(() => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        });
-      }, i * 50);
-    });
-  };
-
-  const loadWeekData = (isoWeek) => {
-    const url = isoWeek === 'current'
-      ? './forum-daily.json'
-      : `./forum-archive/${isoWeek}.json`;
-
-    fetch(url, { cache: 'no-store' })
-      .then(response => {
-        if (!response.ok) throw new Error('Forum data not found');
-        return response.json();
-      })
-      .then(data => renderForumCards(data))
-      .catch(err => {
-        console.warn('Forum loader:', err);
-        const countEl = document.getElementById('forumCount');
-        if (countEl) countEl.textContent = 'ERR';
-        const grid = document.getElementById('forumGrid');
-        if (grid) grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable: ${err.message}</div></div>`;
-      });
-  };
-
-  const initWeekPicker = () => {
-    const picker = document.getElementById('forumWeekPicker');
-    if (!picker) return;
-
-    // Load manifest and populate picker
-    fetch('./forum-archive/index.json', { cache: 'no-store' })
-      .then(response => {
-        if (!response.ok) throw new Error('No archive manifest');
-        return response.json();
-      })
-      .then(manifest => {
-        if (!manifest.weeks || manifest.weeks.length === 0) {
-          // No archives yet, keep only "CURRENT" option
-          return;
-        }
-
-        // Add archive weeks to picker
-        manifest.weeks.forEach(week => {
-          const option = document.createElement('option');
-          option.value = week.iso_week;
-          option.textContent = week.iso_week;
-          picker.appendChild(option);
-        });
-      })
-      .catch(err => {
-        console.warn('Archive manifest not found (first run?):', err);
-        // Keep only "CURRENT" option - graceful fallback
-      });
-
-    // Handle week selection
-    picker.addEventListener('change', (e) => {
-      loadWeekData(e.target.value);
-    });
-  };
-
-  // Initialize
-  initWeekPicker();
-  loadWeekData('current');
-})();
-</script>
+<!-- Forum content moved to forum.html -->
 
 <button class="zap-float" onclick="openZapModal()" aria-label="Support the film">⚡</button>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
