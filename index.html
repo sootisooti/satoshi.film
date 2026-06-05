@@ -34,8 +34,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .nav-link { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap; }
 .nav-link:hover { color: #F7931A; }
 .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.nav-auth-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #00FF41; border: 1px solid rgba(0,255,65,0.3); padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
-.nav-auth-btn:hover { color: #080806; background: #00FF41; border-color: #00FF41; }
 .lang-toggle { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #666660; border: 1px solid #666660; padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
 .lang-toggle:hover { color: #F7931A; border-color: #F7931A; }
 
@@ -263,17 +261,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
 
-/* ─── COMMUNITY VERIFY ─── */
-.community { padding: 120px 40px; text-align: center; }
-.community-questions { max-width: 640px; margin: 60px auto 0; text-align: left; }
-.cq-item { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.cq-num { font-family: 'Space Mono', monospace; font-size: 10px; color: #F7931A; margin-bottom: 10px; }
-.cq-question { font-family: 'Noto Serif Thai', serif; font-size: 17px; color: #d4d0c8; line-height: 1.8; margin-bottom: 4px; }
-.cq-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.08); color: #d4d0c8; font-family: 'Sarabun', sans-serif; font-size: 14px; padding: 12px 0; margin-top: 12px; outline: none; transition: border-color 0.3s; }
-.cq-input:focus { border-color: #F7931A; }
-.cq-input::placeholder { color: #666660; opacity: 0.4; }
-.community-submit { display: block; margin: 40px auto 0; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #080806; background: #F7931A; border: none; padding: 14px 40px; cursor: none; transition: all 0.3s; }
-.community-submit:hover { background: #d4d0c8; }
 
 /* ─── SUPPORT / LIGHTNING ─── */
 .support { padding: 120px 40px; text-align: center; }
@@ -335,19 +322,6 @@ body.lang-en .forum-card-take-en { font-size: 12px; color: #d4d0c8; opacity: 0.9
 
 /* ─── FOOTER ─── */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-.footer-newsletter { max-width: 480px; margin: 0 auto 48px; text-align: center; }
-.footer-newsletter-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; color: #F7931A; margin-bottom: 8px; }
-.footer-newsletter-desc { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; margin-bottom: 20px; line-height: 1.7; }
-.footer-newsletter-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
-.footer-newsletter-input { flex: 1; background: transparent; border: 1px solid rgba(247,147,26,0.2); border-right: none; color: #d4d0c8; font-family: 'Space Mono', monospace; font-size: 12px; padding: 12px 16px; outline: none; transition: border-color 0.3s; }
-.footer-newsletter-input:focus { border-color: #F7931A; }
-.footer-newsletter-input::placeholder { color: #666660; opacity: 0.4; font-size: 11px; }
-.footer-newsletter-btn { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #080806; background: #F7931A; border: 1px solid #F7931A; padding: 12px 20px; cursor: none; transition: all 0.3s; white-space: nowrap; }
-.footer-newsletter-btn:hover { background: #d4d0c8; border-color: #d4d0c8; }
-.footer-newsletter-success { display: none; font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; padding: 12px; border: 1px solid rgba(0,255,65,0.2); background: rgba(0,255,65,0.03); }
-.footer-newsletter-form.submitted { display: none; }
-.footer-newsletter-success.visible { display: block; }
-.footer-newsletter-privacy { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 1px; color: #666660; margin-top: 10px; opacity: 0.4; }
 .footer-content { text-align: center; }
 .footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 6px; color: #F7931A; margin-bottom: 12px; }
 .footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; letter-spacing: 2px; margin-bottom: 16px; }
@@ -374,7 +348,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
   .nav-right { gap: 8px; }
-  .nav-auth-btn { padding: 5px 10px; font-size: 9px; }
   .hero { padding: 100px 20px 60px; }
   .worlds-grid { grid-template-columns: 1fr; }
   .world-card { padding: 36px 24px; }
@@ -410,7 +383,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 .mobile-only { display: none !important; }
 .nav-mobile-divider { width: 100%; height: 1px; background: rgba(247,147,26,0.15); margin: 8px 0; }
-.nav-mobile-login { width: 100%; text-align: left; padding: 14px 0; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #00FF41; background: transparent; border: none; border-bottom: none; cursor: none; }
 
 /* ─── READING PROGRESS BAR ─── */
 .reading-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #F7931A 0%, #00FF41 100%); width: 0%; z-index: 9998; pointer-events: none; }
@@ -426,7 +398,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
-  .nav-forum-link, .nav-dialogue-link, .nav-auth-btn { display: none; }
+  .nav-forum-link, .nav-dialogue-link { display: none; }
   .mobile-only { display: block !important; }
   nav { grid-template-columns: auto 1fr auto; }
   .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
@@ -701,62 +673,6 @@ function dismissPreProdBanner() {
   </div>
 </div>
 
-<div class="auth-overlay" id="authOverlay">
-  <div class="auth-box">
-    <button class="auth-close" onclick="closeAuth()">×</button>
-    <div class="auth-header">
-      <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">LOGIN</button>
-      <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">REGISTER</button>
-    </div>
-    <div class="auth-body">
-      <div class="auth-form active" id="authLogin">
-        <div class="auth-field">
-          <label class="auth-label">EMAIL OR NPUB</label>
-          <input type="text" class="auth-input" placeholder="satoshi@proton.me or npub1...">
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">PASSWORD</label>
-          <input type="password" class="auth-input" placeholder="••••••••••••">
-        </div>
-        <button class="auth-submit">LOGIN</button>
-        <div class="auth-divider"><span>OR</span></div>
-        <button class="auth-nostr">
-          <span class="auth-nostr-icon">⚡</span>
-          LOGIN WITH NOSTR
-        </button>
-        <div class="auth-note">
-          <span class="th-only">ล็อกอินด้วย Nostr key — ไม่ต้องมีรหัสผ่าน ไม่มีใครควบคุมตัวตนคุณ</span>
-          <span class="en-only">Login with your Nostr key — no password needed, no one controls your identity.</span>
-        </div>
-      </div>
-      <div class="auth-form" id="authRegister">
-        <div class="auth-field">
-          <label class="auth-label">EMAIL</label>
-          <input type="email" class="auth-input" placeholder="you@proton.me">
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">DISPLAY NAME</label>
-          <input type="text" class="auth-input" placeholder="Anonymous Verifier">
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">PASSWORD</label>
-          <input type="password" class="auth-input" placeholder="••••••••••••">
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">CONFIRM PASSWORD</label>
-          <input type="password" class="auth-input" placeholder="••••••••••••">
-        </div>
-        <button class="auth-submit">CREATE ACCOUNT</button>
-        <div class="auth-divider"><span>OR</span></div>
-        <button class="auth-nostr">
-          <span class="auth-nostr-icon">⚡</span>
-          REGISTER WITH NOSTR
-        </button>
-      </div>
-    </div>
-    <div class="auth-mockup-badge">UI MOCKUP — BACKEND PENDING</div>
-  </div>
-</div>
 
 <div class="auth-overlay" id="zapModalOverlay">
   <div class="auth-box" style="max-width: 480px;">
@@ -806,13 +722,11 @@ function dismissPreProdBanner() {
     <a href="#support" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
     <a href="#forum" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
-    <button class="nav-mobile-login mobile-only" onclick="closeMobileNav();openAuth();"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
   </div>
   <div class="nav-right">
     <a href="#support" onclick="event.preventDefault();openZapModal();" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.5);padding:6px 14px;transition:background 0.2s,box-shadow 0.2s;" onmouseenter="this.style.background='rgba(247,147,26,0.12)';this.style.boxShadow='0 0 10px rgba(247,147,26,0.25)';" onmouseleave="this.style.background='';this.style.boxShadow='';"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
     <a href="#forum" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
-    <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
@@ -1866,63 +1780,6 @@ function dismissPreProdBanner() {
   </div>
 </div>
 
-<div class="section-divider"></div>
-
-<section class="community reveal" id="community">
-  <div class="section-header">
-    <div class="section-header-label">
-      <span class="th-only">คำถามจากระบบ — SYSTEM QUERIES</span>
-      <span class="en-only">SYSTEM QUERIES — คำถามจากระบบ</span>
-    </div>
-    <div class="section-header-title th-only">คุณพร้อมที่จะตั้งคำถามกับระบบหรือยัง?</div>
-    <div class="section-header-title en-only">Are you ready to question the system?</div>
-  </div>
-
-  <div class="community-questions">
-    <div class="cq-item">
-      <div class="cq-num">QUERY 01 : TIME & LABOR</div>
-      <div class="cq-question th-only">คุณคิดว่ายุติธรรมหรือไม่... ที่ระบบบังคับให้คุณต้องวิ่งเร็วขึ้นทุกวัน เพียงเพื่อจะอยู่ที่เดิม?</div>
-      <div class="cq-question en-only">Is it fair that the system forces you to run faster every day just to stay in the same place?</div>
-      <input type="text" class="cq-input" placeholder="Type your answer...">
-    </div>
-    
-    <div class="cq-item">
-      <div class="cq-num">QUERY 02 : TRUST & CONTROL</div>
-      <div class="cq-question th-only">ทำไมเราถึงยอมให้คนเพียงไม่กี่คน มีอำนาจเสกมูลค่าจากอากาศ และเจือจางหยาดเหงื่อของเราได้ตามใจชอบ?</div>
-      <div class="cq-question en-only">Why do we allow a few individuals the power to conjure value out of thin air and dilute our sweat at will?</div>
-      <input type="text" class="cq-input" placeholder="Type your answer...">
-    </div>
-
-    <div class="cq-item">
-      <div class="cq-num">QUERY 03 : PRIVACY & SOVEREIGNTY</div>
-      <div class="cq-question th-only">ในยุคที่ทุกการใช้จ่ายของคุณถูกบันทึกและตรวจสอบโดยตัวกลาง คุณยังเชื่ออยู่หรือว่าคุณคือเจ้าของเงินของคุณจริงๆ?</div>
-      <div class="cq-question en-only">In an era where every transaction is recorded and monitored by middlemen, do you still believe you truly own your money?</div>
-      <input type="text" class="cq-input" placeholder="Type your answer...">
-    </div>
-
-    <div class="cq-item">
-      <div class="cq-num">QUERY 04 : THE FUTURE</div>
-      <div class="cq-question th-only">ถ้ากติกาเดิมถูกออกแบบมาให้คนส่วนใหญ่ต้องแพ้ คุณจะยังทนเล่นเกมนี้ต่อไป หรือจะเลือกโอนย้ายความหวังไปยังโค้ดที่ไม่มีใครโกงได้?</div>
-      <div class="cq-question en-only">If the old rules are designed for the majority to lose, will you keep playing the game, or shift your hope to a code no one can cheat?</div>
-      <input type="text" class="cq-input" placeholder="Type your answer...">
-    </div>
-
-    <div class="cq-item">
-      <div class="cq-num">QUERY 05 : ACTION & VERIFY</div>
-      <div class="cq-question th-only">"เราทุกคนคือ Satoshi" ไม่ใช่แค่คำกล่าวอ้าง แต่มันคือภาระหน้าที่... วันนี้คุณพร้อมที่จะหยุดเชื่อ และหันมาตรวจสอบความจริงด้วยตัวเองแล้วหรือยัง?</div>
-      <div class="cq-question en-only">"We are all Satoshi" is not just a claim, it's a duty... Are you ready today to stop trusting, and start verifying the truth for yourself?</div>
-      <input type="text" class="cq-input" placeholder="Type your answer...">
-    </div>
-
-    <button class="community-submit">
-      <span class="th-only">SUBMIT PROOF</span>
-      <span class="en-only">SUBMIT PROOF</span>
-    </button>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
 <section class="support" id="support">
   <div class="section-header">
     <div class="section-header-label">
@@ -2011,30 +1868,6 @@ function dismissPreProdBanner() {
 </section>
 
 <footer>
-  <div class="footer-newsletter">
-    <div class="footer-newsletter-label">
-      <span class="th-only">SUBSCRIBE — รับข่าวสาร</span>
-      <span class="en-only">SUBSCRIBE — STAY IN THE LOOP</span>
-    </div>
-    <p class="footer-newsletter-desc th-only">รับอัปเดตเกี่ยวกับหนัง ความคืบหน้า และ community events — ไม่มี spam ไม่มีการขาย</p>
-    <p class="footer-newsletter-desc en-only">Get film updates, progress notes, and community event invites — no spam, no selling.</p>
-    <div class="footer-newsletter-form" id="newsletterForm">
-      <input type="email" class="footer-newsletter-input" id="newsletterEmail" placeholder="your@email.com">
-      <button class="footer-newsletter-btn" onclick="subscribeNewsletter()">
-        <span>SUBSCRIBE</span>
-      </button>
-    </div>
-    <div class="footer-newsletter-success" id="newsletterSuccess">
-      <span class="th-only">✓ SUBSCRIBED — ขอบคุณที่ร่วม verify</span>
-      <span class="en-only">✓ SUBSCRIBED — thanks for joining the verify.</span>
-    </div>
-    <div class="footer-newsletter-privacy">
-      <span class="th-only">EMAIL ของคุณจะไม่ถูกแชร์ — DON'T TRUST, VERIFY</span>
-      <span class="en-only">Your email will not be shared — DON'T TRUST, VERIFY.</span>
-    </div>
-  </div>
-
-  <div class="section-divider" style="margin-bottom: 32px;"></div>
 
   <div class="footer-content">
     <div class="footer-logo">SATOSHi</div>
@@ -2078,7 +1911,7 @@ function animateRing() {
 }
 animateRing();
 
-document.querySelectorAll('a, button, .bundle-card, .verify-btn, .t-suggestion, .t-verify-link, .hw-item[data-hw], .halving-card, .nav-auth-btn').forEach(el => {
+document.querySelectorAll('a, button, .bundle-card, .verify-btn, .t-suggestion, .t-verify-link, .hw-item[data-hw], .halving-card').forEach(el => {
   el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
   el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
 });
@@ -2281,15 +2114,6 @@ function toggleHalving(card) {
 }
 
 // ─── Auth / Zap Modals ───
-function openAuth() { document.getElementById('authOverlay').classList.add('active'); }
-function closeAuth() { document.getElementById('authOverlay').classList.remove('active'); }
-function switchAuthTab(tab) {
-  document.querySelectorAll('#authOverlay .auth-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('#authOverlay .auth-form').forEach(f => f.classList.remove('active'));
-  document.querySelector(`#authOverlay .auth-tab[data-tab="${tab}"]`).classList.add('active');
-  document.getElementById(tab === 'login' ? 'authLogin' : 'authRegister').classList.add('active');
-}
-document.getElementById('authOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAuth(); });
 
 function openZapModal(tier) {
   document.getElementById('zapModalOverlay').classList.add('active');
@@ -2310,12 +2134,6 @@ function copyZap() {
   });
 }
 
-function subscribeNewsletter() {
-  const email = document.getElementById('newsletterEmail').value;
-  if (!email || !email.includes('@')) return;
-  document.getElementById('newsletterForm').classList.add('submitted');
-  document.getElementById('newsletterSuccess').classList.add('visible');
-}
 
 // ─── Verify Terminal System ───
 const B=(t,o,p,l)=>({title:t,output:o,prompts:p,links:l||[]});
@@ -2519,7 +2337,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeTerminal();
     closeFriedcat();
-    closeAuth();
     closeZapModal();
     closePhotobook();
   }
