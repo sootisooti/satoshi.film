@@ -420,6 +420,10 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .back-to-top.visible { opacity: 1; pointer-events: all; }
 .back-to-top:hover { border-color: #F7931A; background: rgba(247,147,26,0.1); }
 
+/* ─── ZAP FLOAT ─── */
+.zap-float { position: fixed; bottom: 32px; left: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.5); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 18px; cursor: none; opacity: 1; pointer-events: all; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.zap-float:hover { border-color: #F7931A; background: rgba(247,147,26,0.15); box-shadow: 0 0 14px rgba(247,147,26,0.35); }
+
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
   .nav-forum-link, .nav-dialogue-link, .nav-auth-btn { display: none; }
@@ -431,6 +435,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .nav-link { font-size: 12px; letter-spacing: 1px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d0c8; width: 100%; }
   .nav-link:last-of-type { border-bottom: none; }
   .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 14px; }
+  .zap-float { bottom: 20px; left: 16px; width: 40px; height: 40px; font-size: 16px; }
 }
 
 /* ─── PRE-PRODUCTION BANNER ─── */
@@ -798,11 +803,13 @@ function dismissPreProdBanner() {
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
     <div class="nav-mobile-divider mobile-only"></div>
+    <a href="#support" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
     <a href="#forum" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="nav-mobile-login mobile-only" onclick="closeMobileNav();openAuth();"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
   </div>
   <div class="nav-right">
+    <a href="#support" onclick="event.preventDefault();openZapModal();" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.5);padding:6px 14px;transition:background 0.2s,box-shadow 0.2s;" onmouseenter="this.style.background='rgba(247,147,26,0.12)';this.style.boxShadow='0 0 10px rgba(247,147,26,0.25)';" onmouseleave="this.style.background='';this.style.boxShadow='';"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
     <a href="#forum" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
     <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
@@ -2676,6 +2683,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 </script>
 
+<button class="zap-float" onclick="openZapModal()" aria-label="Support the film">⚡</button>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <script>
