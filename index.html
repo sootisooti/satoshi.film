@@ -402,6 +402,37 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .seed-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ─── NAV HAMBURGER ─── */
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: none; cursor: none; padding: 0 10px; flex-shrink: 0; }
+.nav-hamburger span { display: block; width: 20px; height: 1.5px; background: #d4d0c8; transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-only { display: none !important; }
+.nav-mobile-divider { width: 100%; height: 1px; background: rgba(247,147,26,0.15); margin: 8px 0; }
+.nav-mobile-login { width: 100%; text-align: left; padding: 14px 0; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 1px; color: #00FF41; background: transparent; border: none; border-bottom: none; cursor: none; }
+
+/* ─── READING PROGRESS BAR ─── */
+.reading-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #F7931A 0%, #00FF41 100%); width: 0%; z-index: 9998; pointer-events: none; }
+
+/* ─── BACK TO TOP ─── */
+.back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.3); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 16px; cursor: none; opacity: 0; pointer-events: none; transition: opacity 0.3s, border-color 0.3s, background 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { border-color: #F7931A; background: rgba(247,147,26,0.1); }
+
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+  .nav-forum-link, .nav-dialogue-link, .nav-auth-btn { display: none; }
+  .mobile-only { display: block !important; }
+  nav { grid-template-columns: auto 1fr auto; }
+  .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
+  .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,8,6,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,0.06); flex-direction: column; padding: 12px 24px 24px; gap: 0; z-index: 999; box-shadow: 0 24px 48px rgba(0,0,0,0.6); }
+  .nav-menu.mobile-open { display: flex; }
+  .nav-link { font-size: 12px; letter-spacing: 1px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d0c8; width: 100%; }
+  .nav-link:last-of-type { border-bottom: none; }
+  .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 14px; }
+}
+
 /* ─── PRE-PRODUCTION BANNER ─── */
 .preprod-banner {
   position: fixed;
@@ -510,6 +541,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 </style>
 </head>
 <body class="lang-th">
+<div class="reading-progress" id="readingProgress"></div>
 <div id="teaserCover" class="teaser-cover" role="dialog" aria-label="SATOSHI.FILM TEASER">
   <button id="teaserCoverLang" class="teaser-cover-lang" aria-label="Toggle language">EN | TH</button>
   <button id="teaserCoverClose" class="teaser-cover-close" aria-label="Close cover">×</button>
@@ -758,19 +790,24 @@ function dismissPreProdBanner() {
 
 <nav>
   <a href="#" class="nav-logo">SATOSHi</a>
-  <div class="nav-menu">
+  <div class="nav-menu" id="navMenu">
     <a href="#" class="nav-link" onclick="openTeaser();return false;" style="color:#F7931A;border-bottom:1px solid rgba(247,147,26,0.4);padding-bottom:1px;">TEASER</a>
     <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
+    <div class="nav-mobile-divider mobile-only"></div>
+    <a href="#forum" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <button class="nav-mobile-login mobile-only" onclick="closeMobileNav();openAuth();"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
   </div>
   <div class="nav-right">
-    <a href="#forum" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
-    <a href="dialogue.html" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
-     <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
+    <a href="#forum" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <button class="nav-auth-btn" onclick="openAuth()"><span class="th-only">เข้าสู่ระบบ</span><span class="en-only">LOGIN</span></button>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -2636,6 +2673,46 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   // Initialize
   initWeekPicker();
   loadWeekData('current');
+})();
+</script>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+// ─── Mobile Navigation ───
+function toggleMobileNav() {
+  var menu = document.getElementById('navMenu');
+  var btn = document.getElementById('navHamburger');
+  menu.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+function closeMobileNav() {
+  var menu = document.getElementById('navMenu');
+  var btn = document.getElementById('navHamburger');
+  if (menu) menu.classList.remove('mobile-open');
+  if (btn) btn.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  var nav = document.querySelector('nav');
+  var menu = document.getElementById('navMenu');
+  if (menu && menu.classList.contains('mobile-open') && nav && !nav.contains(e.target)) {
+    closeMobileNav();
+  }
+});
+
+// ─── Reading Progress + Back To Top ───
+(function() {
+  var progress = document.getElementById('readingProgress');
+  var backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress && docHeight > 0) progress.style.width = (scrollTop / docHeight * 100) + '%';
+    if (backBtn) {
+      if (scrollTop > 400) backBtn.classList.add('visible');
+      else backBtn.classList.remove('visible');
+    }
+  }, { passive: true });
 })();
 </script>
 
