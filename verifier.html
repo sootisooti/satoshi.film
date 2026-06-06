@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATOSHI — MINE + GENERATE</title>
+<meta name="description" content="Mine a quote. Generate your freedom vocabulary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: #F7931A; color: #080806; }
+html { scroll-behavior: smooth; background: #080806; }
+body { font-family: 'Sarabun', sans-serif; background: #080806; color: #d4d0c8; overflow-x: hidden; cursor: none; }
+body.lang-th .en-only { display: none !important; }
+body.lang-en .th-only { display: none !important; }
+
+/* Custom Cursor */
+.cursor-dot { width: 8px; height: 8px; background: #F7931A; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; transition: transform 0.1s; mix-blend-mode: difference; }
+.cursor-ring { width: 32px; height: 32px; border: 1.5px solid #F7931A; border-radius: 50%; position: fixed; pointer-events: none; z-index: 99998; transition: transform 0.15s ease-out, width 0.2s, height 0.2s, border-color 0.2s; transform: translate(-12px, -12px); }
+.cursor-ring.hovering { width: 48px; height: 48px; border-color: #00FF41; transform: translate(-20px, -20px); }
+
+/* Nav */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 20px 40px; background: linear-gradient(180deg, #080806 60%, transparent); backdrop-filter: blur(4px); }
+.nav-logo { font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 6px; color: #F7931A; text-decoration: none; display: flex; align-items: center; }
+.nav-menu { display: flex; gap: 24px; justify-content: center; min-width: 0; flex-wrap: wrap; row-gap: 6px; }
+.nav-link { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; text-decoration: none; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap; }
+.nav-link:hover { color: #F7931A; }
+.nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.lang-toggle { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #666660; border: 1px solid #666660; padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
+.lang-toggle:hover { color: #F7931A; border-color: #F7931A; }
+
+/* Auth / Zap Modal */
+.auth-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.95); z-index: 10002; display: none; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
+.auth-overlay.active { display: flex; }
+.auth-box { width: 90%; max-width: 420px; background: #0a0a08; border: 1px solid rgba(247,147,26,0.2); overflow: hidden; text-align: left; position: relative; }
+.auth-header { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.auth-tab { flex: 1; padding: 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-align: center; color: #666660; background: transparent; border: none; cursor: none; transition: all 0.3s; border-bottom: 2px solid transparent; }
+.auth-tab.active { color: #F7931A; border-bottom-color: #F7931A; background: rgba(247,147,26,0.03); }
+.auth-tab:hover:not(.active) { color: #d4d0c8; }
+.auth-body { padding: 32px; }
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+.auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
+.auth-close:hover { color: #F7931A; }
+
+/* Tools */
+.verifier-page { padding: 160px 40px 80px; max-width: 760px; margin: 0 auto; }
+.quote-box { padding: 40px 32px; border: 1px solid rgba(0,255,65,0.15); background: rgba(0,255,65,0.02); text-align: center; margin-bottom: 2px; }
+.quote-hash { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; margin-bottom: 12px; word-break: break-all; min-height: 15px; opacity: 0.5; }
+.quote-text { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; min-height: 45px; margin-bottom: 8px; font-style: italic; transition: opacity 0.3s; }
+.quote-author { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; margin-bottom: 24px; opacity: 0; transition: opacity 0.3s; }
+.quote-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #00FF41; border: none; padding: 10px 24px; cursor: none; transition: all 0.3s; display: inline-block; }
+.quote-btn:hover { background: #d4d0c8; }
+.seed-section { padding: 2px 0 0; text-align: center; }
+.seed-container { max-width: 700px; margin: 0 auto; padding: 40px 32px; border: 1px solid rgba(247,147,26,0.2); background: rgba(247,147,26,0.02); position: relative; overflow: hidden; }
+.seed-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #F7931A; opacity: 0.5; }
+.seed-caption { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; font-style: italic; opacity: 0.8; }
+
+/* Footer */
+footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-content { text-align: center; }
+.footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 6px; color: #F7931A; margin-bottom: 12px; }
+.footer-copy { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; letter-spacing: 2px; margin-bottom: 16px; }
+.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
+.footer-links a { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: #F7931A; }
+
+/* Scroll Reveal */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Mobile Nav */
+@media (max-width: 1200px) { nav { padding: 18px 24px; gap: 12px; } .nav-menu { gap: 14px; } .nav-link { font-size: 9px; letter-spacing: 0.5px; } }
+@media (max-width: 900px) { nav { grid-template-columns: auto 1fr; padding: 16px 20px; gap: 12px; } .nav-menu { gap: 12px 8px; justify-content: flex-start; } .nav-right { grid-column: 1 / -1; justify-content: flex-end; margin-top: 4px; } }
+@media (max-width: 768px) { .verifier-page { padding: 120px 20px 60px; } .seed-section { padding: 0; } .quote-box { padding: 28px 20px; } }
+@media (max-width: 480px) { .seed-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+
+/* Nav Hamburger */
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: none; cursor: none; padding: 0 10px; flex-shrink: 0; }
+.nav-hamburger span { display: block; width: 20px; height: 1.5px; background: #d4d0c8; transition: all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-only { display: none !important; }
+.nav-mobile-divider { width: 100%; height: 1px; background: rgba(247,147,26,0.15); margin: 8px 0; }
+
+/* Reading Progress */
+.reading-progress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #F7931A 0%, #00FF41 100%); width: 0%; z-index: 9998; pointer-events: none; }
+
+/* Back to Top */
+.back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.3); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 16px; cursor: none; opacity: 0; pointer-events: none; transition: opacity 0.3s, border-color 0.3s, background 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { border-color: #F7931A; background: rgba(247,147,26,0.1); }
+
+/* Zap Float */
+.zap-float { position: fixed; bottom: 32px; left: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.5); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 18px; cursor: none; opacity: 1; pointer-events: all; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.zap-float:hover { border-color: #F7931A; background: rgba(247,147,26,0.15); box-shadow: 0 0 14px rgba(247,147,26,0.35); }
+
+/* Pre-production Banner */
+.preprod-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(247,147,26,0.95); color: #080806; padding: 10px 16px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(8,8,6,0.1); transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
+.preprod-banner.dismissed { transform: translateY(-100%); opacity: 0; }
+.preprod-content { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; gap: 16px; }
+.preprod-text { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; display: flex; flex-direction: column; gap: 2px; }
+.preprod-text span:first-child { font-family: 'Sarabun', sans-serif; }
+.preprod-close { background: transparent; border: none; color: #080806; font-size: 28px; line-height: 1; cursor: none; padding: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity 0.2s; font-family: 'Space Mono', monospace; }
+.preprod-close:hover { opacity: 0.7; }
+
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+  .nav-verify-link, .nav-forum-link, .nav-dialogue-link { display: none; }
+  .mobile-only { display: block !important; }
+  nav { grid-template-columns: auto 1fr auto; }
+  .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
+  .nav-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,8,6,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,0.06); flex-direction: column; padding: 12px 24px 24px; gap: 0; z-index: 999; box-shadow: 0 24px 48px rgba(0,0,0,0.6); }
+  .nav-menu.mobile-open { display: flex; }
+  .nav-link { font-size: 12px; letter-spacing: 1px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d0c8; width: 100%; }
+  .nav-link:last-of-type { border-bottom: none; }
+  .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 14px; }
+  .zap-float { bottom: 20px; left: 16px; width: 40px; height: 40px; font-size: 16px; }
+  .preprod-text { font-size: 11px; }
+  .preprod-banner { padding: 8px 12px; }
+}
+</style>
+</head>
+<body class="lang-th">
+
+<div class="reading-progress" id="readingProgress"></div>
+
+<div id="preProdBanner" class="preprod-banner">
+  <div class="preprod-content">
+    <span class="preprod-text">
+      <span>เว็บไซต์และภาพยนตร์อยู่ในช่วง pre-production · ขออภัยด้วยหาก feature บางส่วนยังไม่ทำงาน</span>
+      <span>Website and film are in pre-production · Apologies if some features don't work yet</span>
+    </span>
+    <button class="preprod-close" onclick="dismissPreProdBanner()" aria-label="Close banner">×</button>
+  </div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="auth-overlay" id="zapModalOverlay">
+  <div class="auth-box" style="max-width: 480px;">
+    <button class="auth-close" onclick="closeZapModal()">×</button>
+    <div class="auth-header">
+      <button class="auth-tab active" data-tab="donate" onclick="switchZapTab('donate')">ZAP ⚡</button>
+      <button class="auth-tab" data-tab="supporters" onclick="switchZapTab('supporters')">SUPPORTERS</button>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="zapDonate">
+        <h3 style="font-family: 'Space Mono', monospace; color: #F7931A; font-size: 14px; margin-bottom: 16px;">SUPPORT SATOSHI FILM</h3>
+        <p class="th-only" style="font-family: 'Sarabun', sans-serif; color: #666660; font-size: 14px; margin-bottom: 24px; line-height: 1.6;">โอนผ่าน Lightning Network ไปที่ Address ด้านล่าง เพื่อร่วมเป็นส่วนหนึ่งของโปรเจกต์</p>
+        <p class="en-only" style="font-family: 'Sarabun', sans-serif; color: #666660; font-size: 14px; margin-bottom: 24px; line-height: 1.6;">Send via Lightning Network to the address below to support the project.</p>
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <span style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 12px; word-break: break-all;" id="zapAddressTxt">satoshifilm@walletofsatoshi.com</span>
+          <button onclick="copyZap()" style="background: #F7931A; color: #080806; border: none; font-family: 'Space Mono', monospace; font-size: 10px; padding: 8px 16px; cursor: none; transition: all 0.3s;">COPY</button>
+        </div>
+        <div id="copySuccess" style="font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; margin-top: 12px; display: none;">✓ COPIED TO CLIPBOARD</div>
+      </div>
+      <div class="auth-form" id="zapSupporters">
+        <h3 style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 14px; margin-bottom: 24px; letter-spacing: 2px;">GENESIS SUPPORTERS</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; font-family: 'Space Mono', monospace; font-size: 12px; color: #d4d0c8; display: flex; flex-direction: column; gap: 16px;">
+          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;"><span>1. BLC เชียงใหม่</span><span style="color: #F7931A;">210,000 SATS</span></li>
+          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; opacity: 0.3;"><span>2. ----------------</span><span style="color: #F7931A;">--- SATS</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">SATOSHi</a>
+  <div class="nav-menu" id="navMenu">
+    <a href="index.html" class="nav-link"><span class="th-only">หน้าหลัก</span><span class="en-only">HOME</span></a>
+    <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
+    <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
+    <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
+    <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
+    <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
+    <div class="nav-mobile-divider mobile-only"></div>
+    <a href="#" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
+    <a href="forum.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+  </div>
+  <div class="nav-right">
+    <a href="#" onclick="event.preventDefault();openZapModal();" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.5);padding:6px 14px;transition:background 0.2s,box-shadow 0.2s;" onmouseenter="this.style.background='rgba(247,147,26,0.12)';this.style.boxShadow='0 0 10px rgba(247,147,26,0.25)';" onmouseleave="this.style.background='';this.style.boxShadow='';"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
+    <a href="forum.html" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="verifier-page">
+
+  <div class="quote-box reveal">
+    <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
+    <div class="quote-text" id="quoteText">
+      <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
+      <span class="en-only">...System awaiting your verification...</span>
+    </div>
+    <div class="quote-author" id="quoteAuthor"></div>
+    <button class="quote-btn" onclick="generateQuote()">MINE A QUOTE ⚡</button>
+  </div>
+
+  <div class="seed-section reveal">
+    <div class="seed-container">
+      <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
+      <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;"></div>
+      <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; margin-bottom: 20px;">GENERATE ⚡</button>
+      <div class="seed-caption th-only">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
+      <div class="seed-caption en-only">"Have you started planting your own seed of freedom today?"</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">SATOSHi</div>
+    <div class="footer-copy">© 2026 SATOSHI FILM — CONFIDENTIAL</div>
+    <div class="footer-links">
+      <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="th-only">ร่วมพัฒนาบทภาพยนตร์</a>
+      <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="en-only">SCRIPT &amp; DOC COLLAB</a>
+      <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
+      <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="en-only">WEBSITE COLLAB</a>
+      <a href="#" onclick="toggleLang(); return false;"><span>EN / TH</span></a>
+    </div>
+  </div>
+</footer>
+
+<button class="zap-float" onclick="openZapModal()" aria-label="Support the film">⚡</button>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+// Custom Cursor
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX - 4 + 'px';
+  dot.style.top = mouseY - 4 + 'px';
+});
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+  ring.style.left = ringX - 4 + 'px';
+  ring.style.top = ringY - 4 + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+});
+
+function toggleLang() {
+  const body = document.body;
+  if (body.classList.contains('lang-th')) {
+    body.classList.remove('lang-th'); body.classList.add('lang-en');
+  } else {
+    body.classList.remove('lang-en'); body.classList.add('lang-th');
+  }
+}
+
+// Quote Generator
+const KOANS = [
+  { th: "\"Don't trust. Verify.\"", en: "\"Don't trust. Verify.\"", author: "Bitcoin Maxim" },
+  { th: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", en: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", author: "Satoshi Nakamoto" },
+  { th: "\"ถ้าคุณไม่เชื่อฉัน หรือไม่เข้าใจ ฉันก็ไม่มีเวลาที่จะอธิบายให้คุณฟัง ขอโทษด้วย\"", en: "\"If you don't believe me or don't get it, I don't have time to try to convince you, sorry.\"", author: "Satoshi Nakamoto" },
+  { th: "\"ความลับ (Privacy) คือสิ่งที่จำเป็นสำหรับสังคมที่เปิดกว้างในยุคอิเล็กทรอนิกส์\"", en: "\"Privacy is necessary for an open society in the electronic age.\"", author: "Eric Hughes" },
+  { th: "\"ชาวไซเฟอร์พังก์เขียนโค้ด... เราจะปกป้องความลับของเราด้วยวิทยาการเข้ารหัส\"", en: "\"Cypherpunks write code... We will defend our privacy with cryptography.\"", author: "Eric Hughes" },
+  { th: "\"มันอาจจะสมเหตุสมผลที่จะเก็บมันไว้บ้าง เผื่อว่ามันจะได้รับความนิยมขึ้นมา\"", en: "\"It might make sense just to get some in case it catches on.\"", author: "Satoshi Nakamoto" },
+  { th: "\"Running bitcoin.\"", en: "\"Running bitcoin.\"", author: "Hal Finney" },
+  { th: "\"คอมพิวเตอร์สามารถใช้เป็นเครื่องมือเพื่อปลดแอกและปกป้องผู้คนได้ แทนที่จะใช้เพื่อควบคุมพวกเขา\"", en: "\"The computer can be used as a tool to liberate and protect people, rather than to control them.\"", author: "Hal Finney" },
+  { th: "\"ตัวกลางที่น่าเชื่อถือ (Trusted third parties) คือช่องโหว่ของความปลอดภัย\"", en: "\"Trusted third parties are security holes.\"", author: "Nick Szabo" },
+  { th: "\"การบอกว่าคุณไม่สนเรื่องความเป็นส่วนตัวเพราะไม่มีอะไรต้องปิดบัง ก็เหมือนบอกว่าคุณไม่สนเสรีภาพในการพูดเพราะไม่มีอะไรจะพูด\"", en: "\"Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say.\"", author: "Edward Snowden" },
+  { th: "\"ความโปร่งใสเป็นเรื่องของรัฐ ความเป็นส่วนตัวเป็นเรื่องของประชาชน\"", en: "\"Transparency is for the state. Privacy is for the rest of us.\"", author: "Julian Assange" },
+  { th: "\"ในระบบ crypto-anarchy รัฐบาลไม่ได้ถูกทำลายชั่วคราว แต่ถูกห้ามอย่างถาวรและหมดความจำเป็นอย่างถาวร\"", en: "\"In a crypto-anarchy, the government is not temporarily destroyed but permanently forbidden and permanently unnecessary.\"", author: "Wei Dai" },
+  { th: "\"เทคโนโลยีการเข้ารหัสจะเปลี่ยนแปลงธรรมชาติขององค์กรและการแทรกแซงของรัฐในธุรกรรมทางเศรษฐกิจอย่างถาวร\"", en: "\"Cryptologic methods will fundamentally alter the nature of corporations and of government interference in economic transactions.\"", author: "Timothy C. May" },
+  { th: "\"รหัสคอมพิวเตอร์คือคำพูด และคำพูดนั้นเป็นเสรีภาพ\"", en: "\"Code is speech, and speech is freedom.\"", author: "Cypherpunk Maxim" },
+  { th: "\"เมื่อทุกคนคือ Satoshi จะไม่มีใครสามารถปิดระบบนี้ได้อีกต่อไป\"", en: "\"When everyone is Satoshi, no one can shut the system down.\"", author: "Anonymous" }
+];
+
+function generateQuote() {
+  const hashEl = document.getElementById('quoteHash');
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  let counter = 0;
+  textEl.style.opacity = 0;
+  authorEl.style.opacity = 0;
+  const interval = setInterval(() => {
+    let fakeHash = '';
+    const chars = '0123456789abcdef';
+    for (let i = 0; i < 64; i++) fakeHash += chars[Math.floor(Math.random() * chars.length)];
+    hashEl.textContent = '00000000' + fakeHash.substring(8);
+    counter++;
+    if (counter > 15) {
+      clearInterval(interval);
+      const q = KOANS[Math.floor(Math.random() * KOANS.length)];
+      textEl.innerHTML = `<span class="th-only">${q.th}</span><span class="en-only">${q.en}</span>`;
+      authorEl.innerHTML = `— ${q.author}`;
+      textEl.style.opacity = 1;
+      authorEl.style.opacity = 1;
+    }
+  }, 50);
+}
+
+// Freedom Vocabulary
+const safeWordList = [
+  'abandon','ability','freedom','satoshi','verify','genesis','proof','work','timechain','cypherpunk','node','zap','truth','trust','code','math','energy','block','chain','future','seed','wealth','protect','sovereign','asset','value','system','network','power','public','private','key','shield','secure','peace','hope','life','choice','voice','signal','noise','world','earth','human','right','build','create','learn','teach','grow','plant','tree','root','branch','leaf','sun','water','fire','light','dark','moon','star','space','time','clock','hour','day','year','century','history','memory','mind','brain','think','idea','vision','dream','reality','matrix','escape','exit','door','path','road','journey','step','walk','run','fly','soar','rise','fall','stand','fight','brave','bold','strong','weak','true','false','real','fake'
+];
+function generateSeedWords() {
+  const grid = document.getElementById('seedGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const shuffled = safeWordList.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 12);
+  selected.forEach((word, index) => {
+    const div = document.createElement('div');
+    div.style.cssText = "background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px; font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: left;";
+    div.innerHTML = `<span style="opacity: 0.5; font-size: 10px; margin-right: 8px; color: #666660;">${index + 1}</span>${word}`;
+    grid.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded', generateSeedWords);
+
+// Zap Modal
+function openZapModal() {
+  document.getElementById('zapModalOverlay').classList.add('active');
+  document.getElementById('copySuccess').style.display = 'none';
+}
+function closeZapModal() { document.getElementById('zapModalOverlay').classList.remove('active'); }
+function switchZapTab(tab) {
+  document.querySelectorAll('#zapModalOverlay .auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#zapModalOverlay .auth-form').forEach(f => f.classList.remove('active'));
+  document.querySelector(`#zapModalOverlay .auth-tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById(tab === 'donate' ? 'zapDonate' : 'zapSupporters').classList.add('active');
+}
+document.getElementById('zapModalOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeZapModal(); });
+function copyZap() {
+  const address = document.getElementById('zapAddressTxt').innerText;
+  navigator.clipboard.writeText(address).then(() => {
+    document.getElementById('copySuccess').style.display = 'block';
+  });
+}
+
+// Scroll Reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// Escape key
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZapModal(); });
+
+// Mobile Nav
+function toggleMobileNav() {
+  var menu = document.getElementById('navMenu');
+  var btn = document.getElementById('navHamburger');
+  menu.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+function closeMobileNav() {
+  var menu = document.getElementById('navMenu');
+  var btn = document.getElementById('navHamburger');
+  if (menu) menu.classList.remove('mobile-open');
+  if (btn) btn.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  var nav = document.querySelector('nav');
+  var menu = document.getElementById('navMenu');
+  if (menu && menu.classList.contains('mobile-open') && nav && !nav.contains(e.target)) closeMobileNav();
+});
+
+// Reading Progress + Back to Top
+(function() {
+  var progress = document.getElementById('readingProgress');
+  var backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress && docHeight > 0) progress.style.width = (scrollTop / docHeight * 100) + '%';
+    if (backBtn) {
+      if (scrollTop > 400) backBtn.classList.add('visible');
+      else backBtn.classList.remove('visible');
+    }
+  }, { passive: true });
+})();
+
+// Pre-prod Banner
+(function() {
+  var banner = document.getElementById('preProdBanner');
+  if (!banner) return;
+  try { if (localStorage.getItem('satoshi_preprod_banner_dismissed') === '1') { banner.style.display = 'none'; return; } } catch(e) {}
+  function adjustNav() {
+    var nav = document.querySelector('nav');
+    if (nav && window.getComputedStyle(nav).position === 'fixed') {
+      nav.style.top = banner.offsetHeight + 'px';
+      nav.style.transition = 'top 0.3s ease-out';
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', adjustNav);
+  else adjustNav();
+})();
+function dismissPreProdBanner() {
+  var banner = document.getElementById('preProdBanner');
+  if (!banner) return;
+  banner.classList.add('dismissed');
+  try { localStorage.setItem('satoshi_preprod_banner_dismissed', '1'); } catch(e) {}
+  setTimeout(function() {
+    banner.style.display = 'none';
+    var nav = document.querySelector('nav');
+    if (nav && window.getComputedStyle(nav).position === 'fixed') nav.style.top = '0';
+  }, 300);
+}
+</script>
+
+</body>
+</html>
