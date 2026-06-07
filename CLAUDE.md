@@ -28,8 +28,9 @@ fiat money, and Bitcoin — told through one ordinary family across four generat
 |--------------|-------|----------------------------------------------------|
 |index.html    |Live   |Main entry (~170KB). Single-file. All inline CSS/JS.|
 |dialogue.html |Live   |React 18 + Babel via CDN. Do not rewrite in vanilla.|
-|photobook.html|Planned|Visual diary / mood board. Inherits visual DNA.     |
-|forum.html    |Planned|Migrate from #forum section when content scales.    |
+|photobook.html|Live   |Poster display page. assets/posters/ has 3 posters. |
+|forum.html    |Live   |Standalone forum page. Fed by forum-daily.json.     |
+|verifier.html |Live   |SEED — quote miner + freedom vocabulary generator.  |
 
 **Migration trigger for forum.html:** when forum content exceeds inline capacity
 inside index.html. Until then, forum lives as `<section id="forum">` in index.html.
