@@ -396,9 +396,21 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .zap-float { position: fixed; bottom: 32px; left: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.5); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 18px; cursor: none; opacity: 1; pointer-events: all; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
 .zap-float:hover { border-color: #F7931A; background: rgba(247,147,26,0.15); box-shadow: 0 0 14px rgba(247,147,26,0.35); }
 
+/* ─── NAV ACTION BUTTONS ─── */
+.nav-action-btn { font-family: 'Space Mono', monospace; font-size: 0.7rem; text-decoration: none; letter-spacing: 0.15em; padding: 6px 14px; transition: background 0.2s, box-shadow 0.2s; display: inline-block; }
+.nav-zap-btn { color: #F7931A; border: 1px solid rgba(247,147,26,0.5); }
+.nav-zap-btn:hover { background: rgba(247,147,26,0.12); box-shadow: 0 0 10px rgba(247,147,26,0.25); }
+.nav-seed-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
+.nav-seed-link:hover { background: rgba(0,255,65,0.08); }
+.nav-forum-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
+.nav-forum-link:hover { background: rgba(0,255,65,0.08); }
+.nav-dialogue-link { color: #F7931A; border: 1px solid rgba(247,147,26,0.3); }
+.nav-dialogue-link:hover { background: rgba(247,147,26,0.08); }
+.nav-page-label { font-size: 9px; color: #666660; letter-spacing: 2px; opacity: 0.6; margin-left: 8px; padding-left: 8px; border-left: 1px solid rgba(102,102,96,0.3); }
+
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
-  .nav-verify-link, .nav-forum-link, .nav-dialogue-link { display: none; }
+  .nav-seed-link, .nav-forum-link, .nav-dialogue-link { display: none; }
   .mobile-only { display: block !important; }
   nav { grid-template-columns: auto 1fr auto; }
   .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
@@ -725,10 +737,10 @@ function dismissPreProdBanner() {
     <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
   </div>
   <div class="nav-right">
-    <a href="#support" onclick="event.preventDefault();openZapModal();" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.5);padding:6px 14px;transition:background 0.2s,box-shadow 0.2s;" onmouseenter="this.style.background='rgba(247,147,26,0.12)';this.style.boxShadow='0 0 10px rgba(247,147,26,0.25)';" onmouseleave="this.style.background='';this.style.boxShadow='';"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
-    <a href="verifier.html" class="nav-verify-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">SEED</span><span class="en-only">SEED</span></a>
-    <a href="forum.html" class="nav-forum-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00FF41;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(0,255,65,0.3);padding:6px 14px;"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
-    <a href="dialogue.html" class="nav-dialogue-link" style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#F7931A;text-decoration:none;letter-spacing:0.15em;margin-right:16px;border:1px solid rgba(247,147,26,0.3);padding:6px 14px;"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <a href="#support" onclick="event.preventDefault();openZapModal();" class="nav-action-btn nav-zap-btn"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
+    <a href="verifier.html" class="nav-action-btn nav-seed-link"><span class="th-only">SEED</span><span class="en-only">SEED</span></a>
+    <a href="forum.html" class="nav-action-btn nav-forum-link"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-action-btn nav-dialogue-link"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
