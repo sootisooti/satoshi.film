@@ -340,6 +340,15 @@ async function callClaude(prompt) {
       throw new Error("Claude response missing valid topics array");
     }
 
+    // Guarantee source_url on every topic — Claude sometimes omits it
+    parsed.topics = parsed.topics.map(t => ({
+      ...t,
+      source_url: t.source_url ||
+        (t.bitcointalk_topic_id
+          ? `https://bitcointalk.org/index.php?topic=${t.bitcointalk_topic_id}.0`
+          : "#"),
+    }));
+
     const today = new Date().toISOString().slice(0, 10);
     if (!parsed.curated_date || parsed.curated_date === "YYYY-MM-DD") {
       parsed.curated_date = today;
