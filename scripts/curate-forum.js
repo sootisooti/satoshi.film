@@ -350,9 +350,7 @@ async function callClaude(prompt) {
     }));
 
     const today = new Date().toISOString().slice(0, 10);
-    if (!parsed.curated_date || parsed.curated_date === "YYYY-MM-DD") {
-      parsed.curated_date = today;
-    }
+    parsed.curated_date = today;
 
     // Calculate ISO week and add to JSON
     const isoWeek = getISOWeek(new Date());
