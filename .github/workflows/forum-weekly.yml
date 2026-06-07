@@ -1,7 +1,7 @@
 name: Forum Weekly Curation
 
 # Runs every Monday at 02:00 UTC (09:00 Bangkok time).
-# Scrapes bitcointalk HTML, runs Claude-powered curation with weekly archive, opens a Draft PR
+# Scrapes bitcointalk HTML, runs Claude-powered curation with weekly archive, opens a PR
 # with an updated forum-daily.json for owner review.
 #
 # Can also be triggered manually from the Actions tab.
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Run curation script
         env:
@@ -39,7 +39,7 @@ jobs:
           echo "iso_week=$ISO_WEEK" >> $GITHUB_OUTPUT
           echo "Extracted week from JSON: $ISO_WEEK"
 
-      - name: Open Draft Pull Request
+      - name: Open Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "content: forum digest ${{ steps.week.outputs.iso_week }}"
@@ -64,12 +64,9 @@ jobs:
             Most edits are in the `take_th` / `take_en` fields.
 
             **Do not merge if any topic feels off-theme** — swap it out first.
-
-            ---
-            *Opened as Draft. Mark as Ready for Review when you've vetted the content.*
           branch: forum-digest/${{ steps.week.outputs.iso_week }}
           base: main
-          draft: true
+          draft: false
           delete-branch: true
           labels: |
             forum-digest
