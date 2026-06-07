@@ -630,8 +630,6 @@ function Divider({ color, label }) {
 // ─── MAIN APP ──────────────────────────────
 function App() {
   // ── State ──
-  const [nostrUser, setNostrUser] = useState(null);
-  const [loginStep, setLoginStep] = useState("idle");
   const [selectedWorld, setSelectedWorld] = useState(null);
   const [answers, setAnswers] = useState(["", "", ""]);
   const [generating, setGenerating] = useState(false);
@@ -654,19 +652,6 @@ function App() {
   var filteredCollection = collectionFilter === "all" 
     ? SAMPLE_COLLECTION 
     : SAMPLE_COLLECTION.filter(function(d) { return d.world === collectionFilter; });
-
-  // ── Nostr Login ──
-  function handleLogin() {
-    setLoginStep("connecting");
-    setTimeout(function() {
-      var mockNpub = "npub1" + Math.random().toString(36).substr(2, 12) + "...";
-      setNostrUser({ npub: mockNpub });
-      setLoginStep("connected");
-      setTimeout(function() {
-        if (storyRef.current) storyRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 600);
-    }, 1800);
-  }
 
   // ── Generate Dialogue ──
   function handleGenerate() {
@@ -702,7 +687,7 @@ function App() {
         scene: sceneNum,
         stage_direction: parsed.stage_direction,
         lines: parsed.lines,
-        contributor: nostrUser ? nostrUser.npub : "anon",
+        contributor: "anon",
         sats: 0,
         timestamp: Date.now()
       };
@@ -726,7 +711,7 @@ function App() {
           { relation: { th: "พ่อ", en: "FATHER" }, th: "...", en: "..." },
           { relation: { th: "พ่อ", en: "FATHER" }, th: "ไปถามธนาคารดู", en: "Go ask the bank." }
         ],
-        contributor: nostrUser ? nostrUser.npub : "anon", sats: 0, timestamp: Date.now()
+        contributor: "anon", sats: 0, timestamp: Date.now()
       });
       setGenerating(false);
     });
@@ -888,58 +873,9 @@ function App() {
       </div>
 
 
-      {/* ══════ SECTION 2: LOGIN ══════ */}
-      <Divider color="#00FF41" label="ENTER" />
-
-      <div style={{ textAlign: "center", padding: "0 0 20px" }}>
-        {loginStep === "idle" && (
-          <div>
-            <p style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "1rem", opacity: 0.6, margin: "0 0 8px" }}>
-              เข้าร่วมบทสนทนา
-            </p>
-            <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.7rem", margin: "0 0 28px" }}>
-              Login with Nostr to write your story
-            </p>
-            <button onClick={handleLogin} style={{
-              fontFamily: "var(--mono)", fontSize: "0.85rem", padding: "14px 40px",
-              border: "1px solid #00FF41", background: "transparent", color: "#00FF41",
-              cursor: "pointer", letterSpacing: "0.15em"
-            }}>
-              ⚡ LOGIN WITH NOSTR
-            </button>
-            <p style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(232,230,225,0.3)", marginTop: 16 }}>
-              Requires NIP-07 extension (Alby, nos2x)
-            </p>
-          </div>
-        )}
-
-        {loginStep === "connecting" && (
-          <div style={{ padding: "20px 0" }}>
-            <div style={{ fontFamily: "var(--mono)", fontSize: "0.8rem", color: "#00FF41", animation: "pulse 1.2s infinite" }}>
-              Connecting to relay...
-            </div>
-            <div style={{ fontFamily: "var(--mono)", fontSize: "0.65rem", color: "rgba(232,230,225,0.3)", marginTop: 8 }}>
-              wss://relay.damus.io
-            </div>
-          </div>
-        )}
-
-        {loginStep === "connected" && nostrUser && (
-          <div style={{ padding: "10px 0" }}>
-            <div style={{ fontFamily: "var(--mono)", fontSize: "0.7rem", color: "#00FF41", marginBottom: 6 }}>
-              ✓ CONNECTED
-            </div>
-            <div style={{ fontFamily: "var(--mono)", fontSize: "0.6rem", color: "rgba(232,230,225,0.3)", wordBreak: "break-all" }}>
-              {nostrUser.npub}
-            </div>
-          </div>
-        )}
-      </div>
-
 
       {/* ══════ SECTION 3: YOUR STORY ══════ */}
-      {nostrUser && (
-        <div>
+      <div>
           <Divider color="#F7931A" label="YOUR STORY — เรื่องของคุณ" />
 
           <div ref={storyRef}>
@@ -1026,7 +962,6 @@ function App() {
             )}
           </div>
         </div>
-      )}
 
 
       {/* ══════ SECTION 4: GENERATE RESULT ══════ */}
@@ -1143,12 +1078,12 @@ function App() {
                     SUBMIT TO SATOSHi
                   </div>
                   <p style={{ fontFamily: "var(--thai)", color: "#E8E6E1", fontSize: "0.95rem", lineHeight: 1.8, opacity: 0.7 }}>
-                    บทสนทนานี้จะถูกส่งเป็น Nostr event<br/>
+                    บทสนทนานี้จะถูกบันทึกไว้ถาวร<br/>
                     ทุกคนจะเห็นและ verify ได้<br/>
                     ลบไม่ได้ — เหมือน block ใน chain
                   </p>
                   <p style={{ fontFamily: "var(--mono)", color: "rgba(232,230,225,0.3)", fontSize: "0.65rem", marginTop: 8 }}>
-                    This will be published as a permanent Nostr event.
+                    This dialogue will be permanently recorded.
                   </p>
                 </div>
 
