@@ -1,7 +1,7 @@
 name: Forum Weekly Curation
 
 # Runs every Monday at 02:00 UTC (09:00 Bangkok time).
-# Fetches bitcointalk RSS, runs Claude-powered curation, opens a Draft PR
+# Scrapes bitcointalk HTML, runs Claude-powered curation with weekly archive, opens a Draft PR
 # with an updated forum-daily.json for owner review.
 #
 # Can also be triggered manually from the Actions tab.
@@ -32,12 +32,12 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/curate-forum.js
 
-      - name: Compute ISO week number for branch name
+      - name: Extract ISO week from output
         id: week
         run: |
-          ISO_WEEK=$(date -u +%Y-W%V)
+          ISO_WEEK=$(jq -r '.iso_week // "UNKNOWN"' forum-daily.json)
           echo "iso_week=$ISO_WEEK" >> $GITHUB_OUTPUT
-          echo "Computed week: $ISO_WEEK"
+          echo "Extracted week from JSON: $ISO_WEEK"
 
       - name: Open Draft Pull Request
         uses: peter-evans/create-pull-request@v6
