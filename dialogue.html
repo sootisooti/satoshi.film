@@ -446,8 +446,9 @@ const SATOSHI_QUOTES = [
 
 
 // ─── DIALOGUE CARD COMPONENT ───────────────
+const WORLD_COLORS = { A: "#D4A574", B: "#8BA8C4", C: "#D4AF37" };
 function DialogueCard({ d, compact, onSelect, selected }) {
-  const color = WORLDS[d.world]?.color || "#F7931A";
+  const color = WORLD_COLORS[d.world] || "#F7931A";
   
   return (
     <div
