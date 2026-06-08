@@ -1,18 +1,13 @@
 {
   "weeks": [
     {
-      "iso_week": "2026-W17",
-      "curated_date": "2025-04-27",
+      "iso_week": "2026-W23",
+      "curated_date": "2026-06-07",
       "topic_count": 21
     },
     {
-      "iso_week": "2026-W19",
-      "curated_date": "2025-01-30",
-      "topic_count": 21
-    },
-    {
-      "iso_week": "2026-W20",
-      "curated_date": "2025-07-11",
+      "iso_week": "2026-W22",
+      "curated_date": "2025-05-22",
       "topic_count": 21
     },
     {
@@ -21,8 +16,18 @@
       "topic_count": 21
     },
     {
-      "iso_week": "2026-W22",
-      "curated_date": "2025-05-22",
+      "iso_week": "2026-W20",
+      "curated_date": "2025-07-11",
+      "topic_count": 21
+    },
+    {
+      "iso_week": "2026-W19",
+      "curated_date": "2025-01-30",
+      "topic_count": 21
+    },
+    {
+      "iso_week": "2026-W17",
+      "curated_date": "2025-04-27",
       "topic_count": 21
     }
   ]
