@@ -565,7 +565,7 @@ function Divider({ color, label }) {
 function App() {
   // ── State ──
   const [collectionFilter, setCollectionFilter] = useState("all");
-  const [satoshiSample] = useState(function() { return pickWeekly(SATOSHI_QUOTES, 5); });
+  const [satoshiSample, setSatoshiSample] = useState(function() { return pickWeekly(SATOSHI_QUOTES, 5); });
 
   // ── Filtered collection ──
   var filteredCollection = collectionFilter === "all" 
