@@ -5,6 +5,8 @@
 
 This repository contains the source code for the official interactive website of the **SATOSHi** feature film project.
 
+🏆 **Official Selection — Bitcoin FilmFest 2026, Warsaw** — screened in the "Changing minds with fiction" block (June 2026). Now raising support for the full feature.
+
 🌐 **Live Site:** <https://sootisooti.github.io/satoshi.film/>
 
 ---
@@ -20,8 +22,8 @@ This repository contains the source code for the official interactive website of
 ## 🟩 Features — ฟีเจอร์หลัก
 
 ### 🎬 Narrative & Content
-- **Hero Section** — introduce the film with universal bilingual copy
-- **Three Worlds** — Past (โลก A) / Present (โลก B) / Future (โลก C)
+- **Hero Section** — introduce the film with universal bilingual copy + BFF'26 festival laurel
+- **Timeline** — Truth / Past / Present / Future (ความจริง / อดีต / ปัจจุบัน / อนาคต)
 - **Halving Timeline** — interactive timeline with user memory fields
 - **Cypherpunk Directory** — **44+ bundle cards across 13 chapters** (including new **Chapter -1: The Forethinkers Root** tracing Austrian economics lineage from 1871)
 - **Verify Terminal Modal** — interactive AI-powered terminal wired to Anthropic API (`claude-sonnet-4-20250514`)
@@ -51,6 +53,8 @@ This repository contains the source code for the official interactive website of
 | `dialogue.html` | Screenplay writing feature (บทภาพยนตร์) | ✅ Live |
 | `photobook.html` | Visual diary / production stills (หนังสือภาพ) | 🚧 Placeholder |
 | `forum.html` | Curated bitcointalk threads (standalone) | 📋 Planned |
+| `support.html` | Feature funding — Lightning + investor contact | ✅ Live |
+| `press.html` | Press kit — logline, synopsis, teaser, key art, festival credit | ✅ Live |
 
 ---
 

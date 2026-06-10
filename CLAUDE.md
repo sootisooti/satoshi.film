@@ -31,6 +31,8 @@ fiat money, and Bitcoin — told through one ordinary family across four generat
 |photobook.html|Live   |Poster display page. assets/posters/ has 3 posters. |
 |forum.html    |Live   |Standalone forum page. Fed by forum-daily.json.     |
 |verifier.html |Live   |SEED — quote miner + freedom vocabulary generator.  |
+|support.html  |Live   |Feature funding — Lightning + investor contact.     |
+|press.html    |Live   |Press kit — logline, synopsis, teaser, festival.    |
 
 **Migration trigger for forum.html:** when forum content exceeds inline capacity
 inside index.html. Until then, forum lives as `<section id="forum">` in index.html.
