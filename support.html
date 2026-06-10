@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATOSHI — POSTER</title>
-<meta name="description" content="โปสเตอร์ภาพยนตร์ SATOSHI — คนหนึ่งคน กับคอมหนึ่งเครื่อง · Official Selection — Bitcoin FilmFest 2026, Warsaw">
+<title>SUPPORT — Fund the SATOSHI Feature | SATOSHI.FILM</title>
+<meta name="description" content="Help make the full SATOSHI feature — a Thai family drama about debt, fiat money, and truth across four generations. Official Selection — Bitcoin FilmFest 2026, Warsaw. Zap via Lightning or contact us for investment.">
+<link rel="canonical" href="https://sootisooti.github.io/satoshi.film/support.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SATOSHI.FILM">
+<meta property="og:title" content="SUPPORT — Fund the SATOSHI Feature">
+<meta property="og:description" content="A Thai family drama about debt, fiat money, and truth. Official teaser screened at Bitcoin FilmFest 2026, Warsaw — now raising for the full feature. Every sat is visible proof of work.">
+<meta property="og:url" content="https://sootisooti.github.io/satoshi.film/support.html">
+<meta property="og:image" content="https://sootisooti.github.io/satoshi.film/assets/posters/poster-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SUPPORT — Fund the SATOSHI Feature">
+<meta name="twitter:description" content="Official teaser screened at Bitcoin FilmFest 2026, Warsaw — now raising for the full feature.">
+<meta name="twitter:image" content="https://sootisooti.github.io/satoshi.film/assets/posters/poster-01.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -31,17 +42,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .lang-toggle { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 2px; color: #666660; border: 1px solid #666660; padding: 6px 14px; background: transparent; cursor: none; transition: all 0.3s; }
 .lang-toggle:hover { color: #F7931A; border-color: #F7931A; }
-
-/* Nav Action Buttons */
 .nav-action-btn { font-family: 'Space Mono', monospace; font-size: 0.7rem; text-decoration: none; letter-spacing: 0.15em; padding: 6px 14px; transition: background 0.2s, box-shadow 0.2s; display: inline-block; }
 .nav-zap-btn { color: #F7931A; border: 1px solid rgba(247,147,26,0.5); }
 .nav-zap-btn:hover { background: rgba(247,147,26,0.12); box-shadow: 0 0 10px rgba(247,147,26,0.25); }
-.nav-seed-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
-.nav-seed-link:hover { background: rgba(0,255,65,0.08); }
-.nav-forum-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
-.nav-forum-link:hover { background: rgba(0,255,65,0.08); }
-.nav-dialogue-link { color: #F7931A; border: 1px solid rgba(247,147,26,0.3); }
-.nav-dialogue-link:hover { background: rgba(247,147,26,0.08); }
 
 /* Auth / Zap Modal */
 .auth-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.95); z-index: 10002; display: none; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
@@ -57,35 +60,51 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
 
-/* Poster Section */
-.poster-page { padding: 140px 40px 120px; background: #080806; min-height: 100vh; }
-.poster-eyebrow { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; margin-bottom: 12px; text-align: center; }
-.poster-title-th { font-family: 'Noto Serif Thai', serif; font-size: 16px; color: #666660; text-align: center; margin-bottom: 8px; opacity: 0.7; }
-.poster-title-en { font-family: 'Space Mono', monospace; font-size: 64px; font-weight: 700; color: #d4d0c8; text-align: center; letter-spacing: 4px; opacity: 0.15; line-height: 1; margin-bottom: 60px; }
-
-.poster-main-wrap { display: flex; flex-direction: column; align-items: center; margin: 0 auto; max-width: 420px; }
-.poster-main-img { width: 100%; max-width: 420px; display: block; border: 1px solid rgba(255,255,255,0.04); filter: brightness(0.92); cursor: pointer; transition: filter 0.3s, border-color 0.3s; }
-.poster-main-img:hover { filter: brightness(1); border-color: rgba(255,255,255,0.1); }
-
-.poster-caption { max-width: 420px; width: 100%; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; margin-top: 0; }
-.poster-caption-title { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #d4d0c8; margin-bottom: 6px; }
-.poster-caption-subtitle { font-family: 'Sarabun', sans-serif; font-size: 14px; color: #666660; margin-bottom: 10px; line-height: 1.6; }
-.poster-caption-meta { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; }
-.poster-caption-meta .meta-year { color: #F7931A; }
-
-.poster-alt-row { display: flex; flex-direction: row; gap: 2px; max-width: 420px; width: 100%; margin: 40px auto 0; }
-.poster-alt-img { flex: 1; min-width: 0; display: block; width: 100%; opacity: 0.4; cursor: pointer; border: 1px solid rgba(255,255,255,0.02); transition: opacity 0.3s, border-color 0.3s; }
-.poster-alt-img:hover { opacity: 0.8; border-color: rgba(255,255,255,0.08); }
-
-.poster-back { display: block; text-align: center; margin: 60px auto 0; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; text-decoration: none; transition: color 0.3s; }
-.poster-back:hover { color: #F7931A; }
-
-/* Lightbox */
-.lightbox-overlay { position: fixed; inset: 0; background: rgba(8,8,6,0.97); z-index: 20000; display: none; align-items: center; justify-content: center; cursor: pointer; }
-.lightbox-overlay.active { display: flex; }
-.lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; cursor: default; }
-.lightbox-close { position: fixed; top: 24px; right: 28px; font-size: 28px; color: #666660; background: none; border: none; cursor: pointer; transition: color 0.2s; font-family: 'Space Mono', monospace; z-index: 20001; line-height: 1; }
-.lightbox-close:hover { color: #F7931A; }
+/* Support Page */
+.sp-page { padding: 150px 40px 100px; max-width: 880px; margin: 0 auto; }
+.sp-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 4px; color: #666660; margin-bottom: 16px; text-align: center; }
+.sp-title { font-family: 'Space Mono', monospace; font-size: clamp(28px, 6vw, 56px); font-weight: 700; letter-spacing: 0.06em; color: #d4d0c8; text-align: center; line-height: 1.15; }
+.sp-title span { color: #F7931A; }
+.sp-title-th { font-family: 'Noto Serif Thai', serif; font-size: clamp(16px, 3vw, 24px); color: #F7931A; opacity: 0.7; text-align: center; margin-top: 12px; letter-spacing: 0.15em; }
+.sp-status { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin: 36px auto 0; }
+.sp-status span { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #d4d0c8; opacity: 0.6; padding: 8px 16px; border-left: 2px solid #00FF41; }
+.sp-block { margin-top: 72px; }
+.sp-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 5px; color: #F7931A; margin-bottom: 20px; }
+.sp-label.green { color: #00FF41; }
+.sp-text { font-family: 'Sarabun', sans-serif; font-size: 16px; line-height: 1.9; color: #8a877e; max-width: 680px; }
+.sp-text strong { color: #d4d0c8; font-weight: 600; }
+.sp-text + .sp-text { margin-top: 16px; }
+.sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 24px; }
+.sp-card { background: #0e0e0b; padding: 40px 32px; border-top: 2px solid transparent; transition: all 0.5s; position: relative; }
+.sp-card:hover { background: #121210; }
+.sp-card.btc { border-top-color: rgba(247,147,26,0.5); }
+.sp-card.inv { border-top-color: rgba(139,168,196,0.5); }
+.sp-card-title { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #d4d0c8; margin-bottom: 6px; }
+.sp-card-sub { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #666660; margin-bottom: 24px; }
+.sp-card-desc { font-family: 'Sarabun', sans-serif; font-size: 14px; line-height: 1.8; color: #8a877e; margin-bottom: 24px; }
+.sp-addr { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.sp-addr code { font-family: 'Space Mono', monospace; color: #00FF41; font-size: 12px; word-break: break-all; }
+.sp-copy-btn { background: #F7931A; color: #080806; border: none; font-family: 'Space Mono', monospace; font-size: 10px; padding: 8px 16px; cursor: none; transition: all 0.3s; }
+.sp-copy-btn:hover { background: #d4d0c8; }
+.sp-copied { font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; margin-bottom: 12px; display: none; }
+.sp-cta { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; padding: 13px 26px; text-decoration: none; display: inline-block; transition: all 0.3s; background: transparent; cursor: none; border: 1px solid rgba(247,147,26,0.4); color: #F7931A; }
+.sp-cta:hover { background: rgba(247,147,26,0.08); border-color: #F7931A; }
+.sp-cta.blue { border-color: rgba(139,168,196,0.4); color: #8BA8C4; }
+.sp-cta.blue:hover { background: rgba(139,168,196,0.08); border-color: #8BA8C4; }
+.sp-tier-list { list-style: none; margin: 0 0 24px; }
+.sp-tier-list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+.sp-tier-list .amt { font-family: 'Space Mono', monospace; color: #F7931A; white-space: nowrap; }
+.sp-tier-list .what { font-family: 'Sarabun', sans-serif; color: #8a877e; text-align: right; }
+.sp-list { list-style: none; margin-top: 24px; }
+.sp-list li { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: baseline; }
+.sp-list .k { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #00FF41; white-space: nowrap; min-width: 130px; }
+.sp-list .v { font-family: 'Sarabun', sans-serif; font-size: 14px; line-height: 1.7; color: #8a877e; }
+.sp-note { border-left: 2px solid #F7931A; padding: 20px 24px; background: rgba(247,147,26,0.03); margin-top: 72px; }
+.sp-note p { font-family: 'Sarabun', sans-serif; font-size: 15px; line-height: 1.9; color: #8a877e; }
+.sp-note p strong { color: #d4d0c8; }
+.sp-footer-links { margin-top: 72px; display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.sp-footer-links a { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: #666660; text-decoration: none; transition: color 0.3s; }
+.sp-footer-links a:hover { color: #F7931A; }
 
 /* Footer */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -100,11 +119,14 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* Back to Top */
+.back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.3); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 16px; cursor: none; opacity: 0; pointer-events: none; transition: opacity 0.3s, border-color 0.3s, background 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { border-color: #F7931A; background: rgba(247,147,26,0.1); }
+
 /* Mobile Nav */
 @media (max-width: 1200px) { nav { padding: 18px 24px; gap: 12px; } .nav-menu { gap: 14px; } .nav-link { font-size: 9px; letter-spacing: 0.5px; } }
 @media (max-width: 900px) { nav { grid-template-columns: auto 1fr; padding: 16px 20px; gap: 12px; } .nav-menu { gap: 12px 8px; justify-content: flex-start; } .nav-right { grid-column: 1 / -1; justify-content: flex-end; margin-top: 4px; } }
-
-/* Nav Hamburger */
 .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: none; cursor: none; padding: 0 10px; flex-shrink: 0; }
 .nav-hamburger span { display: block; width: 20px; height: 1.5px; background: #d4d0c8; transition: all 0.3s; }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -113,27 +135,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .mobile-only { display: none !important; }
 .nav-mobile-divider { width: 100%; height: 1px; background: rgba(247,147,26,0.15); margin: 8px 0; }
 
-/* Back to Top */
-.back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.3); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 16px; cursor: none; opacity: 0; pointer-events: none; transition: opacity 0.3s, border-color 0.3s, background 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
-.back-to-top.visible { opacity: 1; pointer-events: all; }
-.back-to-top:hover { border-color: #F7931A; background: rgba(247,147,26,0.1); }
-
-/* Zap Float */
-.zap-float { position: fixed; bottom: 32px; left: 32px; width: 44px; height: 44px; background: rgba(8,8,6,0.85); border: 1px solid rgba(247,147,26,0.5); color: #F7931A; font-family: 'Space Mono', monospace; font-size: 18px; cursor: none; opacity: 1; pointer-events: all; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; z-index: 499; display: flex; align-items: center; justify-content: center; line-height: 1; }
-.zap-float:hover { border-color: #F7931A; background: rgba(247,147,26,0.15); box-shadow: 0 0 14px rgba(247,147,26,0.35); }
-
-/* Pre-production Banner */
-.preprod-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(247,147,26,0.95); color: #080806; padding: 10px 16px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(8,8,6,0.1); transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
-.preprod-banner.dismissed { transform: translateY(-100%); opacity: 0; }
-.preprod-content { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; gap: 16px; }
-.preprod-text { font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.6; display: flex; flex-direction: column; gap: 2px; }
-.preprod-text span:first-child { font-family: 'Sarabun', sans-serif; }
-.preprod-close { background: transparent; border: none; color: #080806; font-size: 28px; line-height: 1; cursor: none; padding: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity 0.2s; font-family: 'Space Mono', monospace; }
-.preprod-close:hover { opacity: 0.7; }
-
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
-  .nav-seed-link, .nav-forum-link, .nav-dialogue-link { display: none; }
   .mobile-only { display: block !important; }
   nav { grid-template-columns: auto 1fr auto; }
   .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
@@ -142,26 +145,16 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .nav-link { font-size: 12px; letter-spacing: 1px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d4d0c8; width: 100%; }
   .nav-link:last-of-type { border-bottom: none; }
   .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 14px; }
-  .zap-float { bottom: 20px; left: 16px; width: 40px; height: 40px; font-size: 16px; }
-  .preprod-text { font-size: 11px; }
-  .preprod-banner { padding: 8px 12px; }
-  .poster-page { padding: 120px 20px 80px; }
-  .poster-title-en { font-size: 36px; }
-  .poster-alt-row { gap: 2px; }
+  .sp-page { padding: 130px 20px 80px; }
+  .sp-grid { grid-template-columns: 1fr; }
+  .sp-card { padding: 32px 24px; }
+  .sp-status span { font-size: 9px; padding: 6px 12px; }
+  .sp-list .k { min-width: 100px; }
+  .sp-list li { flex-direction: column; gap: 6px; }
 }
 </style>
 </head>
-<body class="lang-th">
-
-<div id="preProdBanner" class="preprod-banner">
-  <div class="preprod-content">
-    <span class="preprod-text">
-      <span>Teaser ฉายแล้วที่ Bitcoin FilmFest 2026 วอร์ซอ — กำลังระดมทุนสร้างฉบับเต็ม · ขออภัยหาก feature บางส่วนยังไม่ทำงาน</span>
-      <span>Teaser screened at Bitcoin FilmFest 2026, Warsaw — now raising the full feature · Apologies if some features don't work yet</span>
-    </span>
-    <button class="preprod-close" onclick="dismissPreProdBanner()" aria-label="Close banner">×</button>
-  </div>
-</div>
+<body class="lang-en">
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -195,82 +188,107 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   </div>
 </div>
 
-<!-- Lightbox -->
-<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox(null)" aria-label="Close lightbox">×</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="SATOSHI poster" onclick="event.stopPropagation()">
-</div>
-
 <nav>
-  <a href="index.html" class="nav-logo">SATOSHi <span class="nav-page-label">POSTER</span></a>
+  <a href="index.html" class="nav-logo">SATOSHi <span class="nav-page-label">SUPPORT</span></a>
   <div class="nav-menu" id="navMenu">
     <a href="index.html" class="nav-link"><span class="th-only">หน้าหลัก</span><span class="en-only">HOME</span></a>
-    <a href="support.html" class="nav-link"><span class="th-only">สนับสนุนฉบับเต็ม</span><span class="en-only">SUPPORT</span></a>
     <a href="press.html" class="nav-link"><span class="th-only">ข้อมูลสื่อ — PRESS</span><span class="en-only">PRESS KIT</span></a>
-    <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
-    <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT &amp; DOC COLLAB</a>
+    <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
     <div class="nav-mobile-divider mobile-only"></div>
     <a href="#" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
-    <a href="verifier.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ตรวจสอบ</span><span class="en-only">SEED / VERIFY</span></a>
-    <a href="forum.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
-    <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
   </div>
   <div class="nav-right">
     <a href="#" onclick="event.preventDefault();openZapModal();" class="nav-action-btn nav-zap-btn"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
-    <a href="verifier.html" class="nav-action-btn nav-seed-link"><span class="th-only">SEED</span><span class="en-only">SEED</span></a>
-    <a href="forum.html" class="nav-action-btn nav-forum-link"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
-    <a href="dialogue.html" class="nav-action-btn nav-dialogue-link"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<section class="poster-page">
-  <div class="poster-eyebrow reveal">OFFICIAL SELECTION — BFF'26 · <span class="block-num" id="posterBlockHeight">---</span> · 2026</div>
-  <div class="poster-title-th reveal th-only">โปสเตอร์</div>
-  <div class="poster-title-en reveal">POSTER</div>
+<main class="sp-page">
 
-  <div class="poster-main-wrap reveal">
-    <img
-      class="poster-main-img"
-      src="assets/posters/poster-01.jpg"
-      alt="SATOSHI — ซาโตชิ · Official poster"
-      onclick="openLightbox('assets/posters/poster-01.jpg')"
-    >
-    <div class="poster-caption">
-      <div class="poster-caption-title">SATOSHI — ซาโตชิ</div>
-      <div class="poster-caption-subtitle th-only">คนหนึ่งคน กับคอมหนึ่งเครื่อง</div>
-      <div class="poster-caption-meta"><span class="meta-year">2026</span> · FEATURE FILM · OFFICIAL SELECTION — BITCOIN FILMFEST 2026</div>
+  <div class="sp-eyebrow reveal">SUPPORT — สนับสนุน</div>
+  <h1 class="sp-title reveal">FUND THE <span>FEATURE</span></h1>
+  <div class="sp-title-th reveal">ร่วมสร้างภาพยนตร์ฉบับเต็ม</div>
+
+  <div class="sp-status reveal">
+    <span>OFFICIAL SELECTION — BFF'26 WARSAW</span>
+    <span>TEASER SCREENED JUNE 2026</span>
+    <span>NOW RAISING THE FEATURE</span>
+  </div>
+
+  <div class="sp-block reveal">
+    <div class="sp-label">WHERE WE ARE</div>
+    <p class="sp-text en-only"><strong>SATOSHI</strong> is a Thai family drama about debt, money, and truth — told through one ordinary family across four generations. In June 2026 its <strong>official teaser</strong> screened at <strong>Bitcoin FilmFest in Warsaw</strong>, selected into the festival's Friday prime-time fiction block, "Changing minds with fiction". The teaser alone earned that slot. The feature is what we're here to make.</p>
+    <p class="sp-text en-only">Now we are raising the budget to make the full feature. The screenplay is in active development. We won't promise you the moon — we'd rather show you the work: <strong>a teaser you can watch, a festival audience that has already sat with it, and every sat accounted for in the open.</strong></p>
+    <p class="sp-text th-only"><strong>SATOSHI</strong> คือภาพยนตร์ดราม่าครอบครัวไทยว่าด้วยหนี้ เงิน และความจริง — เล่าผ่านครอบครัวธรรมดาหนึ่งครอบครัวข้ามสี่รุ่น เดือนมิถุนายน 2026 <strong>teaser อย่างเป็นทางการ</strong>ของหนังได้รับคัดเลือกและฉายที่ <strong>Bitcoin FilmFest กรุงวอร์ซอ</strong> ในบล็อกภาพยนตร์ fiction ช่วง prime-time คืนวันศุกร์ "Changing minds with fiction" — แค่ teaser ก็ได้ slot นั้นมาแล้ว ฉบับเต็มคือสิ่งที่เรากำลังจะสร้าง</p>
+    <p class="sp-text th-only">ตอนนี้เรากำลังระดมทุนเพื่อสร้างฉบับเต็ม บทภาพยนตร์อยู่ระหว่างการพัฒนา เราไม่ขายฝัน — แต่อยากให้ดูจากผลงาน: <strong>teaser ที่ดูได้จริง ผู้ชมเทศกาลที่นั่งดูมันมาแล้ว และทุก sat ที่เข้ามาตรวจสอบได้อย่างเปิดเผย</strong></p>
+  </div>
+
+  <div class="sp-block reveal">
+    <div class="sp-label green">TWO WAYS IN</div>
+    <div class="sp-grid">
+
+      <div class="sp-card btc">
+        <div class="sp-card-title">⚡ FOR BITCOINERS</div>
+        <div class="sp-card-sub"><span class="en-only">Zap any amount. Every sat is visible proof of work.</span><span class="th-only">Zap เท่าไหร่ก็ได้ — ทุก sat คือ proof of work ที่มองเห็นได้</span></div>
+        <div class="sp-addr">
+          <code id="spAddressTxt">satoshifilm@walletofsatoshi.com</code>
+          <button class="sp-copy-btn" onclick="copySupportAddr()">COPY</button>
+        </div>
+        <div class="sp-copied" id="spCopied">✓ COPIED TO CLIPBOARD</div>
+        <ul class="sp-tier-list">
+          <li><span class="amt">2,100 SATS — SEED</span><span class="what"><span class="en-only">Script development</span><span class="th-only">สนับสนุนการพัฒนาบท</span></span></li>
+          <li><span class="amt">21,000 SATS — NODE</span><span class="what"><span class="en-only">Name in credits + community</span><span class="th-only">ชื่อใน credits + community</span></span></li>
+          <li><span class="amt">210,000 SATS — BLOCK</span><span class="what"><span class="en-only">Co-producer credit + private screening</span><span class="th-only">Co-producer credit + รอบฉายส่วนตัว</span></span></li>
+        </ul>
+        <a href="lightning:satoshifilm@walletofsatoshi.com" class="sp-cta">⚡ OPEN WALLET</a>
+      </div>
+
+      <div class="sp-card inv">
+        <div class="sp-card-title">FOR INVESTORS &amp; SPONSORS</div>
+        <div class="sp-card-sub"><span class="en-only">Film financiers, brands, and co-producers.</span><span class="th-only">ผู้ลงทุนภาพยนตร์ แบรนด์ และผู้ร่วมอำนวยการสร้าง</span></div>
+        <p class="sp-card-desc en-only">If you finance films — or want your name attached to one about money that tells the truth — write to us. Available on request: project deck, budget &amp; finance plan, screenplay status, and festival materials. Plain answers about timeline and risk, no hype.</p>
+        <p class="sp-card-desc th-only">ถ้าคุณลงทุนในภาพยนตร์ — หรืออยากให้ชื่อของคุณอยู่กับหนังที่พูดความจริงเรื่องเงิน — เขียนหาเรา ขอดูได้: project deck งบประมาณและแผนการเงิน สถานะบทภาพยนตร์ และเอกสารเทศกาล เราตอบตรงไปตรงมาเรื่อง timeline และความเสี่ยง ไม่ขายฝัน</p>
+        <div class="sp-addr">
+          <code>satoshi21film@gmail.com</code>
+        </div>
+        <a href="mailto:satoshi21film@gmail.com?subject=SATOSHI%20—%20Investor%20%2F%20Sponsor%20Inquiry" class="sp-cta blue">WRITE TO US →</a>
+      </div>
+
     </div>
   </div>
 
-  <div class="poster-alt-row reveal">
-    <img
-      class="poster-alt-img"
-      src="assets/posters/poster-02.jpg"
-      alt="SATOSHI poster 02"
-      onclick="openLightbox('assets/posters/poster-02.jpg')"
-    >
-    <img
-      class="poster-alt-img"
-      src="assets/posters/poster-03.jpg"
-      alt="SATOSHI poster 03"
-      onclick="openLightbox('assets/posters/poster-03.jpg')"
-    >
+  <div class="sp-block reveal">
+    <div class="sp-label">WHAT THE FUNDS BUILD</div>
+    <ul class="sp-list">
+      <li><span class="k">DEVELOPMENT</span><span class="v"><span class="en-only">Screenplay (in active rewrite), casting, and locations across Thailand.</span><span class="th-only">บทภาพยนตร์ (อยู่ระหว่าง rewrite) การคัดเลือกนักแสดง และโลเคชันทั่วประเทศไทย</span></span></li>
+      <li><span class="k">PRODUCTION</span><span class="v"><span class="en-only">Principal photography — a story spanning four generations of one family.</span><span class="th-only">การถ่ายทำหลัก — เรื่องราวข้ามสี่รุ่นของครอบครัวเดียว</span></span></li>
+      <li><span class="k">POST &amp; FESTIVALS</span><span class="v"><span class="en-only">Edit, sound, color, subtitles, and the festival run that follows.</span><span class="th-only">ตัดต่อ เสียง สี ซับไตเติล และการเดินทางสู่เทศกาลภาพยนตร์</span></span></li>
+    </ul>
   </div>
 
-  <a href="index.html" class="poster-back reveal">← <span class="th-only">กลับหน้าหลัก /</span> BACK HOME</a>
-</section>
+  <div class="sp-note reveal">
+    <p class="en-only">An independent film is a long game of proof of work. <strong>We can't promise returns. We can promise that every block of this film gets built — and verified — in the open.</strong></p>
+    <p class="th-only">หนังอิสระคือเกมยาวของ proof of work <strong>เราสัญญาผลตอบแทนไม่ได้ แต่สัญญาได้ว่าทุกบล็อกของหนังเรื่องนี้จะถูกสร้าง — และตรวจสอบได้ — อย่างเปิดเผย</strong></p>
+  </div>
+
+  <div class="sp-footer-links reveal">
+    <a href="press.html">PRESS KIT →</a>
+    <a href="index.html">← <span class="th-only">กลับหน้าหลัก /</span> BACK HOME</a>
+  </div>
+
+</main>
 
 <footer>
   <div class="footer-content">
     <div class="footer-logo">SATOSHi</div>
     <div class="footer-copy">© 2026 SATOSHI FILM — CONFIDENTIAL</div>
     <div class="footer-links">
-      <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="th-only">ร่วมพัฒนาบทภาพยนตร์</a>
-      <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="en-only">SCRIPT &amp; DOC COLLAB</a>
+      <a href="index.html" class="th-only">หน้าหลัก</a>
+      <a href="index.html" class="en-only">HOME</a>
+      <a href="press.html">PRESS KIT</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="en-only">WEBSITE COLLAB</a>
       <a href="#" onclick="toggleLang(); return false;"><span>EN / TH</span></a>
@@ -278,7 +296,6 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   </div>
 </footer>
 
-<button class="zap-float" onclick="openZapModal()" aria-label="Support the film">⚡</button>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <script>
@@ -332,28 +349,15 @@ function copyZap() {
     document.getElementById('copySuccess').style.display = 'block';
   });
 }
-
-// Lightbox
-function openLightbox(src) {
-  var img = document.getElementById('lightboxImg');
-  var overlay = document.getElementById('lightboxOverlay');
-  img.src = src;
-  overlay.classList.add('active');
-}
-function closeLightbox(e) {
-  if (e && e.target !== document.getElementById('lightboxOverlay') && e.target !== document.querySelector('.lightbox-close')) return;
-  document.getElementById('lightboxOverlay').classList.remove('active');
-  document.getElementById('lightboxImg').src = '';
+function copySupportAddr() {
+  const address = document.getElementById('spAddressTxt').innerText;
+  navigator.clipboard.writeText(address).then(() => {
+    document.getElementById('spCopied').style.display = 'block';
+  });
 }
 
 // Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeZapModal();
-    document.getElementById('lightboxOverlay').classList.remove('active');
-    document.getElementById('lightboxImg').src = '';
-  }
-});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZapModal(); });
 
 // Mobile Nav
 function toggleMobileNav() {
@@ -392,46 +396,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => revealObserver.observe(el));
-
-// Pre-prod Banner
-(function() {
-  var banner = document.getElementById('preProdBanner');
-  if (!banner) return;
-  try { if (localStorage.getItem('satoshi_preprod_banner_dismissed') === '1') { banner.style.display = 'none'; return; } } catch(e) {}
-  function adjustNav() {
-    var nav = document.querySelector('nav');
-    if (nav && window.getComputedStyle(nav).position === 'fixed') {
-      nav.style.top = banner.offsetHeight + 'px';
-      nav.style.transition = 'top 0.3s ease-out';
-    }
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', adjustNav);
-  else adjustNav();
-})();
-function dismissPreProdBanner() {
-  var banner = document.getElementById('preProdBanner');
-  if (!banner) return;
-  banner.classList.add('dismissed');
-  try { localStorage.setItem('satoshi_preprod_banner_dismissed', '1'); } catch(e) {}
-  setTimeout(function() {
-    banner.style.display = 'none';
-    var nav = document.querySelector('nav');
-    if (nav && window.getComputedStyle(nav).position === 'fixed') nav.style.top = '0';
-  }, 300);
-}
-
-// Block Height Counter
-(function() {
-  var el = document.getElementById('posterBlockHeight');
-  if (!el) return;
-  fetch('https://mempool.space/api/blocks/tip/height')
-    .then(function(r) { return r.text(); })
-    .then(function(height) {
-      var n = parseInt(height, 10);
-      if (!isNaN(n)) el.textContent = n.toLocaleString();
-    })
-    .catch(function() {});
-})();
 </script>
 
 </body>

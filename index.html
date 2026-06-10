@@ -3,8 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATOSHI — ซาโตชิ</title>
-<meta name="description" content="เราทุกคนถูกขังอยู่ในระบบที่ออกแบบมาเพื่อให้แพ้ — ความจริงรอการตรวจสอบจากทุกคน">
+<title>SATOSHI — ซาโตชิ | Official Selection — Bitcoin FilmFest 2026, Warsaw</title>
+<meta name="description" content="A Thai family drama across four generations — debt, fiat money, and truth that waits to be verified. Official Selection — Bitcoin FilmFest 2026, Warsaw. เราทุกคนถูกขังอยู่ในระบบที่ออกแบบมาเพื่อให้แพ้ — ความจริงรอการตรวจสอบจากทุกคน">
+<link rel="canonical" href="https://sootisooti.github.io/satoshi.film/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SATOSHI.FILM">
+<meta property="og:title" content="SATOSHI — ซาโตชิ | Official Selection — Bitcoin FilmFest 2026, Warsaw">
+<meta property="og:description" content="A Thai family drama across four generations — debt, fiat money, and truth that waits to be verified. Official teaser screened at Bitcoin FilmFest 2026, Warsaw. Now raising support for the full feature.">
+<meta property="og:url" content="https://sootisooti.github.io/satoshi.film/">
+<meta property="og:image" content="https://sootisooti.github.io/satoshi.film/assets/posters/poster-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SATOSHI — ซาโตชิ | Official Selection — Bitcoin FilmFest 2026, Warsaw">
+<meta name="twitter:description" content="A Thai family drama across four generations — debt, fiat money, and truth that waits to be verified.">
+<meta name="twitter:image" content="https://sootisooti.github.io/satoshi.film/assets/posters/poster-01.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -44,7 +55,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .hero-block a:hover { color: #F7931A; }
 .hero-block .block-num { color: #F7931A; }
 .hero-title { font-family: 'Space Mono', monospace; font-size: clamp(48px, 12vw, 140px); font-weight: 700; letter-spacing: 0.1em; color: #d4d0c8; opacity: 0.15; line-height: 1; margin-bottom: 8px; }
-.hero-title-th { font-family: 'Noto Serif Thai', serif; font-size: clamp(24px, 5vw, 52px); color: #F7931A; opacity: 0.6; letter-spacing: 0.5em; margin-bottom: 60px; }
+.hero-title-th { font-family: 'Noto Serif Thai', serif; font-size: clamp(24px, 5vw, 52px); color: #F7931A; opacity: 0.6; letter-spacing: 0.5em; margin-bottom: 40px; }
+.hero-laurel { display: block; width: min(320px, 76vw); margin: 0 auto 44px; opacity: 0.9; transition: opacity 0.3s; }
+.hero-laurel:hover { opacity: 1; }
+.hero-laurel svg { width: 100%; height: auto; display: block; }
 .hero-premise { max-width: 700px; margin: 0 auto; }
 .hero-premise p { font-family: 'Sarabun', sans-serif; font-size: 16px; line-height: 2; color: #666660; margin-bottom: 12px; }
 .hero-premise .highlight { color: #F7931A; font-weight: 600; }
@@ -55,12 +69,13 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 
 .section-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #666660 20%, #666660 80%, transparent); opacity: 0.2; margin: 0; }
 
-/* ─── THREE WORLDS ─── */
+/* ─── TIMELINE — TRUTH / PAST / PRESENT / FUTURE ─── */
 .worlds { padding: 120px 40px; }
 .section-header { text-align: center; margin-bottom: 80px; }
 .section-header-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; color: #F7931A; margin-bottom: 12px; }
 .section-header-title { font-family: 'Noto Serif Thai', serif; font-size: 20px; color: #666660; }
-.worlds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
+.worlds-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; max-width: 1240px; margin: 0 auto; }
+@media (max-width: 1100px) { .worlds-grid { grid-template-columns: repeat(2, 1fr); } }
 .world-card { background: #0e0e0b; padding: 50px 36px; border-top: 2px solid transparent; transition: all 0.5s; position: relative; overflow: hidden; }
 .world-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #F7931A; transform: scaleX(0); transition: transform 0.5s; }
 .world-card:hover::before { transform: scaleX(1); }
@@ -522,9 +537,21 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 .bff-section-desc { font-family: 'Sarabun', sans-serif; font-size: 15px; line-height: 1.9; color: #666660; max-width: 600px; }
 .bff-section-cta { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #00FF41; border: 1px solid rgba(0,255,65,0.3); padding: 12px 28px; background: transparent; cursor: none; transition: all 0.3s; text-decoration: none; display: inline-block; margin-top: 4px; }
 .bff-section-cta:hover { background: rgba(0,255,65,0.08); border-color: #00FF41; }
+.bff-section-ctas { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.bff-section-cta.cta-orange { color: #F7931A; border-color: rgba(247,147,26,0.35); }
+.bff-section-cta.cta-orange:hover { background: rgba(247,147,26,0.08); border-color: #F7931A; }
+.screenings { width: 100%; max-width: 640px; margin-top: 8px; text-align: left; }
+.screenings-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 5px; color: #666660; margin-bottom: 14px; text-align: center; }
+.screening-row { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; }
+.screening-date { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #F7931A; }
+.screening-venue { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 1px; color: #d4d0c8; }
+.screening-detail { font-family: 'Sarabun', sans-serif; font-size: 14px; line-height: 1.7; color: #666660; }
+.screening-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1px; color: #00FF41; text-decoration: none; margin-top: 6px; transition: color 0.3s; }
+.screening-link:hover { color: #F7931A; }
 @media (max-width: 640px) {
   .bff-section { padding: 60px 20px; }
   .bff-section-desc { font-size: 14px; }
+  .screening-row { padding: 16px 18px; }
 }
 </style>
 </head>
@@ -545,8 +572,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <div class="bff-badge">
         <span class="bff-badge-icon">◈</span>
         <span class="bff-badge-text">
-          <span class="th-only">ส่งเข้าร่วม · <strong>BITCOIN FILM FEST 2026</strong></span>
-          <span class="en-only">Submitted to · <strong>BITCOIN FILM FEST 2026</strong></span>
+          <span class="th-only">ได้รับคัดเลือกอย่างเป็นทางการ · <strong>BITCOIN FILMFEST 2026 — WARSAW</strong></span>
+          <span class="en-only">OFFICIAL SELECTION · <strong>BITCOIN FILMFEST 2026 — WARSAW</strong></span>
         </span>
       </div>
     </div>
@@ -582,8 +609,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 <div id="preProdBanner" class="preprod-banner">
   <div class="preprod-content">
     <span class="preprod-text">
-      <span>เว็บไซต์และภาพยนตร์อยู่ในช่วง pre-production · ขออภัยด้วยหาก feature บางส่วนยังไม่ทำงาน</span>
-      <span>Website and film are in pre-production · Apologies if some features don't work yet</span>
+      <span>Teaser ฉายแล้วที่ Bitcoin FilmFest 2026 วอร์ซอ — กำลังระดมทุนสร้างฉบับเต็ม · ขออภัยหาก feature บางส่วนยังไม่ทำงาน</span>
+      <span>Teaser screened at Bitcoin FilmFest 2026, Warsaw — now raising the full feature · Apologies if some features don't work yet</span>
     </span>
     <button class="preprod-close" onclick="dismissPreProdBanner()" aria-label="Close banner">×</button>
   </div>
@@ -725,6 +752,8 @@ function dismissPreProdBanner() {
   <div class="nav-menu" id="navMenu">
     <a href="#" class="nav-link" onclick="openTeaser();return false;" style="color:#F7931A;border-bottom:1px solid rgba(247,147,26,0.4);padding-bottom:1px;">TEASER</a>
     <a href="photobook.html" class="nav-link"><span class="th-only">หนัง / สื่อ / ภาพ</span><span class="en-only">SATOSHI.MEDIA</span></a>
+    <a href="support.html" class="nav-link"><span class="th-only">สนับสนุนฉบับเต็ม</span><span class="en-only">SUPPORT</span></a>
+    <a href="press.html" class="nav-link"><span class="th-only">ข้อมูลสื่อ — PRESS</span><span class="en-only">PRESS KIT</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
@@ -753,6 +782,62 @@ function dismissPreProdBanner() {
   </div>
   <h1 class="hero-title">SATOSHi</h1>
   <div class="hero-title-th">ซ า โ ต ชิ</div>
+  <a href="#bff" class="hero-laurel" style="color:#F7F3E8;" aria-label="Official Selection — Bitcoin FilmFest 2026, Warsaw">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" role="img" shape-rendering="crispEdges">
+      <defs>
+        <g id="heroBranch">
+          <rect x="160" y="0" width="10" height="10"/>
+          <rect x="180" y="0" width="10" height="10"/>
+          <rect x="140" y="10" width="20" height="10"/>
+          <rect x="110" y="20" width="40" height="10"/>
+          <rect x="110" y="30" width="30" height="10"/>
+          <rect x="110" y="40" width="30" height="10"/>
+          <rect x="70" y="50" width="10" height="10"/>
+          <rect x="90" y="50" width="30" height="10"/>
+          <rect x="80" y="60" width="40" height="10"/>
+          <rect x="90" y="70" width="30" height="10"/>
+          <rect x="80" y="80" width="20" height="10"/>
+          <rect x="60" y="90" width="50" height="10"/>
+          <rect x="70" y="100" width="30" height="10"/>
+          <rect x="80" y="110" width="10" height="10"/>
+          <rect x="80" y="120" width="10" height="10"/>
+          <rect x="80" y="130" width="10" height="10"/>
+          <rect x="80" y="140" width="30" height="10"/>
+          <rect x="70" y="150" width="30" height="10"/>
+          <rect x="60" y="160" width="40" height="10"/>
+          <rect x="90" y="170" width="20" height="10"/>
+          <rect x="120" y="170" width="10" height="10"/>
+          <rect x="80" y="180" width="40" height="10"/>
+          <rect x="80" y="190" width="30" height="10"/>
+          <rect x="100" y="200" width="30" height="10"/>
+          <rect x="100" y="210" width="30" height="10"/>
+          <rect x="100" y="220" width="60" height="10"/>
+          <rect x="140" y="230" width="20" height="10"/>
+          <rect x="190" y="230" width="10" height="10"/>
+          <rect x="130" y="240" width="10" height="10"/>
+          <rect x="150" y="240" width="50" height="10"/>
+          <rect x="140" y="250" width="10" height="10"/>
+          <rect x="170" y="250" width="30" height="10"/>
+          <rect x="230" y="250" width="10" height="10"/>
+          <rect x="130" y="260" width="10" height="10"/>
+          <rect x="170" y="260" width="70" height="10"/>
+          <rect x="170" y="270" width="10" height="10"/>
+          <rect x="230" y="270" width="80" height="10"/>
+          <rect x="210" y="280" width="20" height="10"/>
+          <rect x="210" y="290" width="10" height="10"/>
+        </g>
+      </defs>
+      <g fill="currentColor">
+        <use href="#heroBranch"/>
+        <use href="#heroBranch" transform="translate(600 0) scale(-1 1)"/>
+      </g>
+      <g fill="currentColor" text-anchor="middle" font-family="'Space Mono','Courier New',monospace">
+        <text x="300" y="106" font-size="20" letter-spacing="5">OFFICIAL SELECTION</text>
+        <text x="300" y="152" font-size="30" font-weight="700" letter-spacing="1">BITCOIN FILMFEST</text>
+        <text x="300" y="194" font-size="19" letter-spacing="6">2026 · WARSAW</text>
+      </g>
+    </svg>
+  </a>
   <div class="hero-premise">
     <p class="th-only">คนหนึ่งคน<br>กับคอมหนึ่งเครื่อง<br>จะเปลี่ยนอะไรในโลกได้</p>
     <p class="en-only">One person.<br>One computer.<br>What in the world can it change.</p>
@@ -778,16 +863,34 @@ function dismissPreProdBanner() {
   <div class="bff-section-inner">
     <div class="bff-section-tag">OFFICIAL SELECTION</div>
     <div class="bff-section-title">BITCOIN FILM <span>FEST</span></div>
-    <div class="bff-section-year">2 0 2 6</div>
+    <div class="bff-section-year">2 0 2 6 — WARSAW</div>
     <div class="bff-section-divider"></div>
     <div class="bff-section-desc">
-      <span class="th-only">SATOSHI.FILM ได้รับการส่งเข้าร่วมงาน <strong>Bitcoin Film Fest 2026</strong> — เทศกาลภาพยนตร์นานาชาติที่อุทิศให้กับเรื่องราวของ Bitcoin ความจริง และอิสรภาพทางการเงิน เปิดรับผลงานจากผู้สร้างภาพยนตร์อิสระทั่วโลก</span>
-      <span class="en-only">SATOSHI.FILM has been submitted to <strong>Bitcoin Film Fest 2026</strong> — an international festival dedicated to Bitcoin, truth, and financial freedom. Celebrating independent filmmakers from across the world.</span>
+      <span class="th-only">SATOSHI ได้รับคัดเลือกอย่างเป็นทางการ โดย <strong>teaser</strong> ได้ฉายแล้วที่ <strong>Bitcoin FilmFest 2026</strong> กรุงวอร์ซอ ในบล็อกภาพยนตร์ <strong>"Changing minds with fiction"</strong> — เทศกาลภาพยนตร์นานาชาติที่อุทิศให้กับเรื่องราวของ Bitcoin ความจริง และอิสรภาพทางการเงิน แค่ teaser ก็ได้ slot คืนวันศุกร์มาแล้ว — ขณะนี้กำลังระดมทุนเพื่อสร้างภาพยนตร์ฉบับเต็ม</span>
+      <span class="en-only">SATOSHI is an Official Selection of <strong>Bitcoin FilmFest 2026</strong>, Warsaw — its <strong>official teaser</strong> screened in the festival's <strong>"Changing minds with fiction"</strong> block. The festival is dedicated to Bitcoin, truth, and financial freedom. The teaser alone earned a Friday prime-time slot — the film is now raising support for the full feature.</span>
     </div>
-    <a href="#" class="bff-section-cta" onclick="openTeaser();return false;">
-      <span class="th-only">ดูตัวอย่างภาพยนตร์ →</span>
-      <span class="en-only">WATCH TEASER →</span>
-    </a>
+    <div class="screenings" id="screenings">
+      <div class="screenings-label">SCREENINGS</div>
+      <div class="screening-row">
+        <span class="screening-date">JUNE 2026 · OFFICIAL TEASER</span>
+        <span class="screening-venue">BITCOIN FILMFEST 2026 — WARSAW, POLAND</span>
+        <span class="screening-detail">
+          <span class="th-only">Teaser อย่างเป็นทางการ ฉายในบล็อก "Changing minds with fiction" — ช่วงภาพยนตร์ fiction คืนวันศุกร์ (prime-time)</span>
+          <span class="en-only">Official teaser — "Changing minds with fiction" block, Friday 18:00 prime-time fiction slot</span>
+        </span>
+        <a href="https://bitcoinfilmfest.com/bff26/" target="_blank" rel="noopener" class="screening-link">SOURCE: bitcoinfilmfest.com/bff26 ↗</a>
+      </div>
+    </div>
+    <div class="bff-section-ctas">
+      <a href="#" class="bff-section-cta" onclick="openTeaser();return false;">
+        <span class="th-only">ดูตัวอย่างภาพยนตร์ →</span>
+        <span class="en-only">WATCH TEASER →</span>
+      </a>
+      <a href="press.html" class="bff-section-cta cta-orange">
+        <span class="th-only">PRESS KIT →</span>
+        <span class="en-only">PRESS KIT →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -795,14 +898,21 @@ function dismissPreProdBanner() {
 
 <section class="worlds reveal" id="worlds">
   <div class="section-header">
-    <div class="section-header-label"><span class="th-only">สามโลก — THREE WORLDS</span><span class="en-only">THREE WORLDS — สามโลก</span></div>
+    <div class="section-header-label"><span class="th-only">เส้นเวลา — ความจริง → อดีต → ปัจจุบัน → อนาคต</span><span class="en-only">TIMELINE — TRUTH → PAST → PRESENT → FUTURE</span></div>
     <div class="section-header-title th-only">ทุกคนทำสิ่งที่ถูกต้องในยุคของตัวเอง</div>
     <div class="section-header-title en-only">Everyone did the right thing in their own era.</div>
   </div>
   <div class="worlds-grid">
     <div class="world-card reveal">
+      <div class="world-card-era">EVERY BLOCK</div>
+      <div class="world-card-title-th th-only">ความจริง</div>
+      <div class="world-card-title-th en-only">Truth</div>
+      <div class="world-card-title-en">DON'T TRUST — VERIFY</div>
+      <p class="world-card-desc th-only">ความจริงไม่ขึ้นอยู่กับว่าใครเป็นคนพูด แต่ขึ้นอยู่กับว่าใครตรวจสอบได้ ครอบครัวหนึ่งส่งต่อทั้งหนี้และความหวังจากรุ่นสู่รุ่น — และคำถามเดียวที่ยังค้างอยู่: อะไรคือสิ่งที่จริง</p>
+      <p class="world-card-desc en-only">Truth doesn't depend on who says it — it depends on who can verify it. One family passes down debt and hope across generations, and one question remains: what is real?</p>
+    </div>
+    <div class="world-card reveal">
       <div class="world-card-era">BEFORE BLOCK 0</div>
-      <div class="world-card-label">WORLD A</div>
       <div class="world-card-title-th th-only">อดีต</div>
       <div class="world-card-title-th en-only">The Past</div>
       <div class="world-card-title-en">FIAT WORLD</div>
@@ -811,7 +921,6 @@ function dismissPreProdBanner() {
     </div>
     <div class="world-card reveal">
       <div class="world-card-era">BLOCK 0 — PRESENT</div>
-      <div class="world-card-label">WORLD B</div>
       <div class="world-card-title-th th-only">ปัจจุบัน</div>
       <div class="world-card-title-th en-only">The Present</div>
       <div class="world-card-title-en">TRANSITION</div>
@@ -820,7 +929,6 @@ function dismissPreProdBanner() {
     </div>
     <div class="world-card world-c reveal">
       <div class="world-card-era">BITCOIN STANDARD ERA</div>
-      <div class="world-card-label">WORLD C</div>
       <div class="world-card-title-th th-only">อนาคต</div>
       <div class="world-card-title-th en-only">The Future</div>
       <div class="world-card-title-en">AFTER TRANSITION</div>
@@ -1801,6 +1909,13 @@ function dismissPreProdBanner() {
       <button class="tier-btn" onclick="openZapModal('BLOCK')">⚡ ZAP</button>
     </div>
   </div>
+  <div class="reveal" style="text-align:center; margin-top:48px;">
+    <p style="font-family:'Sarabun',sans-serif; font-size:14px; line-height:1.8; color:#666660; max-width:560px; margin:0 auto 20px;">
+      <span class="th-only">เรากำลังระดมทุนสร้างภาพยนตร์ฉบับเต็ม — ดูช่องทางสนับสนุนทั้งหมด และช่องทางติดต่อสำหรับผู้ลงทุน/สปอนเซอร์</span>
+      <span class="en-only">We are raising support for the full feature — see all funding channels and the contact for investors &amp; sponsors.</span>
+    </p>
+    <a href="support.html" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:#F7931A;border:1px solid rgba(247,147,26,0.4);padding:14px 32px;text-decoration:none;display:inline-block;transition:all 0.3s;" onmouseenter="this.style.background='rgba(247,147,26,0.08)';this.style.borderColor='#F7931A';" onmouseleave="this.style.background='';this.style.borderColor='rgba(247,147,26,0.4)';"><span class="th-only">สนับสนุนฉบับเต็ม →</span><span class="en-only">FUND THE FEATURE →</span></a>
+  </div>
 </section>
 
 <section class="forum" id="forum" style="padding: 80px 40px; text-align: center;">
@@ -1822,6 +1937,10 @@ function dismissPreProdBanner() {
       <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="en-only">SCRIPT &amp; DOC COLLAB</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="en-only">WEBSITE COLLAB</a>
+      <a href="support.html" class="th-only">สนับสนุนฉบับเต็ม</a>
+      <a href="support.html" class="en-only">SUPPORT</a>
+      <a href="press.html" class="th-only">PRESS KIT</a>
+      <a href="press.html" class="en-only">PRESS KIT</a>
       <a href="#" onclick="toggleLang(); return false;" style="margin-left: 20px;">
         <span>EN / TH</span>
       </a>
