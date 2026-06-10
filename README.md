@@ -5,7 +5,7 @@
 
 This repository contains the source code for the official interactive website of the **SATOSHi** feature film project.
 
-🏆 **Official Selection — Bitcoin FilmFest 2026, Warsaw** — screened in the "Changing minds with fiction" block (June 2026). Now raising support for the full feature.
+🏆 **Official Selection — Bitcoin FilmFest 2026, Warsaw** — the official teaser screened in the "Changing minds with fiction" block (June 2026). Now raising support for the full feature.
 
 🌐 **Live Site:** <https://sootisooti.github.io/satoshi.film/>
 
