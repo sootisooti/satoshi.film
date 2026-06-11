@@ -217,7 +217,14 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
     <div class="seed-container">
       <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
       <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;"></div>
-      <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; margin-bottom: 20px;">GENERATE ⚡</button>
+      <div style="display: flex; justify-content: center; align-items: stretch; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+        <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; min-height: 44px;">GENERATE ⚡</button>
+        <button onclick="copySeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #F7931A; background: transparent; border: 1px solid rgba(247,147,26,0.5); padding: 12px 24px; cursor: none; transition: all 0.3s; min-height: 44px;">COPY</button>
+      </div>
+      <div id="seedCopySuccess" style="font-size: 11px; color: #00FF41; margin-bottom: 16px; display: none;">
+        <span class="th-only" style="font-family: 'Sarabun', sans-serif;">✓ คัดลอก 12 คำแล้ว — พร้อมแชร์ต่อ</span>
+        <span class="en-only" style="font-family: 'Space Mono', monospace;">✓ 12 WORDS COPIED — READY TO SHARE</span>
+      </div>
       <div class="seed-caption th-only">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
       <div class="seed-caption en-only">"Have you started planting your own seed of freedom today?"</div>
     </div>
@@ -321,12 +328,16 @@ function generateQuote() {
 const safeWordList = [
   'abandon','ability','freedom','satoshi','verify','genesis','proof','work','timechain','cypherpunk','node','zap','truth','trust','code','math','energy','block','chain','future','seed','wealth','protect','sovereign','asset','value','system','network','power','public','private','key','shield','secure','peace','hope','life','choice','voice','signal','noise','world','earth','human','right','build','create','learn','teach','grow','plant','tree','root','branch','leaf','sun','water','fire','light','dark','moon','star','space','time','clock','hour','day','year','century','history','memory','mind','brain','think','idea','vision','dream','reality','matrix','escape','exit','door','path','road','journey','step','walk','run','fly','soar','rise','fall','stand','fight','brave','bold','strong','weak','true','false','real','fake'
 ];
+let currentSeedWords = [];
 function generateSeedWords() {
   const grid = document.getElementById('seedGrid');
   if (!grid) return;
   grid.innerHTML = '';
   const shuffled = safeWordList.sort(() => 0.5 - Math.random());
   const selected = shuffled.slice(0, 12);
+  currentSeedWords = selected;
+  const seedSuccess = document.getElementById('seedCopySuccess');
+  if (seedSuccess) seedSuccess.style.display = 'none';
   selected.forEach((word, index) => {
     const div = document.createElement('div');
     div.style.cssText = "background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px; font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: left;";
@@ -335,6 +346,18 @@ function generateSeedWords() {
   });
 }
 document.addEventListener('DOMContentLoaded', generateSeedWords);
+let seedCopyTimer = null;
+function copySeedWords() {
+  if (!currentSeedWords.length) return;
+  const text = currentSeedWords.map((word, i) => (i + 1) + '. ' + word).join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const seedSuccess = document.getElementById('seedCopySuccess');
+    if (!seedSuccess) return;
+    seedSuccess.style.display = 'block';
+    clearTimeout(seedCopyTimer);
+    seedCopyTimer = setTimeout(() => { seedSuccess.style.display = 'none'; }, 2500);
+  });
+}
 
 // Zap Modal
 function openZapModal() {
