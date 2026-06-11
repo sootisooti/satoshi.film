@@ -95,6 +95,11 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .sp-tier-list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
 .sp-tier-list .amt { font-family: 'Space Mono', monospace; color: #F7931A; white-space: nowrap; }
 .sp-tier-list .what { font-family: 'Sarabun', sans-serif; color: #8a877e; text-align: right; }
+.sp-onchain { background: #0e0e0b; border-top: 2px solid rgba(0,255,65,0.5); padding: 40px 32px; margin-top: 2px; }
+.sp-onchain-title { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #d4d0c8; margin-bottom: 6px; }
+.sp-onchain-title span { color: #00FF41; }
+.sp-onchain-note { font-family: 'Sarabun', sans-serif; font-size: 13px; line-height: 1.8; color: #666660; margin-top: 12px; }
+.sp-onchain-note a { color: #8BA8C4; text-decoration: none; }
 .sp-list { list-style: none; margin-top: 24px; }
 .sp-list li { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: baseline; }
 .sp-list .k { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #00FF41; white-space: nowrap; min-width: 130px; }
@@ -148,6 +153,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   .sp-page { padding: 130px 20px 80px; }
   .sp-grid { grid-template-columns: 1fr; }
   .sp-card { padding: 32px 24px; }
+  .sp-onchain { padding: 32px 24px; }
   .sp-status span { font-size: 9px; padding: 6px 12px; }
   .sp-list .k { min-width: 100px; }
   .sp-list li { flex-direction: column; gap: 6px; }
@@ -176,6 +182,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <button onclick="copyZap()" style="background: #F7931A; color: #080806; border: none; font-family: 'Space Mono', monospace; font-size: 10px; padding: 8px 16px; cursor: none; transition: all 0.3s;">COPY</button>
         </div>
         <div id="copySuccess" style="font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; margin-top: 12px; display: none;">✓ COPIED TO CLIPBOARD</div>
+        <a href="#ways" onclick="closeZapModal()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #F7931A; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px;"><span class="th-only">ทุกระดับ + ติดต่อผู้ลงทุน → ดูด้านล่าง</span><span class="en-only">ALL TIERS + INVESTORS → SEE BELOW</span></a>
       </div>
       <div class="auth-form" id="zapSupporters">
         <h3 style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 14px; margin-bottom: 24px; letter-spacing: 2px;">GENESIS SUPPORTERS</h3>
@@ -183,6 +190,11 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;"><span>1. BLC เชียงใหม่</span><span style="color: #F7931A;">210,000 SATS</span></li>
           <li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; opacity: 0.3;"><span>2. ----------------</span><span style="color: #F7931A;">--- SATS</span></li>
         </ul>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <p class="th-only" style="font-family: 'Sarabun', sans-serif; color: #8a877e; font-size: 13px; line-height: 1.7; margin: 0;">อยากเห็นชื่อของคุณบนบล็อกถัดไปไหม — zap แล้วอีเมลมาบอกชื่อที่อยากให้จารึก</p>
+          <p class="en-only" style="font-family: 'Sarabun', sans-serif; color: #8a877e; font-size: 13px; line-height: 1.7; margin: 0;">Want your name on the next block? Zap, then email us the name to record.</p>
+          <a href="mailto:satoshi21film@gmail.com?subject=SATOSHI%20—%20Genesis%20Supporter" style="font-family: 'Space Mono', monospace; font-size: 12px; color: #00FF41; text-decoration: none; word-break: break-all; display: inline-flex; align-items: center; min-height: 44px;">satoshi21film@gmail.com</a>
+        </div>
       </div>
     </div>
   </div>
@@ -193,6 +205,10 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
   <div class="nav-menu" id="navMenu">
     <a href="index.html" class="nav-link"><span class="th-only">หน้าหลัก</span><span class="en-only">HOME</span></a>
     <a href="press.html" class="nav-link"><span class="th-only">ข้อมูลสื่อ — PRESS</span><span class="en-only">PRESS KIT</span></a>
+    <a href="photobook.html" class="nav-link"><span class="th-only">โปสเตอร์</span><span class="en-only">POSTERS</span></a>
+    <a href="seedmining/" class="nav-link">SEED</a>
+    <a href="forum.html" class="nav-link"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="dialogue.html" class="nav-link"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
     <div class="nav-mobile-divider mobile-only"></div>
@@ -225,7 +241,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
     <p class="sp-text th-only">ตอนนี้เรากำลังระดมทุนเพื่อสร้างฉบับเต็ม บทภาพยนตร์อยู่ระหว่างการพัฒนา เราไม่ขายฝัน — แต่อยากให้ดูจากผลงาน: <strong>teaser ที่ดูได้จริง ผู้ชมเทศกาลที่นั่งดูมันมาแล้ว และทุก sat ที่เข้ามาตรวจสอบได้อย่างเปิดเผย</strong></p>
   </div>
 
-  <div class="sp-block reveal">
+  <div class="sp-block reveal" id="ways">
     <div class="sp-label green">TWO WAYS IN</div>
     <div class="sp-grid">
 
@@ -241,6 +257,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <li><span class="amt">2,100 SATS — SEED</span><span class="what"><span class="en-only">Script development</span><span class="th-only">สนับสนุนการพัฒนาบท</span></span></li>
           <li><span class="amt">21,000 SATS — NODE</span><span class="what"><span class="en-only">Name in credits + community</span><span class="th-only">ชื่อใน credits + community</span></span></li>
           <li><span class="amt">210,000 SATS — BLOCK</span><span class="what"><span class="en-only">Co-producer credit + private screening</span><span class="th-only">Co-producer credit + รอบฉายส่วนตัว</span></span></li>
+          <li><span class="amt">2,100,000 SATS — GENESIS</span><span class="what"><span class="en-only">Founding supporter credit + all BLOCK perks</span><span class="th-only">เครดิตผู้สนับสนุนผู้ก่อตั้ง + ทุกสิทธิ์ของ BLOCK</span></span></li>
         </ul>
         <a href="lightning:satoshifilm@walletofsatoshi.com" class="sp-cta">⚡ OPEN WALLET</a>
       </div>
@@ -256,6 +273,17 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
         <a href="mailto:satoshi21film@gmail.com?subject=SATOSHI%20—%20Investor%20%2F%20Sponsor%20Inquiry" class="sp-cta blue">WRITE TO US →</a>
       </div>
 
+    </div>
+
+    <div class="sp-onchain reveal">
+      <div class="sp-onchain-title">₿ BUY ME 2.1 BTC — <span>ON-CHAIN</span></div>
+      <div class="sp-card-sub"><span class="en-only">One transaction — the whole feature gets made. 210,000,000 sats, recorded on-chain, verifiable forever.</span><span class="th-only">ธุรกรรมเดียว — หนังทั้งเรื่องได้ไปต่อ · 210,000,000 sats บันทึกบนเชน ตรวจสอบได้ตลอดไป</span></div>
+      <div class="sp-addr">
+        <code id="spOnchainTxt">bc1qa22l5t3txzsgdtx6wsw8u4q2fmjk3a5896xpnf</code>
+        <button class="sp-copy-btn" onclick="copyOnchainAddr()">COPY</button>
+      </div>
+      <div class="sp-copied" id="spOnchainCopied">✓ COPIED TO CLIPBOARD</div>
+      <p class="sp-onchain-note"><span class="en-only">Bitcoin mainnet only. For a transaction at this level, write to us first — executive producer conversation: <a href="mailto:satoshi21film@gmail.com?subject=SATOSHI%20—%202.1%20BTC">satoshi21film@gmail.com</a></span><span class="th-only">Bitcoin mainnet เท่านั้น · ธุรกรรมระดับนี้ เขียนหาเราก่อนได้ — คุยกันเรื่อง executive producer: <a href="mailto:satoshi21film@gmail.com?subject=SATOSHI%20—%202.1%20BTC">satoshi21film@gmail.com</a></span></p>
     </div>
   </div>
 
@@ -288,6 +316,13 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
       <a href="index.html" class="th-only">หน้าหลัก</a>
       <a href="index.html" class="en-only">HOME</a>
       <a href="press.html">PRESS KIT</a>
+      <a href="photobook.html" class="th-only">โปสเตอร์</a>
+      <a href="photobook.html" class="en-only">POSTERS</a>
+      <a href="seedmining/">SEED</a>
+      <a href="forum.html" class="th-only">ชุมชน</a>
+      <a href="forum.html" class="en-only">FORUM</a>
+      <a href="dialogue.html" class="th-only">บทภาพยนตร์</a>
+      <a href="dialogue.html" class="en-only">DIALOGUE</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="en-only">WEBSITE COLLAB</a>
       <a href="#" onclick="toggleLang(); return false;"><span>EN / TH</span></a>
@@ -327,7 +362,16 @@ function toggleLang() {
   } else {
     body.classList.remove('lang-en'); body.classList.add('lang-th');
   }
+  try { localStorage.setItem('satoshi_lang', body.classList.contains('lang-th') ? 'th' : 'en'); } catch(e) {}
 }
+// Restore language chosen on any other page
+(function() {
+  try {
+    var saved = localStorage.getItem('satoshi_lang');
+    if (saved === 'th') { document.body.classList.remove('lang-en'); document.body.classList.add('lang-th'); }
+    else if (saved === 'en') { document.body.classList.remove('lang-th'); document.body.classList.add('lang-en'); }
+  } catch(e) {}
+})();
 
 // Zap Modal
 function openZapModal() {
@@ -352,6 +396,12 @@ function copySupportAddr() {
   const address = document.getElementById('spAddressTxt').innerText;
   navigator.clipboard.writeText(address).then(() => {
     document.getElementById('spCopied').style.display = 'block';
+  });
+}
+function copyOnchainAddr() {
+  const address = document.getElementById('spOnchainTxt').innerText;
+  navigator.clipboard.writeText(address).then(() => {
+    document.getElementById('spOnchainCopied').style.display = 'block';
   });
 }
 

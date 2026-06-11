@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATOSHI — ชุมชน / FORUM</title>
-<meta name="description" content="ทุกสัปดาห์เราคัดเลือก 21 กระทู้จากฟอรัมที่ Satoshi เคยโพสต์ — ผ่านมุมมองของหนังเรื่องนี้">
+<title>SATOSHI — SEED MINING</title>
+<meta name="description" content="Mine a quote. Generate your freedom vocabulary.">
+<link rel="canonical" href="https://sootisooti.github.io/satoshi.film/seedmining/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Thai:wght@400;700&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -33,8 +34,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .nav-action-btn { font-family: 'Space Mono', monospace; font-size: 0.7rem; text-decoration: none; letter-spacing: 0.15em; padding: 6px 14px; transition: background 0.2s, box-shadow 0.2s; display: inline-block; }
 .nav-zap-btn { color: #F7931A; border: 1px solid rgba(247,147,26,0.5); }
 .nav-zap-btn:hover { background: rgba(247,147,26,0.12); box-shadow: 0 0 10px rgba(247,147,26,0.25); }
-.nav-seed-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
-.nav-seed-link:hover { background: rgba(0,255,65,0.08); }
+.nav-forum-link { color: #00FF41; border: 1px solid rgba(0,255,65,0.3); }
+.nav-forum-link:hover { background: rgba(0,255,65,0.08); }
 .nav-dialogue-link { color: #F7931A; border: 1px solid rgba(247,147,26,0.3); }
 .nav-dialogue-link:hover { background: rgba(247,147,26,0.08); }
 .nav-page-label { font-size: 9px; color: #666660; letter-spacing: 2px; opacity: 0.6; margin-left: 8px; padding-left: 8px; border-left: 1px solid rgba(102,102,96,0.3); }
@@ -53,46 +54,18 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .auth-close { position: absolute; top: 16px; right: 20px; font-size: 22px; color: #666660; background: none; border: none; cursor: none; transition: color 0.2s; z-index: 10; }
 .auth-close:hover { color: #F7931A; }
 
-/* Forum Section */
-.forum { padding: 160px 40px 120px; background: #080806; }
-.forum-eyebrow { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 3px; color: #666660; margin-bottom: 12px; text-align: center; }
-.forum-section-title { font-family: 'Noto Serif Thai', serif; font-size: 32px; color: #d4d0c8; text-align: center; margin-bottom: 8px; }
-.forum-section-title-en { font-family: 'Space Mono', monospace; font-size: 18px; color: #8BA8C4; text-align: center; letter-spacing: 2px; margin-bottom: 24px; }
-.forum-subtitle { max-width: 720px; margin: 0 auto 16px; }
-.forum-subtitle-th { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #d4d0c8; line-height: 1.8; text-align: center; margin-bottom: 8px; }
-.forum-subtitle-en { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; line-height: 1.7; text-align: center; opacity: 0.7; }
-.forum-disclosure { max-width: 680px; margin: 32px auto; padding: 16px 20px; border-left: 3px solid #00FF41; background: rgba(0,255,65,0.03); }
-.forum-disclosure-text { font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; line-height: 1.7; letter-spacing: 0.5px; }
-.forum-meta { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 40px 0; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; flex-wrap: wrap; }
-.forum-week-picker-container { display: inline-flex; align-items: center; }
-.forum-week-picker { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; background: #0e0e0b; color: #d4d0c8; border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; min-height: 44px; cursor: pointer; transition: all 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4d0c8' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; background-size: 8px; padding-right: 28px; }
-.forum-week-picker:hover { border-color: rgba(0,255,65,0.3); background-color: #121210; }
-.forum-week-picker:focus { outline: none; border-color: #00FF41; box-shadow: 0 0 0 2px rgba(0,255,65,0.1); }
-.forum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1200px; margin: 0 auto; }
-.forum-card { background: #0e0e0b; padding: 32px 28px; border: 1px solid rgba(255,255,255,0.02); transition: all 0.3s; }
-.forum-card:hover { background: #121210; border-color: rgba(0,255,65,0.1); }
-.forum-card-num { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #666660; margin-bottom: 16px; }
-.forum-card-title-th { font-family: 'Noto Serif Thai', serif; font-size: 17px; color: #d4d0c8; line-height: 1.5; margin-bottom: 8px; }
-.forum-card-title-en { font-family: 'Space Mono', monospace; font-size: 11px; color: #8BA8C4; line-height: 1.6; margin-bottom: 16px; opacity: 0.8; }
-.forum-card-summary-th { font-family: 'Sarabun', sans-serif; font-size: 13px; color: #d4d0c8; line-height: 1.7; margin-bottom: 8px; }
-.forum-card-summary-en { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; line-height: 1.6; margin-bottom: 20px; opacity: 0.6; }
-.forum-card-take { padding: 16px; border-left: 3px solid #F7931A; background: rgba(247,147,26,0.03); margin-bottom: 20px; }
-.forum-card-take-label { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 2px; color: #F7931A; margin-bottom: 8px; }
-.forum-card-take-th { font-family: 'Noto Serif Thai', serif; font-size: 13px; color: #d4d0c8; line-height: 1.7; font-style: italic; margin-bottom: 6px; }
-.forum-card-take-en { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; line-height: 1.6; font-style: italic; opacity: 0.7; }
-.forum-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05); }
-.forum-card-author { font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; letter-spacing: 1px; }
-.forum-card-verify { font-family: 'Space Mono', monospace; font-size: 9px; color: #00FF41; letter-spacing: 1px; text-decoration: none; transition: opacity 0.3s; padding: 10px 0 10px 16px; min-height: 44px; display: inline-flex; align-items: center; }
-.forum-card-verify:hover { opacity: 0.7; }
-.forum-attribution { text-align: center; margin-top: 48px; font-family: 'Space Mono', monospace; font-size: 9px; color: #666660; letter-spacing: 1px; }
-.forum-skeleton { max-width: 600px; margin: 40px auto; padding: 20px; background: rgba(0,255,65,0.03); border: 1px solid rgba(0,255,65,0.1); }
-.forum-skeleton-text { font-family: 'Space Mono', monospace; font-size: 11px; color: #00FF41; letter-spacing: 0.5px; }
-
-body.lang-en .forum-section-title-en { font-size: 32px; color: #d4d0c8; letter-spacing: 1px; margin-bottom: 24px; }
-body.lang-en .forum-subtitle-en { font-size: 15px; color: #d4d0c8; opacity: 1; line-height: 1.8; margin-bottom: 0; }
-body.lang-en .forum-card-title-en { font-size: 17px; color: #d4d0c8; opacity: 1; line-height: 1.5; margin-bottom: 16px; }
-body.lang-en .forum-card-summary-en { font-size: 12px; color: #d4d0c8; opacity: 0.95; line-height: 1.7; margin-bottom: 20px; }
-body.lang-en .forum-card-take-en { font-size: 12px; color: #d4d0c8; opacity: 0.95; line-height: 1.7; }
+/* Tools */
+.verifier-page { padding: 160px 40px 80px; max-width: 760px; margin: 0 auto; }
+.quote-box { padding: 40px 32px; border: 1px solid rgba(0,255,65,0.15); background: rgba(0,255,65,0.02); text-align: center; margin-bottom: 2px; }
+.quote-hash { font-family: 'Space Mono', monospace; font-size: 10px; color: #666660; margin-bottom: 12px; word-break: break-all; min-height: 15px; opacity: 0.5; }
+.quote-text { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; min-height: 45px; margin-bottom: 8px; font-style: italic; transition: opacity 0.3s; }
+.quote-author { font-family: 'Space Mono', monospace; font-size: 11px; color: #666660; margin-bottom: 24px; opacity: 0; transition: opacity 0.3s; }
+.quote-btn { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #00FF41; border: none; padding: 10px 24px; cursor: none; transition: all 0.3s; display: inline-block; }
+.quote-btn:hover { background: #d4d0c8; }
+.seed-section { padding: 2px 0 0; text-align: center; }
+.seed-container { max-width: 700px; margin: 0 auto; padding: 40px 32px; border: 1px solid rgba(247,147,26,0.2); background: rgba(247,147,26,0.02); position: relative; overflow: hidden; }
+.seed-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #F7931A; opacity: 0.5; }
+.seed-caption { font-family: 'Sarabun', sans-serif; font-size: 15px; color: #00FF41; font-style: italic; opacity: 0.8; }
 
 /* Footer */
 footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -110,8 +83,8 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 /* Mobile Nav */
 @media (max-width: 1200px) { nav { padding: 18px 24px; gap: 12px; } .nav-menu { gap: 14px; } .nav-link { font-size: 9px; letter-spacing: 0.5px; } }
 @media (max-width: 900px) { nav { grid-template-columns: auto 1fr; padding: 16px 20px; gap: 12px; } .nav-menu { gap: 12px 8px; justify-content: flex-start; } .nav-right { grid-column: 1 / -1; justify-content: flex-end; margin-top: 4px; } }
-@media (max-width: 980px) { .forum-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .forum { padding: 120px 20px 80px; } .forum-grid { grid-template-columns: 1fr; } .forum-card { padding: 28px 20px; } .forum-meta { gap: 12px; font-size: 8px; } }
+@media (max-width: 768px) { .verifier-page { padding: 120px 20px 60px; } .seed-section { padding: 0; } .quote-box { padding: 28px 20px; } }
+@media (max-width: 480px) { .seed-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 
 /* Nav Hamburger */
 .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: transparent; border: none; cursor: none; padding: 0 10px; flex-shrink: 0; }
@@ -145,7 +118,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 
 @media (max-width: 640px) {
   .nav-hamburger { display: flex; }
-  .nav-seed-link, .nav-dialogue-link { display: none; }
+  .nav-forum-link, .nav-dialogue-link { display: none; }
   .mobile-only { display: block !important; }
   nav { grid-template-columns: auto 1fr auto; }
   .nav-right { grid-column: auto; margin-top: 0; gap: 4px; }
@@ -194,7 +167,7 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
           <button onclick="copyZap()" style="background: #F7931A; color: #080806; border: none; font-family: 'Space Mono', monospace; font-size: 10px; padding: 8px 16px; cursor: none; transition: all 0.3s;">COPY</button>
         </div>
         <div id="copySuccess" style="font-family: 'Space Mono', monospace; font-size: 10px; color: #00FF41; margin-top: 12px; display: none;">✓ COPIED TO CLIPBOARD</div>
-        <a href="support.html" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #F7931A; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px;"><span class="th-only">ทุกระดับ + ติดต่อผู้ลงทุน → ร่วมสร้างหนังฉบับเต็ม</span><span class="en-only">ALL TIERS + INVESTORS → FUND THE FEATURE</span></a>
+        <a href="../support.html" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px; color: #F7931A; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px;"><span class="th-only">ทุกระดับ + ติดต่อผู้ลงทุน → ร่วมสร้างหนังฉบับเต็ม</span><span class="en-only">ALL TIERS + INVESTORS → FUND THE FEATURE</span></a>
       </div>
       <div class="auth-form" id="zapSupporters">
         <h3 style="font-family: 'Space Mono', monospace; color: #00FF41; font-size: 14px; margin-bottom: 24px; letter-spacing: 2px;">GENESIS SUPPORTERS</h3>
@@ -213,89 +186,71 @@ footer { padding: 60px 40px 40px; border-top: 1px solid rgba(255,255,255,0.06); 
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">SATOSHi <span class="nav-page-label">FORUM</span></a>
+  <a href="../index.html" class="nav-logo">SATOSHi <span class="nav-page-label">SEED</span></a>
   <div class="nav-menu" id="navMenu">
-    <a href="index.html" class="nav-link"><span class="th-only">หน้าหลัก</span><span class="en-only">HOME</span></a>
-    <a href="support.html" class="nav-link"><span class="th-only">ร่วมสร้างหนังฉบับเต็ม</span><span class="en-only">FUND THE FEATURE</span></a>
-    <a href="press.html" class="nav-link"><span class="th-only">ข้อมูลสื่อ — PRESS</span><span class="en-only">PRESS KIT</span></a>
-    <a href="photobook.html" class="nav-link"><span class="th-only">โปสเตอร์</span><span class="en-only">POSTERS</span></a>
+    <a href="../index.html" class="nav-link"><span class="th-only">หน้าหลัก</span><span class="en-only">HOME</span></a>
+    <a href="../support.html" class="nav-link"><span class="th-only">ร่วมสร้างหนังฉบับเต็ม</span><span class="en-only">FUND THE FEATURE</span></a>
+    <a href="../press.html" class="nav-link"><span class="th-only">ข้อมูลสื่อ — PRESS</span><span class="en-only">PRESS KIT</span></a>
+    <a href="../photobook.html" class="nav-link"><span class="th-only">โปสเตอร์</span><span class="en-only">POSTERS</span></a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link th-only">ร่วมพัฒนาบทภาพยนตร์และสารคดี</a>
     <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="nav-link en-only">SCRIPT & DOC COLLAB</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link th-only">ร่วมพัฒนาเว็ปไซต์ SATOSHi</a>
     <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="nav-link en-only">WEBSITE COLLAB</a>
     <div class="nav-mobile-divider mobile-only"></div>
     <a href="#" class="nav-link mobile-only" onclick="closeMobileNav();openZapModal();" style="color:#F7931A;"><span class="th-only">⚡ สนับสนุนหนัง</span><span class="en-only">⚡ SUPPORT / ZAP</span></a>
-    <a href="seedmining/" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">SEED</span><span class="en-only">SEED</span></a>
-    <a href="dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <a href="../forum.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="../dialogue.html" class="nav-link mobile-only" onclick="closeMobileNav()"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
   </div>
   <div class="nav-right">
     <a href="#" onclick="event.preventDefault();openZapModal();" class="nav-action-btn nav-zap-btn"><span class="th-only">⚡ สนับสนุน</span><span class="en-only">⚡ ZAP</span></a>
-    <a href="seedmining/" class="nav-action-btn nav-seed-link"><span class="th-only">SEED</span><span class="en-only">SEED</span></a>
-    <a href="dialogue.html" class="nav-action-btn nav-dialogue-link"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
+    <a href="../forum.html" class="nav-action-btn nav-forum-link"><span class="th-only">ชุมชน</span><span class="en-only">FORUM</span></a>
+    <a href="../dialogue.html" class="nav-action-btn nav-dialogue-link"><span class="th-only">บทภาพยนตร์</span><span class="en-only">DIALOGUE</span></a>
     <button class="lang-toggle" onclick="toggleLang()"><span>EN / TH</span></button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<section class="forum" id="forum">
-  <div class="forum-eyebrow">BLOCK <span id="forumBlockHeight">---</span> · SOURCE: bitcointalk.org</div>
+<main class="verifier-page">
 
-  <div class="forum-section-title th-only">ชุมชน — การตรวจสอบ</div>
-  <div class="forum-section-title-en en-only">FORUM — COMMUNITY VERIFY</div>
-
-  <div class="forum-subtitle">
-    <div class="forum-subtitle-th th-only">
-      ทุกสัปดาห์เราคัดเลือก 21 กระทู้จากฟอรัมที่ Satoshi เคยโพสต์ — ผ่านมุมมองของหนังเรื่องนี้ เราไม่คัดลอกโพสต์ เราสรุปด้วยเสียงของเราเอง และลิงก์กลับไปที่ต้นฉบับ
+  <div class="quote-box reveal">
+    <div class="quote-hash" id="quoteHash">0000000000000000000000000000000000000000000000000000000000000000</div>
+    <div class="quote-text" id="quoteText">
+      <span class="th-only">...ระบบกำลังรอการตรวจสอบจากคุณ...</span>
+      <span class="en-only">...System awaiting your verification...</span>
     </div>
-    <div class="forum-subtitle-en en-only">
-      Each week we select 21 threads from the forum where Satoshi posted — through the lens of this film. We don't copy posts. We summarize in our own voice and link back to the source.
-    </div>
+    <div class="quote-author" id="quoteAuthor"></div>
+    <button class="quote-btn" onclick="generateQuote()">MINE A QUOTE ⚡</button>
   </div>
 
-  <div class="forum-disclosure">
-    <div class="forum-disclosure-text th-only">
-      คำชี้แจงทางบรรณาธิการ: เราสรุปและแปลความหัวข้อกระทู้ในแบบของเราเอง ไม่ได้คัดลอกโพสต์ต้นฉบับมา ทุกกระทู้ลิงก์กลับไปที่ต้นทางบน bitcointalk.org พร้อมชื่อผู้โพสต์ — และ "มุมของหนัง" สะท้อนว่าแต่ละกระทู้เชื่อมโยงกับธีมของเรื่องอย่างไร: หนี้ข้ามรุ่น, การตรวจสอบ, และอธิปไตยทางการเงิน
-    </div>
-    <div class="forum-disclosure-text en-only">
-      EDITORIAL DISCLOSURE: We paraphrase thread titles and discussions. We do not reproduce original posts. Every thread links to its source on bitcointalk.org with the author's username. Our "take" reflects how each thread connects to the film's themes of generational debt, verification, and monetary sovereignty.
-    </div>
-  </div>
-
-  <div class="forum-meta">
-    <span>CURATED <span id="forumCuratedDate">---</span></span>
-    <span>·</span>
-    <span>COUNT <span id="forumCount">0</span>/21</span>
-    <span>·</span>
-    <span class="forum-week-picker-container">
-      <label for="forumWeekPicker" style="margin-right: 4px;">WEEK</label>
-      <select id="forumWeekPicker" class="forum-week-picker">
-        <option value="current">CURRENT</option>
-      </select>
-    </span>
-  </div>
-
-  <div class="forum-grid" id="forumGrid">
-    <div class="forum-skeleton">
-      <div class="forum-skeleton-text">verify@satoshi:~$ loading forum threads...</div>
+  <div class="seed-section reveal">
+    <div class="seed-container">
+      <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 4px; color: #F7931A; margin-bottom: 24px;">YOUR FREEDOM VOCABULARY</div>
+      <div class="seed-grid" id="seedGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px;"></div>
+      <div style="display: flex; justify-content: center; align-items: stretch; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+        <button onclick="generateSeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #080806; background: #F7931A; border: none; padding: 12px 24px; cursor: none; transition: all 0.3s; min-height: 44px;">GENERATE ⚡</button>
+        <button onclick="copySeedWords()" style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: #F7931A; background: transparent; border: 1px solid rgba(247,147,26,0.5); padding: 12px 24px; cursor: none; transition: all 0.3s; min-height: 44px;">COPY</button>
+      </div>
+      <div id="seedCopySuccess" style="font-size: 11px; color: #00FF41; margin-bottom: 16px; display: none;">
+        <span class="th-only" style="font-family: 'Sarabun', sans-serif;">✓ คัดลอก 12 คำแล้ว — พร้อมแชร์ต่อ</span>
+        <span class="en-only" style="font-family: 'Space Mono', monospace;">✓ 12 WORDS COPIED — READY TO SHARE</span>
+      </div>
+      <div class="seed-caption th-only">"วันนี้คุณเริ่มปลูกเมล็ดพันธุ์แห่งอิสระภาพของคุณเองแล้วหรือยัง"</div>
+      <div class="seed-caption en-only">"Have you started planting your own seed of freedom today?"</div>
     </div>
   </div>
 
-  <div class="forum-attribution">
-    <span class="th-only">ทุกกระทู้ยังคงอยู่บน bitcointalk.org — ฟอรัมที่ Satoshi Nakamoto โพสต์ระหว่างปี 2009-2010</span>
-    <span class="en-only">All threads live on bitcointalk.org — the forum where Satoshi Nakamoto posted from 2009-2010.</span>
-  </div>
-</section>
+</main>
 
 <footer>
   <div class="footer-content">
     <div class="footer-logo">SATOSHi</div>
     <div class="footer-copy">© 2026 SATOSHI FILM — CONFIDENTIAL</div>
     <div class="footer-links">
-      <a href="index.html" class="th-only">หน้าหลัก</a>
-      <a href="index.html" class="en-only">HOME</a>
-      <a href="support.html" class="th-only">ร่วมสร้างหนังฉบับเต็ม</a>
-      <a href="support.html" class="en-only">FUND THE FEATURE</a>
-      <a href="press.html">PRESS KIT</a>
+      <a href="../index.html" class="th-only">หน้าหลัก</a>
+      <a href="../index.html" class="en-only">HOME</a>
+      <a href="../support.html" class="th-only">ร่วมสร้างหนังฉบับเต็ม</a>
+      <a href="../support.html" class="en-only">FUND THE FEATURE</a>
+      <a href="../press.html">PRESS KIT</a>
       <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="th-only">ร่วมพัฒนาบทภาพยนตร์</a>
       <a href="https://app.gitbook.com/invite/CC1p6uOmzX05YyLDPevJ/r3fCPzAmLSaX2XHCIdgr" target="_blank" class="en-only">SCRIPT &amp; DOC COLLAB</a>
       <a href="https://github.com/sootisooti/satoshi.film" target="_blank" class="th-only">ร่วมพัฒนาเว็บไซต์</a>
@@ -349,6 +304,84 @@ function toggleLang() {
   } catch(e) {}
 })();
 
+// Quote Generator
+const KOANS = [
+  { th: "\"Don't trust. Verify.\"", en: "\"Don't trust. Verify.\"", author: "Bitcoin Maxim" },
+  { th: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", en: "\"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks\"", author: "Satoshi Nakamoto" },
+  { th: "\"ถ้าคุณไม่เชื่อฉัน หรือไม่เข้าใจ ฉันก็ไม่มีเวลาที่จะอธิบายให้คุณฟัง ขอโทษด้วย\"", en: "\"If you don't believe me or don't get it, I don't have time to try to convince you, sorry.\"", author: "Satoshi Nakamoto" },
+  { th: "\"ความลับ (Privacy) คือสิ่งที่จำเป็นสำหรับสังคมที่เปิดกว้างในยุคอิเล็กทรอนิกส์\"", en: "\"Privacy is necessary for an open society in the electronic age.\"", author: "Eric Hughes" },
+  { th: "\"ชาวไซเฟอร์พังก์เขียนโค้ด... เราจะปกป้องความลับของเราด้วยวิทยาการเข้ารหัส\"", en: "\"Cypherpunks write code... We will defend our privacy with cryptography.\"", author: "Eric Hughes" },
+  { th: "\"มันอาจจะสมเหตุสมผลที่จะเก็บมันไว้บ้าง เผื่อว่ามันจะได้รับความนิยมขึ้นมา\"", en: "\"It might make sense just to get some in case it catches on.\"", author: "Satoshi Nakamoto" },
+  { th: "\"Running bitcoin.\"", en: "\"Running bitcoin.\"", author: "Hal Finney" },
+  { th: "\"คอมพิวเตอร์สามารถใช้เป็นเครื่องมือเพื่อปลดแอกและปกป้องผู้คนได้ แทนที่จะใช้เพื่อควบคุมพวกเขา\"", en: "\"The computer can be used as a tool to liberate and protect people, rather than to control them.\"", author: "Hal Finney" },
+  { th: "\"ตัวกลางที่น่าเชื่อถือ (Trusted third parties) คือช่องโหว่ของความปลอดภัย\"", en: "\"Trusted third parties are security holes.\"", author: "Nick Szabo" },
+  { th: "\"การบอกว่าคุณไม่สนเรื่องความเป็นส่วนตัวเพราะไม่มีอะไรต้องปิดบัง ก็เหมือนบอกว่าคุณไม่สนเสรีภาพในการพูดเพราะไม่มีอะไรจะพูด\"", en: "\"Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say.\"", author: "Edward Snowden" },
+  { th: "\"ความโปร่งใสเป็นเรื่องของรัฐ ความเป็นส่วนตัวเป็นเรื่องของประชาชน\"", en: "\"Transparency is for the state. Privacy is for the rest of us.\"", author: "Julian Assange" },
+  { th: "\"ในระบบ crypto-anarchy รัฐบาลไม่ได้ถูกทำลายชั่วคราว แต่ถูกห้ามอย่างถาวรและหมดความจำเป็นอย่างถาวร\"", en: "\"In a crypto-anarchy, the government is not temporarily destroyed but permanently forbidden and permanently unnecessary.\"", author: "Wei Dai" },
+  { th: "\"เทคโนโลยีการเข้ารหัสจะเปลี่ยนแปลงธรรมชาติขององค์กรและการแทรกแซงของรัฐในธุรกรรมทางเศรษฐกิจอย่างถาวร\"", en: "\"Cryptologic methods will fundamentally alter the nature of corporations and of government interference in economic transactions.\"", author: "Timothy C. May" },
+  { th: "\"รหัสคอมพิวเตอร์คือคำพูด และคำพูดนั้นเป็นเสรีภาพ\"", en: "\"Code is speech, and speech is freedom.\"", author: "Cypherpunk Maxim" },
+  { th: "\"เมื่อทุกคนคือ Satoshi จะไม่มีใครสามารถปิดระบบนี้ได้อีกต่อไป\"", en: "\"When everyone is Satoshi, no one can shut the system down.\"", author: "Anonymous" }
+];
+
+function generateQuote() {
+  const hashEl = document.getElementById('quoteHash');
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  let counter = 0;
+  textEl.style.opacity = 0;
+  authorEl.style.opacity = 0;
+  const interval = setInterval(() => {
+    let fakeHash = '';
+    const chars = '0123456789abcdef';
+    for (let i = 0; i < 64; i++) fakeHash += chars[Math.floor(Math.random() * chars.length)];
+    hashEl.textContent = '00000000' + fakeHash.substring(8);
+    counter++;
+    if (counter > 15) {
+      clearInterval(interval);
+      const q = KOANS[Math.floor(Math.random() * KOANS.length)];
+      textEl.innerHTML = `<span class="th-only">${q.th}</span><span class="en-only">${q.en}</span>`;
+      authorEl.innerHTML = `— ${q.author}`;
+      textEl.style.opacity = 1;
+      authorEl.style.opacity = 1;
+    }
+  }, 50);
+}
+
+// Freedom Vocabulary
+const safeWordList = [
+  'abandon','ability','freedom','satoshi','verify','genesis','proof','work','timechain','cypherpunk','node','zap','truth','trust','code','math','energy','block','chain','future','seed','wealth','protect','sovereign','asset','value','system','network','power','public','private','key','shield','secure','peace','hope','life','choice','voice','signal','noise','world','earth','human','right','build','create','learn','teach','grow','plant','tree','root','branch','leaf','sun','water','fire','light','dark','moon','star','space','time','clock','hour','day','year','century','history','memory','mind','brain','think','idea','vision','dream','reality','matrix','escape','exit','door','path','road','journey','step','walk','run','fly','soar','rise','fall','stand','fight','brave','bold','strong','weak','true','false','real','fake'
+];
+let currentSeedWords = [];
+function generateSeedWords() {
+  const grid = document.getElementById('seedGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const shuffled = safeWordList.sort(() => 0.5 - Math.random());
+  const selected = shuffled.slice(0, 12);
+  currentSeedWords = selected;
+  const seedSuccess = document.getElementById('seedCopySuccess');
+  if (seedSuccess) seedSuccess.style.display = 'none';
+  selected.forEach((word, index) => {
+    const div = document.createElement('div');
+    div.style.cssText = "background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px; font-family: 'Space Mono', monospace; font-size: 12px; color: #F7931A; text-align: left;";
+    div.innerHTML = `<span style="opacity: 0.5; font-size: 10px; margin-right: 8px; color: #666660;">${index + 1}</span>${word}`;
+    grid.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded', generateSeedWords);
+let seedCopyTimer = null;
+function copySeedWords() {
+  if (!currentSeedWords.length) return;
+  const text = currentSeedWords.map((word, i) => (i + 1) + '. ' + word).join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const seedSuccess = document.getElementById('seedCopySuccess');
+    if (!seedSuccess) return;
+    seedSuccess.style.display = 'block';
+    clearTimeout(seedCopyTimer);
+    seedCopyTimer = setTimeout(() => { seedSuccess.style.display = 'none'; }, 2500);
+  });
+}
+
 // Zap Modal
 function openZapModal() {
   document.getElementById('zapModalOverlay').classList.add('active');
@@ -368,6 +401,13 @@ function copyZap() {
     document.getElementById('copySuccess').style.display = 'block';
   });
 }
+
+// Scroll Reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
 
 // Escape key
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeZapModal(); });
@@ -406,13 +446,6 @@ document.addEventListener('click', function(e) {
   }, { passive: true });
 })();
 
-// Scroll Reveal
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => revealObserver.observe(el));
-
 // Pre-prod Banner
 (function() {
   var banner = document.getElementById('preProdBanner');
@@ -439,99 +472,6 @@ function dismissPreProdBanner() {
     if (nav && window.getComputedStyle(nav).position === 'fixed') nav.style.top = '0';
   }, 300);
 }
-</script>
-
-<!-- Forum loader — isolated from main script for resilience -->
-<script>
-(function() {
-  const escapeHtml = (str) => {
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  };
-
-  const renderForumCards = (data) => {
-    const grid = document.getElementById('forumGrid');
-    const blockHeightEl = document.getElementById('forumBlockHeight');
-    const curatedDateEl = document.getElementById('forumCuratedDate');
-    const countEl = document.getElementById('forumCount');
-
-    if (!data || !data.topics || data.topics.length === 0) {
-      grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ no forum data available</div></div>`;
-      return;
-    }
-
-    blockHeightEl.textContent = escapeHtml(data.block_height || '---');
-    curatedDateEl.textContent = escapeHtml(data.curated_date || '---');
-    countEl.textContent = data.topics.length;
-
-    const topics = data.topics.slice(0, 21);
-    grid.innerHTML = topics.map((topic, index) => {
-      const num = String(index + 1).padStart(2, '0');
-      return `
-        <div class="forum-card reveal" id="forum-topic-${num}">
-          <div class="forum-card-num">TOPIC ${num} / 21</div>
-          <div class="forum-card-title-th th-only">${escapeHtml(topic.title_th || '')}</div>
-          <div class="forum-card-title-en en-only">${escapeHtml(topic.title_en || '')}</div>
-          <div class="forum-card-summary-th th-only">${escapeHtml(topic.summary_th || '')}</div>
-          <div class="forum-card-summary-en en-only">${escapeHtml(topic.summary_en || '')}</div>
-          <div class="forum-card-take">
-            <div class="forum-card-take-label"><span class="th-only">มุมของหนัง</span><span class="en-only">OUR TAKE</span></div>
-            <div class="forum-card-take-th th-only">${escapeHtml(topic.take_th || '')}</div>
-            <div class="forum-card-take-en en-only">${escapeHtml(topic.take_en || '')}</div>
-          </div>
-          <div class="forum-card-footer">
-            <div class="forum-card-author">${escapeHtml(topic.author || 'unknown')} · ${escapeHtml(topic.board || 'Bitcoin Discussion')}</div>
-            <a href="${escapeHtml(topic.source_url || '#')}" target="_blank" rel="noopener" class="forum-card-verify">VERIFY ↗</a>
-          </div>
-        </div>`;
-    }).join('');
-
-    document.querySelectorAll('.forum-card.reveal').forEach((el, i) => {
-      setTimeout(() => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s, transform 0.6s';
-        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
-      }, i * 50);
-    });
-  };
-
-  const loadWeekData = (isoWeek) => {
-    const url = isoWeek === 'current' ? './forum-daily.json' : `./forum-archive/${isoWeek}.json`;
-    fetch(url, { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('Forum data not found'); return r.json(); })
-      .then(data => renderForumCards(data))
-      .catch(err => {
-        const countEl = document.getElementById('forumCount');
-        if (countEl) countEl.textContent = 'ERR';
-        const grid = document.getElementById('forumGrid');
-        if (grid) grid.innerHTML = `<div class="forum-skeleton"><div class="forum-skeleton-text">verify@satoshi:~$ forum data unavailable: ${err.message}</div></div>`;
-      });
-  };
-
-  const initWeekPicker = () => {
-    const picker = document.getElementById('forumWeekPicker');
-    if (!picker) return;
-    fetch('./forum-archive/index.json', { cache: 'no-store' })
-      .then(r => { if (!r.ok) throw new Error('No archive manifest'); return r.json(); })
-      .then(manifest => {
-        if (manifest.weeks && manifest.weeks.length > 0) {
-          manifest.weeks.forEach(week => {
-            const option = document.createElement('option');
-            option.value = week.iso_week;
-            option.textContent = week.iso_week;
-            picker.appendChild(option);
-          });
-        }
-      })
-      .catch(() => {});
-    picker.addEventListener('change', (e) => loadWeekData(e.target.value));
-  };
-
-  initWeekPicker();
-  loadWeekData('current');
-})();
 </script>
 
 </body>

@@ -53,7 +53,8 @@ This repository contains the source code for the official interactive website of
 | `dialogue.html` | Screenplay writing feature (บทภาพยนตร์) | ✅ Live |
 | `photobook.html` | Visual diary / production stills (หนังสือภาพ) | 🚧 Placeholder |
 | `forum.html` | Curated bitcointalk threads (standalone) | 📋 Planned |
-| `support.html` | Feature funding — Lightning + investor contact | ✅ Live |
+| `seedmining/` | SEED — quote miner + freedom vocabulary (was `verifier.html`, old URL redirects) | ✅ Live |
+| `support.html` | Feature funding — Lightning tiers + 2.1 BTC on-chain + investor contact | ✅ Live |
 | `press.html` | Press kit — logline, synopsis, teaser, key art, festival credit | ✅ Live |
 
 ---

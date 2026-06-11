@@ -30,8 +30,9 @@ fiat money, and Bitcoin — told through one ordinary family across four generat
 |dialogue.html |Live   |React 18 + Babel via CDN. Do not rewrite in vanilla.|
 |photobook.html|Live   |Poster display page. assets/posters/ has 3 posters. |
 |forum.html    |Live   |Standalone forum page. Fed by forum-daily.json.     |
-|verifier.html |Live   |SEED — quote miner + freedom vocabulary generator.  |
-|support.html  |Live   |Feature funding — Lightning + investor contact.     |
+|seedmining/   |Live   |SEED — quote miner + freedom vocabulary generator.  |
+|verifier.html |Redirect|Old SEED URL — redirects to seedmining/. Keep it.  |
+|support.html  |Live   |Feature funding — Lightning tiers (SEED→GENESIS) + 2.1 BTC on-chain + investor contact.|
 |press.html    |Live   |Press kit — logline, synopsis, teaser, festival.    |
 
 **Migration trigger for forum.html:** when forum content exceeds inline capacity
