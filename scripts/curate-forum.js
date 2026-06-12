@@ -40,7 +40,7 @@ const BOARDS = [
 
 const MAX_CANDIDATES = 60;
 const OUT_FILE = "forum-daily.json";
-const MODEL = "claude-sonnet-4-6";
+const MODEL = "claude-opus-4-8";
 const MAX_TOKENS = 16000;
 const FETCH_TIMEOUT_MS = 15000;
 
@@ -197,11 +197,11 @@ For each chosen thread, produce this JSON object:
 {
   "bitcointalk_topic_id": "<number from the URL>",
   "title_en": "<the original thread title, cleaned>",
-  "title_th": "<natural Thai translation, NOT literal>",
+  "title_th": "<Thai headline rewritten per TRANSLATION CRAFT below — never word-by-word>",
   "author": "<OP username from the list>",
   "board": "<board name from the list>",
   "summary_en": "<ONE sentence, YOUR words - do NOT quote from the original>",
-  "summary_th": "<ONE sentence Thai version - natural>",
+  "summary_th": "<ONE sentence in natural Thai — vary openings, do NOT default to 'บทความนี้...'>",
   "take_en": "<ONE sentence: how this connects to SATOSHI's themes. Literary voice.>",
   "take_th": "<ONE sentence Thai - can reference the film's world, never name characters>",
   "source_url": "https://bitcointalk.org/index.php?topic=<id>"
@@ -213,7 +213,38 @@ RULES:
 - Avoid exclamation marks. Avoid "revolutionary" and "game-changer".
 - Thai: Sarabun register (moderately formal). Not royal. Not slang.
 
-TRANSLATION RULES FOR THAI FIELDS (title_th, summary_th, take_th):
+TRANSLATION CRAFT FOR THAI FIELDS (title_th, summary_th, take_th):
+
+You are not converting words; you are a Thai literary editor. Read the
+English, understand it fully, then put it aside and write the sentence a
+Thai essayist would write from scratch. The reader must never hear English
+syntax underneath your Thai. Before output, reread every Thai field: if
+its clause order or punctuation still mirrors the English, rewrite it.
+
+FORBIDDEN — translationese patterns:
+- English adverb-fronting. "Slowly, X is doing Y" must NOT become
+  "ทีละน้อย X กำลังทำ Y". Restructure into Thai word order.
+    BAD:  ทีละน้อย Bitcoin กำลังแยกเงินออกจากรัฐ
+    GOOD: Bitcoin กำลังค่อยๆ ปลดเงินออกจากเงื้อมมือรัฐ
+- Copied English title punctuation (colons, "...", dangling fragments).
+  Recast as a Thai headline instead.
+    BAD:  อะไรสำคัญกว่า: ทรัพย์สินส่วนตัว หรือความเสมอภาค
+    GOOD: ระหว่างกรรมสิทธิ์ส่วนตัวกับความเสมอภาค อะไรสำคัญกว่ากัน
+- Passive "ถูก" where Thai prefers an active or agentless construction;
+  "มัน" as a dummy subject; stacked "ของ"; "อย่าง + adjective" calques.
+- Opening every summary_th with "บทความนี้..." — vary the entry point or
+  state the substance directly.
+
+USE — the working tools of a professional translator:
+- Thai rhetorical structures: "...ว่าเสี่ยงแล้ว ...ยิ่งเสี่ยงกว่า",
+  balanced parallel clauses, questions ending in "กัน" or "ไหม".
+    EN:   Bitcoin Is Risky... But Living on Fiat Is Riskier
+    GOOD: Bitcoin ว่าเสี่ยงแล้ว แต่ฝากทั้งชีวิตไว้กับ fiat เสี่ยงยิ่งกว่า
+- Treat titles as headlines: rhythm and weight matter more than
+  word-for-word fidelity. Depart from literal wording freely, as long as
+  the meaning and tone survive.
+- Register: moderately formal, literary but plain — the voice of good
+  Thai film criticism. Not royal, not slang, not ad copy.
 
 KEEP IN ENGLISH — do NOT translate these terms, ever:
   private key, public key, hard fork, soft fork, proof of work, hash rate,
@@ -281,6 +312,9 @@ async function callClaude(prompt) {
     body: JSON.stringify({
       model: MODEL,
       max_tokens: MAX_TOKENS,
+      // Adaptive thinking: the model decides how much to reason before
+      // writing. Thinking blocks are filtered out below (type !== "text").
+      thinking: { type: "adaptive" },
       system: "You are a JSON-only API endpoint. Respond with raw JSON exclusively. Do not include markdown code fences, preamble text, or any explanation — only the JSON object itself.",
       messages: [{ role: "user", content: prompt }],
     }),

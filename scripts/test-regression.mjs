@@ -10,12 +10,17 @@ const src = await readFile(new URL("./curate-forum.js", import.meta.url), "utf-8
 // ── 1. Static checks on the source ──────────────────────────────────────────
 
 const checks = [
-  ["Model is claude-sonnet-4-6",        /claude-sonnet-4-6/.test(src)],
+  ["Model is claude-opus-4-8",          /claude-opus-4-8/.test(src)],
+  ["Adaptive thinking enabled",          /thinking:\s*\{\s*type:\s*"adaptive"\s*\}/.test(src)],
   ["extractJson function present",       /function extractJson/.test(src)],
   ["Raw response debug log present",     /\[DEBUG\] Raw response/.test(src)],
   ["System prompt field present",        /system:.*JSON-only API endpoint/.test(src)],
   ["KEEP IN ENGLISH list present",       /KEEP IN ENGLISH/.test(src)],
   ["TRANSLATE TO THAI list present",     /TRANSLATE TO THAI naturally/.test(src)],
+  ["TRANSLATION CRAFT section present",  /TRANSLATION CRAFT/.test(src)],
+  ["Adverb-fronting BAD example",        /ทีละน้อย Bitcoin/.test(src)],
+  ["Adverb-fronting GOOD example",       /เงื้อมมือรัฐ/.test(src)],
+  ["summary_th 'บทความนี้' opener ban",   /บทความนี้/.test(src)],
   ["UTF-8 Cyrillic warning present",     /Cyrillic/.test(src)],
   ["'private key' in keep-list",         /private key/.test(src)],
   ["'post-quantum' in keep-list",        /post-quantum/.test(src)],
