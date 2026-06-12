@@ -7,7 +7,7 @@
     {
       "bitcointalk_topic_id": "5581076",
       "title_en": "New Documentary 'Finding Satoshi' Claims Finney and Sassaman as Bitcoin Co-Creators",
-      "title_th": "สารคดีใหม่ 'Finding Satoshi' ชี้ Finney และ Sassaman คือผู้ร่วมสร้าง Bitcoin",
+      "title_th": "สารคดีใหม่ 'Finding Satoshi' อ้างว่า Finney กับ Sassaman ร่วมสร้าง Bitcoin",
       "author": "The Cryptovator",
       "board": "Bitcoin Discussion",
       "summary_en": "A documentary argues that Hal Finney and Len Sassaman played foundational roles in Bitcoin's creation, reigniting debate about the cypherpunk origins of the protocol.",
@@ -19,7 +19,7 @@
     {
       "bitcointalk_topic_id": "5580736",
       "title_en": "You Are the Asset They Buy and Sell",
-      "title_th": "คุณคือสินทรัพย์ที่เขาซื้อขายกัน",
+      "title_th": "คุณนั่นแหละคือสินทรัพย์ที่เขาซื้อขายกัน",
       "author": "Churchillvv",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread argues that within the fiat financial system, ordinary people function as the underlying resource that institutions extract value from, rather than as participants who benefit.",
@@ -55,7 +55,7 @@
     {
       "bitcointalk_topic_id": "5580203",
       "title_en": "Bitcoin Doesn't Need Mass Adoption",
-      "title_th": "Bitcoin ไม่จำเป็นต้องได้รับการยอมรับจากคนส่วนใหญ่",
+      "title_th": "Bitcoin ไม่ต้องง้อการยอมรับจากมหาชน",
       "author": "Olotu20",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread challenges the assumption that Bitcoin's value depends on universal adoption, suggesting its purpose is served even when used by a minority who genuinely understand it.",
@@ -67,7 +67,7 @@
     {
       "bitcointalk_topic_id": "5581846",
       "title_en": "Bitcoin: A Great Companion from Ditching Labour-Based to Asset-Based Thinking",
-      "title_th": "Bitcoin: เพื่อนร่วมทางในการเปลี่ยนจากความคิดแบบแรงงานสู่ความคิดแบบสินทรัพย์",
+      "title_th": "Bitcoin เพื่อนร่วมทางจากโลกที่คิดด้วยแรงงาน สู่โลกที่คิดด้วยสินทรัพย์",
       "author": "CTO114",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread reflects on how Bitcoin encourages a shift in mindset from trading time for money toward understanding value storage and long-term thinking about wealth.",
@@ -79,7 +79,7 @@
     {
       "bitcointalk_topic_id": "5578361",
       "title_en": "What If Bitcoin Never Becomes Everyday Money",
-      "title_th": "จะเกิดอะไรขึ้นถ้า Bitcoin ไม่มีวันกลายเป็นเงินที่ใช้ในชีวิตประจำวัน",
+      "title_th": "ถ้า Bitcoin ไม่มีวันได้เป็นเงินที่ใช้ในชีวิตประจำวันล่ะ",
       "author": "Joy- maker",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread wrestles with whether Bitcoin has lasting significance even if it never replaces cash for daily transactions, probing the gap between ideological value and practical utility.",
@@ -103,7 +103,7 @@
     {
       "bitcointalk_topic_id": "5581849",
       "title_en": "An AI Tool to Correct False Claims About Bitcoin",
-      "title_th": "เครื่องมือ AI สำหรับแก้ไขข้อมูลเท็จเกี่ยวกับ Bitcoin",
+      "title_th": "เครื่องมือ AI สำหรับโต้ข้อมูลเท็จเรื่อง Bitcoin",
       "author": "Pmalek",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread introduces a tool designed to identify and counter misinformation about Bitcoin, embodying the principle that accurate knowledge must be actively defended rather than assumed.",
@@ -115,7 +115,7 @@
     {
       "bitcointalk_topic_id": "5580919",
       "title_en": "Bitcoin Core v31.0 Released",
-      "title_th": "Bitcoin Core v31.0 เปิดตัวแล้ว",
+      "title_th": "Bitcoin Core v31.0 ออกแล้ว",
       "author": "achow101",
       "board": "Bitcoin Discussion",
       "summary_en": "The latest major release of Bitcoin's reference implementation arrives with incremental improvements, a reminder that the protocol advances through careful, unglamorous engineering rather than dramatic announcements.",
@@ -127,7 +127,7 @@
     {
       "bitcointalk_topic_id": "5580381",
       "title_en": "Freezing BTC on Legacy Addresses (Non Quantum-Resistant) with BIP-361",
-      "title_th": "การล็อก BTC บน address แบบเก่าที่ไม่ทนทานต่อ quantum ด้วย BIP-361",
+      "title_th": "BIP-361 กับการแช่แข็ง BTC ใน address รุ่นเก่าที่ไม่ทน quantum",
       "author": "Abiky",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread examines a proposal to protect Bitcoin held in older address formats from potential quantum threats by restricting their movement until a safer migration path exists.",
@@ -139,7 +139,7 @@
     {
       "bitcointalk_topic_id": "5580401",
       "title_en": "Avoiding an Unnecessary Quantum Freeze",
-      "title_th": "การหลีกเลี่ยงการล็อกระบบจาก quantum ที่ไม่จำเป็น",
+      "title_th": "เลี่ยงการแช่แข็งเหรียญโดยไม่จำเป็นในยุค quantum",
       "author": "tromp",
       "board": "Development & Technical Discussion",
       "summary_en": "A technical argument against overreacting to quantum threats by prematurely locking down addresses, advocating for measured responses that preserve individual access and network continuity.",
@@ -151,7 +151,7 @@
     {
       "bitcointalk_topic_id": "5550298",
       "title_en": "J. Lopp's Post-Quantum Migration BIP",
-      "title_th": "BIP การอัปเกรด post-quantum ของ J. Lopp",
+      "title_th": "BIP ของ J. Lopp ว่าด้วยการอัปเกรดสู่ post-quantum",
       "author": "Pmalek",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread discusses Jameson Lopp's formal Bitcoin Improvement Proposal for guiding the network through a post-quantum migration, weighing the tradeoffs between security and access.",
@@ -187,7 +187,7 @@
     {
       "bitcointalk_topic_id": "5581303",
       "title_en": "Quantum Signing Approach",
-      "title_th": "แนวทางการลงนามแบบ quantum",
+      "title_th": "แนวทางลายเซ็นในยุค quantum",
       "author": "bipshuffle",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread proposes a signing scheme designed to remain secure against quantum adversaries, contributing to the broader community effort to future-proof Bitcoin's cryptographic foundations.",
@@ -199,7 +199,7 @@
     {
       "bitcointalk_topic_id": "5580600",
       "title_en": "Questions for Greg Maxwell",
-      "title_th": "คำถามสำหรับ Greg Maxwell",
+      "title_th": "คำถามถึง Greg Maxwell",
       "author": "PepeLapiu",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread compiles substantive questions directed at one of Bitcoin's most influential protocol contributors, probing his views on the network's long-term technical and social trajectory.",
@@ -211,7 +211,7 @@
     {
       "bitcointalk_topic_id": "5509149",
       "title_en": "Docker Images of Most Historical Bitcoin Core Versions Back to v0.2.0 in 2009",
-      "title_th": "Docker image ของ Bitcoin Core เวอร์ชันประวัติศาสตร์ส่วนใหญ่ย้อนกลับไปถึง v0.2.0 ในปี 2009",
+      "title_th": "Docker image ของ Bitcoin Core เกือบทุกรุ่นในประวัติศาสตร์ ย้อนไปถึง v0.2.0 ปี 2009",
       "author": "mocacinno",
       "board": "Development & Technical Discussion",
       "summary_en": "A developer has packaged decades of Bitcoin Core history into accessible containers, making it possible for anyone to run and study the software as it existed at each stage of its evolution.",
@@ -223,7 +223,7 @@
     {
       "bitcointalk_topic_id": "5581957",
       "title_en": "What Does Bitcoin Mean to You (Haikus Only)",
-      "title_th": "Bitcoin มีความหมายอะไรสำหรับคุณ (ในรูปแบบกวีไฮกุเท่านั้น)",
+      "title_th": "Bitcoin มีความหมายต่อคุณอย่างไร (ตอบเป็นไฮกุเท่านั้น)",
       "author": "nutildah",
       "board": "Bitcoin Discussion",
       "summary_en": "A thread inviting the community to distil their relationship with Bitcoin into seventeen syllables, revealing through brevity what pages of analysis often cannot — personal meaning, not market mechanics.",
@@ -235,7 +235,7 @@
     {
       "bitcointalk_topic_id": "5555069",
       "title_en": "Bitcoin's Security Budget Issue — Educational Website by Blockchair",
-      "title_th": "ปัญหางบประมาณความปลอดภัยของ Bitcoin — เว็บไซต์ให้ความรู้โดย Blockchair",
+      "title_th": "เว็บไซต์จาก Blockchair ชวนทำความเข้าใจปัญหา security budget ของ Bitcoin",
       "author": "Wind_FURY",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread examines a resource that explains the long-term tension between Bitcoin's declining block subsidy and the fees needed to sustain adequate security for the network.",
