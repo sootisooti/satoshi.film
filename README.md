@@ -25,7 +25,7 @@ This repository contains the source code for the official interactive website of
 - **Hero Section** — introduce the film with universal bilingual copy + BFF'26 festival laurel
 - **Timeline** — Truth / Past / Present / Future (ความจริง / อดีต / ปัจจุบัน / อนาคต)
 - **Halving Timeline** — interactive timeline with user memory fields
-- **Cypherpunk Directory** — **44+ bundle cards across 13 chapters** (including new **Chapter -1: The Forethinkers Root** tracing Austrian economics lineage from 1871)
+- **Cypherpunk Directory** — **80 bundle cards across 14 chapters** — from **The Forethinkers Root** (Austrian economics, 1871) through **Thailand Bitcoiners**
 - **Verify Terminal Modal** — interactive AI-powered terminal wired to Anthropic API (`claude-sonnet-4-20250514`)
 
 ### 📮 Community Features
@@ -51,8 +51,8 @@ This repository contains the source code for the official interactive website of
 |-------|---------|--------|
 | `index.html` | Main entry | ✅ Live |
 | `dialogue.html` | Screenplay writing feature (บทภาพยนตร์) | ✅ Live |
-| `photobook.html` | Visual diary / production stills (หนังสือภาพ) | 🚧 Placeholder |
-| `forum.html` | Curated bitcointalk threads (standalone) | 📋 Planned |
+| `photobook.html` | Poster display page — key-art posters (หนังสือภาพ) | ✅ Live |
+| `forum.html` | Standalone forum page — fed by `forum-daily.json` (ชุมชน) | ✅ Live |
 | `seedmining/` | SEED — quote miner + freedom vocabulary (was `verifier.html`, old URL redirects) | ✅ Live |
 | `support.html` | Feature funding — Lightning tiers + 2.1 BTC on-chain + investor contact | ✅ Live |
 | `press.html` | Press kit — logline, synopsis, teaser, key art, festival credit | ✅ Live |
@@ -70,7 +70,7 @@ Rules:    CLAUDE.md (authoritative source of truth)
 
 ### Weekly Forum Curation
 - **Schedule:** Every Monday 09:00 Bangkok time (02:00 UTC)
-- **Action:** Fetch bitcointalk.org RSS → Claude API curates 21 threads → writes `forum-daily.json` + archive snapshot → opens Draft PR
+- **Action:** Scrape bitcointalk.org boards (1, 6, 73, 75) → Claude API curates 21 threads → writes `forum-daily.json` + archive snapshot → opens a PR for owner review
 - **Archive:** Each week's snapshot saved as `/forum-archive/YYYY-W##.json`
 - **Manifest:** `/forum-archive/index.json` listing available weeks
 
@@ -125,7 +125,7 @@ This project follows a **mobile-first workflow** — most development happens fr
 
 ### For content contributions (community verify / forum curation):
 
-- Merge weekly Draft PRs from the forum curation workflow
+- Merge the weekly forum-curation PRs (review on mobile via **Files changed**)
 - Submit community stories via the forum section UI
 - All contributions honor the "Editorial voice only, paraphrase always" copyright boundary
 
@@ -151,6 +151,8 @@ This project follows a **mobile-first workflow** — most development happens fr
 Tap or click the address above to open your Lightning wallet directly (works with Wallet of Satoshi, Phoenix, Breez, Blue Wallet, Zeus, Alby, and any LNURL-compatible wallet).
 
 **No Lightning wallet yet?** [Install Wallet of Satoshi](https://www.walletofsatoshi.com) — the simplest way to send Lightning payments.
+
+**More ways to support:** the [support page](https://sootisooti.github.io/satoshi.film/support.html) lists the full funding tiers (SEED → GENESIS) and a 2.1 BTC on-chain address for larger contributions.
 
 Bitcoin co-production inquiries are also accepted on the live site.
 
