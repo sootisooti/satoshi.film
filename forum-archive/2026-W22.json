@@ -7,7 +7,7 @@
     {
       "bitcointalk_topic_id": "5583349",
       "title_en": "Bitcoin Is Risky... But Living on Fiat Is Riskier",
-      "title_th": "Bitcoin มีความเสี่ยง... แต่การใช้ชีวิตบนระบบ fiat เสี่ยงกว่า",
+      "title_th": "Bitcoin ว่าเสี่ยงแล้ว แต่ฝากทั้งชีวิตไว้กับ fiat เสี่ยงยิ่งกว่า",
       "author": "Antonixx",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread argues that the slow erosion of purchasing power under fiat systems constitutes a risk far more dangerous than Bitcoin's volatility, because it operates invisibly across decades.",
@@ -19,7 +19,7 @@
     {
       "bitcointalk_topic_id": "5582288",
       "title_en": "Getting Rich off Bitcoin Is Impossible for the Majority",
-      "title_th": "คนส่วนใหญ่ไม่มีทางรวยจาก Bitcoin ได้",
+      "title_th": "คนส่วนใหญ่ไม่มีทางรวยจาก Bitcoin",
       "author": "HeatBit",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread examines how structural disadvantages — late access, limited capital, and information asymmetry — ensure that wealth from Bitcoin concentrates rather than distributes.",
@@ -31,7 +31,7 @@
     {
       "bitcointalk_topic_id": "5583596",
       "title_en": "Most People Who Own Bitcoin Don't Trust Bitcoin",
-      "title_th": "คนส่วนใหญ่ที่ถือ Bitcoin ไม่ได้เชื่อใจ Bitcoin จริงๆ",
+      "title_th": "คนถือ Bitcoin ส่วนใหญ่ไม่ได้เชื่อใจ Bitcoin จริงๆ",
       "author": "Antonixx",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread observes that many holders treat Bitcoin as a speculative asset rather than a monetary system they genuinely trust, revealing a gap between ownership and conviction.",
@@ -43,7 +43,7 @@
     {
       "bitcointalk_topic_id": "5583905",
       "title_en": "The Biggest Advantage Early Bitcoin Investors Had Wasn't Money",
-      "title_th": "ข้อได้เปรียบที่ยิ่งใหญ่ที่สุดของนักลงทุน Bitcoin ยุคแรกไม่ใช่เงิน",
+      "title_th": "แต้มต่อที่ใหญ่ที่สุดของนักลงทุน Bitcoin ยุคแรก ไม่ใช่เงิน",
       "author": "Antonixx",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread argues that what separated early adopters was not financial capital but the willingness to understand the system deeply before others chose to look.",
@@ -55,7 +55,7 @@
     {
       "bitcointalk_topic_id": "5583906",
       "title_en": "Strongest vs Least Controllable Currency",
-      "title_th": "สกุลเงินที่แข็งแกร่งที่สุด กับสกุลเงินที่ควบคุมได้น้อยที่สุด",
+      "title_th": "เงินที่แข็งแกร่งที่สุด ปะทะ เงินที่ควบคุมได้ยากที่สุด",
       "author": "CTO114",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread explores how monetary strength and resistance to state control are distinct properties, and how Bitcoin occupies a unique position at the intersection of both.",
@@ -67,7 +67,7 @@
     {
       "bitcointalk_topic_id": "5583614",
       "title_en": "Different Types of Bitcoiners",
-      "title_th": "ผู้ใช้ Bitcoin มีหลายประเภท",
+      "title_th": "ชาว Bitcoin มีหลายแบบหลายสาย",
       "author": "TOGIBI",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread sketches a taxonomy of people drawn to Bitcoin — from idealists and technologists to pragmatists and speculators — revealing that the same network holds vastly different beliefs.",
@@ -79,7 +79,7 @@
     {
       "bitcointalk_topic_id": "5583508",
       "title_en": "The Reality Check: What Do Newbies Need to Hear Today?",
-      "title_th": "ตรวจสอบความเป็นจริง: คนใหม่ต้องการได้ยินอะไรในวันนี้",
+      "title_th": "เช็กความจริงกันหน่อย มือใหม่วันนี้ควรได้ยินอะไรบ้าง",
       "author": "HashRate Hero",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread is an honest letter to newcomers, warning against shortcuts and urging the kind of deep self-education that the earliest cypherpunks practiced before any price existed.",
@@ -91,7 +91,7 @@
     {
       "bitcointalk_topic_id": "5583687",
       "title_en": "Why Security Practices Should Be Your Everyday Norm",
-      "title_th": "ทำไมการปฏิบัติด้านความปลอดภัยควรเป็นเรื่องปกติในชีวิตประจำวัน",
+      "title_th": "ทำไมวินัยด้านความปลอดภัยควรเป็นกิจวัตรประจำวัน",
       "author": "YellowSwap",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread makes the case that sound security hygiene — from key management to operational habits — is not paranoia but the minimum standard of self-custody.",
@@ -103,7 +103,7 @@
     {
       "bitcointalk_topic_id": "5582273",
       "title_en": "Will BIP 110 Confiscate Your Coin?",
-      "title_th": "BIP 110 จะยึดเหรียญของคุณหรือไม่",
+      "title_th": "BIP 110 จะมายึดเหรียญของคุณจริงไหม",
       "author": "PepeLapiu",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread examines community fears that a proposed protocol change could render certain outputs unspendable, touching on the deepest questions of ownership and consent in a decentralized system.",
@@ -115,7 +115,7 @@
     {
       "bitcointalk_topic_id": "5583540",
       "title_en": "BIP-110 / Knots Designed to Fork Off from the Beginning (and Fail)",
-      "title_th": "BIP-110 / Knots ถูกออกแบบมาเพื่อแยกตัวตั้งแต่ต้น (และล้มเหลว)",
+      "title_th": "BIP-110 / Knots ออกแบบมาเพื่อแยกตัวตั้งแต่แรก (และไปไม่รอด)",
       "author": "DaveF",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread presents a critical reading of the motivations behind BIP-110, suggesting that its design reflected a desire for separation rather than genuine protocol improvement.",
@@ -127,7 +127,7 @@
     {
       "bitcointalk_topic_id": "5583795",
       "title_en": "Non-Financial Transactions",
-      "title_th": "ธุรกรรมที่ไม่ใช่ทางการเงิน",
+      "title_th": "ธุรกรรมที่ไม่ใช่เรื่องเงิน",
       "author": "alani123",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread explores the use of Bitcoin's blockchain for embedding data and messages beyond simple value transfer, raising questions about what the network is truly for.",
@@ -139,7 +139,7 @@
     {
       "bitcointalk_topic_id": "5580919",
       "title_en": "Bitcoin Core v31.0 Released",
-      "title_th": "Bitcoin Core v31.0 เปิดตัวแล้ว",
+      "title_th": "Bitcoin Core v31.0 ออกแล้ว",
       "author": "achow101",
       "board": "Bitcoin Discussion",
       "summary_en": "The release announcement for Bitcoin Core v31.0 marks another quiet milestone in the ongoing, unglamorous work of maintaining the world's most consequential open-source software.",
@@ -151,7 +151,7 @@
     {
       "bitcointalk_topic_id": "5583900",
       "title_en": "Maintainers of Bitcoin Core Software Are Lagging Behind",
-      "title_th": "ผู้ดูแล Bitcoin Core กำลังล้าหลัง",
+      "title_th": "ผู้ดูแล Bitcoin Core กำลังตามโลกไม่ทัน",
       "author": "Greg Tonoski",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread offers a pointed critique of the pace and direction of Bitcoin Core development, questioning whether the current maintenance culture is adequate for the protocol's long-term needs.",
@@ -163,7 +163,7 @@
     {
       "bitcointalk_topic_id": "5583797",
       "title_en": "Need Some Clarity on the Fundamental of Proof of Work from a Miner's Point of View",
-      "title_th": "ต้องการความชัดเจนเกี่ยวกับพื้นฐานของ proof of work จากมุมมองของนักขุด",
+      "title_th": "ขอความกระจ่างเรื่องพื้นฐาน proof of work จากสายตาของนักขุด",
       "author": "hmbdofficial",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread seeks to understand proof of work not as a technical abstraction but as a lived economic and physical process experienced by those who perform it.",
@@ -175,7 +175,7 @@
     {
       "bitcointalk_topic_id": "5583555",
       "title_en": "[PQ Witness] Dilithium in Bitcoin Without Killing Block Capacity",
-      "title_th": "[PQ Witness] การนำ Dilithium มาใช้ใน Bitcoin โดยไม่ทำลายความจุของ block",
+      "title_th": "[PQ Witness] ใส่ Dilithium ลง Bitcoin โดยไม่เปลืองความจุ block",
       "author": "h1j2k27",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread proposes a path toward post-quantum cryptography in Bitcoin that attempts to preserve existing capacity constraints, framing long-term cryptographic survival as an engineering challenge.",
@@ -187,7 +187,7 @@
     {
       "bitcointalk_topic_id": "5580401",
       "title_en": "Avoiding an Unnecessary Quantum Freeze",
-      "title_th": "การหลีกเลี่ยงการหยุดชะงักจาก quantum ที่ไม่จำเป็น",
+      "title_th": "เลี่ยงการแช่แข็งเหรียญโดยไม่จำเป็นในยุค quantum",
       "author": "tromp",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread argues for a measured, evidence-based approach to quantum threats rather than a panic-driven overhaul that could freeze or damage the existing protocol.",
@@ -199,7 +199,7 @@
     {
       "bitcointalk_topic_id": "5583544",
       "title_en": "Compressing BIP-39 Seeds",
-      "title_th": "การบีบอัด BIP-39 Seed",
+      "title_th": "บีบอัด BIP-39 seed ให้เหลือเล็กที่สุด",
       "author": "SirArthur2",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread investigates whether the entropy encoded in a standard seed phrase can be represented more compactly without sacrificing security, a question of custody and portability.",
@@ -211,7 +211,7 @@
     {
       "bitcointalk_topic_id": "5473719",
       "title_en": "Can We Turn a Nostr Public Key into a Bitcoin Address?",
-      "title_th": "เราสามารถเปลี่ยน Nostr public key เป็น Bitcoin address ได้หรือไม่",
+      "title_th": "เปลี่ยน Nostr public key ให้เป็น Bitcoin address ได้ไหม",
       "author": "Drawesome",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread examines the cryptographic relationship between Nostr identities and Bitcoin addresses, exploring whether a single keypair can serve both a communication layer and a financial one.",
@@ -235,7 +235,7 @@
     {
       "bitcointalk_topic_id": "5583404",
       "title_en": "The Economic Case for Covenant Opcodes — Fee Market Sustainability",
-      "title_th": "เหตุผลทางเศรษฐกิจสำหรับ covenant opcodes — ความยั่งยืนของตลาด fee",
+      "title_th": "เหตุผลเชิงเศรษฐศาสตร์ของ covenant opcodes กับความยั่งยืนของตลาดค่าธรรมเนียม",
       "author": "Covenant.btc",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread makes a long-range economic argument for adding covenant opcodes to Bitcoin, framing it as a question of whether the network can sustain itself once block rewards diminish.",
@@ -247,7 +247,7 @@
     {
       "bitcointalk_topic_id": "5580579",
       "title_en": "Isn't Blockchain Overestimated?",
-      "title_th": "blockchain ถูกประเมินค่าสูงเกินไปหรือไม่",
+      "title_th": "เราตีค่า blockchain สูงเกินจริงหรือเปล่า",
       "author": "casey15",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread invites an honest reckoning with the gap between the social mythology built around blockchain and the narrower, more specific problems it actually solves well.",

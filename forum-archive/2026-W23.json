@@ -7,7 +7,7 @@
     {
       "bitcointalk_topic_id": "5584966",
       "title_en": "Your 401K Is Their Exit Strategy",
-      "title_th": "กองทุนเกษียณของคุณ คือทางออกของพวกเขา",
+      "title_th": "กองทุนเกษียณของคุณ คือแผนเทขายของพวกเขา",
       "author": "headingnorth",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread argues that retirement savings vehicles sold to ordinary workers quietly serve the liquidity needs of institutional players who designed the system.",
@@ -19,7 +19,7 @@
     {
       "bitcointalk_topic_id": "5584240",
       "title_en": "Saylor Has Created a Fiat System on Top of Bitcoin",
-      "title_th": "เมื่อระบบเฟียตถูกสร้างขึ้นบน Bitcoin อีกครั้ง",
+      "title_th": "Saylor กำลังสร้างระบบ fiat ซ้อนบน Bitcoin",
       "author": "Free Market Capitalist",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread examines whether leveraged corporate accumulation of Bitcoin recreates the same debt-backed financial structures that Bitcoin was meant to escape.",
@@ -31,7 +31,7 @@
     {
       "bitcointalk_topic_id": "5584134",
       "title_en": "Slowly, Bitcoin Is Separating Money from the State",
-      "title_th": "ทีละน้อย Bitcoin กำลังแยกเงินออกจากอำนาจรัฐ",
+      "title_th": "Bitcoin กำลังค่อยๆ ปลดเงินออกจากเงื้อมมือรัฐ",
       "author": "CTO114",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread traces how Bitcoin's adoption, even when gradual and uneven, erodes the monopoly that nation-states have long held over the definition and issuance of money.",
@@ -43,7 +43,7 @@
     {
       "bitcointalk_topic_id": "5583349",
       "title_en": "Bitcoin Is Risky, But Living on Fiat Is Riskier",
-      "title_th": "Bitcoin เสี่ยง แต่ชีวิตบนระบบเฟียตเสี่ยงกว่า",
+      "title_th": "Bitcoin ว่าเสี่ยงแล้ว แต่ฝากทั้งชีวิตไว้กับ fiat เสี่ยงยิ่งกว่า",
       "author": "Antonixx",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread reframes the conventional risk narrative by pointing out that slow, invisible debasement of purchasing power is a risk that fiat users absorb without consent.",
@@ -139,7 +139,7 @@
     {
       "bitcointalk_topic_id": "5584874",
       "title_en": "Avoid Posting the Total Amount of Your Bitcoin Holdings Online",
-      "title_th": "อย่าเปิดเผยจำนวน Bitcoin ที่ถือครองทั้งหมดของคุณทางออนไลน์",
+      "title_th": "อย่าประกาศให้โลกออนไลน์รู้ว่าคุณถือ Bitcoin อยู่เท่าไร",
       "author": "(BTC)",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread offers a practical reminder that operational security begins with protecting information about one's own wealth, because visibility invites vectors of attack that transcend the digital.",
@@ -151,7 +151,7 @@
     {
       "bitcointalk_topic_id": "5584089",
       "title_en": "Bitcoin Whitepaper Added to Blockchain as Contiguous Block of Bytes in OP_RETURN",
-      "title_th": "Bitcoin Whitepaper ถูกบันทึกลง blockchain ผ่าน OP_RETURN",
+      "title_th": "มีผู้จารึก Bitcoin Whitepaper ทั้งฉบับลงบน blockchain ผ่าน OP_RETURN",
       "author": "P2PKH_dude",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread details a technical project that permanently inscribed Satoshi's whitepaper into the Bitcoin blockchain itself, making the foundational document inseparable from the ledger it described.",
@@ -163,7 +163,7 @@
     {
       "bitcointalk_topic_id": "5584912",
       "title_en": "Any Quantum Secure Address in the Horizon?",
-      "title_th": "มี address ที่ป้องกัน quantum ได้อยู่บนขอบฟ้าหรือไม่",
+      "title_th": "address ที่ปลอดภัยจาก quantum ใกล้เป็นจริงแล้วหรือยัง",
       "author": "RocketSingh",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread asks whether the Bitcoin protocol is on any realistic path toward post-quantum cryptography, given the long timeline required for consensus-level changes.",
@@ -175,7 +175,7 @@
     {
       "bitcointalk_topic_id": "5583544",
       "title_en": "Compressing BIP-39 Seeds",
-      "title_th": "การบีบอัด BIP-39 Seed เพื่อความปลอดภัยที่มั่นคงกว่า",
+      "title_th": "บีบอัด BIP-39 seed ให้เหลือเล็กที่สุด",
       "author": "SirArthur2",
       "board": "Development & Technical Discussion",
       "summary_en": "The thread investigates technical approaches to making seed phrase storage more compact without sacrificing the security properties that make self-custody meaningful.",
@@ -199,7 +199,7 @@
     {
       "bitcointalk_topic_id": "5584242",
       "title_en": "A Question That Hit Me Hard",
-      "title_th": "คำถามที่กระทบใจอย่างแรง",
+      "title_th": "คำถามหนึ่งที่กระแทกใจผมอย่างจัง",
       "author": "Somegory",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread shares a moment of genuine reckoning with whether the author's understanding of Bitcoin is built on verified knowledge or on inherited consensus from others.",
@@ -211,7 +211,7 @@
     {
       "bitcointalk_topic_id": "5584540",
       "title_en": "Bitcoin Is Not New, So Why Are Scams Still Working?",
-      "title_th": "Bitcoin ไม่ใช่ของใหม่อีกแล้ว แล้วทำไมการหลอกลวงยังได้ผลอยู่",
+      "title_th": "Bitcoin ไม่ใช่ของใหม่แล้ว ทำไมกลโกงเดิมๆ ยังหลอกคนได้",
       "author": "Sanitough",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread investigates why fraud persists in a space that has been publicly documented for over a decade, pointing to the persistent gap between information availability and genuine understanding.",
@@ -223,7 +223,7 @@
     {
       "bitcointalk_topic_id": "5585030",
       "title_en": "How Bitcoin Is Creating a New Global Elite",
-      "title_th": "Bitcoin กำลังสร้างชนชั้นนำโลกใหม่อย่างไร",
+      "title_th": "เมื่อ Bitcoin กำลังปั้นชนชั้นนำรุ่นใหม่ของโลก",
       "author": "CTO114",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread raises the uncomfortable possibility that early and concentrated Bitcoin accumulation may reproduce hierarchies of wealth rather than dissolve them.",
@@ -235,7 +235,7 @@
     {
       "bitcointalk_topic_id": "5584698",
       "title_en": "Bitcoin to Be Included in 401(k) Is Having Setback",
-      "title_th": "แผนบรรจุ Bitcoin ใน 401(k) เจอสะดุด",
+      "title_th": "แผนบรรจุ Bitcoin ลงกองทุน 401(k) มีอันต้องสะดุด",
       "author": "Oshosondy",
       "board": "Bitcoin Discussion",
       "summary_en": "The thread reports on regulatory and political resistance to allowing Bitcoin inside government-approved retirement savings structures, illustrating the friction between a decentralized asset and centralized custodial frameworks.",
@@ -247,7 +247,7 @@
     {
       "bitcointalk_topic_id": "5580919",
       "title_en": "Bitcoin Core v31.0 Released",
-      "title_th": "Bitcoin Core v31.0 เปิดตัวแล้ว",
+      "title_th": "Bitcoin Core v31.0 ออกแล้ว",
       "author": "achow101",
       "board": "Bitcoin Discussion",
       "summary_en": "The release announcement documents the incremental, carefully reviewed improvements to the reference implementation of Bitcoin, embodying the philosophy of deliberate and unglamorous progress.",
