@@ -26,7 +26,7 @@ fiat money, and Bitcoin — told through one ordinary family across four generat
 
 |Route         |Status |Notes                                               |
 |--------------|-------|----------------------------------------------------|
-|index.html    |Live   |Main entry (~170KB). Single-file. All inline CSS/JS.|
+|index.html    |Live   |Main entry (~210KB). Single-file. All inline CSS/JS.|
 |dialogue.html |Live   |React 18 + Babel via CDN. Do not rewrite in vanilla.|
 |photobook.html|Live   |Poster display page. assets/posters/ has 3 posters. |
 |forum.html    |Live   |Standalone forum page. Fed by forum-daily.json.     |
@@ -71,7 +71,7 @@ inside index.html. Until then, forum lives as `<section id="forum">` in index.ht
 1. **Targeted edits only.** Never rewrite `index.html` from scratch.
    Use surgical string replacements to preserve structure.
 1. **Must-preserve list — do not break these on any edit:**
-- `BUNDLES` JavaScript object (44 bundle cards, Cypherpunk Directory data)
+- `BUNDLES` JavaScript object (80 bundle cards across 14 chapters, Cypherpunk Directory data)
 - Verify terminal modal (wired to Anthropic API)
 - Custom cursor
 - Block height counter (mempool.space)
@@ -90,7 +90,7 @@ inside index.html. Until then, forum lives as `<section id="forum">` in index.ht
 - **CRITICAL CONSTRAINT:** DO NOT USE RSS. Bitcointalk RSS is disabled.
   Use the scraping logic in `scripts/curate-forum.js` only.
 - **Schedule:** GitHub Action every Monday 09:00 Bangkok time
-- **Output:** Writes `forum-daily.json` → opens Draft PR for review
+- **Output:** Writes `forum-daily.json` + weekly archive snapshot (`forum-archive/`) → opens a PR for review
 - **Editorial voice:** Paraphrase only. Never copy verbatim posts (copyright boundary).
   Claude API curates 21 threads per run.
 
