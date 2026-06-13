@@ -38,7 +38,10 @@ const BOARDS = [
   { id: 75, name: "Politics & Society" },
 ];
 
-const MAX_CANDIDATES = 60;
+const PAGES_PER_BOARD = 2; // board index pages to scrape, 40 threads each
+const MAX_CANDIDATES = 120;
+const COOLDOWN_SOFT_WEEKS = 4; // featured threads stay on the avoid-rerun list this long
+const MIN_POOL_AFTER_FILTER = 30; // relax the hard filter below this many candidates
 const OUT_FILE = "forum-daily.json";
 const MODEL = "claude-opus-4-8";
 const MAX_TOKENS = 16000;
@@ -119,9 +122,9 @@ function parseBoardHtml(html, boardName) {
   });
 }
 
-async function fetchBoard(board) {
-  const url = `https://bitcointalk.org/index.php?board=${board.id}.0`;
-  log(`Fetching board ${board.id} (${board.name})`);
+async function fetchBoardPage(board, offset) {
+  const url = `https://bitcointalk.org/index.php?board=${board.id}.${offset}`;
+  log(`Fetching board ${board.id} (${board.name}) offset ${offset}`);
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
@@ -155,6 +158,16 @@ async function fetchBoard(board) {
   }
 }
 
+async function fetchBoard(board) {
+  // Pages fetched sequentially per board (polite to the server);
+  // boards themselves still run in parallel.
+  const pages = [];
+  for (let p = 0; p < PAGES_PER_BOARD; p++) {
+    pages.push(await fetchBoardPage(board, p * 40));
+  }
+  return pages.flat();
+}
+
 function dedupeByTopicId(items) {
   const seen = new Set();
   return items.filter((it) => {
@@ -164,9 +177,61 @@ function dedupeByTopicId(items) {
   });
 }
 
-function buildPrompt(candidates) {
+/**
+ * Threads featured in recent digests. Last week's ids get hard-excluded
+ * from the candidate pool; older recent weeks become a soft avoid-rerun
+ * list inside the prompt (Claude may bring back at most 2, with a reason).
+ */
+async function loadRecentlyFeatured() {
+  const readJson = async (path) => {
+    try {
+      return JSON.parse(await readFile(path, "utf-8"));
+    } catch {
+      return null;
+    }
+  };
+
+  const hardIds = new Set();
+  const daily = await readJson(resolve(repoRoot, OUT_FILE));
+  if (daily?.topics) {
+    for (const t of daily.topics) {
+      if (t.bitcointalk_topic_id) hardIds.add(String(t.bitcointalk_topic_id));
+    }
+    log(`Cooldown: ${hardIds.size} topics from last week (${daily.iso_week || "?"}) hard-excluded`);
+  } else {
+    log("Cooldown: no previous forum-daily.json found, nothing hard-excluded");
+  }
+
+  const soft = new Map(); // topic_id -> { title, weeks }
+  const manifest = await readJson(resolve(archiveDir, "index.json"));
+  const recentWeeks = (manifest?.weeks || [])
+    .map((w) => w.iso_week)
+    .sort()
+    .reverse()
+    .slice(0, COOLDOWN_SOFT_WEEKS - 1);
+
+  for (const wk of recentWeeks) {
+    const data = await readJson(resolve(archiveDir, `${wk}.json`));
+    for (const t of data?.topics || []) {
+      const id = String(t.bitcointalk_topic_id || "");
+      if (!id || hardIds.has(id)) continue;
+      const entry = soft.get(id) || { title: t.title_en || "", weeks: [] };
+      entry.weeks.push(wk);
+      soft.set(id, entry);
+    }
+  }
+  log(`Cooldown: ${soft.size} topics from [${recentWeeks.join(", ")}] on the soft avoid-list`);
+
+  return { hardIds, soft };
+}
+
+function buildPrompt(candidates, recentlyFeatured) {
   const candidateLines = candidates
     .map((c) => `${c.title} | ${c.url} | ${c.author} | ${c.board}`)
+    .join("\n");
+
+  const softLines = [...recentlyFeatured.soft.entries()]
+    .map(([id, e]) => `${id} | ${e.title} | featured: ${e.weeks.join(", ")}`)
     .join("\n");
 
   return `You are the editorial curator for SATOSHI.FILM - a Thai feature film about
@@ -183,11 +248,22 @@ Select up to 21 that resonate with the film's themes:
 - The cypherpunk lineage (Chaum, Hughes, Szabo, Finney, Sassaman, May, Back)
 - Quiet craftsmanship over spectacle
 - Thai / Southeast Asian perspectives if present
+- Freshness: prefer threads this digest has never featured before
 
 AVOID:
 - Price speculation threads, shitcoin pumps, trading tips
 - Threads that are mostly noise, drama, or scam accusations
 - Threads in languages other than English (unless specifically Thai)
+
+RECENTLY FEATURED — anti-rerun rules:
+Threads featured LAST week have already been removed from your candidate
+list. The threads below appeared in earlier recent digests; the reader has
+seen them. Default to NOT selecting them again. You may bring back AT MOST
+2 of them, and only when the thread has a genuinely new development since
+it was featured — and when you do, the take must acknowledge that the
+story has moved.
+
+${softLines || "(none this run)"}
 
 If fewer than 21 strong candidates exist, pick the best available and note
 this in the curator_note. Never invent threads - only use ones from the list.
@@ -356,9 +432,20 @@ async function callClaude(prompt) {
       process.exit(2);
     }
 
+    const recentlyFeatured = await loadRecentlyFeatured();
+    const fresh = candidates.filter(
+      (c) => !recentlyFeatured.hardIds.has(String(c.topic_id))
+    );
+    if (fresh.length >= MIN_POOL_AFTER_FILTER) {
+      log(`Hard filter: ${candidates.length} -> ${fresh.length} candidates after removing last week's topics`);
+      candidates = fresh;
+    } else {
+      log(`Hard filter RELAXED: only ${fresh.length} fresh candidates (<${MIN_POOL_AFTER_FILTER}), keeping repeats this run`);
+    }
+
     candidates = candidates.slice(0, MAX_CANDIDATES);
 
-    const prompt = buildPrompt(candidates);
+    const prompt = buildPrompt(candidates, recentlyFeatured);
     const raw = await callClaude(prompt);
 
     let parsed;

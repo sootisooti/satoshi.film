@@ -12,6 +12,12 @@ const src = await readFile(new URL("./curate-forum.js", import.meta.url), "utf-8
 const checks = [
   ["Model is claude-opus-4-8",          /claude-opus-4-8/.test(src)],
   ["Adaptive thinking enabled",          /thinking:\s*\{\s*type:\s*"adaptive"\s*\}/.test(src)],
+  ["RECENTLY FEATURED anti-rerun rules", /RECENTLY FEATURED/.test(src)],
+  ["Freshness criterion in prompt",      /Freshness: prefer threads/.test(src)],
+  ["Hard cooldown filter (hardIds)",     /hardIds/.test(src)],
+  ["Soft cooldown window const",         /COOLDOWN_SOFT_WEEKS/.test(src)],
+  ["Two pages scraped per board",        /PAGES_PER_BOARD = 2/.test(src)],
+  ["Filter safety valve present",        /MIN_POOL_AFTER_FILTER/.test(src)],
   ["extractJson function present",       /function extractJson/.test(src)],
   ["Raw response debug log present",     /\[DEBUG\] Raw response/.test(src)],
   ["System prompt field present",        /system:.*JSON-only API endpoint/.test(src)],

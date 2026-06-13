@@ -466,11 +466,20 @@ function dismissPreProdBanner() {
     countEl.textContent = data.topics.length;
 
     const topics = data.topics.slice(0, 21);
-    grid.innerHTML = topics.map((topic, index) => {
+    const total = String(topics.length).padStart(2, '0');
+    const noteTh = data.curator_note_th || '';
+    const noteEn = data.curator_note_en || '';
+    const noteHtml = (noteTh || noteEn) ? `
+        <div class="forum-card forum-curator-note" style="grid-column: 1 / -1;">
+          <div class="forum-card-take-label"><span class="th-only">บันทึกผู้คัดสรร</span><span class="en-only">CURATOR'S NOTE</span></div>
+          <div class="forum-card-take-th th-only" style="font-style: italic;">${escapeHtml(noteTh)}</div>
+          <div class="forum-card-take-en en-only" style="font-style: italic;">${escapeHtml(noteEn)}</div>
+        </div>` : '';
+    grid.innerHTML = noteHtml + topics.map((topic, index) => {
       const num = String(index + 1).padStart(2, '0');
       return `
         <div class="forum-card reveal" id="forum-topic-${num}">
-          <div class="forum-card-num">TOPIC ${num} / 21</div>
+          <div class="forum-card-num">TOPIC ${num} / ${total}</div>
           <div class="forum-card-title-th th-only">${escapeHtml(topic.title_th || '')}</div>
           <div class="forum-card-title-en en-only">${escapeHtml(topic.title_en || '')}</div>
           <div class="forum-card-summary-th th-only">${escapeHtml(topic.summary_th || '')}</div>
