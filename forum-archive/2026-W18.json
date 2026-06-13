@@ -1,0 +1,47 @@
+{
+  "curated_date": "2026-04-27",
+  "block_height": "-",
+  "reconstruction": true,
+  "reconstructed_date": "2026-06-13",
+  "curator_note_th": "สัปดาห์ของวันที่ 27 เมษายน เครื่องบันทึกของเราล้มเงียบไป รอบรันต้นฉบับพังกลางทางโดยไม่เหลืออะไรไว้เลย สิ่งที่อยู่ตรงหน้าคือการประกอบขึ้นใหม่จากกระทู้สามเส้นที่ยืนยันได้ว่ายังมีชีวิตอยู่ทั้งสองฝั่งของสัปดาห์ที่หายไป ที่เหลือสูญไปกับเครื่อง — ความจริงรอการตรวจสอบ และจดหมายเหตุก็เช่นกัน",
+  "curator_note_en": "The week of April 27, our recording machine fell silent — the original run crashed and saved nothing. What you see here is a reconstruction: the three threads we can verify were alive on both shores of the missing week. The rest is gone with the machine. Truth waits to be verified, and so do archives.",
+  "topics": [
+    {
+      "bitcointalk_topic_id": "5580736",
+      "title_en": "You Are the Asset They Buy and Sell",
+      "title_th": "คุณนั่นแหละคือสินทรัพย์ที่เขาซื้อขายกัน",
+      "author": "Churchillvv",
+      "board": "Bitcoin Discussion",
+      "summary_en": "The thread argues that ordinary people — their attention, data, and labor — are the real underlying asset traded by platforms and financial systems, priced without their consent.",
+      "summary_th": "ความสนใจ ข้อมูล และหยาดเหงื่อของคนธรรมดา คือสินทรัพย์ตัวจริงที่แพลตฟอร์มและระบบการเงินหยิบไปซื้อขาย โดยที่เจ้าตัวไม่เคยได้ร่วมตั้งราคา",
+      "take_en": "Four generations of one family have each been an entry in someone else's ledger; the first step out of the book is noticing you are written in it.",
+      "take_th": "สี่รุ่นของครอบครัวหนึ่งล้วนเคยเป็นรายการในสมุดบัญชีของใครบางคน ก้าวแรกของการเดินออกจากสมุดเล่มนั้นคือการรู้ตัวว่าชื่อเราถูกจดอยู่ข้างใน",
+      "source_url": "https://bitcointalk.org/index.php?topic=5580736.0"
+    },
+    {
+      "bitcointalk_topic_id": "5580401",
+      "title_en": "Avoiding an Unnecessary Quantum Freeze",
+      "title_th": "เลี่ยงการแช่แข็งเหรียญโดยไม่จำเป็นในยุค quantum",
+      "author": "tromp",
+      "board": "Development & Technical Discussion",
+      "summary_en": "An ongoing debate over whether pre-emptively freezing coins on legacy addresses to defend against quantum attacks protects the system or betrays its first principle of ownership.",
+      "summary_th": "ข้อถกเถียงที่ยังเดินต่อเนื่อง ว่าการชิงแช่แข็งเหรียญใน address รุ่นเก่าเพื่อกันภัย quantum คือการปกป้องระบบ หรือคือการหักหลังหลักกรรมสิทธิ์ข้อแรกของมันเอง",
+      "take_en": "Every inheritance carries the same question: protect what was left to us by locking it away, or honor it by leaving the key where the next hand can reach.",
+      "take_th": "มรดกทุกชิ้นพ่วงคำถามเดียวกันมาเสมอ จะปกป้องสิ่งที่ตกทอดมาด้วยการล็อกเก็บ หรือให้เกียรติมันด้วยการวางกุญแจไว้ให้มือของรุ่นถัดไปเอื้อมถึง",
+      "source_url": "https://bitcointalk.org/index.php?topic=5580401.0"
+    },
+    {
+      "bitcointalk_topic_id": "5550298",
+      "title_en": "J. Lopp's Post-Quantum Migration BIP",
+      "title_th": "BIP ของ J. Lopp ว่าด้วยการอัปเกรดสู่ post-quantum",
+      "author": "Pmalek",
+      "board": "Development & Technical Discussion",
+      "summary_en": "A formal proposal mapping how Bitcoin could move its cryptography beyond the reach of quantum computers before the threat actually arrives.",
+      "summary_th": "ข้อเสนออย่างเป็นทางการที่วางเส้นทางพา cryptography ของ Bitcoin ออกไปให้พ้นมือ quantum computer ก่อนภัยนั้นจะมาถึงจริง",
+      "take_en": "Preparing for a storm no one alive has ever seen is either paranoia or parenthood — the protocol's builders have already chosen which one.",
+      "take_th": "การเตรียมรับพายุที่ยังไม่มีใครเคยเห็นด้วยตา จะเรียกว่าความหวาดระแวงหรือความเป็นพ่อแม่ก็ได้ — ผู้สร้าง protocol เลือกคำตอบของตัวเองไปแล้ว",
+      "source_url": "https://bitcointalk.org/index.php?topic=5550298.0"
+    }
+  ],
+  "iso_week": "2026-W18"
+}
