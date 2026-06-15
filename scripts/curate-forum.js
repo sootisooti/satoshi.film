@@ -47,6 +47,13 @@ const MODEL = "claude-opus-4-8";
 const MAX_TOKENS = 16000;
 const FETCH_TIMEOUT_MS = 15000;
 
+// Claude API retry policy. Transient failures (429 rate limit, 529 overloaded,
+// 5xx, network blips) are common and self-resolving — a single weekly run must
+// not die on one. Retry with exponential backoff before giving up.
+const API_MAX_RETRIES = 5;
+const API_RETRY_BASE_MS = 2000; // 2s, 4s, 8s, 16s, 32s
+const API_RETRYABLE_STATUS = new Set([408, 409, 429, 500, 502, 503, 504, 529]);
+
 const USER_AGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) " +
   "AppleWebKit/537.36 (KHTML, like Gecko) " +
@@ -59,6 +66,8 @@ const archiveDir = resolve(repoRoot, "forum-archive");
 function log(msg) {
   console.log(`[curate-forum ${new Date().toISOString()}] ${msg}`);
 }
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Calculate ISO week number (YYYY-W##) for a given date.
@@ -376,8 +385,7 @@ function extractJson(responseText) {
   return cleaned;
 }
 
-async function callClaude(prompt) {
-  log(`Calling Claude API (${MODEL}, max_tokens=${MAX_TOKENS})`);
+async function callClaudeOnce(prompt) {
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -398,10 +406,39 @@ async function callClaude(prompt) {
 
   if (!res.ok) {
     const errText = await res.text();
-    throw new Error(`Claude API ${res.status}: ${errText}`);
+    const err = new Error(`Claude API ${res.status}: ${errText}`);
+    err.status = res.status;
+    throw err;
   }
 
-  const data = await res.json();
+  return res.json();
+}
+
+async function callClaude(prompt) {
+  log(`Calling Claude API (${MODEL}, max_tokens=${MAX_TOKENS})`);
+
+  let data;
+  for (let attempt = 1; ; attempt++) {
+    try {
+      data = await callClaudeOnce(prompt);
+      break;
+    } catch (err) {
+      // Retry on transient API failures (429/529/5xx) and network errors
+      // (fetch rejects with no .status). Client errors (4xx) are permanent.
+      const status = err.status;
+      const retryable =
+        status === undefined || API_RETRYABLE_STATUS.has(status);
+      if (!retryable || attempt > API_MAX_RETRIES) {
+        throw err;
+      }
+      const delay = API_RETRY_BASE_MS * 2 ** (attempt - 1);
+      log(
+        `Claude API call failed (attempt ${attempt}/${API_MAX_RETRIES}): ${err.message}. Retrying in ${delay}ms`
+      );
+      await sleep(delay);
+    }
+  }
+
   const responseText = data.content
     .filter((b) => b.type === "text")
     .map((b) => b.text)
