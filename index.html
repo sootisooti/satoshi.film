@@ -56,6 +56,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; 
 .hero-block .block-num { color: #F7931A; }
 .hero-title { font-family: 'Space Mono', monospace; font-size: clamp(48px, 12vw, 140px); font-weight: 700; letter-spacing: 0.1em; color: #d4d0c8; opacity: 0.15; line-height: 1; margin-bottom: 8px; }
 .hero-title-th { font-family: 'Noto Serif Thai', serif; font-size: clamp(24px, 5vw, 52px); color: #F7931A; opacity: 0.6; letter-spacing: 0.5em; margin-bottom: 40px; }
+/* Reset tracking inside the ชิ cluster so the sara-i (ิ) anchors directly over ช instead of being pushed aside by letter-spacing */
+.hero-title-th .th-cluster { letter-spacing: 0; }
 .hero-laurel { display: block; width: min(320px, 76vw); margin: 0 auto 44px; opacity: 0.9; transition: opacity 0.3s; }
 .hero-laurel:hover { opacity: 1; }
 .hero-laurel svg { width: 100%; height: auto; display: block; }
@@ -787,7 +789,7 @@ function dismissPreProdBanner() {
     </a>
   </div>
   <h1 class="hero-title">SATOSHi</h1>
-  <div class="hero-title-th">ซ า โ ต ชิ</div>
+  <div class="hero-title-th">ซ า โ ต <span class="th-cluster">ชิ</span></div>
   <a href="#bff" class="hero-laurel" style="color:#F7F3E8;" aria-label="Official Selection — Bitcoin FilmFest 2026, Warsaw">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" role="img" shape-rendering="crispEdges">
       <defs>
